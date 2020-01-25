@@ -6,12 +6,12 @@
 /*   By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 16:31:14 by vde-dios          #+#    #+#             */
-/*   Updated: 2020/01/25 17:40:00 by vde-dios         ###   ########.fr       */
+/*   Updated: 2020/01/25 19:49:23 by vde-dios         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minilibx_opengl/mlx.h"
-#include "../header/miniRT.h"
+#include "../include/miniRT.h"
 
 int	main()
 {
