@@ -4,6 +4,7 @@ pft
 #Vim files
 *.swp
 *.swo
+*.swn
 
 # Prerequisites
 *.d
