@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minilibx_opengl/mlx.h"
-#include "../include/miniRT.h"
+#include "mlx.h"
+#include "miniRT.h"
 
 int	main()
 {

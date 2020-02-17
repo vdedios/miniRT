@@ -58,11 +58,6 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-pft_2019/
-pft_2019/
-pft/
-pft_2019/
-pft/
-pft_2019/
-pft/
-pft_2019/
+
+# Aditional files
+documentation

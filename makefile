@@ -16,7 +16,7 @@ OPENGL		= 	-framework OpenGL -framework AppKit
 SRC_DIR 	= 	src/
 
 CC			=	gcc
-FLAGS		= 	-Werror -Wall -Wextra
+FLAGS		= 	-Werror -Wall -Wextra -g
 
 SRC_FILES	=	main.c \
 				miniRT.c
@@ -26,10 +26,10 @@ SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 all		:	$(NAME)
 
 $(NAME)	: 
-		@$(CC) $(FLAGS) $(SRC) $(MINILIBX) $(OPENGL) -o $(NAME)
+		@$(CC) $(FLAGS) $(SRC) -I includes/ $(MINILIBX) $(OPENGL) -o $(NAME)
 		@echo compiling done, like a boss 😎
 		@echo running program... 💾
-		@./$(NAME)
+		#@./$(NAME)
 
 bonus	:	all
 		@echo you got the bonus!...🌟

@@ -13,10 +13,14 @@
 #ifndef MINIRT_H
 # define MINIRT_H
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef struct	s_window {
-    void		*mlx;
-    void		*win;
+    void		*mlx_ptr;
+    void		*win_ptr;
+	int			button;
+	int			x;
+	int			y;
 }				t_window;
 
 void	miniRT();
