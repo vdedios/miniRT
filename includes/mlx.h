@@ -70,7 +70,6 @@ int	mlx_pixel_put(void *mlx_ptr, void *win_ptr, int x, int y, int color);
 **  color is 0x00RRGGBB
 */
 
-
 /*
 ** Image stuff
 */

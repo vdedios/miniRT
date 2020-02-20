@@ -58,32 +58,43 @@ void			draw_diamond(t_window *window)
 
 void			draw_circle(t_window *window)
 {
-	int		R;
+	double	R;
 	double	x;
-	int		y;
-	int		r;
+	double	y;
+	double	aux_y;
+	int		aux_x;
 
-	R = 150;
-	r = R;
-		while (r >= 0)
+	R = 40.0;
+	y = R - 1;
+	aux_x = 0;
+	while (y > 0)
+	{
+		aux_y = y;
+		x = sqrt(pow(R, 2.0) - pow(y, 2.0));		
+		if (aux_x != (int)x)
 		{
-			y = 0;
-			x = r;
-			while (y <= x)
+			while (aux_x < (int)x)
 			{
-				mlx_pixel_put(window->mlx_ptr, window->win_ptr, window->x + (int)x, window->y - y, 0x0000FF00);
-				mlx_pixel_put(window->mlx_ptr, window->win_ptr, window->x + y, window->y - (int)x, 0x0000FF00);
-				mlx_pixel_put(window->mlx_ptr, window->win_ptr, window->x - y, window->y - (int)x, 0x0000FF00);
-				mlx_pixel_put(window->mlx_ptr, window->win_ptr, window->x - (int)x, window->y - y, 0x0000FF00);
-				mlx_pixel_put(window->mlx_ptr, window->win_ptr, window->x - (int)x, window->y + y, 0x0000FF00);
-				mlx_pixel_put(window->mlx_ptr, window->win_ptr, window->x - y, window->y + (int)x, 0x0000FF00);
-				mlx_pixel_put(window->mlx_ptr, window->win_ptr, window->x + y, window->y + (int)x, 0x0000FF00);
-				mlx_pixel_put(window->mlx_ptr, window->win_ptr, window->x + (int)x, window->y + y, 0x0000FF00);
-				y++;
-				x = sqrt(pow((double)r, 2.0) - pow((double)y, 2.0)); 
+				while (aux_y >= -y)
+				{
+					mlx_pixel_put(window->mlx_ptr, window->win_ptr, (int)aux_x + window->x, (int)aux_y + window->y, 0x0000FF00);
+					mlx_pixel_put(window->mlx_ptr, window->win_ptr, -(int)aux_x + window->x, -(int)aux_y + window->y, 0x0000FF00);
+					aux_y--;
+				}
+				aux_y = y;
+				aux_x++;
 			}
-			r--;
 		}
+		aux_y = y;
+		while (aux_y >= -y)
+		{
+			mlx_pixel_put(window->mlx_ptr, window->win_ptr, (int)x + window->x, (int)aux_y + window->y, 0x0000FF00);
+			mlx_pixel_put(window->mlx_ptr, window->win_ptr, -(int)x + window->x, -(int)aux_y + window->y, 0x0000FF00);
+			aux_y--;
+		}
+		aux_x++;
+		y--;
+	}
 }
 
 int             draw(t_window *window)
