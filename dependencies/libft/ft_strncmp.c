@@ -1,37 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/25 17:20:40 by vde-dios          #+#    #+#             */
-/*   Updated: 2020/01/25 19:23:59 by vde-dios         ###   ########.fr       */
+/*   Created: 2019/12/11 16:34:09 by vde-dios          #+#    #+#             */
+/*   Updated: 2019/12/11 16:34:10 by vde-dios         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
-#include <stdio.h>
-#include <stdlib.h>
-#include "mlx.h"
 #include "libft.h"
-#include "get_next_line.h"
 
-typedef struct	s_window {
-    void		*mlx_ptr;
-    void		*win_ptr;
-	int			button;
-	int			x;
-	int			y;
-}				t_window;
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	unsigned char	*ps1;
+	unsigned char	*ps2;
 
-typedef struct	s_scene {
-}				t_scene;
-
-
-int				ft_printf(const char *s, ...);
-void			ft_miniRT();
-void			ft_scene_handler(char *scene_info, t_scene scene);
-
-#endif
+	ps1 = (unsigned char *)s1;
+	ps2 = (unsigned char *)s2;
+	if (n == 0)
+		return (0);
+	while (*ps1 && *ps1 == *ps2 && --n)
+	{
+		ps1++;
+		ps2++;
+	}
+	return (*ps1 - *ps2);
+}

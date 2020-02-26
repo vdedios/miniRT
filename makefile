@@ -10,38 +10,57 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	miniRT
-MINILIBX 	=	minilibx_opengl/libmlx.a
-OPENGL		= 	-framework OpenGL -framework AppKit
-SRC_DIR 	= 	src/
+NAME				=	miniRT
 
-CC			=	gcc
-FLAGS		= 	-Werror -Wall -Wextra -g
+SRC_DIR 			= 	src/
+MINILIBX_DIR 		=	dependencies/minilibx_opengl
+LIBFT_DIR			=	dependencies/libft/
+PRINTF_DIR			=	dependencies/printf/
 
-SRC_FILES	=	main.c \
-				miniRT.c
+MINILIBX_A_DIR 	=	dependencies/minilibx_opengl/libmlx.a
+LIBFT_A_DIR		=	dependencies/libft/libft.a
+PRINTF_A_DIR		=	dependencies/printf/libftprintf.a
 
-SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
+CC					=	gcc
+CFLAGS				= 	-Werror -Wall -Wextra -g
+OPENGL				= 	-framework OpenGL -framework AppKit
 
-all		:	$(NAME)
+SRC_FILES			=	main.c \
+						miniRT.c
 
-$(NAME)	: 
-		@$(CC) $(FLAGS) $(SRC) -I includes/ $(MINILIBX) $(OPENGL) -o $(NAME)
-		@echo compiling done, like a boss 😎
-		@echo running program... 💾
-		#@./$(NAME)
+SRC 				= $(addprefix $(SRC_DIR), $(SRC_FILES))
+
+all		:	dependencies $(NAME)
+
+$(NAME)	:	$(SRC) 
+	@echo Building miniRT...
+	@$(CC) $(CFLAGS) $(SRC) -I includes/ $(PRINTF_A_DIR) \
+		$(LIBFT_A_DIR) $(MINILIBX_A_DIR) $(OPENGL) -o $(NAME)
+	@echo success ✅
+	@#echo running program... 💾
+	@#./$(NAME)
+
+dependencies	:	
+	@echo Building libft
+	@make -C $(LIBFT_DIR)	
+	@echo Building printf
+	@make -C $(PRINTF_DIR)
+	@echo Building minilibX
+	@make -C $(MINILIBX_DIR)
 
 bonus	:	all
-		@echo you got the bonus!...🌟
+	@echo you got the bonus!...🌟
 
 clean	:
-		@echo Cleaning ...🧼
+	@rm -rf $(NAME)
+	@rm -rf $(NAME).dSYM
+	@echo cleaning miniRT...
 
 fclean	: 	clean
-		@rm -rf $(NAME)
-		@echo everything cleaned and shiny 🗑
+	@make fclean -C $(LIBFT_DIR)
+	@make fclean -C $(PRINTF_DIR)
+	@make clean -C $(MINILIBX_DIR)
 
 re		:	fclean all
-		@echo Now you can reach the stars 🚀
 
-.PHONY: clean fclean all re bonus
+.PHONY: clean fclean all re bonus dependencies

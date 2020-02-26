@@ -1,37 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   ft_str_join_one.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/25 17:20:40 by vde-dios          #+#    #+#             */
-/*   Updated: 2020/01/25 19:23:59 by vde-dios         ###   ########.fr       */
+/*   Created: 2020/01/04 17:55:29 by vde-dios          #+#    #+#             */
+/*   Updated: 2020/01/10 17:04:40 by vde-dios         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
-#include <stdio.h>
-#include <stdlib.h>
-#include "mlx.h"
 #include "libft.h"
-#include "get_next_line.h"
 
-typedef struct	s_window {
-    void		*mlx_ptr;
-    void		*win_ptr;
-	int			button;
-	int			x;
-	int			y;
-}				t_window;
+char	*ft_strjoin_second(char *s1, char *s2)
+{
+	char	*joint;
+	size_t	l;
+	size_t	i;
+	size_t	j;
 
-typedef struct	s_scene {
-}				t_scene;
-
-
-int				ft_printf(const char *s, ...);
-void			ft_miniRT();
-void			ft_scene_handler(char *scene_info, t_scene scene);
-
-#endif
+	l = ft_strlen(s1) + ft_strlen(s2) + 1;
+	if (!(joint = malloc(l * sizeof(char))))
+		return (NULL);
+	l = 0;
+	i = 0;
+	j = 0;
+	while (l < (ft_strlen(s1) + ft_strlen(s2)))
+	{
+		if (l < ft_strlen(s1))
+			joint[l++] = s1[i++];
+		else
+			joint[l++] = s2[j++];
+	}
+	joint[l] = '\0';
+	free(s2);
+	s2 = NULL;
+	return (joint);
+}

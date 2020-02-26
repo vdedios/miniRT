@@ -14,7 +14,7 @@
 #include "miniRT.h"
 #include <math.h>
 
-int             close(int key, t_window *window)
+int             close_win(int key, t_window *window)
 {
 	if (key == 53)
 	{
@@ -135,7 +135,7 @@ int				map_coords(int x, int y, t_window *window)
 	return (0);
 }
 
-void            miniRT()
+void            ft_miniRT(void)
 {
 	t_window      window;
 
@@ -144,7 +144,7 @@ void            miniRT()
 	window.y = 0;
 	window.mlx_ptr = mlx_init();
 	window.win_ptr = mlx_new_window(window.mlx_ptr, 500, 500, "Hello world!");
-	mlx_key_hook(window.win_ptr, close, &window);
+	mlx_key_hook(window.win_ptr, close_win, &window);
 	mlx_hook(window.win_ptr, 4, 0L, button_press, &window);
 	mlx_hook(window.win_ptr, 5, 0L, button_release, &window);
 

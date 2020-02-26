@@ -1,37 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   miniRT.h                                           :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/25 17:20:40 by vde-dios          #+#    #+#             */
-/*   Updated: 2020/01/25 19:23:59 by vde-dios         ###   ########.fr       */
+/*   Created: 2019/12/11 16:29:55 by vde-dios          #+#    #+#             */
+/*   Updated: 2019/12/11 16:29:58 by vde-dios         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
-#include <stdio.h>
-#include <stdlib.h>
-#include "mlx.h"
 #include "libft.h"
-#include "get_next_line.h"
 
-typedef struct	s_window {
-    void		*mlx_ptr;
-    void		*win_ptr;
-	int			button;
-	int			x;
-	int			y;
-}				t_window;
+void	*ft_memmove(void *dst, const void *src, size_t len)
+{
+	size_t	i;
+	char	*dest;
+	char	*source;
 
-typedef struct	s_scene {
-}				t_scene;
-
-
-int				ft_printf(const char *s, ...);
-void			ft_miniRT();
-void			ft_scene_handler(char *scene_info, t_scene scene);
-
-#endif
+	i = 0;
+	dest = (char *)dst;
+	source = (char *)src;
+	if (dest > source)
+	{
+		while (len--)
+			dest[len] = source[len];
+	}
+	else if (dest < source)
+		ft_memcpy(dst, src, len);
+	return (dst);
+}
