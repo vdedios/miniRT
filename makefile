@@ -25,7 +25,12 @@ CC					=	gcc
 CFLAGS				= 	-Werror -Wall -Wextra -g
 OPENGL				= 	-framework OpenGL -framework AppKit
 
-SRC_FILES			=	main.c \
+SRC_FILES			=	main.c					\
+						scene_handler.c			\
+						get_next_line.c			\
+						get_next_line_utils.c	\
+						load_elements_utils.c	\
+						load_elements_1.c		\
 						miniRT.c
 
 SRC 				= $(addprefix $(SRC_DIR), $(SRC_FILES))
