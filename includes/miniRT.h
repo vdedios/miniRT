@@ -15,21 +15,52 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
+#include <string.h>
+#include <errno.h>
 #include "mlx.h"
 #include "miniRT_types.h"
 #include "libft.h"
 #include "get_next_line.h"
 
+
+/*
+** General functions
+*/
 int				ft_printf(const char *s, ...);
 void			ft_miniRT();
+void			ft_error_handler(int error_id);
 
 /*
 ** Scene handling functions
 */
-int				ft_load_scene(char	*path, t_scene *scene);
-int				ft_load_element(char *line, t_scene *scene);
-int				ft_load_resolution(char *line, t_scene *scene);
+void			ft_load_scene(char	*path, t_scene *scene);
+void			ft_load_element(char *line, t_scene *scene);
+void			ft_load_resolution(char *line, t_scene *scene);
+void			ft_load_ambient(char *line, t_scene *scene);
+void			ft_load_camera(char *line, t_scene *scene);
+void			ft_load_light(char *line, t_scene *scene);
+void			ft_load_sphere(char *line, t_scene *scene);
+void			ft_load_plane(char *line, t_scene *scene);
+void			ft_load_square(char *line, t_scene *scene);
+void			ft_load_cylinder(char *line, t_scene *scene);
+void			ft_load_triangle(char *line, t_scene *scene);
+
+/*
+** Scene handling utils functions
+*/
 void			ft_del_matrix(char **matrix);
-int				ft_check_digit(char *info, char id);
+float			ft_ftoi(char *str);
+int				ft_rgb_to_hex(char **rgb);
+
+/*
+** Scene error handling functions.
+** An scene can have 4 types of numeric values: simple int, simple float
+** float coordenates, rgb values.
+*/
+void			ft_check_digit(char *info, char id);
+void			ft_load_uint(int *num, char *buffer);
+void			ft_load_ufloat(float *num, char *buffer);
+void			ft_load_coords(float *coord, char *buffer);
+void			ft_load_rgb(int *rgb, char *buffer);
 
 #endif

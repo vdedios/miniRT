@@ -31,6 +31,8 @@ SRC_FILES			=	main.c					\
 						get_next_line_utils.c	\
 						load_elements_utils.c	\
 						load_elements_1.c		\
+						load_elements_2.c		\
+						error_handling.c		\
 						miniRT.c
 
 SRC 				= $(addprefix $(SRC_DIR), $(SRC_FILES))

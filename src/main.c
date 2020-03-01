@@ -12,18 +12,18 @@
 
 #include "miniRT.h"
 
+//ELIMINAR EL PRINTF DEL PROYECTO
 int	main(int argc, char **argv)
 {
 	t_scene	scene;
 
 	if (argc != 2)
-		ft_printf("<<ERROR>> add the correct number of args\n");
+		ft_error_handler(1);
 	else if (ft_strnstr(argv[1], ".rt", ft_strlen(argv[1])))
 	{
-		if (ft_load_scene(argv[1], &scene))
-			ft_miniRT();
-		else
-			ft_printf("<<ERROR>> wrong scene, please check format or path\n");
+		ft_load_scene(argv[1], &scene);
+		ft_miniRT();
+			//perror("<<ERROR>> wrong scene, please check format or path\n");
 	}
 	else if (!ft_strncmp(argv[1], "--save", ft_strlen(argv[1]) + 1))
 	{
@@ -33,6 +33,6 @@ int	main(int argc, char **argv)
 
 	}
 	else
-		ft_printf("<<ERROR>> write a valid arg\n");
+		ft_error_handler(1);
 	return (0);
 }

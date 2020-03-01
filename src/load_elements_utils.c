@@ -1,6 +1,6 @@
 #include "miniRT.h"
 
-double	ft_ten_power(int p)
+double	ft_ten_powerf(int p)
 {
 	double	t;
 	int		i;
@@ -26,12 +26,27 @@ float	ft_ftoi(char *str)
 	int	d;
 	int	l;
 
-	d = ft_atoi(srt);
-	while (*str != '.')
+	d = ft_atoi(str);
+	while (*str != '.' && *str)
 		str++;
-	i = ft_atoi(srt);
-	l = ft_strlen(str) - 1;
-	return (d + i * ft_ten_power(-l));
+	if (!*str)
+		return ((float)d);
+	str++;
+	l = ft_strlen(str);
+	i = ft_atoi(str);
+	return ((float)(d + i * ft_ten_powerf(-l)));
+}
+
+int		ft_rgb_to_hex(char **rgb)
+{
+	int	num_r;
+	int	num_g;
+	int	num_b;
+
+	num_r = ft_atoi(rgb[0]);
+	num_g = ft_atoi(rgb[1]);
+	num_b = ft_atoi(rgb[2]);
+	return (num_b + (num_g << 8) + (num_r << 16));
 }
 
 void	ft_del_matrix(char **matrix)
@@ -47,47 +62,4 @@ void	ft_del_matrix(char **matrix)
 	}
 	free(matrix);
 	matrix = NULL;
-}
-
-int		ft_check_digit(char *info, char id)
-{
-	int i;
-
-	i = 0;
-	if (!info)
-		return (0);
-	while (info[i])
-	{
-		if (info[i] >= '0' && info[i] <= '9')
-			i++;
-		if (id == 'f')
-			if (info[i] == '.')
-				i++;
-		else
-			return (0);
-	}
-	return (1);
-}
-
-int		ft_check_matrix(char **matrix, int start, int end, char type)
-{
-	while (start < end)
-		if (!ft_check_digit(info[start++], type))
-		{
-			ft_del_matrix(matrix);
-			return (0);
-		}
-	return (1);
-}
-
-int		ft_rgb_to_hex(char **rgb)
-{
-	int	num_r;
-	int	num_g;
-	int	num_b;
-
-	num_r = ft_atoi(rgb[0]);
-	num_g = ft_atoi(rgb[1]);
-	num_b = ft_atoi(rgb[2]);
-	return (num_b + (num_g << 4) + (num_r << 8))
 }

@@ -9,6 +9,10 @@ typedef struct	s_window {
 	int			y;
 }				t_window;
 
+/*
+** All elements that can be found in a scene
+*/
+
 typedef struct	s_scene {
 	char		id;
 	int			x;
@@ -16,15 +20,6 @@ typedef struct	s_scene {
 	void		*next;
 }				t_scene;
 
-/*
-** All elements that can be found in a scene
-*/
-
-//Elementos comunes y que necesitan de una función externa para tratarlos:
-//-> rgb, atoi, ftoi (quitar comas, espacios y chequear errores de formato)
-//Almacenado:
-//-> una función por tipo
-//
 typedef struct	s_ambient {
 	char		id;
 	float		intensity;
@@ -34,80 +29,54 @@ typedef struct	s_ambient {
 
 typedef struct	s_camera {
 	char		id;
-	float		x;
-	float		y;
-	float		z;
-	float		nx;
-	float		ny;
-	float		nz;
-	float		fov;
+	float		pos[3];
+	float		n[3];
+	int			fov;
 }				t_camera;
 
 typedef struct	s_light {
 	char		id;
-	float		x;
-	float		y;
-	float		z;
+	float		pos[3];
 	float		intensity;
 	int			rgb;
 }				t_light;
 
 typedef struct	s_sphere {
 	char		id;
-	float		x;
-	float		y;
-	float		z;
+	float		center[3];
 	float		diameter;
 	int			rgb;
 }				t_sphere;
 
 typedef struct	s_plane {
 	char		id;
-	float		x;
-	float		y;
-	float		z;
-	float		nx;
-	float		ny;
-	float		nz;
+	float		point[3];
+	float		n[3];
 	int			rgb;
 }				t_plane;
 
 typedef struct	s_square {
 	char		id;
-	float		x;
-	float		y;
-	float		z;
-	float		nx;
-	float		ny;
-	float		nz;
+	float		center[3];
+	float		n[3];
 	float		side;
 	int			rgb;
 }				t_square;
 
-typedef struct	s_cilinder {
+typedef struct	s_cylinder {
 	char		id;
-	float		x;
-	float		y;
-	float		z;
-	float		nx;
-	float		ny;
-	float		nz;
+	float		point[3];
+	float		n[3];
 	float		diameter;
 	float		height;
 	int			rgb;
-}				t_cilinder;
+}				t_cylinder;
 
 typedef struct	s_triangle {
 	char		id;
-	float		v1_x;
-	float		v1_y;
-	float		v1_z;
-	float		v2_x;
-	float		v2_y;
-	float		v2_z;
-	float		v3_x;
-	float		v3_y;
-	float		v3_z;
+	float		a[3];
+	float		b[3];
+	float		c[3];
 	int			rgb;
 }				t_triangle;
 
