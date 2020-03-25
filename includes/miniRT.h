@@ -27,7 +27,7 @@
 ** General functions
 */
 int				ft_printf(const char *s, ...);
-void			ft_miniRT();
+void            ft_miniRT(t_list *elements);
 void			ft_error_handler(int error_id);
 
 /*
@@ -35,6 +35,7 @@ void			ft_error_handler(int error_id);
 */
 void			ft_load_scene(char	*path, t_scene *scene);
 void			ft_load_element(char *line, t_scene *scene);
+
 void			ft_load_resolution(char *line, t_scene *scene);
 void			ft_load_ambient(char *line, t_scene *scene);
 void			ft_load_camera(char *line, t_scene *scene);

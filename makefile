@@ -17,8 +17,8 @@ MINILIBX_DIR 		=	dependencies/minilibx_opengl
 LIBFT_DIR			=	dependencies/libft/
 PRINTF_DIR			=	dependencies/printf/
 
-MINILIBX_A_DIR 	=	dependencies/minilibx_opengl/libmlx.a
-LIBFT_A_DIR		=	dependencies/libft/libft.a
+MINILIBX_A_DIR 		=	dependencies/minilibx_opengl/libmlx.a
+LIBFT_A_DIR			=	dependencies/libft/libft.a
 PRINTF_A_DIR		=	dependencies/printf/libftprintf.a
 
 CC					=	gcc

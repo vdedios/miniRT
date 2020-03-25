@@ -5,8 +5,6 @@ typedef struct	s_window {
     void		*mlx_ptr;
     void		*win_ptr;
 	int			button;
-	int			x;
-	int			y;
 }				t_window;
 
 /*
@@ -14,17 +12,22 @@ typedef struct	s_window {
 */
 
 typedef struct	s_scene {
-	char		id;
 	int			x;
 	int			y;
-	void		*next;
+	t_ambient	ambient;
+	t_camera	*camera;
+	t_light		*light;
+	t_sphere	*sphere;
+	t_plane		*plane;
+	t_square	*square;
+	t_cylinder	*cylinder;
+	t_triangle	*triangle;
 }				t_scene;
 
 typedef struct	s_ambient {
 	char		id;
 	float		intensity;
 	int			rgb;
-	void		*next;
 }				t_ambient;
 
 typedef struct	s_camera {
@@ -81,4 +84,3 @@ typedef struct	s_triangle {
 }				t_triangle;
 
 #endif
-

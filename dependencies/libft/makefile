@@ -60,9 +60,8 @@ SRC		=	 ft_atoi.c 			\
 			 ft_strrchr.c 		\
 			 ft_strncmp.c 		\
 			 ft_strmapi.c 		\
-			 ft_strnstr.c
-
-BONUS	 =	 ft_lstadd_front_bonus.c 	\
+			 ft_strnstr.c		\
+			 ft_lstadd_front_bonus.c 	\
 			 ft_lstlast_bonus.c 	\
 			 ft_lstnew_bonus.c 	\
 			 ft_lstsize_bonus.c 	\
