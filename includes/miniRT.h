@@ -27,7 +27,7 @@
 ** General functions
 */
 int				ft_printf(const char *s, ...);
-void            ft_miniRT(t_list *elements);
+void            ft_miniRT(t_scene scene);
 void			ft_error_handler(int error_id);
 
 /*

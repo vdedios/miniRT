@@ -16,7 +16,6 @@ int	main(int argc, char **argv)
 {
 	t_scene	scene;
 
-	elements = NULL;
 	if (argc != 2)
 		ft_error_handler(1);
 	else if (ft_strnstr(argv[1], ".rt", ft_strlen(argv[1])))
