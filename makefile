@@ -33,6 +33,8 @@ SRC_FILES			=	main.c					\
 						load_elements_1.c		\
 						load_elements_2.c		\
 						error_handling.c		\
+						camera_handling.c		\
+						math_utils.c	\
 						miniRT.c
 
 SRC 				= $(addprefix $(SRC_DIR), $(SRC_FILES))

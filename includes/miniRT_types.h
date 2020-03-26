@@ -19,7 +19,7 @@ typedef struct	s_ambient {
 typedef struct	s_camera {
 	float		pos[3];
 	float		n[3];
-	int			fov;
+	double		fov;
 }				t_camera;
 
 typedef struct	s_light {

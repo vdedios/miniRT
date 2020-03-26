@@ -17,6 +17,7 @@
 #include <fcntl.h>
 #include <string.h>
 #include <errno.h>
+#include <math.h>
 #include "mlx.h"
 #include "miniRT_types.h"
 #include "libft.h"
@@ -26,16 +27,16 @@
 /*
 ** General functions
 */
+
 int				ft_printf(const char *s, ...);
 void            ft_miniRT(t_scene scene);
-void			ft_error_handler(int error_id);
 
 /*
 ** Scene handling functions
 */
+
 void			ft_load_scene(char	*path, t_scene *scene);
 void			ft_load_element(char *line, t_scene *scene);
-
 void			ft_load_resolution(char *line, t_scene *scene);
 void			ft_load_ambient(char *line, t_scene *scene);
 void			ft_load_camera(char *line, t_scene *scene);
@@ -49,6 +50,7 @@ void			ft_load_triangle(char *line, t_scene *scene);
 /*
 ** Scene handling utils functions
 */
+
 void			ft_del_matrix(char **matrix);
 float			ft_ftoi(char *str);
 int				ft_rgb_to_hex(char **rgb);
@@ -58,10 +60,27 @@ int				ft_rgb_to_hex(char **rgb);
 ** An scene can have 4 types of numeric values: simple int, simple float
 ** float coordenates, rgb values.
 */
+
+void			ft_error_handler(int error_id);
 void			ft_check_digit(char *info, char id);
 void			ft_load_uint(int *num, char *buffer);
 void			ft_load_ufloat(float *num, char *buffer);
 void			ft_load_coords(float *coord, char *buffer);
 void			ft_load_rgb(int *rgb, char *buffer);
+
+/*
+** Scene drawing functions
+*/
+int		ft_draw_scene(t_scene scene, t_window *window);
+double	**ft_global_camera_base(t_scene scene);
+double	*ft_local_camera_ray(t_scene scene, int p_x, int p_y);
+
+/*
+** Auxiliar math functions
+*/
+
+double	*ft_cross_product(double *u, double *v);
+void	ft_normalise_vector(double *v);
+double	*ft_mtx_vct_prod(double **m, double *v, t_scene scene);
 
 #endif
