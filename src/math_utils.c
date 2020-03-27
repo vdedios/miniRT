@@ -94,14 +94,14 @@ double	*ft_mtx_vct_prod(double **m, double *v, t_scene scene)
 {
 	double *p;
 	int		i;
+	(void)scene;
 
 	i = 0;
 	if (!(p = malloc(3 * sizeof(double))))
 		return (0);
 	while (i < 3)
 	{
-		p[i] = v[0] * m[0][i] + v[1] * m[1][i] + v[2] * m[2][i]
-			+ scene.camera[0]->pos[i];
+		p[i] = v[0] * m[0][i] + v[1] * m[1][i] + v[2] * m[2][i];
 		i++;
 	}
 	return (p);
