@@ -27,7 +27,7 @@ void	ft_load_ambient(char *line, t_scene *scene)
 		i++;
 	if (i != 3)
 		ft_error_handler(4);
-	ft_load_ufloat(&scene->ambient.intensity, buffer[1]);
+	ft_load_udouble(&scene->ambient.intensity, buffer[1]);
 	ft_load_rgb(&scene->ambient.rgb, buffer[2]);
 	ft_del_matrix(buffer);
 }
@@ -73,7 +73,7 @@ void	ft_load_light(char *line, t_scene *scene)
 	scene->light[scene->index[3] - 1] = light;
 	scene->index[3]--;
 	ft_load_coords(light->pos, buffer[1]);
-	ft_load_ufloat(&light->intensity, buffer[2]);
+	ft_load_udouble(&light->intensity, buffer[2]);
 	ft_load_rgb(&light->rgb, buffer[3]);
 	ft_del_matrix(buffer);
 }

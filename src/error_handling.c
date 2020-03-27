@@ -46,14 +46,14 @@ void	ft_load_uint(int *num, char *buffer)
 	*num = ft_atoi(buffer);
 }
 
-void	ft_load_ufloat(float *num, char *buffer)
+void	ft_load_udouble(double *num, char *buffer)
 {
 	ft_check_digit(buffer, 'f');
 	*num = ft_ftoi(buffer);
 }
 
 //VOY A TENER PROBLEMAS CON LAS COMAS DOBLES
-void	ft_load_coords(float *coord, char *buffer)
+void	ft_load_coords(double *coord, char *buffer)
 {
 	int		i;
 	char	**buff_aux;

@@ -12,53 +12,53 @@ typedef struct	s_window {
 */
 
 typedef struct	s_ambient {
-	float		intensity;
+	double		intensity;
 	int			rgb;
 }				t_ambient;
 
 typedef struct	s_camera {
-	float		pos[3];
-	float		n[3];
+	double		pos[3];
+	double		n[3];
 	double		fov;
 }				t_camera;
 
 typedef struct	s_light {
-	float		pos[3];
-	float		intensity;
+	double		pos[3];
+	double		intensity;
 	int			rgb;
 }				t_light;
 
 typedef struct	s_sphere {
-	float		center[3];
-	float		diameter;
+	double		center[3];
+	double		diameter;
 	int			rgb;
 }				t_sphere;
 
 typedef struct	s_plane {
-	float		point[3];
-	float		n[3];
+	double		point[3];
+	double		n[3];
 	int			rgb;
 }				t_plane;
 
 typedef struct	s_square {
-	float		center[3];
-	float		n[3];
-	float		side;
+	double		center[3];
+	double		n[3];
+	double		side;
 	int			rgb;
 }				t_square;
 
 typedef struct	s_cylinder {
-	float		point[3];
-	float		n[3];
-	float		diameter;
-	float		height;
+	double		point[3];
+	double		n[3];
+	double		diameter;
+	double		height;
 	int			rgb;
 }				t_cylinder;
 
 typedef struct	s_triangle {
-	float		a[3];
-	float		b[3];
-	float		c[3];
+	double		a[3];
+	double		b[3];
+	double		c[3];
 	int			rgb;
 }				t_triangle;
 

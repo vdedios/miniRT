@@ -17,7 +17,7 @@ void	ft_load_sphere(char *line, t_scene *scene)
 	scene->sphere[scene->index[4] - 1] = sphere;
 	scene->index[4]--;
 	ft_load_coords(sphere->center, buffer[1]);
-	ft_load_ufloat(&sphere->diameter, buffer[2]);
+	ft_load_udouble(&sphere->diameter, buffer[2]);
 	ft_load_rgb(&sphere->rgb, buffer[3]);
 	ft_del_matrix(buffer);
 }
@@ -62,7 +62,7 @@ void	ft_load_square(char *line, t_scene *scene)
 	scene->index[6]--;
 	ft_load_coords(square->center, buffer[1]);
 	ft_load_coords(square->n, buffer[2]);
-	ft_load_ufloat(&square->side, buffer[3]);
+	ft_load_udouble(&square->side, buffer[3]);
 	ft_load_rgb(&square->rgb, buffer[4]);
 	ft_del_matrix(buffer);
 }
@@ -85,8 +85,8 @@ void	ft_load_cylinder(char *line, t_scene *scene)
 	scene->index[7]--;
 	ft_load_coords(cylinder->point, buffer[1]);
 	ft_load_coords(cylinder->n, buffer[2]);
-	ft_load_ufloat(&cylinder->diameter, buffer[3]);
-	ft_load_ufloat(&cylinder->height, buffer[4]);
+	ft_load_udouble(&cylinder->diameter, buffer[3]);
+	ft_load_udouble(&cylinder->height, buffer[4]);
 	ft_load_rgb(&cylinder->rgb, buffer[5]);
 	ft_del_matrix(buffer);
 }

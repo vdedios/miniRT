@@ -20,7 +20,7 @@ double	ft_ten_powerf(int p)
 }
 
 //REVISAR!!
-float	ft_ftoi(char *str)
+double	ft_ftoi(char *str)
 {
 	int i;
 	int	d;
@@ -30,11 +30,11 @@ float	ft_ftoi(char *str)
 	while (*str != '.' && *str)
 		str++;
 	if (!*str)
-		return ((float)d);
+		return ((double)d);
 	str++;
 	l = ft_strlen(str);
 	i = ft_atoi(str);
-	return ((float)(d + i * ft_ten_powerf(-l)));
+	return ((double)(d + i * ft_ten_powerf(-l)));
 }
 
 int		ft_rgb_to_hex(char **rgb)

@@ -52,20 +52,20 @@ void			ft_load_triangle(char *line, t_scene *scene);
 */
 
 void			ft_del_matrix(char **matrix);
-float			ft_ftoi(char *str);
+double			ft_ftoi(char *str);
 int				ft_rgb_to_hex(char **rgb);
 
 /*
 ** Scene error handling functions.
-** An scene can have 4 types of numeric values: simple int, simple float
-** float coordenates, rgb values.
+** An scene can have 4 types of numeric values: simple int, simple double
+** double coordenates, rgb values.
 */
 
 void			ft_error_handler(int error_id);
 void			ft_check_digit(char *info, char id);
 void			ft_load_uint(int *num, char *buffer);
-void			ft_load_ufloat(float *num, char *buffer);
-void			ft_load_coords(float *coord, char *buffer);
+void			ft_load_udouble(double *num, char *buffer);
+void			ft_load_coords(double *coord, char *buffer);
 void			ft_load_rgb(int *rgb, char *buffer);
 
 /*
@@ -80,7 +80,12 @@ double	*ft_local_camera_ray(t_scene scene, int p_x, int p_y);
 */
 
 double	*ft_cross_product(double *u, double *v);
+double	ft_dot_product(double *u, double *v);
 void	ft_normalise_vector(double *v);
 double	*ft_mtx_vct_prod(double **m, double *v, t_scene scene);
+double	*ft_sub_vector(double *u, double *v);
+double	*ft_add_vector(double *u, double *v);
+double	ft_mod_vector(double *v);
+double	*ft_k_vct_prod(double k, double *v);
 
 #endif
