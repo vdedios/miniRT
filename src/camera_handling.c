@@ -50,7 +50,7 @@ double	**ft_global_camera_base(t_scene scene)
 	}
 	*/
 	conversion[0] = ft_cross_product(scene.camera[0]->n, z);
-	conversion[1] = ft_cross_product(scene.camera[0]->n, conversion[0]);
+	conversion[1] = ft_cross_product(conversion[0], scene.camera[0]->n);
 	return (conversion);
 }
 
@@ -105,7 +105,7 @@ int		ft_draw_plane(double *c_ray, t_scene scene, int *color)
 	den = ft_dot_product(c_ray, scene.plane[0]->n);
 	//Un plano visto desde abajo???su normal
 	//calcular bien los signos
-	if (den > 1e-6)
+	if (den < 1e-6)
 	{
 		qo = ft_sub_vector(scene.plane[0]->point, scene.camera[0]->pos);
 		num = ft_dot_product(qo, scene.plane[0]->n);
@@ -122,8 +122,8 @@ int		ft_draw_element(double *c_ray, t_scene scene, int *color)
 {
 	int	ret;
 
-	//ret = ft_draw_sphere(c_ray, scene, color);
-	ret = ft_draw_plane(c_ray, scene, color);
+	ret = ft_draw_sphere(c_ray, scene, color);
+	//ret = ft_draw_plane(c_ray, scene, color);
 	return (ret);
 }
 
