@@ -15,18 +15,33 @@ double	*ft_local_camera_ray(t_scene scene, int p_x, int p_y)
 	return (c_local);
 }
 
-//con esto calculamos matriz conversion para la cámara antes de empezar
-//OJO coordenadas homogéneas!!
+void 	ft_set_hor_axis(double *x, double *n)
+{
+	if (!n[0] && !n[1])
+	{
+		x[1] = 0;
+		x[2] = 0;
+		if (n[2] > 0)
+			x[0] = -1;
+		else if (n[2] < 0)
+			x[0] = 1;
+		else if (!n[2])
+			ft_error_handler(4);
+	}
+	else
+	{
+		x[0] = n[1];
+		x[1] = -1 * n[0];
+		x[2] = 0;
+	}
+}
+
 double	**ft_global_camera_base(t_scene scene)
 {
 	double	**conversion;
 	int 	i;
-	double	z[3];
 
 	i = 0;
-	z[0] = 0;
-	z[1] = 0;
-	z[2] = 1.0;
 	if (!(conversion = malloc(3 * sizeof(double *))))
 		return (0);
 	while (i < 3)
@@ -35,21 +50,7 @@ double	**ft_global_camera_base(t_scene scene)
 	i = -1;
 	while (++i < 3)
 		conversion[2][i] = -1.0 * scene.camera[0]->n[i];
-	//Arreglar esto de una forma más elegante
-	/*
-	if (ft_dot_product(conversion[2], z))
-	{
-		conversion[0][0] = 1;
-		conversion[0][1] = 0;
-		conversion[0][2] = 0;
-		conversion[1][0] = 0;
-		conversion[1][1] = 1;
-		conversion[1][2] = 0;
-
-		return (conversion);
-	}
-	*/
-	conversion[0] = ft_cross_product(scene.camera[0]->n, z);
+	ft_set_hor_axis(conversion[0], scene.camera[0]->n);
 	conversion[1] = ft_cross_product(conversion[0], scene.camera[0]->n);
 	return (conversion);
 }
@@ -122,8 +123,8 @@ int		ft_draw_element(double *c_ray, t_scene scene, int *color)
 {
 	int	ret;
 
-	ret = ft_draw_sphere(c_ray, scene, color);
-	//ret = ft_draw_plane(c_ray, scene, color);
+	//ret = ft_draw_sphere(c_ray, scene, color);
+	ret = ft_draw_plane(c_ray, scene, color);
 	return (ret);
 }
 
