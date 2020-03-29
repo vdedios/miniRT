@@ -102,12 +102,22 @@ int		ft_draw_plane(double *c_ray, t_scene scene, int *color)
 	double	*l;
 	double	*p;
 	double	*qo;
-
+	double	*pl;
+	double	*po;
+	
+	pl = ft_sub_vector(scene.light[0]->pos, scene.plane[0]->point);
+	po = ft_sub_vector(scene.camera[0]->pos, scene.plane[0]->point);
 	den = ft_dot_product(c_ray, scene.plane[0]->n);
 	//Un plano visto desde abajo???su normal
 	//calcular bien los signos
-	if (den < 1e-6)
+	if ( ft_dot_product(pl,po) > 0 && ft_dot_product(pl, c_ray) < 0)
 	{
+		if (ft_dot_product(pl, scene.plane[0]->n) < 0)
+		{
+			scene.plane[0]->n[0] = -1 * scene.plane[0]->n[0];
+			scene.plane[0]->n[1] = -1 * scene.plane[0]->n[1];
+			scene.plane[0]->n[2] = -1 * scene.plane[0]->n[2];
+		}
 		qo = ft_sub_vector(scene.plane[0]->point, scene.camera[0]->pos);
 		num = ft_dot_product(qo, scene.plane[0]->n);
 		t = num / den;
