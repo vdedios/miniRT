@@ -52,6 +52,9 @@ double	**ft_global_camera_base(t_scene scene)
 		conversion[2][i] = -1.0 * scene.camera[0]->n[i];
 	ft_set_hor_axis(conversion[0], scene.camera[0]->n);
 	conversion[1] = ft_cross_product(conversion[0], scene.camera[0]->n);
+	ft_normalise_vector(conversion[0]);
+	ft_normalise_vector(conversion[1]);
+	ft_normalise_vector(conversion[2]);
 	return (conversion);
 }
 
@@ -104,7 +107,7 @@ int		ft_draw_plane(double *c_ray, t_scene scene, int *color)
 	double	*qo;
 	double	*pl;
 	double	*po;
-	
+
 	pl = ft_sub_vector(scene.light[0]->pos, scene.plane[0]->point);
 	po = ft_sub_vector(scene.camera[0]->pos, scene.plane[0]->point);
 	den = ft_dot_product(c_ray, scene.plane[0]->n);
@@ -133,9 +136,109 @@ int		ft_draw_element(double *c_ray, t_scene scene, int *color)
 {
 	int	ret;
 
-	//ret = ft_draw_sphere(c_ray, scene, color);
-	ret = ft_draw_plane(c_ray, scene, color);
+	ret = ft_draw_sphere(c_ray, scene, color);
+	//ret = ft_draw_plane(c_ray, scene, color);
 	return (ret);
+}
+
+void	ft_draw_axis(double *p, char axis, t_scene scene, t_window *window)
+{
+	int x;
+	int y;
+	int l_x;
+	int l_y;
+	int px;
+	int py;
+	int color;
+	int i;
+
+	if (ft_abs(p[0]) > 1e-4 && ft_abs(p[1]) > 1e-4)
+	{
+		px = (ft_abs(p[0]) < ft_abs(p[1]) ? 1 : ft_abs(p[0]) / ft_abs(p[1])) * (p[0] < 0 ? -1 : 1);
+		py = (ft_abs(p[1]) < ft_abs(p[0]) ? 1 : ft_abs(p[1]) / ft_abs(p[0])) * (p[1] < 0 ? -1 : 1);
+	}
+	else
+	{
+		px = (ft_abs(p[0]) < 1e-4 ? 0 : 1) * (p[0] < 0 ? -1 : 1);
+		py = (ft_abs(p[1]) < 1e-4 ? 0 : 1) * (p[1] < 0 ? -1 : 1);
+	}
+
+	x = 40;
+	y = scene.y - 35;
+	l_x = 35 * p[0] * (p[0] < 0 ? -1 : 1);
+	l_y = 35 * p[1] * (p[1] < 0 ? -1 : 1);
+	if (axis == 'x')
+		color = 0x00FF0000;
+	else if (axis == 'y')
+		color = 0x0000FF00;
+	else if (axis == 'z')
+		color = 0x000000FF;
+	while ((x < (40 + l_x) && x > (40 - l_x)) ||
+			(y < ((scene.y - 35) + l_y) && y > ((scene.y - 35) - l_y)))
+	{
+		i = -1;
+		while (i < 2)
+		{
+			mlx_pixel_put (window->mlx_ptr, window->win_ptr, x + i, y, color);
+			mlx_pixel_put (window->mlx_ptr, window->win_ptr, x, y + i, color);
+			mlx_pixel_put (window->mlx_ptr, window->win_ptr, x + i, y + i, color);
+			i++;
+		}
+		x = x + px;
+		y = y - py;
+	}
+
+	if (axis == 'x')
+		mlx_string_put(window->mlx_ptr, window->win_ptr, x + 2 * px, y - 2 * py, color, "x");
+	else if (axis == 'y')
+		mlx_string_put(window->mlx_ptr, window->win_ptr, x + 2 * px, y - 2 * py, color, "y");
+	else if (axis == 'z')
+		mlx_string_put(window->mlx_ptr, window->win_ptr, x + 2 * px, y - 2 * py, color, "z");
+	x = 40;
+	y = scene.y - 35;
+	color = 0x00FFFF00;
+	mlx_pixel_put (window->mlx_ptr, window->win_ptr, x, y - 1, color);
+	mlx_pixel_put (window->mlx_ptr, window->win_ptr, x - 1, y, color);
+	mlx_pixel_put (window->mlx_ptr, window->win_ptr, x, y, color);
+	mlx_pixel_put (window->mlx_ptr, window->win_ptr, x + 1, y, color);
+	mlx_pixel_put (window->mlx_ptr, window->win_ptr, x, y + 1, color);
+}
+
+void	ft_draw_reference(double	**c_base, t_scene scene, t_window *window)
+{
+	double	*v;
+	double	*p;
+	double	x[3];
+	double	y[3];
+	double	z[3];
+	double	**base_inv;
+
+	x[0] = 1;
+	x[1] = 0;
+	x[2] = 0;
+
+	y[0] = 0;
+	y[1] = 1;
+	y[2] = 0;
+
+	z[0] = 0;
+	z[1] = 0;
+	z[2] = 1;
+
+	base_inv = ft_inv_matrix(c_base);
+	v = ft_cross_product(c_base[2], x);
+	p = ft_cross_product(v, c_base[2]);
+	p = ft_mtx_vct_prod(base_inv, p, scene);
+	ft_draw_axis(p, 'x', scene, window);
+	v = ft_cross_product(c_base[2], y);
+	p = ft_cross_product(v, c_base[2]);
+	p = ft_mtx_vct_prod(base_inv, p, scene);
+	ft_draw_axis(p, 'y', scene, window);
+
+	v = ft_cross_product(c_base[2], z);
+	p = ft_cross_product(v, c_base[2]);
+	p = ft_mtx_vct_prod(base_inv, p, scene);
+	ft_draw_axis(p, 'z', scene, window);
 }
 
 int		ft_draw_scene(t_scene scene, t_window *window)
@@ -164,6 +267,8 @@ int		ft_draw_scene(t_scene scene, t_window *window)
 		p_y = 0;
 		p_x++;
 	}
+	//Pintamos los ejes de referencia abajo en la esquina inferior izquierda
+	ft_draw_reference(c_base, scene, window);
 	//falta LIBERAR MEMORIA en algún punto
 	return (0);
 }

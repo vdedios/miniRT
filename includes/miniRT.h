@@ -87,5 +87,8 @@ double	*ft_sub_vector(double *u, double *v);
 double	*ft_add_vector(double *u, double *v);
 double	ft_mod_vector(double *v);
 double	*ft_k_vct_prod(double k, double *v);
+double	ft_abs(double num);
+double	**ft_inv_matrix(double	**m);
+double	ft_det(double	**m);
 
 #endif

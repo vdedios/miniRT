@@ -106,3 +106,49 @@ double	*ft_mtx_vct_prod(double **m, double *v, t_scene scene)
 	}
 	return (p);
 }
+
+double	ft_abs(double num)
+{
+	if (num < 0)
+		return (-1 * num);
+	return (num);
+}
+
+double	ft_det(double	**m)
+{
+	double	det;
+
+	det = (m[0][0] * m[1][1] * m[2][2] +
+			m[1][0] * m[2][1] * m[0][2] +
+			m[0][1] * m[1][2] * m[2][0]) - 
+			(m[0][2] * m[1][1] * m[2][0] +
+			m[1][0] * m[0][1] * m[2][2] +
+			m[2][1] * m[1][2] * m[0][0]);
+	return (det);
+}
+
+//REVISAR
+double	**ft_inv_matrix(double	**m)
+{
+	double	det;
+	double	**i;
+	int 	k;
+
+	k = 0;
+	if (!(i = malloc(3 * sizeof(double *))))
+		return (0);
+	while (k < 3)
+		if (!(i[k++] = malloc(3 * sizeof(double))))
+			return (0);
+	det = ft_det(m);
+	i[0][0] = (m[1][1] * m[2][2] - m[1][2] * m[2][1]) / det;
+	i[0][1] = -1 * (m[0][1] * m[2][2] - m[0][2] * m[2][1]) / det;
+	i[0][2] = (m[0][1] * m[1][2] - m[0][2] * m[1][1]) / det;
+	i[1][0] = -1 * (m[1][0] * m[2][2] - m[1][2] * m[2][0]) / det;
+	i[1][1] = (m[0][0] * m[2][2] - m[0][2] * m[2][0]) / det;
+	i[1][2] = -1 * (m[0][0] * m[1][2] - m[0][2] * m[1][0]) / det;
+	i[2][0] = (m[1][0] * m[2][1] - m[1][1] * m[2][0]) / det;
+	i[2][1] = -1 * (m[0][0] * m[2][1] - m[0][1] * m[2][0]) / det;
+	i[2][2] = (m[0][0] * m[1][1] - m[0][1] * m[1][0]) / det;
+	return(i);
+}
