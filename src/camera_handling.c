@@ -123,7 +123,8 @@ int		ft_draw_plane(double *c_ray, t_scene scene, int *color)
 	den = ft_dot_product(c_ray, scene.plane[0]->n);
 	i = -1;
 	//Arreglar visión desde abajo!!
-	if (ft_dot_product(pl,po) > 0 && ft_dot_product(n_aux, c_ray) < 0)
+	if (ft_dot_product(pl,n_aux) * ft_dot_product(po,n_aux)
+			> 0 && ft_dot_product(n_aux, c_ray) < 0)
 	{
 		if (ft_dot_product(pl, scene.plane[0]->n) < 0)
 			while (++i < 3)
