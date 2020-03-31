@@ -64,6 +64,8 @@ void	ft_load_square(char *line, t_scene *scene)
 	ft_load_coords(square->n, buffer[2]);
 	ft_load_udouble(&square->side, buffer[3]);
 	ft_load_rgb(&square->rgb, buffer[4]);
+	square->dx = NULL;
+	square->dy = NULL;
 	ft_del_matrix(buffer);
 }
 

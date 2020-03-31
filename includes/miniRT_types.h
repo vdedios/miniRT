@@ -43,9 +43,18 @@ typedef struct	s_plane {
 typedef struct	s_square {
 	double		center[3];
 	double		n[3];
+	double		*dx;
+	double		*dy;
 	double		side;
 	int			rgb;
 }				t_square;
+
+typedef struct	s_triangle {
+	double		a[3];
+	double		b[3];
+	double		c[3];
+	int			rgb;
+}				t_triangle;
 
 typedef struct	s_cylinder {
 	double		point[3];
@@ -54,13 +63,6 @@ typedef struct	s_cylinder {
 	double		height;
 	int			rgb;
 }				t_cylinder;
-
-typedef struct	s_triangle {
-	double		a[3];
-	double		b[3];
-	double		c[3];
-	int			rgb;
-}				t_triangle;
 
 /*
 ** Scene index:
