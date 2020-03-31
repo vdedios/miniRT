@@ -119,10 +119,8 @@ int		ft_draw_plane(double *c_ray, t_scene scene, int *color)
 		n_aux[1] = -1 * n_aux[1];
 		n_aux[2] = -1 * n_aux[2];
 	}
-	//po = ft_sub_vector(scene.camera[0]->pos, scene.plane[0]->point);
 	den = ft_dot_product(c_ray, scene.plane[0]->n);
 	i = -1;
-	//Arreglar visión desde abajo!!
 	if (ft_dot_product(pl,n_aux) * ft_dot_product(po,n_aux)
 			> 0 && ft_dot_product(n_aux, c_ray) < 0)
 	{
@@ -148,15 +146,24 @@ int		ft_draw_square(double *c_ray, t_scene scene, int *color)
 	double	num;
 	double	*l;
 	double	*p;
+	double	*n_aux;
 	double	*qo;
 	double	*pl;
 	double	*po;
 
+	n_aux = ft_k_vct_prod(1, scene.square[0]->n);
 	pl = ft_sub_vector(scene.light[0]->pos, scene.square[0]->center);
 	po = ft_sub_vector(scene.camera[0]->pos, scene.square[0]->center);
+	if (ft_dot_product(pl, n_aux) < 0)
+	{
+		n_aux[0] = -1 * n_aux[0];
+		n_aux[1] = -1 * n_aux[1];
+		n_aux[2] = -1 * n_aux[2];
+	}
 	den = ft_dot_product(c_ray, scene.square[0]->n);
 	i = -1;
-	if ( ft_dot_product(pl,po) > 0 && ft_dot_product(pl, c_ray) < 0)
+	if (ft_dot_product(pl,n_aux) * ft_dot_product(po,n_aux)
+			> 0 && ft_dot_product(n_aux, c_ray) < 0)
 	{
 		if (ft_dot_product(pl, scene.square[0]->n) < 0)
 			while (++i < 3)
@@ -192,8 +199,8 @@ int		ft_draw_element(double *c_ray, t_scene scene, int *color)
 	int	ret;
 
 	//ret = ft_draw_sphere(c_ray, scene, color);
-	ret = ft_draw_plane(c_ray, scene, color);
-	//ret = ft_draw_square(c_ray, scene, color);
+	//ret = ft_draw_plane(c_ray, scene, color);
+	ret = ft_draw_square(c_ray, scene, color);
 	return (ret);
 }
 
