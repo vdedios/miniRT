@@ -222,13 +222,13 @@ int		ft_draw_triangle(double *c_ray, t_scene scene, int *color)
 		p0 = ft_sub_vector(p, scene.triangle[0]->a);
 		p1 = ft_sub_vector(p, scene.triangle[0]->b);
 		p2 = ft_sub_vector(p, scene.triangle[0]->c);
-		if (n && (ft_dot_product(n_aux, ft_cross_product(e0, p0)) < 0
-					|| ft_dot_product(n_aux, ft_cross_product(e1, p1)) < 0
-					|| ft_dot_product(n_aux, ft_cross_product(e2, p2)) < 0))
+		if (n && (ft_dot_product(n_aux, ft_cross_product(e0, p0)) > 0
+					|| ft_dot_product(n_aux, ft_cross_product(e1, p1)) > 0
+					|| ft_dot_product(n_aux, ft_cross_product(e2, p2)) > 0))
 			return (0);
-		else if (ft_dot_product(n_aux, ft_cross_product(e0, p0)) < 0
+		else if (!n && (ft_dot_product(n_aux, ft_cross_product(e0, p0)) < 0
 				|| ft_dot_product(n_aux, ft_cross_product(e1, p1)) < 0
-				|| ft_dot_product(n_aux, ft_cross_product(e2, p2)) < 0)
+				|| ft_dot_product(n_aux, ft_cross_product(e2, p2)) < 0))
 			return (0);
 		//
 		l = ft_sub_vector(scene.light[0]->pos, p);
@@ -244,8 +244,8 @@ int		ft_draw_element(double *c_ray, t_scene scene, int *color)
 
 	//ret = ft_draw_sphere(c_ray, scene, color);
 	//ret = ft_draw_plane(c_ray, scene, color);
-	ret = ft_draw_square(c_ray, scene, color);
-	//ret = ft_draw_triangle(c_ray, scene, color);
+	//ret = ft_draw_square(c_ray, scene, color);
+	ret = ft_draw_triangle(c_ray, scene, color);
 	return (ret);
 }
 
