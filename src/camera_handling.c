@@ -114,25 +114,18 @@ int		ft_draw_plane(double *c_ray, t_scene scene, int *color)
 	pl = ft_sub_vector(scene.light[0]->pos, scene.plane[0]->point);
 	po = ft_sub_vector(scene.camera[0]->pos, scene.plane[0]->point);
 	if (ft_dot_product(pl, n_aux) < 0)
-	{
-		n_aux[0] = -1 * n_aux[0];
-		n_aux[1] = -1 * n_aux[1];
-		n_aux[2] = -1 * n_aux[2];
-	}
-	den = ft_dot_product(c_ray, scene.plane[0]->n);
+		ft_minus_vector(n_aux);	
+	den = ft_dot_product(c_ray, n_aux);
 	i = -1;
 	if (ft_dot_product(pl,n_aux) * ft_dot_product(po,n_aux)
 			> 0 && ft_dot_product(n_aux, c_ray) < 0)
 	{
-		if (ft_dot_product(pl, scene.plane[0]->n) < 0)
-			while (++i < 3)
-				scene.plane[0]->n[i] = -1 * scene.plane[0]->n[i];
 		qo = ft_sub_vector(scene.plane[0]->point, scene.camera[0]->pos);
-		num = ft_dot_product(qo, scene.plane[0]->n);
+		num = ft_dot_product(qo, n_aux);
 		t = num / den;
 		p = ft_add_vector(scene.camera[0]->pos, ft_k_vct_prod(t, c_ray));
 		l = ft_sub_vector(scene.light[0]->pos, p);
-		*color = scene.plane[0]->rgb | ft_shading(scene.plane[0]->n, l);
+		*color = scene.plane[0]->rgb | ft_shading(n_aux, l);
 		return (1);
 	}
 	return (0);
@@ -155,30 +148,23 @@ int		ft_draw_square(double *c_ray, t_scene scene, int *color)
 	pl = ft_sub_vector(scene.light[0]->pos, scene.square[0]->center);
 	po = ft_sub_vector(scene.camera[0]->pos, scene.square[0]->center);
 	if (ft_dot_product(pl, n_aux) < 0)
-	{
-		n_aux[0] = -1 * n_aux[0];
-		n_aux[1] = -1 * n_aux[1];
-		n_aux[2] = -1 * n_aux[2];
-	}
-	den = ft_dot_product(c_ray, scene.square[0]->n);
+		ft_minus_vector(n_aux);	
+	den = ft_dot_product(c_ray, n_aux);
 	i = -1;
 	if (ft_dot_product(pl,n_aux) * ft_dot_product(po,n_aux)
 			> 0 && ft_dot_product(n_aux, c_ray) < 0)
 	{
-		if (ft_dot_product(pl, scene.square[0]->n) < 0)
-			while (++i < 3)
-				scene.square[0]->n[i] = -1 * scene.square[0]->n[i];
 		qo = ft_sub_vector(scene.square[0]->center, scene.camera[0]->pos);
-		num = ft_dot_product(qo, scene.square[0]->n);
+		num = ft_dot_product(qo, n_aux);
 		t = num / den;
 		p = ft_add_vector(scene.camera[0]->pos, ft_k_vct_prod(t, c_ray));
 		if (!scene.square[0]->dx)
 		{
-			//scene.square[0]->dx = ft_sub_vector(scene.square[0]->center, p);
-			//Arreglar visión desde abajo!!
-			//esta es opción valida??
-			scene.square[0]->dx = ft_cross_product(scene.square[0]->n, scene.camera[0]->n);
-			scene.square[0]->dy = ft_cross_product(scene.square[0]->n, scene.square[0]->dx);
+			//arreglar on perspectiva hacia arriba
+			scene.square[0]->dx = ft_cross_product(n_aux, scene.camera[0]->n);
+			if (!ft_mod_vector(scene.square[0]->dx))
+				scene.square[0]->dx = ft_set_axis('x');
+			scene.square[0]->dy = ft_cross_product(n_aux, scene.square[0]->dx);
 			ft_normalise_vector(scene.square[0]->dx);
 			ft_normalise_vector(scene.square[0]->dy);
 		}
@@ -188,7 +174,65 @@ int		ft_draw_square(double *c_ray, t_scene scene, int *color)
 			ft_sub_vector(p, scene.square[0]->center))) > scene.square[0]->side)
 			return (0);
 		l = ft_sub_vector(scene.light[0]->pos, p);
-		*color = scene.square[0]->rgb | ft_shading(scene.square[0]->n, l);
+		*color = scene.square[0]->rgb | ft_shading(n_aux, l);
+		return (1);
+	}
+	return (0);
+}
+
+int		ft_draw_triangle(double *c_ray, t_scene scene, int *color)
+{
+	int		i;
+	int		n;
+	double	t;
+	double	den;
+	double	num;
+	double	*l;
+	double	*p;
+	double	*n_aux;
+	double	*qo;
+	double	*pl;
+	double	*po;
+	double	*e0;
+	double	*e1;
+	double	*e2;
+	double	*p0;
+	double	*p1;
+	double	*p2;
+
+	n = 0;
+	e0 = ft_sub_vector(scene.triangle[0]->b, scene.triangle[0]->a);
+	e1 = ft_sub_vector(scene.triangle[0]->c, scene.triangle[0]->b);
+	e2 = ft_sub_vector(scene.triangle[0]->a, scene.triangle[0]->c);
+	n_aux = ft_cross_product(e0, ft_sub_vector(scene.triangle[0]->c, scene.triangle[0]->a));
+	pl = ft_sub_vector(scene.light[0]->pos, scene.triangle[0]->a);
+	po = ft_sub_vector(scene.camera[0]->pos, scene.triangle[0]->a);
+	if (ft_dot_product(pl, n_aux) < 0)
+		n = ft_minus_vector(n_aux);
+	den = ft_dot_product(c_ray,n_aux);
+	i = -1;
+	if (ft_dot_product(pl,n_aux) * ft_dot_product(po,n_aux)
+			> 0 && ft_dot_product(n_aux, c_ray) < 0)
+	{
+		qo = ft_sub_vector(scene.triangle[0]->a, scene.camera[0]->pos);
+		num = ft_dot_product(qo, n_aux);
+		t = num / den;
+		p = ft_add_vector(scene.camera[0]->pos, ft_k_vct_prod(t, c_ray));
+		//computamos triángulo
+		p0 = ft_sub_vector(p, scene.triangle[0]->a);
+		p1 = ft_sub_vector(p, scene.triangle[0]->b);
+		p2 = ft_sub_vector(p, scene.triangle[0]->c);
+		if (n && (ft_dot_product(n_aux, ft_cross_product(e0, p0)) < 0
+					|| ft_dot_product(n_aux, ft_cross_product(e1, p1)) < 0
+					|| ft_dot_product(n_aux, ft_cross_product(e2, p2)) < 0))
+			return (0);
+		else if (ft_dot_product(n_aux, ft_cross_product(e0, p0)) < 0
+				|| ft_dot_product(n_aux, ft_cross_product(e1, p1)) < 0
+				|| ft_dot_product(n_aux, ft_cross_product(e2, p2)) < 0)
+			return (0);
+		//
+		l = ft_sub_vector(scene.light[0]->pos, p);
+		*color = scene.triangle[0]->rgb | ft_shading(n_aux, l);
 		return (1);
 	}
 	return (0);
@@ -201,6 +245,7 @@ int		ft_draw_element(double *c_ray, t_scene scene, int *color)
 	//ret = ft_draw_sphere(c_ray, scene, color);
 	//ret = ft_draw_plane(c_ray, scene, color);
 	ret = ft_draw_square(c_ray, scene, color);
+	//ret = ft_draw_triangle(c_ray, scene, color);
 	return (ret);
 }
 

@@ -90,5 +90,7 @@ double	*ft_k_vct_prod(double k, double *v);
 double	ft_abs(double num);
 double	**ft_inv_matrix(double	**m);
 double	ft_det(double	**m);
+int		ft_minus_vector(double *v);
+double	*ft_set_axis(char axis);
 
 #endif
