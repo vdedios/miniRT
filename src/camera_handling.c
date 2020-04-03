@@ -169,9 +169,9 @@ int		ft_draw_square(double *c_ray, t_scene scene, int *color)
 			ft_normalise_vector(scene.square[0]->dy);
 		}
 		if (ft_abs(ft_dot_product(scene.square[0]->dx,
-			ft_sub_vector(p, scene.square[0]->center))) > scene.square[0]->side ||
-			ft_abs(ft_dot_product(scene.square[0]->dy,
-			ft_sub_vector(p, scene.square[0]->center))) > scene.square[0]->side)
+						ft_sub_vector(p, scene.square[0]->center))) > scene.square[0]->side ||
+				ft_abs(ft_dot_product(scene.square[0]->dy,
+						ft_sub_vector(p, scene.square[0]->center))) > scene.square[0]->side)
 			return (0);
 		l = ft_sub_vector(scene.light[0]->pos, p);
 		*color = scene.square[0]->rgb | ft_shading(n_aux, l);
@@ -227,8 +227,8 @@ int		ft_draw_triangle(double *c_ray, t_scene scene, int *color)
 					|| ft_dot_product(n_aux, ft_cross_product(e2, p2)) > 0))
 			return (0);
 		else if (!n && (ft_dot_product(n_aux, ft_cross_product(e0, p0)) < 0
-				|| ft_dot_product(n_aux, ft_cross_product(e1, p1)) < 0
-				|| ft_dot_product(n_aux, ft_cross_product(e2, p2)) < 0))
+					|| ft_dot_product(n_aux, ft_cross_product(e1, p1)) < 0
+					|| ft_dot_product(n_aux, ft_cross_product(e2, p2)) < 0))
 			return (0);
 		//
 		l = ft_sub_vector(scene.light[0]->pos, p);
@@ -238,6 +238,92 @@ int		ft_draw_triangle(double *c_ray, t_scene scene, int *color)
 	return (0);
 }
 
+int		ft_draw_cylinder(double *c_ray, t_scene scene, int *color)
+{
+	double a;
+	double b;
+	double c;
+	double x1;
+	double x2;
+	double t;
+	double m;
+	double discr;
+	double *oc;
+	double *p;
+	double *center;
+	double *n;
+	double *l;
+
+	t = 0;
+	oc = ft_sub_vector(scene.camera[0]->pos, scene.cylinder[0]->point);
+	a = 1 - pow(ft_dot_product(c_ray, scene.cylinder[0]->n), 2.0);
+	b = 2 * (ft_dot_product(c_ray, oc) - ft_dot_product(c_ray, scene.cylinder[0]->n)
+			* ft_dot_product(oc, scene.cylinder[0]->n));
+	c = ft_dot_product(oc, oc) - pow(ft_dot_product(oc, scene.cylinder[0]->n), 2.0)
+		- pow((scene.cylinder[0]->diameter / 2), 2.0);
+	discr = b * b - 4 * a * c;
+	if (discr < 0)
+		return (0);
+	x1 = (- b + sqrt(discr)) / (2 * a);
+	x2 = (- b - sqrt(discr)) / (2 * a);
+	if (x1 > x2)
+		t = x2;
+	if (t < 0)
+		t = x1;
+	if (t < 0)
+		return (0);
+	p = ft_add_vector(scene.camera[0]->pos, ft_k_vct_prod(t, c_ray));
+	m = ft_dot_product(scene.cylinder[0]->n, ft_sub_vector(p, scene.cylinder[0]->point));
+	center = ft_add_vector(scene.cylinder[0]->point, ft_k_vct_prod(m, scene.cylinder[0]->n));
+	n = ft_sub_vector(p, center);
+	l = ft_sub_vector(scene.light[0]->pos, p);
+	//tapas
+	if (m > scene.cylinder[0]->height || m < 0)
+	{
+		double	t;
+		double	den;
+		double	num;
+		double	*ll;
+		double	*pp;
+		double	*n_aux;
+		double	*qo;
+		double	*pl;
+		double	*po;
+		double	*ph;
+
+		if (m > scene.cylinder[0]->height)
+			ph = ft_add_vector(scene.cylinder[0]->point,
+					ft_k_vct_prod(scene.cylinder[0]->height, scene.cylinder[0]->n));
+		else
+			ph = scene.cylinder[0]->point;
+		n_aux = ft_k_vct_prod(1, scene.cylinder[0]->n);
+		pl = ft_sub_vector(scene.light[0]->pos, ph);
+		po = ft_sub_vector(scene.camera[0]->pos, ph);
+		if (ft_dot_product(pl, n_aux) < 0)
+			ft_minus_vector(n_aux);	
+
+		den = ft_dot_product(c_ray, n_aux);
+		if (ft_dot_product(pl,n_aux) * ft_dot_product(po,n_aux)
+				> 0 && ft_dot_product(n_aux, c_ray) < 0)
+		{
+			qo = ft_sub_vector(ph, scene.camera[0]->pos);
+			num = ft_dot_product(qo, n_aux);
+			t = num / den;
+			pp = ft_add_vector(scene.camera[0]->pos, ft_k_vct_prod(t, c_ray));
+			ll = ft_sub_vector(scene.light[0]->pos, pp);
+			if (ft_mod_vector(ft_sub_vector(pp, ph)) < (scene.cylinder[0]->diameter / 2))
+			{
+				*color = scene.cylinder[0]->rgb | ft_shading(n_aux, ll);
+				return (1);
+			}
+		}
+		return (0);
+	}
+	else 
+		*color = scene.cylinder[0]->rgb | ft_shading(n, l);
+	return (1);
+}
+
 int		ft_draw_element(double *c_ray, t_scene scene, int *color)
 {
 	int	ret;
@@ -245,7 +331,8 @@ int		ft_draw_element(double *c_ray, t_scene scene, int *color)
 	//ret = ft_draw_sphere(c_ray, scene, color);
 	//ret = ft_draw_plane(c_ray, scene, color);
 	//ret = ft_draw_square(c_ray, scene, color);
-	ret = ft_draw_triangle(c_ray, scene, color);
+	//ret = ft_draw_triangle(c_ray, scene, color);
+	ret = ft_draw_cylinder(c_ray, scene, color);
 	return (ret);
 }
 
