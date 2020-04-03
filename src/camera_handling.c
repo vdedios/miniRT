@@ -303,8 +303,8 @@ int		ft_draw_cylinder(double *c_ray, t_scene scene, int *color)
 			ft_minus_vector(n_aux);	
 
 		den = ft_dot_product(c_ray, n_aux);
-		if (ft_dot_product(pl,n_aux) * ft_dot_product(po,n_aux)
-				> 0 && ft_dot_product(n_aux, c_ray) < 0)
+		if (ft_dot_product(pl,n_aux) * ft_dot_product(po,n_aux) > 0
+				&& ft_dot_product(n_aux, c_ray) < 0)
 		{
 			qo = ft_sub_vector(ph, scene.camera[0]->pos);
 			num = ft_dot_product(qo, n_aux);
