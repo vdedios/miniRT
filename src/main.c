@@ -12,10 +12,26 @@
 
 #include "miniRT.h"
 
+void	ft_welcome(void)
+{
+	int		fd;
+	char	*line;
+	
+	fd = open("art/welcome.txt", O_RDONLY);
+	while (get_next_line(fd, &line) > 0)
+	{
+		ft_printf("%s\n", line);
+		free (line);
+	}
+	ft_printf("%s\n", line);
+	free (line);
+}
+
 int	main(int argc, char **argv)
 {
 	t_scene	scene;
 
+	ft_welcome();
 	if (argc != 2)
 		ft_error_handler(1);
 	else if (ft_strnstr(argv[1], ".rt", ft_strlen(argv[1])))
