@@ -49,7 +49,7 @@ $(NAME)	:	$(OBJDIR) $(OBJ)
 		@echo success ✅
 
 $(OBJDIR)%.o : $(SRC_DIR)%.c
-		@$(CC) $(FLAGS) $(LFLAGS) -c $< -o $@
+		@$(CC) $(FLAGS) $(LFLAGS) -I../libft/ -c $< -o $@
 
 bonus	:	all
 

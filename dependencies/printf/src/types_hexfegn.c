@@ -69,9 +69,9 @@ static char				*ft_check_specials(double num)
 	unsigned long long	aux;
 
 	aux = *((unsigned long long int *)&num);
-	if (aux >= INF && aux < NAN)
+	if (aux >= INF && aux < NANS)
 		return (ft_strjoin_none("inf", 0));
-	else if ((aux >= NAN && aux < NEGS) || aux > MINF)
+	else if ((aux >= NANS && aux < NEGS) || aux > MINF)
 		return (ft_strjoin_none("nan", 0));
 	else if (aux == MINF)
 		return (ft_strjoin_none("-inf", 0));

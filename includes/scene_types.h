@@ -1,15 +1,17 @@
-#ifndef MINIRT_TYPES_H
-# define MINIRT_TYPES_H
+#ifndef SCENE_TYPES_H
+# define SCENE_TYPES_H
+
+#include "geometry_types.h"
+
+/*
+** Elements needed to ray cast a scene
+*/
 
 typedef struct	s_window {
     void		*mlx_ptr;
     void		*win_ptr;
 	int			button;
 }				t_window;
-
-/*
-** All elements that can be found in a scene
-*/
 
 typedef struct	s_ambient {
 	double		intensity;
@@ -28,44 +30,8 @@ typedef struct	s_light {
 	int			rgb;
 }				t_light;
 
-typedef struct	s_sphere {
-	double		center[3];
-	double		diameter;
-	int			rgb;
-}				t_sphere;
-
-typedef struct	s_plane {
-	double		point[3];
-	double		n[3];
-	int			rgb;
-}				t_plane;
-
-typedef struct	s_square {
-	double		center[3];
-	double		n[3];
-	double		*dx;
-	double		*dy;
-	double		side;
-	int			rgb;
-}				t_square;
-
-typedef struct	s_triangle {
-	double		a[3];
-	double		b[3];
-	double		c[3];
-	int			rgb;
-}				t_triangle;
-
-typedef struct	s_cylinder {
-	double		point[3]; //cambiar nombre a center
-	double		n[3];
-	double		diameter;
-	double		height;
-	int			rgb;
-}				t_cylinder;
-
 /*
-** Scene index:
+** SCENE INDEX:
 ** 0 - scene
 ** 1 - ambient
 ** 2 - camera

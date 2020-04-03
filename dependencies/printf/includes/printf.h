@@ -16,11 +16,11 @@
 # include <stdarg.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include "../../libft/libft.h"
+# include "libft.h"
 
 # define LONG_MASK 0xF000000000000000
 # define INF 0x7FF0000000000000
-# define NAN 0x7FF8000000000000
+# define NANS 0x7FF8000000000000
 # define NEGS 0x8000000000000000
 # define MINF 0xFFF0000000000000
 
@@ -48,6 +48,8 @@ typedef struct			s_format
 	int					*print_l;
 	int					last_pos;
 }						t_format;
+
+int						ft_printf(const char *s, ...);
 
 /*
 ** flags.c

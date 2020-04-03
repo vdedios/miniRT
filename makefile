@@ -16,6 +16,9 @@ SRC_DIR 			= 	src/
 MINILIBX_DIR 		=	dependencies/minilibx_opengl
 LIBFT_DIR			=	dependencies/libft/
 PRINTF_DIR			=	dependencies/printf/
+GNL_DIR				=	dependencies/get_next_line/
+
+PRINTF_INCL			=	dependencies/printf/includes
 
 MINILIBX_A_DIR 		=	dependencies/minilibx_opengl/libmlx.a
 LIBFT_A_DIR			=	dependencies/libft/libft.a
@@ -27,24 +30,28 @@ OPENGL				= 	-framework OpenGL -framework AppKit
 
 SRC_FILES			=	main.c					\
 						scene_handler.c			\
-						get_next_line.c			\
-						get_next_line_utils.c	\
 						load_elements_utils.c	\
 						load_elements_1.c		\
 						load_elements_2.c		\
 						error_handling.c		\
 						camera_handling.c		\
-						math_utils.c	\
+						math_utils.c			\
 						miniRT.c
 
+GNL_FILES			=	get_next_line.c \
+						get_next_line_utils.c	
+
+GNL					= $(addprefix $(GNL_DIR), $(GNL_FILES))
 SRC 				= $(addprefix $(SRC_DIR), $(SRC_FILES))
 
 all		:	dependencies $(NAME)
 
 $(NAME)	:	$(SRC) 
 	@echo Building miniRT...
-	@$(CC) $(CFLAGS) $(SRC) -I includes/ $(PRINTF_A_DIR) \
-		$(LIBFT_A_DIR) $(MINILIBX_A_DIR) $(OPENGL) -o $(NAME)
+	@$(CC) $(CFLAGS) $(SRC) $(GNL) -Iincludes/ -I$(PRINTF_INCL) \
+	-I$(GNL_DIR) -I$(LIBFT_DIR) -I$(MINILIBX_DIR) \
+	$(PRINTF_A_DIR) $(LIBFT_A_DIR) $(MINILIBX_A_DIR) $(OPENGL) \
+	-o $(NAME)
 	@echo success ✅
 	@#echo running program... 💾
 	@#./$(NAME)
