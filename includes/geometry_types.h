@@ -2,7 +2,7 @@
 # define GEOMETRY_TYPES_H
 
 /*
-** Elements that can be found in a scene
+** Geometries found in a scene
 */
 
 typedef struct	s_sphere {
