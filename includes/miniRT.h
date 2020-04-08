@@ -24,10 +24,16 @@
 #include "printf.h"
 #include "get_next_line.h"
 
-#include "scene_types.h"
-#include "geometry_types.h"
 #include "algebra.h"
-#include "load_data.h"
+#include "axis.h"
+#include "camera.h"
+#include "error.h"
+#include "geometry.h"
+#include "geometry_types.h"
+#include "load.h"
+#include "load_utils.h"
+#include "pipeline.h"
+#include "scene_types.h"
 
 /*
 ** General functions
@@ -36,11 +42,9 @@
 void            ft_miniRT(t_scene scene);
 
 /*
-** Scene drawing functions
+** Window handling functions
 */
 
 int		ft_draw_scene(t_scene scene, t_window *window);
-double	**ft_global_camera_base(t_scene scene);
-double	*ft_local_camera_ray(t_scene scene, int p_x, int p_y);
 
 #endif

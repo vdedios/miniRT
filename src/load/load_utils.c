@@ -19,7 +19,6 @@ double	ft_ten_powerf(int p)
 	return (t);
 }
 
-//REVISAR!!
 double	ft_ftoi(char *str)
 {
 	int i;

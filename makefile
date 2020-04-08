@@ -28,15 +28,20 @@ CC					=	gcc
 CFLAGS				= 	-Werror -Wall -Wextra -g
 OPENGL				= 	-framework OpenGL -framework AppKit
 
-SRC_FILES			=	main.c					\
-						scene_handler.c			\
-						load_elements_utils.c	\
-						load_elements_1.c		\
-						load_elements_2.c		\
-						error_handling.c		\
-						camera_handling.c		\
-						math_utils.c			\
-						miniRT.c
+SRC_FILES			=	algebra/algebra_1.c \
+						algebra/algebra_2.c \
+						algebra/algebra_3.c \
+						axis.c \
+						camera.c \
+						error.c \
+						geometry.c \
+						load/load.c \
+						load/load_1.c \
+						load/load_2.c \
+						load/load_utils.c \
+						pipeline.c \
+						main.c \
+						miniRT.c 
 
 GNL_FILES			=	get_next_line.c \
 						get_next_line_utils.c	

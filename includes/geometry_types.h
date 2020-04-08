@@ -1,6 +1,8 @@
 #ifndef GEOMETRY_TYPES_H
 # define GEOMETRY_TYPES_H
 
+#include "scene_types.h"
+
 /*
 ** Geometries found in a scene
 */
