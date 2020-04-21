@@ -181,7 +181,7 @@ int		ft_draw_cylinder(double *c_ray, t_scene scene, int *color)
 	double *l;
 
 	t = 0;
-	oc = ft_sub_vector(scene.camera[0]->pos, scene.cylinder[0]->point);
+	oc = ft_sub_vector(scene.camera[scene.i_cam]->pos, scene.cylinder[0]->point);
 	a = 1 - pow(ft_dot_product(c_ray, scene.cylinder[0]->n), 2.0);
 	b = 2 * (ft_dot_product(c_ray, oc) - ft_dot_product(c_ray, scene.cylinder[0]->n)
 			* ft_dot_product(oc, scene.cylinder[0]->n));
@@ -198,7 +198,7 @@ int		ft_draw_cylinder(double *c_ray, t_scene scene, int *color)
 		t = x1;
 	if (t < 0)
 		return (0);
-	p = ft_add_vector(scene.camera[0]->pos, ft_k_vct_prod(t, c_ray));
+	p = ft_add_vector(scene.camera[scene.i_cam]->pos, ft_k_vct_prod(t, c_ray));
 	m = ft_dot_product(scene.cylinder[0]->n, ft_sub_vector(p, scene.cylinder[0]->point));
 	center = ft_add_vector(scene.cylinder[0]->point, ft_k_vct_prod(m, scene.cylinder[0]->n));
 	n = ft_sub_vector(p, center);
@@ -224,7 +224,7 @@ int		ft_draw_cylinder(double *c_ray, t_scene scene, int *color)
 			ph = scene.cylinder[0]->point;
 		n_aux = ft_k_vct_prod(1, scene.cylinder[0]->n);
 		pl = ft_sub_vector(scene.light[0]->pos, ph);
-		po = ft_sub_vector(scene.camera[0]->pos, ph);
+		po = ft_sub_vector(scene.camera[scene.i_cam]->pos, ph);
 		if (ft_dot_product(pl, n_aux) < 0)
 			ft_minus_vector(n_aux);	
 
@@ -232,10 +232,10 @@ int		ft_draw_cylinder(double *c_ray, t_scene scene, int *color)
 		if (ft_dot_product(pl,n_aux) * ft_dot_product(po,n_aux) > 0
 				&& ft_dot_product(n_aux, c_ray) < 0)
 		{
-			qo = ft_sub_vector(ph, scene.camera[0]->pos);
+			qo = ft_sub_vector(ph, scene.camera[scene.i_cam]->pos);
 			num = ft_dot_product(qo, n_aux);
 			t = num / den;
-			pp = ft_add_vector(scene.camera[0]->pos, ft_k_vct_prod(t, c_ray));
+			pp = ft_add_vector(scene.camera[scene.i_cam]->pos, ft_k_vct_prod(t, c_ray));
 			ll = ft_sub_vector(scene.light[0]->pos, pp);
 			if (ft_mod_vector(ft_sub_vector(pp, ph)) < (scene.cylinder[0]->diameter / 2))
 			{

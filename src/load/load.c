@@ -53,7 +53,7 @@ void	ft_set_elements(t_scene *scene)
 
 void	ft_count_elements(char	*path, t_scene *scene)
 {
-	int		fd;
+	int	fd;
 	char	*line;
 	int 	i;
 	
@@ -72,6 +72,7 @@ void	ft_count_elements(char	*path, t_scene *scene)
 	}
 	close (fd);
 	ft_set_elements(scene);
+        scene->n_cams = scene->index[2];
 }
 
 void	ft_load_element(char *line, t_scene *scene)

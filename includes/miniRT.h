@@ -39,12 +39,11 @@
 ** General functions
 */
 
-void            ft_miniRT(t_scene scene);
 
 /*
 ** Window handling functions
 */
+void            ft_miniRT(t_scene s);
 
-int		ft_draw_scene(t_scene scene, t_window *window);
 
 #endif

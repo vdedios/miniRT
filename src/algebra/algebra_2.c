@@ -15,11 +15,10 @@ double	ft_mod_vector(double *v)
 	return (sqrt(pow(v[0], 2.0) + pow(v[1], 2.0) + pow(v[2], 2.0)));
 }
 
-double	*ft_mtx_vct_prod(double **m, double *v, t_scene scene)
+double	*ft_mtx_vct_prod(double **m, double *v)
 {
 	double *p;
 	int		i;
-	(void)scene;
 
 	i = 0;
 	if (!(p = malloc(3 * sizeof(double))))

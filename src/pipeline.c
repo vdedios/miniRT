@@ -1,47 +1,50 @@
 #include "miniRT.h"
 
-//Aquí tener las funciones de traceray
-
-//ESTA FUNCIÓN ES TEMPORAL Y VA A SER SUSTITUIDA POR EL PIPELINE
-int		ft_draw_element(double *c_ray, t_scene scene, int *color)
+int		ft_draw_element(t_scene scene, t_ray *ray)
 {
+//ESTA FUNCIÓN ES TEMPORAL Y VA A SER SUSTITUIDA POR EL PIPELINE
 	int	ret;
 
 	//ret = ft_draw_sphere(c_ray, scene, color);
 	//ret = ft_draw_plane(c_ray, scene, color);
 	//ret = ft_draw_square(c_ray, scene, color);
 	//ret = ft_draw_triangle(c_ray, scene, color);
-	ret = ft_draw_cylinder(c_ray, scene, color);
+	ret = ft_draw_cylinder(ray->global, scene, &ray->color);
 	return (ret);
 }
 
-int		ft_draw_scene(t_scene scene, t_window *window)
+int		ft_draw_scene(t_scene *s, t_window *w,int i_cam)
 {
-	int 	p_x;
-	int 	p_y;
-	int		color;
-	double	**c_base;
-	double	*c_local_ray;
-	double	*c_global_ray;
+	int 	px;
+	int 	py;
+        t_ray   ray;
 
-	p_x = 0;
-	p_y = 0;
-	c_base = ft_global_camera_base(scene);
-	while (p_x < scene.x)
+	px = 0;
+	py = 0;
+        //El 0 es el índice de cámara, cambiar por un i_cam
+	ft_global_camera_base(s, i_cam);
+	while (px < s->x)
 	{
-		while (p_y < scene.y)
+		while (py < s->y)
 		{
-			c_local_ray = ft_local_camera_ray(scene, p_x, p_y);
-			c_global_ray = ft_mtx_vct_prod(c_base, c_local_ray, scene);
-			ft_normalise_vector(c_global_ray);
-			if (ft_draw_element(c_global_ray, scene, &color))
-				mlx_pixel_put (window->mlx_ptr, window->win_ptr, p_x, p_y, color);
-			p_y++;
+			ray.local = ft_local_camera_ray(*s, px, py);
+			ray.global = ft_mtx_vct_prod(s->camera[i_cam]->base, ray.local);
+			ft_normalise_vector(ray.global);
+			if (ft_draw_element(*s, &ray))
+			    //mlx_pixel_put (w->mlx_ptr, w->win_ptr, px, py, ray.color);
+                            *(unsigned int *)(s->img.addr + (py * s->img.len+
+                                        px * (s->img.bitpixl / 8))) = ray.color;
+                        else
+                            *(unsigned int *)(s->img.addr + (py * s->img.len +
+                                        px * (s->img.bitpixl / 8))) = 0x00000000;
+			py++;
 		}
-		p_y = 0;
-		p_x++;
+                //Función para liberar el contenido del rayo y dejarlo todo a NULL
+                //free(rayo)
+		py = 0;
+		px++;
 	}
-	ft_draw_reference(c_base, scene, window);
+	ft_draw_reference(s->camera[i_cam]->base, *s, w);
 	return (0);
 }
 

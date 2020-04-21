@@ -34,9 +34,9 @@ void	ft_load_ambient(char *line, t_scene *scene)
 
 void	ft_load_camera(char *line, t_scene *scene)
 {
-	char 		**buffer;
-	int			i;
-	int			fov_deg;
+	char 	        **buffer;
+	int	        i;
+	int	        fov_deg;
 	t_camera	*camera;
 
 	i = 0;
@@ -53,6 +53,7 @@ void	ft_load_camera(char *line, t_scene *scene)
 	ft_load_coords(camera->n, buffer[2]);
 	ft_load_uint(&fov_deg, buffer[3]);
 	camera->fov = ((double)fov_deg / 180) * M_PI;
+        camera->base = NULL;
 	ft_del_matrix(buffer);
 }
 

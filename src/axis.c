@@ -88,15 +88,15 @@ void	ft_draw_reference(double	**c_base, t_scene scene, t_window *window)
 	base_inv = ft_inv_matrix(c_base);
 	v = ft_cross_product(c_base[2], x);
 	p = ft_cross_product(v, c_base[2]);
-	p = ft_mtx_vct_prod(base_inv, p, scene);
+	p = ft_mtx_vct_prod(base_inv, p);
 	ft_draw_axis(p, 'x', scene, window);
 	v = ft_cross_product(c_base[2], y);
 	p = ft_cross_product(v, c_base[2]);
-	p = ft_mtx_vct_prod(base_inv, p, scene);
+	p = ft_mtx_vct_prod(base_inv, p);
 	ft_draw_axis(p, 'y', scene, window);
 
 	v = ft_cross_product(c_base[2], z);
 	p = ft_cross_product(v, c_base[2]);
-	p = ft_mtx_vct_prod(base_inv, p, scene);
+	p = ft_mtx_vct_prod(base_inv, p);
 	ft_draw_axis(p, 'z', scene, window);
 }

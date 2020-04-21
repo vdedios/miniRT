@@ -15,24 +15,24 @@ double	*ft_local_camera_ray(t_scene scene, int p_x, int p_y)
 	return (c_local);
 }
 
-double	**ft_global_camera_base(t_scene scene)
+void	ft_global_camera_base(t_scene *scene, int i_cam)
 {
 	double	**conversion;
 	int 	i;
 
 	i = 0;
 	if (!(conversion = malloc(3 * sizeof(double *))))
-		return (0);
+            ft_error_handler(1);
 	while (i < 3)
 		if (!(conversion[i++] = malloc(3 * sizeof(double))))
-			return (0);
+                    ft_error_handler(1);
 	i = -1;
 	while (++i < 3)
-		conversion[2][i] = -1.0 * scene.camera[0]->n[i];
-	ft_set_hor_axis(conversion[0], scene.camera[0]->n);
-	conversion[1] = ft_cross_product(conversion[0], scene.camera[0]->n);
+		conversion[2][i] = -1.0 * scene->camera[i_cam]->n[i];
+	ft_set_hor_axis(conversion[0], scene->camera[i_cam]->n);
+	conversion[1] = ft_cross_product(conversion[0], scene->camera[i_cam]->n);
 	ft_normalise_vector(conversion[0]);
 	ft_normalise_vector(conversion[1]);
 	ft_normalise_vector(conversion[2]);
-	return (conversion);
+        scene->camera[i_cam]->base = conversion;
 }

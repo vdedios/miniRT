@@ -14,7 +14,7 @@
 
 void	ft_welcome(void)
 {
-	int		fd;
+	int	fd;
 	char	*line;
 	
 	fd = open("art/welcome.txt", O_RDONLY);
@@ -37,8 +37,9 @@ int	main(int argc, char **argv)
 	else if (ft_strnstr(argv[1], ".rt", ft_strlen(argv[1])))
 	{
 		ft_load_scene(argv[1], &scene);
+                //ft_load_render y luego ya muestro por pantalla o guardo en bmp
 		ft_miniRT(scene);
-			//perror("<<ERROR>> wrong scene, please check format or path\n");
+		//perror("<<ERROR>> wrong scene, please check format or path\n");
 	}
 	else if (!ft_strncmp(argv[1], "--save", ft_strlen(argv[1]) + 1))
 	{
