@@ -5,7 +5,8 @@ int		ft_draw_element(t_scene scene, t_ray *ray)
 //ESTA FUNCIÓN ES TEMPORAL Y VA A SER SUSTITUIDA POR EL PIPELINE
 	int	ret;
 
-	//ret = ft_draw_sphere(c_ray, scene, color);
+        //COMPROBACIONES PREVIAS GEOMETRÍAS
+	//ret = ft_draw_sphere(ray->global, scene, &ray->color);
 	//ret = ft_draw_plane(c_ray, scene, color);
 	//ret = ft_draw_square(c_ray, scene, color);
 	//ret = ft_draw_triangle(c_ray, scene, color);
@@ -13,7 +14,7 @@ int		ft_draw_element(t_scene scene, t_ray *ray)
 	return (ret);
 }
 
-int		ft_draw_scene(t_scene *s, t_window *w,int i_cam)
+int		ft_render_scene(t_scene *s, t_window *w,int i_cam)
 {
 	int 	px;
 	int 	py;
@@ -21,7 +22,6 @@ int		ft_draw_scene(t_scene *s, t_window *w,int i_cam)
 
 	px = 0;
 	py = 0;
-        //El 0 es el índice de cámara, cambiar por un i_cam
 	ft_global_camera_base(s, i_cam);
 	while (px < s->x)
 	{
@@ -31,12 +31,9 @@ int		ft_draw_scene(t_scene *s, t_window *w,int i_cam)
 			ray.global = ft_mtx_vct_prod(s->camera[i_cam]->base, ray.local);
 			ft_normalise_vector(ray.global);
 			if (ft_draw_element(*s, &ray))
-			    //mlx_pixel_put (w->mlx_ptr, w->win_ptr, px, py, ray.color);
-                            *(unsigned int *)(s->img.addr + (py * s->img.len+
-                                        px * (s->img.bitpixl / 8))) = ray.color;
+                            ft_fill_img_buf(&s->img, px, py, ray.color);
                         else
-                            *(unsigned int *)(s->img.addr + (py * s->img.len +
-                                        px * (s->img.bitpixl / 8))) = 0x00000000;
+                            ft_fill_img_buf(&s->img, px, py, 0x00000000);
 			py++;
 		}
                 //Función para liberar el contenido del rayo y dejarlo todo a NULL
@@ -44,14 +41,17 @@ int		ft_draw_scene(t_scene *s, t_window *w,int i_cam)
 		py = 0;
 		px++;
 	}
+        //añadir al buffer y quitar los put_pixel
 	ft_draw_reference(s->camera[i_cam]->base, *s, w);
 	return (0);
 }
 
 int		ft_shading(double *v, double *u)
 {
+    //Meter aquí la luz ambiente
+    //Arreglar cuando no haya focos de luz que sólo devuelva el ambiente
 	double	shade;
-	int		out;
+	int	out;
 
 	out = 0x000000E0;
 	shade = ft_dot_product(u, v) /

@@ -11,6 +11,25 @@
 /* ************************************************************************** */
 
 #include "miniRT.h"
+//Quizás hacer un fichero sólo para los eventos.
+//Estas dos funciones son de tipo utils
+
+void            ft_scene_to_screen(t_scene *scene)
+{
+    //Cuando vara a guardar en bmp hay que modificar esta función ya que de momento
+    //sólo muestra por pantalla después de renderizar
+    ft_render_scene(scene, &scene->window, scene->i_cam);
+    mlx_clear_window(scene->window.mlx_ptr, scene->window.win_ptr);
+    mlx_put_image_to_window(scene->window.mlx_ptr, scene->window.win_ptr, scene->img.id, 0, 0);
+}
+
+void            ft_fill_img_buf(t_image *img, int x, int y, int color)
+{
+    char    *dst;
+
+    dst = img->addr + (y * img->len + x * (img->bitpixl / 8));
+    *(unsigned int*)dst = color;
+}
 
 int 		ft_exit(t_window *window)
 {
@@ -26,11 +45,7 @@ int             ft_handle_keyboard(int key, t_scene *scene)
             scene->i_cam = scene->i_cam - 1;
         else
             scene->i_cam = scene->n_cams - 1;
-        //Quizás se pueda pasar solo la escena
-        //Calcular todo en un buffer y que draw sea lo que devuelve
-        printf("i_cam vale: %d\n", scene->i_cam);
-        ft_draw_scene(scene, &scene->window, scene->i_cam);
-        mlx_put_image_to_window(scene->window.mlx_ptr, scene->window.win_ptr, scene->img.id, 0, 0);
+        ft_scene_to_screen(scene);
     }
     else if (key == 124)
     {
@@ -39,8 +54,7 @@ int             ft_handle_keyboard(int key, t_scene *scene)
         else
             scene->i_cam = 0;
         printf("i_cam vale: %d\n", scene->i_cam);
-        ft_draw_scene(scene, &scene->window, scene->i_cam);
-        mlx_put_image_to_window(scene->window.mlx_ptr, scene->window.win_ptr, scene->img.id, 0, 0);
+        ft_scene_to_screen(scene);
     } 
     else if (key == 53)
         ft_exit(&scene->window);
@@ -49,17 +63,15 @@ int             ft_handle_keyboard(int key, t_scene *scene)
 
 void            ft_miniRT(t_scene scene)
 {
-    scene.i_cam = scene.n_cams - 1;
+    scene.i_cam = 0;
+    //scene.i_cam = scene.n_cams - 1;
     scene.window.mlx_ptr = mlx_init();
     scene.window.win_ptr = mlx_new_window(scene.window.mlx_ptr, scene.x, scene.y, "miniRT");
-
     scene.img.id = mlx_new_image(scene.window.mlx_ptr, scene.x, scene.y);
     scene.img.addr = mlx_get_data_addr(scene.img.id, &scene.img.bitpixl,
-            &scene.img.len,&scene.img.end);
-
+                &scene.img.len,&scene.img.end);
     mlx_hook(scene.window.win_ptr, 17, 0, ft_exit, &scene.window);
     mlx_key_hook(scene.window.win_ptr, ft_handle_keyboard, &scene);
-    ft_draw_scene(&scene, &scene.window, scene.i_cam);
-    mlx_put_image_to_window(scene.window.mlx_ptr, scene.window.win_ptr, scene.img.id, 0, 0);
+    ft_scene_to_screen(&scene);
     mlx_loop(scene.window.mlx_ptr);
 } 

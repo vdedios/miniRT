@@ -38,7 +38,7 @@
 /*
 ** General functions
 */
-
+void            ft_fill_img_buf(t_image *img, int x, int y, int color);
 
 /*
 ** Window handling functions

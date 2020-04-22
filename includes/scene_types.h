@@ -48,8 +48,6 @@ typedef struct	        s_ray {
         double          t;
 }		        t_ray;
 
-
-
 /*
 ** SCENE INDEX:
 ** 0 - scene
