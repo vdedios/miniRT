@@ -4,7 +4,7 @@
 #include "geometry_types.h"
 
 /*
-** Elements needed to ray cast a scene
+** Elements needed to ray trace a scene
 */
 
 typedef struct	s_window {
@@ -22,9 +22,9 @@ typedef struct	s_image{
 }		t_image;
 
 typedef struct	s_ambient {
-	double		intensity;
-	int			rgb;
-}				t_ambient;
+	double	intensity;
+	int	rgb;
+}		t_ambient;
 
 typedef struct	        s_camera {
 	double		pos[3];
@@ -48,6 +48,12 @@ typedef struct	        s_ray {
         double          t;
 }		        t_ray;
 
+typedef struct	        s_axis {
+	int		x[2];
+	int 		y[2];
+	int 		z[2];
+}		        t_axis;
+
 /*
 ** SCENE INDEX:
 ** 0 - scene
@@ -67,6 +73,7 @@ typedef struct	s_scene {
 	int		index[9];
         int             n_cams;
         int             i_cam;
+        t_axis          axis;
         t_window        window;
         t_image         img;
 	t_ambient	ambient;

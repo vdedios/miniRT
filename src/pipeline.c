@@ -42,7 +42,7 @@ int		ft_render_scene(t_scene *s, t_window *w,int i_cam)
 		px++;
 	}
         //añadir al buffer y quitar los put_pixel
-	ft_draw_reference(s->camera[i_cam]->base, *s, w);
+	ft_draw_reference(s->camera[i_cam]->base, s, w);
 	return (0);
 }
 
