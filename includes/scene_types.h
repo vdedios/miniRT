@@ -33,11 +33,11 @@ typedef struct	        s_camera {
         double          **base;
 }			t_camera;
 
-typedef struct	s_light {
+typedef struct	        s_light {
 	double		pos[3];
 	double		intensity;
-	int			rgb;
-}				t_light;
+	int		rgb;
+}			t_light;
 
 typedef struct	        s_ray {
 	int		p_x;

@@ -13,11 +13,32 @@ typedef struct	s_sphere {
 	int			rgb;
 }				t_sphere;
 
+typedef struct	s_sphere_rt {
+    double	p_oc;
+    double	d;
+    double	*p;
+    double	*l;
+    double	*oc;
+    double	*n;
+}		t_sphere_rt;
+
 typedef struct	s_plane {
 	double		point[3];
 	double		n[3];
 	int			rgb;
 }				t_plane;
+
+typedef struct	s_plane_rt {
+    double	t;
+    double	den;
+    double	num;
+    double	*l;
+    double	*p;
+    double	*n_aux;
+    double	*qo;
+    double	*p_l;
+    double	*po;
+}	        t_plane_rt;
 
 typedef struct	s_square {
 	double		center[3];

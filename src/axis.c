@@ -29,11 +29,11 @@ void	ft_draw_axis(double *p, char axis, t_scene *scene, t_window *window)
 	l_x = 35 * p[0] * (p[0] < 0 ? -1 : 1);
 	l_y = 35 * p[1] * (p[1] < 0 ? -1 : 1);
 	if (axis == 'x')
-		color = 0x00FF0000;
+		color = 0x00ff0000;
 	else if (axis == 'y')
-		color = 0x0000FF00;
+		color = 0x0000ff00;
 	else if (axis == 'z')
-		color = 0x000000FF;
+		color = 0x000000ff;
 	while ((x < (40 + l_x) && x > (40 - l_x)) ||
 			(y < ((scene->y - 35) + l_y) && y > ((scene->y - 35) - l_y)))
 	{
@@ -68,7 +68,7 @@ void	ft_draw_axis(double *p, char axis, t_scene *scene, t_window *window)
         }
 	x = 40;
 	y = scene->y - 35;
-	color = 0x00FFFF00;
+	color = 0x00ffff00;
         ft_fill_img_buf(&scene->img, x, y - 1, color);
         ft_fill_img_buf(&scene->img, x - 1, y, color);
         ft_fill_img_buf(&scene->img, x, y, color);

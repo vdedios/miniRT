@@ -2,15 +2,15 @@
 
 int		ft_draw_element(t_scene scene, t_ray *ray)
 {
-//ESTA FUNCIÓN ES TEMPORAL Y VA A SER SUSTITUIDA POR EL PIPELINE
+//ESTA FUNCIÓN ES TEMPORAL Y VA A SER SUSTITUIDA POR UNA FUNCIÓN QUE RECORRA EL ARRAY
 	int	ret;
 
         //COMPROBACIONES PREVIAS GEOMETRÍAS
-	//ret = ft_draw_sphere(ray->global, scene, &ray->color);
-	//ret = ft_draw_plane(c_ray, scene, color);
+	//ret = ft_draw_sphere(scene, ray);
+	ret = ft_draw_plane(ray->global, scene, &ray->color);
 	//ret = ft_draw_square(c_ray, scene, color);
 	//ret = ft_draw_triangle(c_ray, scene, color);
-	ret = ft_draw_cylinder(ray->global, scene, &ray->color);
+	//ret = ft_draw_cylinder(ray->global, scene, &ray->color);
 	return (ret);
 }
 
