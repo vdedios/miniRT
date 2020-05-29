@@ -29,22 +29,26 @@ CFLAGS				= 	-Werror -Wall -Wextra -g
 OPENGL				= 	-framework OpenGL -framework AppKit
 
 SRC_FILES			=	algebra/algebra_1.c \
-						algebra/algebra_2.c \
-						algebra/algebra_3.c \
-						axis.c \
-						camera.c \
-						error.c \
-						geometry.c \
-						load/load.c \
-						load/load_1.c \
-						load/load_2.c \
-						load/load_utils.c \
-						pipeline.c \
-						main.c \
-						miniRT.c 
+					algebra/algebra_2.c \
+					algebra/algebra_3.c \
+					axis.c \
+					camera.c \
+					error.c \
+					geometry/cylinder.c \
+					geometry/plane.c \
+					geometry/sphere.c \
+					geometry/square.c \
+					geometry/triangle.c \
+					load/load.c \
+					load/load_1.c \
+					load/load_2.c \
+					load/load_utils.c \
+					pipeline.c \
+					main.c \
+					miniRT.c 
 
 GNL_FILES			=	get_next_line.c \
-						get_next_line_utils.c	
+					get_next_line_utils.c	
 
 GNL					= $(addprefix $(GNL_DIR), $(GNL_FILES))
 SRC 				= $(addprefix $(SRC_DIR), $(SRC_FILES))

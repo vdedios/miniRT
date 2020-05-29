@@ -7,10 +7,10 @@ int		ft_draw_element(t_scene scene, t_ray *ray)
 
         //COMPROBACIONES PREVIAS GEOMETRÍAS
 	//ret = ft_draw_sphere(scene, ray);
-	ret = ft_draw_plane(ray->global, scene, &ray->color);
-	//ret = ft_draw_square(c_ray, scene, color);
-	//ret = ft_draw_triangle(c_ray, scene, color);
-	//ret = ft_draw_cylinder(ray->global, scene, &ray->color);
+	//ret = ft_draw_plane(scene, ray);
+	//ret = ft_draw_square(scene, ray);
+	//ret = ft_draw_triangle(scene, ray);
+	ret = ft_draw_cylinder(scene, ray);
 	return (ret);
 }
 
