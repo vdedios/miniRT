@@ -107,7 +107,6 @@ set verbosefile=~/.vim/vimdebug.txt
 set viminfo='1000
 set visualbell
 set wildmenu
-set window=56
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
@@ -137,9 +136,9 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 80 + 136) / 272)
-exe 'vert 2resize ' . ((&columns * 117 + 136) / 272)
-exe 'vert 3resize ' . ((&columns * 73 + 136) / 272)
+exe 'vert 1resize ' . ((&columns * 64 + 136) / 272)
+exe 'vert 2resize ' . ((&columns * 116 + 136) / 272)
+exe 'vert 3resize ' . ((&columns * 90 + 136) / 272)
 argglobal
 setlocal keymap=
 setlocal noarabic
@@ -265,7 +264,7 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 56 - ((38 * winheight(0) + 27) / 54)
+let s:l = 56 - ((4 * winheight(0) + 24) / 48)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -274,7 +273,7 @@ normal! 041|
 lcd ~/Desktop/miniRT
 wincmd w
 argglobal
-if bufexists("~/Desktop/miniRT/src/geometry/triangle.c") | buffer ~/Desktop/miniRT/src/geometry/triangle.c | else | edit ~/Desktop/miniRT/src/geometry/triangle.c | endif
+if bufexists("~/Desktop/miniRT/src/geometry/square.c") | buffer ~/Desktop/miniRT/src/geometry/square.c | else | edit ~/Desktop/miniRT/src/geometry/square.c | endif
 setlocal keymap=
 setlocal noarabic
 setlocal autoindent
@@ -374,7 +373,7 @@ setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
 setlocal spelllang=en
-setlocal statusline=%{lightline#link()}%#LightlineLeft_inactive_0#%(\ %t\ %)%{(&modified||!&modifiable)||1||Devicons_Filetype()!=#\"\"?\"\":\"\"}%(\ %M\ %)%{(&modified||!&modifiable)&&(1||Devicons_Filetype()!=#\"\")?\"\":\"\"}%(\ %{&fenc!=#\"\"?&fenc:&enc}[%{&ff}]\ %)%{Devicons_Filetype()!=#\"\"?\"\":\"\"}%(\ %{Devicons_Filetype()}\ %)%#LightlineLeft_inactive_0_1#%#LightlineMiddle_inactive#%=%#LightlineRight_inactive_0_1#%#LightlineRight_inactive_0#%(\ %2p%%\ %3l:%-2v\ %)
+setlocal statusline=%{lightline#link()}%#LightlineLeft_active_0#%(\ %{lightline#mode()}\ %)%{(&paste)?\"\":\"\"}%(\ %{&paste?\"PASTE\":\"\"}\ %)%#LightlineLeft_active_0_1#%#LightlineLeft_active_1#%(\ %R\ %)%{(&readonly)&&(1||(&modified||!&modifiable)||1||Devicons_Filetype()!=#\"\")?\"\":\"\"}%(\ %t\ %)%{(&modified||!&modifiable)||1||Devicons_Filetype()!=#\"\"?\"\":\"\"}%(\ %M\ %)%{(&modified||!&modifiable)&&(1||Devicons_Filetype()!=#\"\")?\"\":\"\"}%(\ %{&fenc!=#\"\"?&fenc:&enc}[%{&ff}]\ %)%{Devicons_Filetype()!=#\"\"?\"\":\"\"}%(\ %{Devicons_Filetype()}\ %)%#LightlineLeft_active_1_2#%#LightlineMiddle_active#%=%#LightlineRight_active_2_3#%#LightlineRight_active_2#%(\ %{coc#status()}\ %)%#LightlineRight_active_1_2#%#LightlineRight_active_1#%(\ %{PomodoroStatus()}\ %)%#LightlineRight_active_0_1#%#LightlineRight_active_0#%(\ %2p%%\ %3l:%-2v\ %)
 setlocal suffixesadd=
 setlocal swapfile
 setlocal synmaxcol=3000
@@ -399,14 +398,18 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-4
+21
 normal! zo
-let s:l = 21 - ((20 * winheight(0) + 27) / 54)
+25
+normal! zo
+35
+normal! zo
+let s:l = 31 - ((30 * winheight(0) + 24) / 48)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-21
-normal! 0
+31
+normal! 017|
 lcd ~/Desktop/miniRT
 wincmd w
 argglobal
@@ -537,32 +540,26 @@ setlocal wrap
 setlocal wrapmargin=0
 4
 normal! zo
-18
+26
 normal! zo
-27
+35
 normal! zo
-29
-normal! zo
-18
+35
 normal! zc
-50
+58
 normal! zo
-60
-normal! zo
-50
-normal! zc
-let s:l = 15 - ((14 * winheight(0) + 27) / 54)
+let s:l = 14 - ((13 * winheight(0) + 24) / 48)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-15
+14
 normal! 0
 lcd ~/Desktop/miniRT
 wincmd w
 2wincmd w
-exe 'vert 1resize ' . ((&columns * 80 + 136) / 272)
-exe 'vert 2resize ' . ((&columns * 117 + 136) / 272)
-exe 'vert 3resize ' . ((&columns * 73 + 136) / 272)
+exe 'vert 1resize ' . ((&columns * 64 + 136) / 272)
+exe 'vert 2resize ' . ((&columns * 116 + 136) / 272)
+exe 'vert 3resize ' . ((&columns * 90 + 136) / 272)
 tabnext
 edit ~/Desktop/miniRT/includes/scene_types.h
 set splitbelow splitright
@@ -710,11 +707,11 @@ setlocal wrapmargin=0
 normal! zo
 42
 normal! zo
-let s:l = 43 - ((42 * winheight(0) + 27) / 54)
+let s:l = 46 - ((42 * winheight(0) + 25) / 50)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-43
+46
 normal! 0
 lcd ~/Desktop/miniRT
 wincmd w
@@ -819,7 +816,7 @@ setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
 setlocal spelllang=en
-setlocal statusline=%{lightline#link()}%#LightlineLeft_active_0#%(\ %{lightline#mode()}\ %)%{(&paste)?\"\":\"\"}%(\ %{&paste?\"PASTE\":\"\"}\ %)%#LightlineLeft_active_0_1#%#LightlineLeft_active_1#%(\ %R\ %)%{(&readonly)&&(1||(&modified||!&modifiable)||1||Devicons_Filetype()!=#\"\")?\"\":\"\"}%(\ %t\ %)%{(&modified||!&modifiable)||1||Devicons_Filetype()!=#\"\"?\"\":\"\"}%(\ %M\ %)%{(&modified||!&modifiable)&&(1||Devicons_Filetype()!=#\"\")?\"\":\"\"}%(\ %{&fenc!=#\"\"?&fenc:&enc}[%{&ff}]\ %)%{Devicons_Filetype()!=#\"\"?\"\":\"\"}%(\ %{Devicons_Filetype()}\ %)%#LightlineLeft_active_1_2#%#LightlineMiddle_active#%=%#LightlineRight_active_2_3#%#LightlineRight_active_2#%(\ %{coc#status()}\ %)%#LightlineRight_active_1_2#%#LightlineRight_active_1#%(\ %{PomodoroStatus()}\ %)%#LightlineRight_active_0_1#%#LightlineRight_active_0#%(\ %2p%%\ %3l:%-2v\ %)
+setlocal statusline=%{lightline#link()}%#LightlineLeft_inactive_0#%(\ %t\ %)%{(&modified||!&modifiable)||1||Devicons_Filetype()!=#\"\"?\"\":\"\"}%(\ %M\ %)%{(&modified||!&modifiable)&&(1||Devicons_Filetype()!=#\"\")?\"\":\"\"}%(\ %{&fenc!=#\"\"?&fenc:&enc}[%{&ff}]\ %)%{Devicons_Filetype()!=#\"\"?\"\":\"\"}%(\ %{Devicons_Filetype()}\ %)%#LightlineLeft_inactive_0_1#%#LightlineMiddle_inactive#%=%#LightlineRight_inactive_0_1#%#LightlineRight_inactive_0#%(\ %2p%%\ %3l:%-2v\ %)
 setlocal suffixesadd=
 setlocal swapfile
 setlocal synmaxcol=3000
@@ -844,14 +841,14 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-37
+22
 normal! zo
-let s:l = 43 - ((42 * winheight(0) + 27) / 54)
+let s:l = 23 - ((22 * winheight(0) + 25) / 50)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-43
-normal! 05|
+23
+normal! 016|
 lcd ~/Desktop/miniRT
 wincmd w
 argglobal
@@ -980,25 +977,33 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 14 - ((13 * winheight(0) + 27) / 54)
+6
+normal! zo
+let s:l = 12 - ((11 * winheight(0) + 25) / 50)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-14
-normal! 053|
+12
+normal! 062|
 lcd ~/Desktop/miniRT
 wincmd w
 exe 'vert 1resize ' . ((&columns * 90 + 136) / 272)
 exe 'vert 2resize ' . ((&columns * 90 + 136) / 272)
 exe 'vert 3resize ' . ((&columns * 90 + 136) / 272)
 tabnext
-edit ~/Desktop/miniRT/scenes/scene1.rt
+edit ~/Desktop/miniRT/scenes/scene3.rt
 set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
 wincmd t
 set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
+exe 'vert 1resize ' . ((&columns * 135 + 136) / 272)
+exe 'vert 2resize ' . ((&columns * 136 + 136) / 272)
 argglobal
 setlocal keymap=
 setlocal noarabic
@@ -1124,30 +1129,176 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 3 - ((2 * winheight(0) + 27) / 54)
+let s:l = 6 - ((5 * winheight(0) + 24) / 49)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-3
+6
 normal! 0
 lcd ~/Desktop/miniRT
+wincmd w
+argglobal
+if bufexists("~/Desktop/miniRT/scenes/sceneInterferences.rt") | buffer ~/Desktop/miniRT/scenes/sceneInterferences.rt | else | edit ~/Desktop/miniRT/scenes/sceneInterferences.rt | endif
+setlocal keymap=
+setlocal noarabic
+setlocal autoindent
+setlocal backupcopy=
+setlocal balloonexpr=
+setlocal nobinary
+setlocal nobreakindent
+setlocal breakindentopt=
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal nocindent
+setlocal cinkeys=0{,0},0),0],:,0#,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinwords=if,else,while,do,for,switch
+setlocal colorcolumn=
+setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
+setlocal commentstring=/*%s*/
+setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal nocursorcolumn
+set cursorline
+setlocal cursorline
+setlocal cursorlineopt=both
+setlocal define=
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal expandtab
+if &filetype != ''
+setlocal filetype=
+endif
+setlocal fixendofline
+setlocal foldcolumn=0
+setlocal foldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+set foldmethod=syntax
+setlocal foldmethod=syntax
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=tcq
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal formatprg=
+setlocal grepprg=
+setlocal iminsert=0
+setlocal imsearch=-1
+setlocal include=
+setlocal includeexpr=
+setlocal indentexpr=
+setlocal indentkeys=0{,0},0),0],:,0#,!^F,o,O,e
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255
+setlocal keywordprg=
+setlocal nolinebreak
+setlocal nolisp
+setlocal lispwords=
+setlocal nolist
+setlocal makeencoding=
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:]
+setlocal modeline
+setlocal modifiable
+setlocal nrformats=bin,octal,hex
+set number
+setlocal number
+setlocal numberwidth=4
+setlocal omnifunc=
+setlocal path=
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal scrolloff=-1
+setlocal shiftwidth=4
+setlocal noshortname
+setlocal showbreak=
+setlocal sidescrolloff=-1
+setlocal signcolumn=auto
+setlocal smartindent
+setlocal softtabstop=0
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=%{lightline#link()}%#LightlineLeft_inactive_0#%(\ %t\ %)%{(&modified||!&modifiable)||1||Devicons_Filetype()!=#\"\"?\"\":\"\"}%(\ %M\ %)%{(&modified||!&modifiable)&&(1||Devicons_Filetype()!=#\"\")?\"\":\"\"}%(\ %{&fenc!=#\"\"?&fenc:&enc}[%{&ff}]\ %)%{Devicons_Filetype()!=#\"\"?\"\":\"\"}%(\ %{Devicons_Filetype()}\ %)%#LightlineLeft_inactive_0_1#%#LightlineMiddle_inactive#%=%#LightlineRight_inactive_0_1#%#LightlineRight_inactive_0#%(\ %2p%%\ %3l:%-2v\ %)
+setlocal suffixesadd=
+setlocal swapfile
+setlocal synmaxcol=3000
+if &syntax != ''
+setlocal syntax=
+endif
+setlocal tabstop=8
+setlocal tagcase=
+setlocal tagfunc=
+setlocal tags=
+setlocal termwinkey=
+setlocal termwinscroll=10000
+setlocal termwinsize=
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal undofile
+setlocal undolevels=-123456
+setlocal varsofttabstop=
+setlocal vartabstop=
+setlocal wincolor=
+setlocal nowinfixheight
+setlocal nowinfixwidth
+setlocal wrap
+setlocal wrapmargin=0
+let s:l = 7 - ((6 * winheight(0) + 24) / 49)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+7
+normal! 0
+lcd ~/Desktop/miniRT
+wincmd w
+exe 'vert 1resize ' . ((&columns * 135 + 136) / 272)
+exe 'vert 2resize ' . ((&columns * 136 + 136) / 272)
 tabnext 1
-badd +14 ~/Desktop/miniRT/src/miniRT.c
+badd +1 ~/Desktop/miniRT/makefile
+badd +18 ~/Desktop/miniRT/src/miniRT.c
 badd +29 ~/Desktop/miniRT/includes/scene_types.h
-badd +1 ~/Desktop/miniRT/src/geometry.c
-badd +31 ~/Desktop/miniRT/src/pipeline.c
+badd +14 ~/Desktop/miniRT/scenes/scene1.rt
+badd +4 ~/Desktop/miniRT/src/geometry/triangle.c
+badd +20 ~/Desktop/miniRT/src/pipeline.c
 badd +1 ~/Desktop/miniRT/includes/geometry_types.h
-badd +1 ~/Desktop/miniRT/includes/geometry.h
-badd +37 ~/Desktop/miniRT/includes/miniRT.h
+badd +10 ~/Desktop/miniRT/includes/geometry.h
+badd +1 ~/Desktop/miniRT/src/geometry.c
+badd +24 ~/Desktop/miniRT/includes/miniRT.h
 badd +17 ~/Desktop/miniRT/src/camera.c
-badd +17 ~/Desktop/miniRT/includes/load_utils.h
-badd +4 ~/Desktop/miniRT/src/geometry/sphere.c
-badd +4 ~/Desktop/miniRT/src/geometry/plane.c
-badd +27 ~/Desktop/miniRT/src/geometry/square.c
-badd +3 ~/Desktop/miniRT/src/geometry/triangle.c
-badd +2 ~/Desktop/miniRT/src/geometry/cylinder.c
-badd +0 ~/Desktop/miniRT/makefile
-badd +0 ~/Desktop/miniRT/scenes/scene1.rt
+badd +1 ~/Desktop/miniRT/includes/load_utils.h
+badd +3 ~/Desktop/miniRT/src/geometry/sphere.c
+badd +3 ~/Desktop/miniRT/src/geometry/plane.c
+badd +4 ~/Desktop/miniRT/src/geometry/square.c
+badd +11 ~/Desktop/miniRT/src/geometry/cylinder.c
+badd +7 ~/Desktop/miniRT/scenes/sceneSpheres.rt
+badd +10 ~/Desktop/miniRT/scenes/scene3.rt
+badd +8 ~/Desktop/miniRT/scenes/scene2.rt
+badd +2 ~/Desktop/miniRT/scenes/scene_resolution.rt
+badd +0 ~/Desktop/miniRT/scenes/sceneInterferences.rt
+badd +12 ~/Desktop/miniRT/includes/pipeline.h
+badd +1 ~/Desktop/miniRT/includes/camera.h
+badd +21 ~/Desktop/miniRT/includes/load.h
+badd +1 ~/Desktop/miniRT/src
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif

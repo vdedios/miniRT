@@ -19,11 +19,9 @@ typedef struct  s_sphere {
     double	*n;
 }		t_sphere;
 
-typedef struct	s_plane {
-    double	point[3];
-    double	n[3];
-    int		rgb;
-    double	t;
+typedef struct	s_auxplane {
+    double	*point;
+    double	*n;
     double	den;
     double	num;
     double	*l;
@@ -32,6 +30,12 @@ typedef struct	s_plane {
     double	*qo;
     double	*p_l;
     double	*po;
+}		t_auxplane;
+
+typedef struct	s_plane {
+    double	point[3];
+    double	n[3];
+    int		rgb;
 }		t_plane;
 
 typedef struct  s_square {
@@ -41,17 +45,6 @@ typedef struct  s_square {
     double	*dy;
     double	side;
     int		rgb;
-
-    //i inutil?
-    int		i;
-    double	den;
-    double	num;
-    double	*l;
-    double	*p;
-    double	*n_aux;
-    double	*qo;
-    double	*pl;
-    double	*po;
 }		t_square;
 
 typedef struct	s_triangle {
@@ -81,11 +74,24 @@ typedef struct	s_triangle {
 }		t_triangle;
 
 typedef struct	s_cylinder {
-    double		point[3]; //cambiar nombre a center
-    double		n[3];
-    double		diameter;
-    double		height;
-    int			rgb;
-}				t_cylinder;
+    double	point[3]; //cambiar nombre a center
+    double	n[3];
+    double	diameter;
+    double	height;
+    int		rgb;
+
+    double      a;
+    double      b;
+    double      c;
+    double      x1;
+    double      x2;
+    double      m;
+    double      discr;
+    double      *oc;
+    double      *p;
+    double      *center;
+    double      *nsurface;
+    double      *l;
+}		t_cylinder;
 
 #endif

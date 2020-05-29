@@ -18,6 +18,7 @@
 #include <string.h>
 #include <errno.h>
 #include <math.h>
+#include <float.h>
 
 #include "mlx.h"
 #include "libft.h"

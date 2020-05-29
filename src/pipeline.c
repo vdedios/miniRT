@@ -1,20 +1,28 @@
 #include "miniRT.h"
 
-int		ft_draw_element(t_scene scene, t_ray *ray)
+void		ft_draw_element(t_scene scene, t_ray *ray)
 {
-//ESTA FUNCIÓN ES TEMPORAL Y VA A SER SUSTITUIDA POR UNA FUNCIÓN QUE RECORRA EL ARRAY
-	int	ret;
+        int     i;
 
-        //COMPROBACIONES PREVIAS GEOMETRÍAS
-	//ret = ft_draw_sphere(scene, ray);
-	//ret = ft_draw_plane(scene, ray);
-	//ret = ft_draw_square(scene, ray);
-	//ret = ft_draw_triangle(scene, ray);
-	ret = ft_draw_cylinder(scene, ray);
-	return (ret);
+        i = -1;
+        while (scene.sphere[++i])
+	    ft_draw_sphere(scene, ray, i);
+        i = -1;
+        while (scene.plane[++i])
+	    ft_draw_plane(scene, ray, i);
+        i = -1;
+        while (scene.square[++i])
+	    ft_draw_square(scene, ray, i);
+        i = -1;
+        while (scene.triangle[++i])
+	    ft_draw_triangle(scene, ray, i);
+        i = -1;
+        while (scene.cylinder[++i])
+	    ft_draw_cylinder(scene, ray, i);
+        //Como tengo el negro de serie, estos returns me los puedo cargar -> hacer void
 }
 
-int		ft_render_scene(t_scene *s, t_window *w,int i_cam)
+int		ft_render_scene(t_scene *s, t_window *w, int i_cam)
 {
 	int 	px;
 	int 	py;
@@ -29,11 +37,11 @@ int		ft_render_scene(t_scene *s, t_window *w,int i_cam)
 		{
 			ray.local = ft_local_camera_ray(*s, px, py);
 			ray.global = ft_mtx_vct_prod(s->camera[i_cam]->base, ray.local);
+                        ray.t = DBL_MAX;
+                        ray.color = 0;
 			ft_normalise_vector(ray.global);
-			if (ft_draw_element(*s, &ray))
-                            ft_fill_img_buf(&s->img, px, py, ray.color);
-                        else
-                            ft_fill_img_buf(&s->img, px, py, 0x00000000);
+			ft_draw_element(*s, &ray);
+                        ft_fill_img_buf(&s->img, px, py, ray.color);
 			py++;
 		}
                 //Función para liberar el contenido del rayo y dejarlo todo a NULL

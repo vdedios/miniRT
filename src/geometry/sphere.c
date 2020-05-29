@@ -1,19 +1,28 @@
 #include "miniRT.h"
 
-int		ft_draw_sphere(t_scene s, t_ray *r)
+int             ft_intersect_sphere(t_scene *s, t_ray *r, int i)
 {
-    s.sphere[0]->oc = ft_sub_vector(s.sphere[0]->center, s.camera[0]->pos);
-    s.sphere[0]->p_oc = ft_dot_product(s.sphere[0]->oc, r->global);
-    s.sphere[0]->d = sqrt(pow(ft_mod_vector(s.sphere[0]->oc), 2.0) - pow(s.sphere[0]->p_oc, 2.0));
-    if (s.sphere[0]->d > (s.sphere[0]->diameter / 2))
+    s->sphere[i]->oc = ft_sub_vector(s->sphere[i]->center, s->camera[0]->pos);
+    s->sphere[i]->p_oc = ft_dot_product(s->sphere[i]->oc, r->global);
+    s->sphere[i]->d = sqrt(pow(ft_mod_vector(s->sphere[i]->oc), 2.0) - pow(s->sphere[i]->p_oc, 2.0));
+    if (s->sphere[i]->d > (s->sphere[i]->diameter / 2))
         return (0);
-    r->t = s.sphere[0]->p_oc - sqrt(pow(s.sphere[0]->diameter / 2, 2.0) - pow(s.sphere[0]->d, 2.0));
-    //Comparamos la t local calculada con la del rayo, si es mayor la guardamos, calculamos
-    //color y lo almacenamos
-    //A partir de aquí es calcular el color
-    s.sphere[0]->p = ft_add_vector(s.camera[0]->pos, ft_k_vct_prod(r->t, r->global));
-    s.sphere[0]->n = ft_sub_vector(s.sphere[0]->p, s.sphere[0]->center);
-    s.sphere[0]->l = ft_sub_vector(s.light[0]->pos, s.sphere[0]->p);
-    r->color = s.sphere[0]->rgb | ft_shading(s.sphere[0]->n, s.sphere[0]->l);
+    return (1);
+}
+
+int		ft_draw_sphere(t_scene s, t_ray *r, int i)
+{
+    double t;
+
+    if (!ft_intersect_sphere(&s, r, i))
+        return (0);
+    t = s.sphere[i]->p_oc - sqrt(pow(s.sphere[i]->diameter / 2, 2.0) - pow(s.sphere[i]->d, 2.0));
+    if (t > r->t)
+        return (0);
+    r->t = t;
+    s.sphere[i]->p = ft_add_vector(s.camera[0]->pos, ft_k_vct_prod(r->t, r->global));
+    s.sphere[i]->n = ft_sub_vector(s.sphere[i]->p, s.sphere[i]->center);
+    s.sphere[i]->l = ft_sub_vector(s.light[0]->pos, s.sphere[i]->p);
+    r->color = s.sphere[i]->rgb | ft_shading(s.sphere[i]->n, s.sphere[i]->l);
     return (1);
 }

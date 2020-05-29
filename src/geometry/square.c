@@ -1,46 +1,43 @@
 #include "miniRT.h"
 
-// Quedaría subdividir la función. De momento así hasta que quede claro cómo va a ser el pipeline
-int		ft_draw_square(t_scene s, t_ray *r)
+int		ft_intersect_inside_square(t_scene s,  t_auxplane *auxplane, int i)
 {
-    s.square[0]->n_aux = ft_k_vct_prod(1, s.square[0]->n);
-    s.square[0]->pl = ft_sub_vector(s.light[0]->pos, s.square[0]->center);
-    s.square[0]->po = ft_sub_vector(s.camera[0]->pos, s.square[0]->center);
-    if (ft_dot_product(s.square[0]->pl, s.square[0]->n_aux) < 0)
-        ft_minus_vector(s.square[0]->n_aux);	
-    s.square[0]->den = ft_dot_product(r->global, s.square[0]->n_aux);
-    s.square[0]->i = -1;
-    if (ft_dot_product(s.square[0]->pl,s.square[0]->n_aux)
-            * ft_dot_product(s.square[0]->po,s.square[0]->n_aux)
-            > 0 && ft_dot_product(s.square[0]->n_aux, r->global) < 0)
-    {
-        s.square[0]->qo = ft_sub_vector(s.square[0]->center, s.camera[0]->pos);
-        s.square[0]->num = ft_dot_product(s.square[0]->qo, s.square[0]->n_aux);
-        r->t = s.square[0]->num / s.square[0]->den;
-        s.square[0]->p = ft_add_vector(s.camera[0]->pos,
-                ft_k_vct_prod(r->t, r->global));
-        if (!s.square[0]->dx)
+    //arreglar con perspectiva hacia arriba
+    s.square[i]->dx = ft_cross_product(auxplane->n_aux,
+            s.camera[0]->n);
+    if (!ft_mod_vector(s.square[i]->dx))
+        s.square[i]->dx = ft_set_axis('x');
+    s.square[i]->dy = ft_cross_product(auxplane->n_aux,
+            s.square[i]->dx);
+    ft_normalise_vector(s.square[i]->dx);
+    ft_normalise_vector(s.square[i]->dy);
+    if (ft_abs(ft_dot_product(s.square[i]->dx,
+                    ft_sub_vector(auxplane->p, s.square[i]->center))) >
+            s.square[i]->side || ft_abs(ft_dot_product(s.square[i]->dy,
+                    ft_sub_vector(auxplane->p, s.square[i]->center))) >
+            s.square[i]->side)
+        return (0);
+    return (1);
+}
+
+int		ft_draw_square(t_scene s, t_ray *r, int i)
+{
+    double last_t;
+    t_auxplane auxplane;
+
+    last_t = r->t;
+    auxplane.point = s.square[i]->center;
+    auxplane.n = s.square[i]->n;
+    if (ft_intersect_plane(&s, &auxplane, r))
+        if (ft_get_point_plane(&s, &auxplane, r))
         {
-            //arreglar on perspectiva hacia arriba
-            s.square[0]->dx = ft_cross_product(s.square[0]->n_aux,
-                    s.camera[0]->n);
-            if (!ft_mod_vector(s.square[0]->dx))
-                s.square[0]->dx = ft_set_axis('x');
-            s.square[0]->dy = ft_cross_product(s.square[0]->n_aux,
-                    s.square[0]->dx);
-            ft_normalise_vector(s.square[0]->dx);
-            ft_normalise_vector(s.square[0]->dy);
+            if (ft_intersect_inside_square(s, &auxplane, i))
+            {
+                auxplane.l= ft_sub_vector(s.light[0]->pos, auxplane.p);
+                r->color = s.square[i]->rgb | ft_shading(auxplane.n_aux, auxplane.l);
+                return (1);
+            }
         }
-        if (ft_abs(ft_dot_product(s.square[0]->dx,
-                ft_sub_vector(s.square[0]->p, s.square[0]->center))) >
-                    s.square[0]->side || ft_abs(ft_dot_product(s.square[0]->dy,
-                ft_sub_vector(s.square[0]->p, s.square[0]->center))) >
-                    s.square[0]->side)
-            return (0);
-        s.square[0]->l = ft_sub_vector(s.light[0]->pos, s.square[0]->p);
-        r->color = s.square[0]->rgb | ft_shading(s.square[0]->n_aux,
-                s.square[0]->l);
-        return (1);
-    }
+    r->t = last_t;
     return (0);
 }

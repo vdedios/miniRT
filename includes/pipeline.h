@@ -7,5 +7,6 @@
 
 int		ft_render_scene(t_scene *scene, t_window *window, int i_cam);
 int		ft_shading(double *v, double *u);
+void		ft_draw_element(t_scene scene, t_ray *ray);
 
 #endif
