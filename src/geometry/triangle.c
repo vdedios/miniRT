@@ -15,7 +15,7 @@ int            ft_boundaries_triangle(t_scene s, t_ray *r, int i)
         s.triangle[i]->po = ft_sub_vector(s.camera[0]->pos, s.triangle[i]->a);
     if (ft_dot_product(s.triangle[i]->pl, s.triangle[i]->n_aux) < 0)
         s.triangle[i]->n = ft_minus_vector(s.triangle[i]->n_aux);
-    s.triangle[i]->den = ft_dot_product(r->global,s.triangle[i]->n_aux);
+    s.triangle[i]->den = ft_dot_product(r->global, s.triangle[i]->n_aux);
     if (r->origin)
         return (1);
     if (ft_dot_product(s.triangle[i]->pl, s.triangle[i]->n_aux)

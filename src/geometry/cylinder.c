@@ -2,7 +2,11 @@
 
 void            ft_calc_surface_cylinder(t_scene *s, t_ray *r, int i)
 {
-    s->cylinder[i]->oc = ft_sub_vector(s->camera[s->i_cam]->pos,
+    if (r->origin)
+        s->cylinder[i]->oc = ft_sub_vector(r->origin,
+            s->cylinder[i]->point);
+    else
+        s->cylinder[i]->oc = ft_sub_vector(s->camera[s->i_cam]->pos,
             s->cylinder[i]->point);
     s->cylinder[i]->a = 1 - pow(ft_dot_product(r->global,
                 s->cylinder[i]->n), 2.0);
@@ -34,7 +38,7 @@ int		ft_intersect_cylinder(t_scene *s, t_ray *r, int i)
         t = s->cylinder[i]->x1;
     if (t < 0)
         return (0);
-    if (t > r->t)
+    if (t > r->t && !r->origin)
         return (0);
     r->t = t;
     return (1);
@@ -80,8 +84,6 @@ int		ft_draw_cylinder(t_scene s, t_ray *r, int i)
     if (s.cylinder[i]->m > s.cylinder[i]->height || s.cylinder[i]->m < 0)
         return (ft_draw_caps(s, r, i));
     else 
-    {
-        r->color = s.cylinder[i]->rgb | ft_shading(s, NULL, s.cylinder[i]->nsurface, s.cylinder[i]->l);
-    }
+        r->color = s.cylinder[i]->rgb | ft_shading(s, s.cylinder[i]->p, s.cylinder[i]->nsurface, s.cylinder[i]->l);
     return (1);
 }
