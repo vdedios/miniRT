@@ -20,4 +20,3 @@ int             ft_between_light_source(double *point, double *origin, double *r
         return (1);
     return (0);
 }
-

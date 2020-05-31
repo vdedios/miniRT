@@ -63,6 +63,7 @@ int		ft_shading(t_scene s, double *p, double *v, double *u)
     t_ray       shadow;
 
     //cambiar el origen del shade al rayo
+    ft_normalise_vector(u);
     shadow.global = u;
     shadow.origin = p;
     out = 0x000000E0;

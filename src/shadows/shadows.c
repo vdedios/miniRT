@@ -27,21 +27,21 @@ int             ft_shadows(t_scene scene, t_ray *ray)
     return (0);
 }
 
-int             ft_between_light_source(double *point, double *origin, double *ray)
+int             ft_between_light_source(double *light, double *point, double *origin)
 {
     double      *shadow_ray;
+    double      *light_ray;
     double      mod_global;
     double      mod_shadow;
     double      angle;
-    double      bias;
 
-    bias = 0.0001;
     shadow_ray = ft_sub_vector(point, origin);
-    mod_global = ft_mod_vector(ray);
+    light_ray = ft_sub_vector(light, origin);
     mod_shadow = ft_mod_vector(shadow_ray);
-    angle = ft_dot_product(shadow_ray, ray)
+    mod_global = ft_mod_vector(light_ray);
+    angle = ft_dot_product(shadow_ray, light_ray)
         /(mod_global * mod_shadow);
-    if (mod_shadow > bias && mod_shadow < mod_global
+    if (mod_shadow > 0.0001 && mod_shadow < mod_global
             && (angle < (1 + FLT_EPSILON)
                 && angle > (1 - FLT_EPSILON)))
         return (1);
