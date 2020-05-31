@@ -46,6 +46,7 @@ typedef struct	        s_ray {
 	double		*global;
         int             color;
         double          t;
+        double          *origin;
 }		        t_ray;
 
 typedef struct	        s_axis {

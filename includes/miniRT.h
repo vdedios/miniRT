@@ -35,6 +35,7 @@
 #include "load_utils.h"
 #include "pipeline.h"
 #include "scene_types.h"
+#include "shadows.h"
 
 /*
 ** General functions

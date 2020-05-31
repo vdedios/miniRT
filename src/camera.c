@@ -9,8 +9,8 @@ double	*ft_local_camera_ray(t_scene scene, int p_x, int p_y)
 	//OJO: si no hay resolución de pantalla cuadrada la imagen se estira/comprime.
 	//Arreglar esto.
 	c_local[0] = (2*((p_x + 0.5) / scene.x) - 1) * (scene.x / scene.y)
-		* tan(scene.camera[0]->fov);
-	c_local[1] = (1 - 2*((p_y + 0.5) / scene.y)) * tan(scene.camera[0]->fov);
+		* tan(scene.camera[0]->fov / 2);
+	c_local[1] = (1 - 2*((p_y + 0.5) / scene.y)) * tan(scene.camera[0]->fov / 2);
 	c_local[2] = -1;
 	return (c_local);
 }

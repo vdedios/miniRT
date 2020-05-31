@@ -43,6 +43,12 @@ SRC_FILES			=	algebra/algebra_1.c \
 					load/load_1.c \
 					load/load_2.c \
 					load/load_utils.c \
+					shadows/cylinder_shadows.c \
+					shadows/plane_shadows.c \
+					shadows/shadows.c \
+					shadows/sphere_shadows.c \
+					shadows/square_shadows.c \
+					shadows/triangle_shadows.c \
 					pipeline.c \
 					main.c \
 					miniRT.c 

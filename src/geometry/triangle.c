@@ -61,7 +61,7 @@ int		ft_draw_triangle(t_scene s, t_ray *r, int i)
             return (0);
         s.triangle[i]->l = ft_sub_vector(s.light[0]->pos, s.triangle[i]->p);
         r->color = s.triangle[i]->rgb |
-            ft_shading(s.triangle[i]->n_aux, s.triangle[i]->l);
+            ft_shading(s, NULL, s.triangle[i]->n_aux, s.triangle[i]->l);
         return (1);
     }
     return (0);

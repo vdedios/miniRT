@@ -2,7 +2,6 @@
 
 int		ft_intersect_inside_square(t_scene s,  t_auxplane *auxplane, int i)
 {
-    //arreglar con perspectiva hacia arriba
     s.square[i]->dx = ft_cross_product(auxplane->n_aux,
             s.camera[0]->n);
     if (!ft_mod_vector(s.square[i]->dx))
@@ -34,7 +33,8 @@ int		ft_draw_square(t_scene s, t_ray *r, int i)
             if (ft_intersect_inside_square(s, &auxplane, i))
             {
                 auxplane.l= ft_sub_vector(s.light[0]->pos, auxplane.p);
-                r->color = s.square[i]->rgb | ft_shading(auxplane.n_aux, auxplane.l);
+                //no entra en shading, sobra scene?
+                r->color = s.square[i]->rgb | ft_shading(s, auxplane.p, auxplane.n_aux, auxplane.l);
                 return (1);
             }
         }

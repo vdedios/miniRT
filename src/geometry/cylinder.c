@@ -58,7 +58,7 @@ int             ft_draw_caps(t_scene s, t_ray *r, int i)
                     < (s.cylinder[i]->diameter / 2))
             {
                 r->color = s.cylinder[i]->rgb
-                    | ft_shading(auxplane.n_aux, auxplane.l);
+                    | ft_shading(s, NULL, auxplane.n_aux, auxplane.l);
                 return (1);
             }
         }
@@ -80,6 +80,8 @@ int		ft_draw_cylinder(t_scene s, t_ray *r, int i)
     if (s.cylinder[i]->m > s.cylinder[i]->height || s.cylinder[i]->m < 0)
         return (ft_draw_caps(s, r, i));
     else 
-        r->color = s.cylinder[i]->rgb | ft_shading(s.cylinder[i]->nsurface, s.cylinder[i]->l);
+    {
+        r->color = s.cylinder[i]->rgb | ft_shading(s, NULL, s.cylinder[i]->nsurface, s.cylinder[i]->l);
+    }
     return (1);
 }

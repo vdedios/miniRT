@@ -23,6 +23,6 @@ int		ft_draw_sphere(t_scene s, t_ray *r, int i)
     s.sphere[i]->p = ft_add_vector(s.camera[0]->pos, ft_k_vct_prod(r->t, r->global));
     s.sphere[i]->n = ft_sub_vector(s.sphere[i]->p, s.sphere[i]->center);
     s.sphere[i]->l = ft_sub_vector(s.light[0]->pos, s.sphere[i]->p);
-    r->color = s.sphere[i]->rgb | ft_shading(s.sphere[i]->n, s.sphere[i]->l);
+    r->color = s.sphere[i]->rgb | ft_shading(s, NULL, s.sphere[i]->n, s.sphere[i]->l);
     return (1);
 }

@@ -101,7 +101,7 @@ void	ft_load_element(char *line, t_scene *scene)
 
 void	ft_load_scene(char	*path, t_scene *scene)
 {
-	int		fd;
+	int	fd;
 	char	*line;
 	
 	ft_count_elements(path, scene);
