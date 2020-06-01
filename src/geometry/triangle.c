@@ -61,12 +61,13 @@ int		ft_draw_triangle(t_scene s, t_ray *r, int i)
     {
         s.triangle[i]->qo = ft_sub_vector(s.triangle[i]->a, s.camera[0]->pos);
         s.triangle[i]->num = ft_dot_product(s.triangle[i]->qo, s.triangle[i]->n_aux);
-        t = s.triangle[i]->num / s.triangle[i]->den;
-        if (t > r->t)
+        t = r->t;
+        r->t = s.triangle[i]->num / s.triangle[i]->den;
+        if (r->t > t || !ft_get_point_triangle(s, r, i))
+        {
+            r->t = t;
             return (0);
-        r->t = t;
-        if (!ft_get_point_triangle(s, r, i))
-            return (0);
+        }
         s.triangle[i]->l = ft_sub_vector(s.light[0]->pos, s.triangle[i]->p);
         r->color = s.triangle[i]->rgb |
             ft_shading(s, s.triangle[i]->p, s.triangle[i]->n_aux, s.triangle[i]->l);
