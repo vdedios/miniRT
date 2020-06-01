@@ -21,22 +21,26 @@ double	ft_ten_powerf(int p)
 
 double	ft_ftoi(char *str)
 {
-	int i;
+	int     k;
 	int	d;
 	int	l;
+        int     i;
 
+        i = 0;
 	d = ft_atoi(str);
-	while (*str != '.' && *str)
-		str++;
-	if (!*str)
+	while (str[i] != '.' && str[i])
+		i++;
+	if (!str[i])
 		return ((double)d);
-	str++;
-	l = ft_strlen(str);
-	i = ft_atoi(str);
-	return ((double)(d + i * ft_ten_powerf(-l)));
+	i++;
+	l = ft_strlen(&str[i]);
+	k = ft_atoi(&str[i]);
+        if (!d && str[0] == '-')
+            k *= -1;
+	return ((double)(d + k * ft_ten_powerf(-l)));
 }
 
-int		ft_rgb_to_hex(char **rgb)
+int	ft_rgb_to_hex(char **rgb)
 {
 	int	num_r;
 	int	num_g;

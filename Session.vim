@@ -236,7 +236,7 @@ setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
 setlocal spelllang=en
-setlocal statusline=%{lightline#link()}%#LightlineLeft_inactive_0#%(\ %t\ %)%{(&modified||!&modifiable)||1||Devicons_Filetype()!=#\"\"?\"\":\"\"}%(\ %M\ %)%{(&modified||!&modifiable)&&(1||Devicons_Filetype()!=#\"\")?\"\":\"\"}%(\ %{&fenc!=#\"\"?&fenc:&enc}[%{&ff}]\ %)%{Devicons_Filetype()!=#\"\"?\"\":\"\"}%(\ %{Devicons_Filetype()}\ %)%#LightlineLeft_inactive_0_1#%#LightlineMiddle_inactive#%=%#LightlineRight_inactive_0_1#%#LightlineRight_inactive_0#%(\ %2p%%\ %3l:%-2v\ %)
+setlocal statusline=%{lightline#link()}%#LightlineLeft_active_0#%(\ %{lightline#mode()}\ %)%{(&paste)?\"\":\"\"}%(\ %{&paste?\"PASTE\":\"\"}\ %)%#LightlineLeft_active_0_1#%#LightlineLeft_active_1#%(\ %R\ %)%{(&readonly)&&(1||(&modified||!&modifiable)||1||Devicons_Filetype()!=#\"\")?\"\":\"\"}%(\ %t\ %)%{(&modified||!&modifiable)||1||Devicons_Filetype()!=#\"\"?\"\":\"\"}%(\ %M\ %)%{(&modified||!&modifiable)&&(1||Devicons_Filetype()!=#\"\")?\"\":\"\"}%(\ %{&fenc!=#\"\"?&fenc:&enc}[%{&ff}]\ %)%{Devicons_Filetype()!=#\"\"?\"\":\"\"}%(\ %{Devicons_Filetype()}\ %)%#LightlineLeft_active_1_2#%#LightlineMiddle_active#%=%#LightlineRight_active_2_3#%#LightlineRight_active_2#%(\ %{coc#status()}\ %)%#LightlineRight_active_1_2#%#LightlineRight_active_1#%(\ %{PomodoroStatus()}\ %)%#LightlineRight_active_0_1#%#LightlineRight_active_0#%(\ %2p%%\ %3l:%-2v\ %)
 setlocal suffixesadd=
 setlocal swapfile
 setlocal synmaxcol=3000
@@ -372,7 +372,7 @@ setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
 setlocal spelllang=en
-setlocal statusline=%{lightline#link()}%#LightlineLeft_active_0#%(\ %{lightline#mode()}\ %)%{(&paste)?\"\":\"\"}%(\ %{&paste?\"PASTE\":\"\"}\ %)%#LightlineLeft_active_0_1#%#LightlineLeft_active_1#%(\ %R\ %)%{(&readonly)&&(1||(&modified||!&modifiable)||1||Devicons_Filetype()!=#\"\")?\"\":\"\"}%(\ %t\ %)%{(&modified||!&modifiable)||1||Devicons_Filetype()!=#\"\"?\"\":\"\"}%(\ %M\ %)%{(&modified||!&modifiable)&&(1||Devicons_Filetype()!=#\"\")?\"\":\"\"}%(\ %{&fenc!=#\"\"?&fenc:&enc}[%{&ff}]\ %)%{Devicons_Filetype()!=#\"\"?\"\":\"\"}%(\ %{Devicons_Filetype()}\ %)%#LightlineLeft_active_1_2#%#LightlineMiddle_active#%=%#LightlineRight_active_2_3#%#LightlineRight_active_2#%(\ %{coc#status()}\ %)%#LightlineRight_active_1_2#%#LightlineRight_active_1#%(\ %{PomodoroStatus()}\ %)%#LightlineRight_active_0_1#%#LightlineRight_active_0#%(\ %2p%%\ %3l:%-2v\ %)
+setlocal statusline=%{lightline#link()}%#LightlineLeft_inactive_0#%(\ %t\ %)%{(&modified||!&modifiable)||1||Devicons_Filetype()!=#\"\"?\"\":\"\"}%(\ %M\ %)%{(&modified||!&modifiable)&&(1||Devicons_Filetype()!=#\"\")?\"\":\"\"}%(\ %{&fenc!=#\"\"?&fenc:&enc}[%{&ff}]\ %)%{Devicons_Filetype()!=#\"\"?\"\":\"\"}%(\ %{Devicons_Filetype()}\ %)%#LightlineLeft_inactive_0_1#%#LightlineMiddle_inactive#%=%#LightlineRight_inactive_0_1#%#LightlineRight_inactive_0#%(\ %2p%%\ %3l:%-2v\ %)
 setlocal suffixesadd=
 setlocal swapfile
 setlocal synmaxcol=3000
@@ -412,7 +412,7 @@ wincmd w
 exe 'vert 1resize ' . ((&columns * 136 + 136) / 272)
 exe 'vert 2resize ' . ((&columns * 135 + 136) / 272)
 tabnext
-edit ~/Desktop/miniRT/src/pipeline.c
+edit ~/Desktop/miniRT/src/error.c
 set splitbelow splitright
 wincmd t
 set winminheight=0
@@ -544,20 +544,18 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-25
+16
 normal! zo
-34
+23
 normal! zo
-58
-normal! zo
-75
-normal! zo
-let s:l = 73 - ((46 * winheight(0) + 21) / 43)
+16
+normal! zc
+let s:l = 74 - ((72 * winheight(0) + 21) / 43)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-73
-normal! 013|
+74
+normal! 0
 lcd ~/Desktop/miniRT
 tabnext
 edit ~/Desktop/miniRT/includes/scene_types.h
@@ -704,18 +702,14 @@ setlocal wrap
 setlocal wrapmargin=0
 6
 normal! zo
-36
+29
 normal! zo
-42
-normal! zo
-71
-normal! zo
-let s:l = 52 - ((24 * winheight(0) + 21) / 43)
+let s:l = 41 - ((34 * winheight(0) + 21) / 43)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-52
-normal! 01|
+41
+normal! 0
 lcd ~/Desktop/miniRT
 wincmd w
 argglobal
@@ -844,13 +838,13 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-22
+35
 normal! zo
-let s:l = 34 - ((33 * winheight(0) + 21) / 43)
+let s:l = 36 - ((35 * winheight(0) + 21) / 43)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-34
+36
 normal! 021|
 lcd ~/Desktop/miniRT
 wincmd w
@@ -996,7 +990,7 @@ exe 'vert 1resize ' . ((&columns * 72 + 136) / 272)
 exe 'vert 2resize ' . ((&columns * 87 + 136) / 272)
 exe 'vert 3resize ' . ((&columns * 111 + 136) / 272)
 tabnext
-edit ~/Desktop/miniRT/scenes/scene3.rt
+edit ~/Desktop/miniRT/scenes/sceneSpheres.rt
 set splitbelow splitright
 wincmd t
 set winminheight=0
@@ -1133,28 +1127,28 @@ if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 9
-normal! 0
+normal! 014|
 lcd ~/Desktop/miniRT
-tabnext 4
-badd +39 ~/Desktop/miniRT/src/shadows/cylinder_shadows.c
+tabnext 2
+badd +44 ~/Desktop/miniRT/src/geometry/plane.c
 badd +43 ~/Desktop/miniRT/src/miniRT.c
-badd +1 ~/Desktop/miniRT/src/pipeline.c
+badd +73 ~/Desktop/miniRT/src/pipeline.c
 badd +1 ~/Desktop/miniRT/includes/scene_types.h
 badd +5 ~/Desktop/miniRT/scenes/scene3.rt
-badd +24 ~/Desktop/miniRT/src/geometry/cylinder.c
+badd +57 ~/Desktop/miniRT/src/geometry/triangle.c
 badd +1 ~/Desktop/miniRT/includes/geometry_types.h
 badd +20 ~/Desktop/miniRT/includes/shadows.h
+badd +39 ~/Desktop/miniRT/src/shadows/cylinder_shadows.c
+badd +24 ~/Desktop/miniRT/src/geometry/cylinder.c
 badd +13 ~/Desktop/miniRT/src/shadows/plane_shadows.c
 badd +7 ~/Desktop/miniRT/scenes/scenePlanesSpheres.rt
 badd +39 ~/Desktop/miniRT/src/shadows/shadows.c
-badd +44 ~/Desktop/miniRT/src/geometry/plane.c
 badd +8 ~/Desktop/miniRT/includes/pipeline.h
 badd +58 ~/Desktop/miniRT/makefile
 badd +1 ~/Desktop/miniRT/src/geometry/square.c
 badd +4 ~/Desktop/miniRT/includes/geometry.h
 badd +11 ~/Desktop/miniRT/scenes/sceneInterferences.rt
 badd +1 ~/Desktop/miniRT/scenes/scene1.rt
-badd +57 ~/Desktop/miniRT/src/geometry/triangle.c
 badd +1 ~/Desktop/miniRT/src/geometry.c
 badd +31 ~/Desktop/miniRT/includes/miniRT.h
 badd +16 ~/Desktop/miniRT/src/camera.c
@@ -1166,12 +1160,12 @@ badd +2 ~/Desktop/miniRT/scenes/scene_resolution.rt
 badd +1 ~/Desktop/miniRT/includes/camera.h
 badd +21 ~/Desktop/miniRT/includes/load.h
 badd +1 ~/Desktop/miniRT/src
-badd +25 ~/Desktop/miniRT/src/load/load_2.c
+badd +49 ~/Desktop/miniRT/src/load/load_2.c
 badd +8 ~/Desktop/miniRT/scenes/scenePlanes.rt
 badd +4 ~/Desktop/miniRT/scenes/sceneFails.rt
-badd +1 ~/Desktop/miniRT/src/load/load_1.c
-badd +39 ~/Desktop/miniRT/src/main.c
-badd +109 ~/Desktop/miniRT/src/load/load.c
+badd +39 ~/Desktop/miniRT/src/load/load_1.c
+badd +44 ~/Desktop/miniRT/src/main.c
+badd +53 ~/Desktop/miniRT/src/load/load.c
 badd +2 ~/Desktop/miniRT/src/algebra/algebra_1.c
 badd +4 ~/Desktop/miniRT/src/algebra/algebra_2.c
 badd +4 ~/Desktop/miniRT/src/shadows.c
@@ -1181,6 +1175,8 @@ badd +11 ~/Desktop/miniRT/src/shadows/triangle_shadows.c
 badd +9 ~/Desktop/miniRT/includes/algebra.h
 badd +6 ~/Desktop/miniRT/scenes/sceneTriangle.rt
 badd +5 ~/Desktop/miniRT/scenes/sceneCylinder.rt
+badd +55 ~/Desktop/miniRT/src/load/load_utils.c
+badd +21 ~/Desktop/miniRT/src/error.c
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif

@@ -7,6 +7,8 @@ int             ft_intersect_sphere(t_scene *s, t_ray *r, int i)
     else
         s->sphere[i]->oc = ft_sub_vector(s->sphere[i]->center, s->camera[0]->pos);
     s->sphere[i]->p_oc = ft_dot_product(s->sphere[i]->oc, r->global);
+    if (s->sphere[i]->p_oc < 0)
+        return (0);
     s->sphere[i]->d = sqrt(pow(ft_mod_vector(s->sphere[i]->oc), 2.0) - pow(s->sphere[i]->p_oc, 2.0));
     if (s->sphere[i]->d > (s->sphere[i]->diameter / 2))
         return (0);
