@@ -5,6 +5,30 @@ int		ft_intersect_plane(t_scene *s, t_auxplane *plane, t_ray *r)
     plane->n_aux = ft_k_vct_prod(1, plane->n);
     plane->p_l = ft_sub_vector(s->light[0]->pos, plane->point);
     if (r->origin)
+    {
+        plane->po = ft_sub_vector(r->origin, plane->point);
+        if (ft_dot_product(plane->n_aux, plane->po) < 0)
+            return (1);
+    }
+    else
+    {
+        plane->po = ft_sub_vector(s->camera[0]->pos, plane->point);
+        if (ft_dot_product(plane->p_l, plane->n_aux) < 0)
+            ft_minus_vector(plane->n_aux);	
+        if (ft_dot_product(plane->p_l,plane->n_aux)
+                * ft_dot_product(plane->po,plane->n_aux) > 0
+                && ft_dot_product(plane->n_aux, r->global) < 0)
+            return (1);
+    }
+    return (0);
+}
+
+/*
+int		ft_intersect_plane(t_scene *s, t_auxplane *plane, t_ray *r)
+{
+    plane->n_aux = ft_k_vct_prod(1, plane->n);
+    plane->p_l = ft_sub_vector(s->light[0]->pos, plane->point);
+    if (r->origin)
         plane->po = ft_sub_vector(r->origin, plane->point);
     else
         plane->po = ft_sub_vector(s->camera[0]->pos, plane->point);
@@ -16,6 +40,7 @@ int		ft_intersect_plane(t_scene *s, t_auxplane *plane, t_ray *r)
         return (1);
     return (0);
 }
+ */
 
 int             ft_get_point_plane(t_scene *s, t_auxplane *plane, t_ray *r)
 {

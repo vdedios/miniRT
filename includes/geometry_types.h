@@ -74,7 +74,7 @@ typedef struct	s_triangle {
 }		t_triangle;
 
 typedef struct	s_cylinder {
-    double	point[3]; //cambiar nombre a center
+    double	point[3]; 
     double	n[3];
     double	diameter;
     double	height;

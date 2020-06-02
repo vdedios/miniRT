@@ -1,5 +1,6 @@
 #include "miniRT.h"
 
+//Dejar solo esta función, separar las sombras de la geometría
 int		ft_intersect_shadow_plane(t_auxplane *plane, t_ray *r)
 {
     plane->n_aux = ft_k_vct_prod(1, plane->n);
@@ -15,8 +16,8 @@ int             ft_shadow_plane(t_scene s, t_ray *r, int i)
 
     auxplane.point = s.plane[i]->point;
     auxplane.n = s.plane[i]->n;
-    if (ft_intersect_plane(&s, &auxplane, r))
-        if (ft_between_light_source(s.light[0]->pos, auxplane.p, r->origin))
+    if (ft_intersect_shadow_plane(&auxplane, r))
+        if (ft_between_light_source(s.light[0]->pos, auxplane.point, r->origin))
             return (1);
     return (0);
 }
