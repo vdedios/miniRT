@@ -2,16 +2,17 @@
 
 int		ft_intersect_plane(t_scene *s, t_auxplane *plane, t_ray *r)
 {
+    //ojo con esto siempre asigna desde abajo y hace la sombra desde abajo
     plane->n_aux = ft_k_vct_prod(1, plane->n);
-    plane->p_l = ft_sub_vector(s->light[0]->pos, plane->point);
     if (r->origin)
     {
         plane->po = ft_sub_vector(r->origin, plane->point);
-        if (ft_dot_product(plane->n_aux, plane->po) < 0)
+        if (ft_dot_product(plane->n_aux, plane->po) < (-1 * FLT_EPSILON))
             return (1);
     }
     else
     {
+        plane->p_l = ft_sub_vector(s->light[0]->pos, plane->point);
         plane->po = ft_sub_vector(s->camera[0]->pos, plane->point);
         if (ft_dot_product(plane->p_l, plane->n_aux) < 0)
             ft_minus_vector(plane->n_aux);	

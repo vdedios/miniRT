@@ -53,6 +53,7 @@ int             ft_draw_caps(t_scene s, t_ray *r, int i)
     if (s.cylinder[i]->m && s.cylinder[i]->m > s.cylinder[i]->height)
         auxplane.point = ft_add_vector(s.cylinder[i]->point,
                 ft_k_vct_prod(s.cylinder[i]->height, s.cylinder[i]->n));
+    //ojo con esto siempre asigna desde abajo y hace la sombra desde abajo
     else
         auxplane.point = s.cylinder[i]->point;
     auxplane.n = s.cylinder[i]->n;
@@ -65,7 +66,7 @@ int             ft_draw_caps(t_scene s, t_ray *r, int i)
                 {
                     auxplane.l= ft_sub_vector(s.light[0]->pos, auxplane.p);
                     r->color = s.cylinder[i]->rgb
-                        | ft_shading(s,  s.cylinder[i]->p, auxplane.n_aux, auxplane.l);
+                        | ft_shading(s,  auxplane.p, auxplane.n_aux, auxplane.l);
                 }
                 return (1);
             }

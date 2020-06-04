@@ -28,16 +28,16 @@ int		ft_render_scene(t_scene *s, t_window *w, int i_cam)
     t_ray   ray;
 
     px = 0;
-    py = 0;
     ft_global_camera_base(s, i_cam);
     while (px < s->x)
     {
+        py = 0;
         while (py < s->y)
         {
             ray.local = ft_local_camera_ray(*s, px, py);
             ray.global = ft_mtx_vct_prod(s->camera[i_cam]->base, ray.local);
             ray.t = DBL_MAX;
-            ray.color = 0;
+            ray.color = 250;
             ray.origin = NULL;
             ft_normalise_vector(ray.global);
             ft_draw_element(*s, &ray);
@@ -46,7 +46,6 @@ int		ft_render_scene(t_scene *s, t_window *w, int i_cam)
         }
         //Función para liberar el contenido del rayo y dejarlo todo a NULL
         //free(rayo)
-        py = 0;
         px++;
     }
     //añadir al buffer y quitar los put_pixel
@@ -61,6 +60,7 @@ int		ft_shading(t_scene s, double *p, double *v, double *u)
     double	shade;
     int	        out;
     t_ray       shadow;
+    //(void)s;
 
     //cambiar el origen del shade al rayo
     ft_normalise_vector(u);

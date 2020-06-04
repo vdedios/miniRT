@@ -31,7 +31,7 @@ void            ft_fill_img_buf(t_image *img, int x, int y, int color)
     char    *dst;
 
     dst = img->addr + (y * img->len + x * (img->bitpixl / 8));
-    *(unsigned int*)dst = color;
+    *(unsigned int *)dst = color;
 }
 
 int 		ft_exit(t_window *window)
