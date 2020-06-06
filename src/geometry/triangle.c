@@ -12,7 +12,7 @@ int            ft_boundaries_triangle(t_scene s, t_ray *r, int i)
     if (r->origin)
         s.triangle[i]->po = ft_sub_vector(r->origin, s.triangle[i]->a);
     else
-        s.triangle[i]->po = ft_sub_vector(s.camera[0]->pos, s.triangle[i]->a);
+        s.triangle[i]->po = ft_sub_vector(s.camera[s.i_cam]->pos, s.triangle[i]->a);
     if (ft_dot_product(s.triangle[i]->pl, s.triangle[i]->n_aux) < 0)
         s.triangle[i]->n = ft_minus_vector(s.triangle[i]->n_aux);
     s.triangle[i]->den = ft_dot_product(r->global, s.triangle[i]->n_aux);
@@ -29,10 +29,10 @@ int             ft_get_point_triangle(t_scene s, t_ray *r, int i)
 {
     if (r->origin)
         s.triangle[i]->p = ft_add_vector(r->origin,
-            ft_k_vct_prod(r->t, r->global));
+                ft_k_vct_prod(r->t, r->global));
     else
-        s.triangle[i]->p = ft_add_vector(s.camera[0]->pos,
-            ft_k_vct_prod(r->t, r->global));
+        s.triangle[i]->p = ft_add_vector(s.camera[s.i_cam]->pos,
+                ft_k_vct_prod(r->t, r->global));
     s.triangle[i]->p0 = ft_sub_vector(s.triangle[i]->p, s.triangle[i]->a);
     s.triangle[i]->p1 = ft_sub_vector(s.triangle[i]->p, s.triangle[i]->b);
     s.triangle[i]->p2 = ft_sub_vector(s.triangle[i]->p, s.triangle[i]->c);
@@ -55,11 +55,14 @@ int             ft_get_point_triangle(t_scene s, t_ray *r, int i)
 
 int		ft_draw_triangle(t_scene s, t_ray *r, int i)
 {
-    double t;
+    double      t;
+    int         r_c;
+    int         g_c;
+    int         b_c;
 
     if (ft_boundaries_triangle(s, r, i))
     {
-        s.triangle[i]->qo = ft_sub_vector(s.triangle[i]->a, s.camera[0]->pos);
+        s.triangle[i]->qo = ft_sub_vector(s.triangle[i]->a, s.camera[s.i_cam]->pos);
         s.triangle[i]->num = ft_dot_product(s.triangle[i]->qo, s.triangle[i]->n_aux);
         t = r->t;
         r->t = s.triangle[i]->num / s.triangle[i]->den;
@@ -69,8 +72,12 @@ int		ft_draw_triangle(t_scene s, t_ray *r, int i)
             return (0);
         }
         s.triangle[i]->l = ft_sub_vector(s.light[0]->pos, s.triangle[i]->p);
-        r->color = s.triangle[i]->rgb |
-            ft_shading(s, s.triangle[i]->p, s.triangle[i]->n_aux, s.triangle[i]->l);
+        r->color = ft_shading(s, s.triangle[i]->p, s.triangle[i]->n_aux, s.triangle[i]->l);
+        //cambiar modelo sustractivo
+        r_c = (((r->color & 0x00FF0000) >> 16) * ((s.triangle[i]->rgb & 0x00FF0000) >> 16)) / 255;
+        g_c = (((r->color & 0x0000FF00) >> 8) * ((s.triangle[i]->rgb & 0x0000FF00) >> 8)) / 255;
+        b_c = (((r->color & 0x000000FF)) * (s.triangle[i]->rgb & 0x000000FF)) / 255;
+        r->color = ((r_c << 16) + (g_c << 8) + b_c);
         return (1);
     }
     return (0);

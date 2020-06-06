@@ -66,7 +66,7 @@ int             ft_draw_caps(t_scene s, t_ray *r, int i)
                 {
                     auxplane.l= ft_sub_vector(s.light[0]->pos, auxplane.p);
                     r->color = s.cylinder[i]->rgb
-                        | ft_shading(s,  auxplane.p, auxplane.n_aux, auxplane.l);
+                        & ft_shading(s,  auxplane.p, auxplane.n_aux, auxplane.l);
                 }
                 return (1);
             }
@@ -91,7 +91,7 @@ int		ft_draw_cylinder(t_scene s, t_ray *r, int i)
         if (s.cylinder[i]->m < s.cylinder[i]->height && s.cylinder[i]->m > 0)
         {
             r->color = s.cylinder[i]->rgb
-                | ft_shading(s, s.cylinder[i]->p, s.cylinder[i]->nsurface, s.cylinder[i]->l);
+                & ft_shading(s, s.cylinder[i]->p, s.cylinder[i]->nsurface, s.cylinder[i]->l);
             return (1);
         }
         r->t = t;

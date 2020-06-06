@@ -37,7 +37,7 @@ int		ft_render_scene(t_scene *s, t_window *w, int i_cam)
             ray.local = ft_local_camera_ray(*s, px, py);
             ray.global = ft_mtx_vct_prod(s->camera[i_cam]->base, ray.local);
             ray.t = DBL_MAX;
-            ray.color = 250;
+            ray.color = 0;
             ray.origin = NULL;
             ft_normalise_vector(ray.global);
             ft_draw_element(*s, &ray);
@@ -55,26 +55,35 @@ int		ft_render_scene(t_scene *s, t_window *w, int i_cam)
 
 int		ft_shading(t_scene s, double *p, double *v, double *u)
 {
-    //Meter aquí la luz ambiente
-    //Arreglar cuando no haya focos de luz que sólo devuelva el ambiente
     double	shade;
-    int	        out;
     t_ray       shadow;
-    //(void)s;
+    int         r;
+    int         g;
+    int         b;
+    double      a0;
+    double      a1;
 
-    //cambiar el origen del shade al rayo
     ft_normalise_vector(u);
+    ft_normalise_vector(v);
     shadow.global = u;
     shadow.origin = p;
-    out = 0x000000E0;
-    shade = ft_dot_product(u, v) /
-        (ft_mod_vector(u) * ft_mod_vector(v));
-    if (ft_shadows(s, &shadow))
-        return (0xE0000000);
-    if (shade > 0 && shade < 1)
-    {
-        out = out * (1 - shade);
-        return (out << 24);
-    }
-    return (0xE0000000);
+    shade = ft_dot_product(u, v);
+    if(ft_shadows(s, &shadow) || shade < 0)
+        shade = 0;
+    //Mezcla porcentual de colores
+    a0 = s.ambient.intensity;
+    a1 = s.light[0]->intensity;
+    r = a0 * ((s.ambient.rgb & 0x00FF0000) >> 16)
+            + a1 * shade * ((s.light[0]->rgb & 0x00FF0000) >> 16);
+    if (r > 255)
+        r = 255;
+    g = a0 * ((s.ambient.rgb & 0x0000FF00) >> 8)
+            + a1 * shade * ((s.light[0]->rgb & 0x0000FF00) >> 8);
+    if (g > 255)
+        g = 255;
+    b = a0 * (s.ambient.rgb & 0x000000FF)
+            + a1 * shade * (s.light[0]->rgb & 0x000000FF);
+    if (b > 255)
+        b = 255;
+    return ((r << 16) + (g << 8) + b);
 }

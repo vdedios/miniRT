@@ -3,9 +3,11 @@
 int		ft_intersect_inside_square(t_scene s,  t_auxplane *auxplane, int i)
 {
     s.square[i]->dx = ft_cross_product(auxplane->n_aux,
-            s.camera[0]->n);
-    if (!ft_mod_vector(s.square[i]->dx))
+            s.camera[s.i_cam]->n);
+    if (!ft_mod_vector(s.square[i]->dx) && !auxplane->n_aux[0])
         s.square[i]->dx = ft_set_axis('x');
+    else
+        s.square[i]->dx = ft_set_axis('y');
     s.square[i]->dy = ft_cross_product(auxplane->n_aux,
             s.square[i]->dx);
     ft_normalise_vector(s.square[i]->dx);
@@ -34,7 +36,7 @@ int		ft_draw_square(t_scene s, t_ray *r, int i)
             {
                 auxplane.l= ft_sub_vector(s.light[0]->pos, auxplane.p);
                 //no entra en shading, sobra scene?
-                r->color = s.square[i]->rgb | ft_shading(s, auxplane.p, auxplane.n_aux, auxplane.l);
+                r->color = s.square[i]->rgb & ft_shading(s, auxplane.p, auxplane.n_aux, auxplane.l);
                 return (1);
             }
         }

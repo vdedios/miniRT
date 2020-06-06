@@ -25,7 +25,7 @@ double	**ft_inv_matrix(double	**m)
 	return(i);
 }
 
-int		ft_minus_vector(double *v)
+int	ft_minus_vector(double *v)
 {
 	v[0] = -1 * v[0];
 	v[1] = -1 * v[1];
