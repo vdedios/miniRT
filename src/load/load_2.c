@@ -3,7 +3,7 @@
 void	ft_load_sphere(char *line, t_scene *scene)
 {
 	char		**buffer;
-	int			i;
+	int		i;
 	t_sphere	*sphere;
 
 	i = 0;
@@ -16,16 +16,16 @@ void	ft_load_sphere(char *line, t_scene *scene)
 		ft_error_handler(4);
 	scene->sphere[scene->index[4] - 1] = sphere;
 	scene->index[4]--;
-	ft_load_coords(sphere->center, buffer[1]);
-	ft_load_udouble(&sphere->diameter, buffer[2]);
-	ft_load_rgb(&sphere->rgb, buffer[3]);
+	sphere->center = ft_load_coords(buffer[1]);
+	sphere->diameter = ft_load_udouble(buffer[2]);
+	sphere->rgb = ft_load_rgb(buffer[3]);
 	ft_del_matrix(buffer);
 }
 
 void	ft_load_plane(char *line, t_scene *scene)
 {
 	char	**buffer;
-	int		i;
+	int	i;
 	t_plane	*plane;
 
 	i = 0;
@@ -38,16 +38,16 @@ void	ft_load_plane(char *line, t_scene *scene)
 		ft_error_handler(4);
 	scene->plane[scene->index[5] - 1] = plane;
 	scene->index[5]--;
-	ft_load_coords(plane->point, buffer[1]);
-	ft_load_coords(plane->n, buffer[2]);
-	ft_load_rgb(&plane->rgb, buffer[3]);
+	plane->point = ft_load_coords(buffer[1]);
+	plane->n = ft_load_coords(buffer[2]);
+	plane->rgb = ft_load_rgb(buffer[3]);
 	ft_del_matrix(buffer);
 }
 
 void	ft_load_square(char *line, t_scene *scene)
 {
 	char		**buffer;
-	int			i;
+	int		i;
 	t_square	*square;
 
 	i = 0;
@@ -60,10 +60,11 @@ void	ft_load_square(char *line, t_scene *scene)
 		ft_error_handler(4);
 	scene->square[scene->index[6] - 1] = square;
 	scene->index[6]--;
-	ft_load_coords(square->center, buffer[1]);
-	ft_load_coords(square->n, buffer[2]);
-	ft_load_udouble(&square->side, buffer[3]);
-	ft_load_rgb(&square->rgb, buffer[4]);
+	square->center = ft_load_coords(buffer[1]);
+	square->n = ft_load_coords(buffer[2]);
+	square->side = ft_load_udouble(buffer[3]);
+	square->rgb = ft_load_rgb(buffer[4]);
+        //ojo a esto
 	square->dx = NULL;
 	square->dy = NULL;
 	ft_del_matrix(buffer);
@@ -72,7 +73,7 @@ void	ft_load_square(char *line, t_scene *scene)
 void	ft_load_cylinder(char *line, t_scene *scene)
 {
 	char		**buffer;
-	int			i;
+	int		i;
 	t_cylinder	*cylinder;
 
 	i = 0;
@@ -85,18 +86,18 @@ void	ft_load_cylinder(char *line, t_scene *scene)
 		ft_error_handler(4);
 	scene->cylinder[scene->index[7] - 1] = cylinder;
 	scene->index[7]--;
-	ft_load_coords(cylinder->point, buffer[1]);
-	ft_load_coords(cylinder->n, buffer[2]);
-	ft_load_udouble(&cylinder->diameter, buffer[3]);
-	ft_load_udouble(&cylinder->height, buffer[4]);
-	ft_load_rgb(&cylinder->rgb, buffer[5]);
+	cylinder->point = ft_load_coords(buffer[1]);
+	cylinder->n = ft_load_coords(buffer[2]);
+	cylinder->diameter = ft_load_udouble(buffer[3]);
+	cylinder->height = ft_load_udouble(buffer[4]);
+	cylinder->rgb = ft_load_rgb(buffer[5]);
 	ft_del_matrix(buffer);
 }
 
 void	ft_load_triangle(char *line, t_scene *scene)
 {
 	char		**buffer;
-	int			i;
+	int		i;
 	t_triangle	*triangle;
 
 	i = 0;
@@ -109,9 +110,9 @@ void	ft_load_triangle(char *line, t_scene *scene)
 		ft_error_handler(4);
 	scene->triangle[scene->index[8] - 1] = triangle;
 	scene->index[8]--;
-	ft_load_coords(triangle->a, buffer[1]);
-	ft_load_coords(triangle->b, buffer[2]);
-	ft_load_coords(triangle->c, buffer[3]);
-	ft_load_rgb(&triangle->rgb, buffer[4]);
+	triangle->a = ft_load_coords(buffer[1]);
+	triangle->b = ft_load_coords(buffer[2]);
+	triangle->c = ft_load_coords(buffer[3]);
+	triangle->rgb = ft_load_rgb(buffer[4]);
 	ft_del_matrix(buffer);
 }

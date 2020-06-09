@@ -23,18 +23,18 @@ typedef struct	s_image{
 
 typedef struct	s_ambient {
 	double	intensity;
-	int	rgb;
+	t_rgb	rgb;
 }		t_ambient;
 
 typedef struct	        s_camera {
-	double		pos[3];
-	double		n[3];
+	t_vector	pos;
+	t_vector	n;
 	double		fov;
-        double          **base;
+        t_matrix        base;
 }			t_camera;
 
 typedef struct	        s_light {
-	double		pos[3];
+	t_vector	pos;
 	double		intensity;
 	int		rgb;
 }			t_light;

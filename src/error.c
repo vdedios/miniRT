@@ -1,5 +1,12 @@
 #include "miniRT.h"
 
+/*
+** This functions handle errors as well as save values. The input pointer 
+** string must start with the searched value. It will first check format
+** (spliting if necessary), then make pertinent conversion and saving values.
+** If any error is encountered the function will exit with EXIT_FAILURE macro.
+*/
+
 void	ft_error_handler(int error_id)
 {
 	errno = error_id;
@@ -33,54 +40,53 @@ void	ft_check_digit(char *info, char id)
 	}
 }
 
-/*
-** This functions handle errors as well as save values. The input pointer 
-** string must start with the searched value. It will first check format
-** (spliting if necessary), then make pertinent conversion and saving values.
-** If any error is encountered the function will exit with EXIT_FAILURE macro.
-*/
-
-void	ft_load_uint(int *num, char *buffer)
+int     ft_load_uint(char *buffer)
 {
 	ft_check_digit(buffer, 'd');
-	*num = ft_atoi(buffer);
+	return (ft_atoi(buffer));
 }
 
-void	ft_load_udouble(double *num, char *buffer)
+double	ft_load_udouble(char *buffer)
 {
 	ft_check_digit(buffer, 'f');
-	*num = ft_ftoi(buffer);
+	return (ft_ftoi(buffer));
 }
 
-//VOY A TENER PROBLEMAS CON LAS COMAS DOBLES
-void	ft_load_coords(double *coord, char *buffer)
+t_vector	ft_load_coords(char *buffer)
 {
+        //VOY A TENER PROBLEMAS CON LAS COMAS DOBLES, dos comas seguidas?
 	int		i;
-	char	**buff_aux;
+	char	        **buff_aux;
+        t_vector        vector;
 
 	i = 0;
 	buff_aux = ft_split(buffer, ',');
 	while (buff_aux[i])
-		ft_check_digit(buff_aux[i++], 'F');
+	    ft_check_digit(buff_aux[i++], 'F');
 	if (i != 3)
-		ft_error_handler(4);
-	i = -1;
-	while (++i < 3)
-		coord[i] = ft_ftoi(buff_aux[i]);
+	    ft_error_handler(4);
+	vector.x = ft_ftoi(buff_aux[0]);
+	vector.y = ft_ftoi(buff_aux[1]);
+	vector.z = ft_ftoi(buff_aux[2]);
 	ft_del_matrix(buff_aux);
+        return (vector);
 }
 
-void	ft_load_rgb(int *rgb, char *buffer)
+t_rgb   ft_load_rgb(char *buffer)
 {
-	int		i;
+	int	i;
 	char	**buff_aux;
+        t_rgb   color;
 
 	i = 0;
 	buff_aux = ft_split(buffer, ',');
 	while (buff_aux[i])
-		ft_check_digit(buff_aux[i++], 'd');
+	    ft_check_digit(buff_aux[i++], 'd');
 	if (i != 3)
-		ft_error_handler(4);
-	*rgb =	ft_rgb_to_hex(buff_aux); 
+	    ft_error_handler(4);
+        color.r = ft_load_uint(buff_aux[0]);
+        color.g = ft_load_uint(buff_aux[1]);
+        color.b = ft_load_uint(buff_aux[2]);
 	ft_del_matrix(buff_aux);
+        return (color);
 }

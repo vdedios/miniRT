@@ -99,7 +99,7 @@ void	ft_load_element(char *line, t_scene *scene)
 		ft_error_handler(4);	
 }
 
-void	ft_load_scene(char	*path, t_scene *scene)
+void	ft_load_scene(char *path, t_scene *scene)
 {
 	int	fd;
 	char	*line;

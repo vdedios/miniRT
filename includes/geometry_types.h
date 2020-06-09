@@ -8,9 +8,9 @@
  */
 
 typedef struct  s_sphere {
-    double	center[3];
+    t_vector	center;
     double	diameter;
-    int		rgb;
+    t_rgb       rgb;
     double	p_oc;
     double	d;
     double	*p;
@@ -19,39 +19,26 @@ typedef struct  s_sphere {
     double	*n;
 }		t_sphere;
 
-typedef struct	s_auxplane {
-    double	*point;
-    double	*n;
-    double	den;
-    double	num;
-    double	*l;
-    double	*p;
-    double	*n_aux;
-    double	*qo;
-    double	*p_l;
-    double	*po;
-}		t_auxplane;
-
 typedef struct	s_plane {
-    double	point[3];
-    double	n[3];
-    int		rgb;
+    t_vector	point;
+    t_vector	n;
+    t_rgb       rgb;
 }		t_plane;
 
 typedef struct  s_square {
-    double	center[3];
-    double	n[3];
+    t_vector	n;
+    t_vector	center;
+    t_rgb       rgb;
     double	*dx;
     double	*dy;
     double	side;
-    int		rgb;
 }		t_square;
 
 typedef struct	s_triangle {
-    double	a[3];
-    double	b[3];
-    double	c[3];
-    int		rgb;
+    t_vector	a;
+    t_vector	b;
+    t_vector	c;
+    t_rgb       rgb;
 
     //i inutil?
     int		i;
@@ -74,11 +61,11 @@ typedef struct	s_triangle {
 }		t_triangle;
 
 typedef struct	s_cylinder {
-    double	point[3]; 
-    double	n[3];
+    t_vector	point;
+    t_vector	n;
+    t_rgb       rgb;
     double	diameter;
     double	height;
-    int		rgb;
 
     double      a;
     double      b;
@@ -95,8 +82,21 @@ typedef struct	s_cylinder {
 }		t_cylinder;
 
 /*
- ** Geometries found in a scene
+ ** Utils functions in a scene
  */
+
+typedef struct	s_auxplane {
+    double	*point;
+    double	*n;
+    double	den;
+    double	num;
+    double	*l;
+    double	*p;
+    double	*n_aux;
+    double	*qo;
+    double	*p_l;
+    double	*po;
+}		t_auxplane;
 
 typedef struct  s_vector {
     double	x;
@@ -109,5 +109,11 @@ typedef struct  s_matrix {
     t_vector	vy;
     t_vector	vz;
 }		t_matrix;
+
+typedef struct  s_rgb {
+    int         r;
+    int         g;
+    int         b;
+}		t_rgb;
 
 #endif

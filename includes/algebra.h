@@ -6,7 +6,6 @@
 ** Linear algebra functions
 */
 
-
 t_vector        ft_k_vct_prod(double k, t_vector v);
 t_vector        ft_sub_vector(t_vector u, t_vector v);
 t_vector        ft_add_vector(t_vector u, t_vector v);
