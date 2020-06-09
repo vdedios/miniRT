@@ -10,8 +10,8 @@
 typedef struct	s_window {
     void		*mlx_ptr;
     void		*win_ptr;
-	int			button;
-}				t_window;
+    int			button;
+}			t_window;
 
 typedef struct	s_image{
     void        *id;

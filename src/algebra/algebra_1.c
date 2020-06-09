@@ -1,76 +1,46 @@
 #include "miniRT.h"
 
-double	*ft_k_vct_prod(double k, double *v)
+t_vector        ft_k_vct_prod(double k, t_vector v)
 {
-	int 	i;
-	double	*w;
+	t_vector	w;
 
-	i = 0;
-	if (!(w = malloc( 3 * sizeof(double))))
-		return (0);
-	while (i < 3)
-	{
-		w[i] = k * v[i];
-		i++;
-	}
+        w.x = k * v.x;
+        w.y = k * v.y;
+        w.z = k * v.z;
 	return (w);
 }
 
-double	*ft_sub_vector(double *u, double *v)
+t_vector        ft_sub_vector(t_vector u, t_vector v)
 {
-	int 	i;
-	double	*w;
+	t_vector w;
 
-	i = 0;
-	if (!(w = malloc( 3 * sizeof(double))))
-		return (0);
-	while (i < 3)
-	{
-		w[i] = u[i] - v[i];
-		i++;
-	}
+        w.x = u.x - v.x;
+        w.y = u.y - v.y;
+        w.z = u.z - v.z;
 	return (w);
 }
 
-double	*ft_add_vector(double *u, double *v)
+t_vector        ft_add_vector(t_vector u, t_vector v)
 {
-	int 	i;
-	double	*w;
+	t_vector w;
 
-	i = 0;
-	if (!(w = malloc( 3 * sizeof(double))))
-		return (0);
-	while (i < 3)
-	{
-		w[i] = u[i] + v[i];
-		i++;
-	}
+        w.x = u.x + v.x;
+        w.y = u.y + v.y;
+        w.z = u.z + v.z;
 	return (w);
 }
 
-double	ft_dot_product(double *u, double *v)
+double          ft_dot_product(t_vector u, t_vector v)
 {
-	int 	i;
-	double	w;
-
-	i = 0;
-	w = 0;
-	while (i < 3)
-	{
-		w = u[i] * v[i] + w;
-		i++;
-	}
-	return (w);
+	return (u.x * v.x + u.y * v.y + u.z * v.z);
 }
 
-double	*ft_cross_product(double *u, double *v)
+t_vector        ft_cross_product(t_vector u, t_vector v)
 {
-	double	*w;
+	t_vector w;
 
-	if (!(w = malloc(3 * sizeof(double))))
-		return (0);	
-	w[0] = u[1] * v[2] - u[2] * v[1];
-	w[1] = -1.0 * (u[0] * v[2] - u[2] * v[0]);
-	w[2] = u[0] * v[1] - u[1] * v[0];
+	w.x = u.y * v.z - u.z * v.y;
+	w.y = -1.0 * (u.x * v.z - u.z * v.x);
+	w.z = u.x * v.y - u.y * v.x;
 	return (w);
 }

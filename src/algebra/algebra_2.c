@@ -1,52 +1,43 @@
 #include "miniRT.h"
 
-void	ft_normalise_vector(double *v)
+void            ft_normalise_vector(t_vector v)
 {
-	double mod;
+    double mod;
 
-	mod = ft_mod_vector(v);
-	v[0] = v[0] / mod;
-	v[1] = v[1] / mod;
-	v[2] = v[2] / mod;
+    mod = ft_mod_vector(v);
+    v.x = v.x / mod;
+    v.y = v.y / mod;
+    v.z = v.z / mod;
 }
 
-double	ft_mod_vector(double *v)
+double          ft_mod_vector(t_vector v)
 {
-	return (sqrt(pow(v[0], 2.0) + pow(v[1], 2.0) + pow(v[2], 2.0)));
+    return (sqrt(pow(v.x, 2.0) + pow(v.y, 2.0) + pow(v.z, 2.0)));
 }
 
-double	*ft_mtx_vct_prod(double **m, double *v)
+t_vector        ft_mtx_vct_prod(t_matrix m, t_vector v)
 {
-	double *p;
-	int		i;
+    t_vector p;
 
-	i = 0;
-	if (!(p = malloc(3 * sizeof(double))))
-		return (0);
-	while (i < 3)
-	{
-		p[i] = v[0] * m[0][i] + v[1] * m[1][i] + v[2] * m[2][i];
-		i++;
-	}
-	return (p);
+    p.x = v.x * m.vx.x + v.y * m.vy.x + v.z * m.vz.x;
+    p.y = v.x * m.vx.y + v.y * m.vy.y + v.z * m.vz.y;
+    p.z = v.x * m.vx.z + v.y * m.vy.z + v.z * m.vz.z;
+    return (p);
 }
 
-double	ft_abs(double num)
+double          ft_abs(double num)
 {
-	if (num < 0)
-		return (-1 * num);
-	return (num);
+    if (num < 0)
+        return (-1 * num);
+    return (num);
 }
 
-double	ft_det(double	**m)
+double          ft_det(t_matrix m)
 {
-	double	det;
+    double	det;
 
-	det = (m[0][0] * m[1][1] * m[2][2] +
-			m[1][0] * m[2][1] * m[0][2] +
-			m[0][1] * m[1][2] * m[2][0]) - 
-		(m[0][2] * m[1][1] * m[2][0] +
-		 m[1][0] * m[0][1] * m[2][2] +
-		 m[2][1] * m[1][2] * m[0][0]);
-	return (det);
+    det = (m.vx.x * m.vy.y * m.vz.z + m.vy.x * m.vz.y * m.vx.z
+            + m.vx.y * m.vy.z * m.vz.x) - (m.vx.z * m.vy.y * m.vz.x
+            + m.vy.x * m.vx.y * m.vz.z + m.vz.y * m.vy.z * m.vx.x);
+    return (det);
 }

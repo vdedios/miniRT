@@ -94,4 +94,20 @@ typedef struct	s_cylinder {
     double      *l;
 }		t_cylinder;
 
+/*
+ ** Geometries found in a scene
+ */
+
+typedef struct  s_vector {
+    double	x;
+    double	y;
+    double	z;
+}		t_vector;
+
+typedef struct  s_matrix {
+    t_vector	vx;
+    t_vector	vy;
+    t_vector	vz;
+}		t_matrix;
+
 #endif
