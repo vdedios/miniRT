@@ -3,7 +3,7 @@
 t_matrix        ft_inv_matrix(t_matrix m)
 {
     double	det;
-    t_matrix inv;
+    t_matrix    inv;
 
     det = ft_det(m);
     inv.vx.x = (m.vy.y * m.vz.z - m.vy.z * m.vz.y) / det;
@@ -18,18 +18,17 @@ t_matrix        ft_inv_matrix(t_matrix m)
     return(inv);
 }
 
-//dejar como void?
-int             ft_minus_vector(t_vect v)
+int             ft_minus_vector(t_vector *v)
 {
-    v.x = -1 * v.x;
-    v.y = -1 * v.y;
-    v.z = -1 * v.z;
+    v->x = -1 * v->x;
+    v->y = -1 * v->y;
+    v->z = -1 * v->z;
     return (1);
 }
 
-t_vect          ft_set_axis(char axis)
+t_vector          ft_set_axis(char axis)
 {
-    t_vect v;
+    t_vector v;
 
     v.x = 0;
     v.y = 0;
@@ -43,23 +42,25 @@ t_vect          ft_set_axis(char axis)
     return (v);
 }
 
-void            ft_set_hor_axis(t_vect x, t_vect n)
+t_vector          ft_set_hor_axis(t_vector n)
 {
+    t_vector x;
+
+    x.z = 0;
     if (!n.x && !n.y)
     {
         x.y = 0;
-        x.z = 0;
         if (n.z > 0)
-            x.x = -1;
+            x.x = -1.0;
         else if (n.z < 0)
-            x.x = 1;
+            x.x = 1.0;
         else if (!n.z)
             ft_error_handler(4);
     }
     else
     {
         x.x = n.y;
-        x.y = -1 * n.x;
-        x.z = 0;
+        x.y = -1.0 * n.x;
     }
+    return (x);
 }

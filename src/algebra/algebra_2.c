@@ -1,13 +1,13 @@
 #include "miniRT.h"
 
-void            ft_normalise_vector(t_vector v)
+void            ft_normalize_vector(t_vector *v)
 {
     double mod;
 
-    mod = ft_mod_vector(v);
-    v.x = v.x / mod;
-    v.y = v.y / mod;
-    v.z = v.z / mod;
+    mod = ft_mod_vector(*v);
+    v->x = v->x / mod;
+    v->y = v->y / mod;
+    v->z = v->z / mod;
 }
 
 double          ft_mod_vector(t_vector v)

@@ -27,10 +27,10 @@ int             ft_shadows(t_scene scene, t_ray *ray)
     return (0);
 }
 
-int             ft_between_light_source(double *light, double *point, double *origin)
+int             ft_between_light_source(t_vector light, t_vector point, t_vector origin)
 {
-    double      *shadow_ray;
-    double      *light_ray;
+    t_vector    shadow_ray;
+    t_vector    light_ray;
     double      mod_global;
     double      mod_shadow;
     double      angle;

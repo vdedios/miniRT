@@ -29,30 +29,30 @@ typedef struct	s_ambient {
 typedef struct	        s_camera {
 	t_vector	pos;
 	t_vector	n;
-	double		fov;
         t_matrix        base;
+	double		fov;
 }			t_camera;
 
 typedef struct	        s_light {
 	t_vector	pos;
 	double		intensity;
-	int		rgb;
+	t_rgb		rgb;
 }			t_light;
 
 typedef struct	        s_ray {
 	int		p_x;
 	int 		p_y;
-	double		*local;
-	double		*global;
+	t_vector	local;
+	t_vector	global;
+        t_vector        origin;
         int             color;
         double          t;
-        double          *origin;
 }		        t_ray;
 
 typedef struct	        s_axis {
-	int		x[2];
-	int 		y[2];
-	int 		z[2];
+	t_vector	x;
+	t_vector 	y;
+	t_vector 	z;
 }		        t_axis;
 
 /*

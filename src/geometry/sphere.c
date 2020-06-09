@@ -2,7 +2,7 @@
 
 int             ft_intersect_sphere(t_scene *s, t_ray *r, int i)
 {
-    if (r->origin)
+    if (ft_mod_vector(r->origin))
         s->sphere[i]->oc = ft_sub_vector(s->sphere[i]->center, r->origin);
     else
         s->sphere[i]->oc = ft_sub_vector(s->sphere[i]->center, s->camera[s->i_cam]->pos);
@@ -28,6 +28,8 @@ int		ft_draw_sphere(t_scene s, t_ray *r, int i)
     s.sphere[i]->p = ft_add_vector(s.camera[s.i_cam]->pos, ft_k_vct_prod(r->t, r->global));
     s.sphere[i]->n = ft_sub_vector(s.sphere[i]->p, s.sphere[i]->center);
     s.sphere[i]->l = ft_sub_vector(s.light[0]->pos, s.sphere[i]->p);
-    r->color = s.sphere[i]->rgb & ft_shading(s, s.sphere[i]->p, s.sphere[i]->n, s.sphere[i]->l);
+    r->color = ft_mix_color(
+            ft_shading(s, s.sphere[i]->p, s.sphere[i]->n, s.sphere[i]->l)
+            , s.sphere[i]->rgb);
     return (1);
 }

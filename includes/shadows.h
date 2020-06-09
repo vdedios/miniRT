@@ -5,7 +5,8 @@
 ** General shadow functions
 */
 int             ft_shadows(t_scene scene, t_ray *ray);
-int             ft_between_light_source(double *light, double *point, double *origin);
+int             ft_between_light_source(t_vector light,
+                    t_vector point, t_vector origin);
 
 /*
 ** Geometry shadow functions

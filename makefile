@@ -31,7 +31,6 @@ OPENGL				= 	-framework OpenGL -framework AppKit
 SRC_FILES			=	algebra/algebra_1.c \
 					algebra/algebra_2.c \
 					algebra/algebra_3.c \
-					axis.c \
 					camera.c \
 					error.c \
 					geometry/cylinder.c \
@@ -50,6 +49,7 @@ SRC_FILES			=	algebra/algebra_1.c \
 					shadows/square_shadows.c \
 					shadows/triangle_shadows.c \
 					pipeline.c \
+					color.c \
 					main.c \
 					miniRT.c 
 
