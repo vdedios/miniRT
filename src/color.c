@@ -53,14 +53,24 @@ t_rgb		ft_spot_light(t_scene s, t_obj_color obj)
 int             ft_get_color(t_scene s, t_obj_color obj)
 {
     t_rgb       color;
+    t_rgb       aux_color;
     t_ray       shadow;
+    int         i;
 
-    ft_normalize_vector(&obj.light);
-    ft_normalize_vector(&obj.normal);
-    shadow.global = obj.light;
-    shadow.origin = obj.p;
-    color = ft_ambient(s, obj);
-    if (!ft_shadows(s, &shadow))
-        color = ft_mix_color(color, ft_spot_light(s, obj));
+    i = 0;
+    color = (t_rgb){0, 0, 0};
+    while (s.light[i])
+    {
+        obj.light = ft_sub_vector(s.light[i]->pos, obj.p);
+        ft_normalize_vector(&obj.light);
+        ft_normalize_vector(&obj.normal);
+        shadow.global = obj.light;
+        shadow.origin = obj.p;
+        aux_color = ft_ambient(s, obj);
+        if (!ft_shadows(s, &shadow))
+            aux_color = ft_mix_color(aux_color, ft_spot_light(s, obj));
+        color = ft_mix_color(color, aux_color);
+        i++;
+    }
     return (((int)color.r << 16) + ((int)color.g << 8) + (int)color.b);
 }

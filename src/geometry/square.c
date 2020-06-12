@@ -36,7 +36,6 @@ int		ft_draw_square(t_scene s, t_ray *r, int i)
             {
                 if (auxplane.den > 0)
                     auxplane.n = ft_k_vct_prod(-1, auxplane.n);
-                obj.light = ft_sub_vector(s.light[0]->pos, auxplane.p);
                 obj.p = auxplane.p;
                 obj.normal = auxplane.n;
                 obj.rgb = s.square[i]->rgb;

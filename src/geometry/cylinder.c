@@ -36,10 +36,6 @@ int		ft_intersect_cylinder(t_scene *s, t_ray *r, int i)
             - sqrt(s->cylinder[i]->discr)) / (2 * s->cylinder[i]->a);
     if (s->cylinder[i]->x1 > s->cylinder[i]->x2)
         t = s->cylinder[i]->x2;
-    /*
-       if (t < 0)
-       t = s->cylinder[i]->x1;
-       */
     if (t < 0)
         return (0);
     if (t > r->t && !ft_isvoid(r->origin))
@@ -52,7 +48,6 @@ void		ft_color_cylinder(t_scene s, t_ray *r, int i)
 {
     t_obj_color obj;
 
-    obj.light = s.cylinder[i]->l;
     obj.p = s.cylinder[i]->p;
     obj.normal = s.cylinder[i]->nsurface;
     obj.rgb = s.cylinder[i]->rgb;
@@ -73,7 +68,6 @@ int		ft_draw_cylinder(t_scene s, t_ray *r, int i)
         s.cylinder[i]->center = ft_add_vector(s.cylinder[i]->point,
                 ft_k_vct_prod(s.cylinder[i]->m, s.cylinder[i]->n));
         s.cylinder[i]->nsurface= ft_sub_vector(s.cylinder[i]->p, s.cylinder[i]->center);
-        s.cylinder[i]->l = ft_sub_vector(s.light[0]->pos, s.cylinder[i]->p);
         if (s.cylinder[i]->m < s.cylinder[i]->height && s.cylinder[i]->m > 0)
         {
             ft_color_cylinder(s, r, i);

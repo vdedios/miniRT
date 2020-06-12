@@ -27,10 +27,6 @@ int             ft_shadow_cylinder(t_scene s, t_ray *r, int i)
         {
             s.cylinder[i]->m = ft_dot_product(s.cylinder[i]->n,
                     ft_sub_vector(s.cylinder[i]->p, s.cylinder[i]->point));
-            s.cylinder[i]->center = ft_add_vector(s.cylinder[i]->point,
-                    ft_k_vct_prod(s.cylinder[i]->m, s.cylinder[i]->n));
-            s.cylinder[i]->nsurface= ft_sub_vector(s.cylinder[i]->p, s.cylinder[i]->center);
-            s.cylinder[i]->l = ft_sub_vector(s.light[0]->pos, s.cylinder[i]->p);
             if (s.cylinder[i]->m < s.cylinder[i]->height && s.cylinder[i]->m > 0)
                 return (1);
         }

@@ -49,7 +49,6 @@ typedef struct  s_sphere {
     double	p_oc;
     double	d;
     t_vector	p;
-    t_vector	l;
     t_vector	oc;
     t_vector	n;
 }		t_sphere;
@@ -99,7 +98,6 @@ typedef struct	s_cylinder {
     t_vector	p;
     t_vector	center;
     t_vector	nsurface;
-    t_vector	l;
 }		t_cylinder;
 
 typedef struct	s_auxplane {

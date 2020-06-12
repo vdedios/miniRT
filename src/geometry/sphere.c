@@ -33,7 +33,6 @@ int		ft_draw_sphere(t_scene s, t_ray *r, int i)
     obj.p = ft_add_vector(s.camera[s.i_cam]->pos
             , ft_k_vct_prod(r->t, r->global));
     obj.normal = ft_sub_vector(obj.p, s.sphere[i]->center);
-    obj.light = ft_sub_vector(s.light[0]->pos, obj.p);
     obj.rgb = s.sphere[i]->rgb;
     r->color = ft_get_color(s, obj);
     return (1);

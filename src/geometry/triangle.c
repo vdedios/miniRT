@@ -74,7 +74,6 @@ int		ft_draw_triangle(t_scene s, t_ray *r, int i)
     auxplane.n = ft_cross_product(s.triangle[i]->e1, s.triangle[i]->e0);
     if (ft_intersect_triangle(&s, r, i, &auxplane))
     {
-        obj.light = ft_sub_vector(s.light[0]->pos, auxplane.p);
         obj.p = auxplane.p;
         obj.normal = auxplane.n;
         obj.rgb = s.triangle[i]->rgb;

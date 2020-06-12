@@ -29,7 +29,6 @@ int             ft_draw_caps(t_scene s, t_ray *r, int i)
     auxplane.n = s.cylinder[i]->n;
     if (ft_intersect_caps(&s, r, i, &auxplane))
     {
-        obj.light = ft_sub_vector(s.light[0]->pos, auxplane.p);
         obj.p = auxplane.p;
         obj.normal = auxplane.n;
         obj.rgb = s.cylinder[i]->rgb;
