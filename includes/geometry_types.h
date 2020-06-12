@@ -4,8 +4,8 @@
 #include "scene_types.h"
 
 /*
- ** Utils functions in a scene
- */
+** Utils functions in a scene
+*/
 
 typedef struct  s_vector {
     double	x;
@@ -31,8 +31,8 @@ typedef struct  s_slope{
 }		t_slope;
 
 /*
- ** Geometries found in a scene
- */
+** Geometries found in a scene
+*/
 
 typedef struct  s_sphere {
     t_vector	center;

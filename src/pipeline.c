@@ -37,7 +37,7 @@ int		ft_render_scene(t_scene *s, int i_cam)
         py = 0;
         while (py < s->y)
         {
-            ray.local = ft_local_camera_ray(*s, px, py);
+            ray.local = ft_local_camera_ray(*s, (double)px, (double)py);
             ray.global = ft_mtx_vct_prod(s->camera[i_cam]->base, ray.local);
             ray.t = DBL_MAX;
             ray.color = 0;

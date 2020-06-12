@@ -7,7 +7,7 @@
 ** Camera functions
 */
 
-t_vector        ft_local_camera_ray(t_scene s, int p_x, int p_y);
+t_vector        ft_local_camera_ray(t_scene s, double p_x, double p_y);
 void	        ft_global_camera_base(t_scene *scene, int i_cam);
 
 #endif
