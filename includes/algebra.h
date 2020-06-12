@@ -20,5 +20,6 @@ t_matrix        ft_inv_matrix(t_matrix m);
 int             ft_minus_vector(t_vector *v);
 t_vector        ft_set_axis(char axis);
 t_vector        ft_set_hor_axis(t_vector n);
+int             ft_isvoid(t_vector vector);
 
 #endif

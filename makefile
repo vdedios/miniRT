@@ -50,6 +50,7 @@ SRC_FILES			=	algebra/algebra_1.c \
 					shadows/triangle_shadows.c \
 					pipeline.c \
 					color.c \
+					axis.c \
 					main.c \
 					miniRT.c 
 

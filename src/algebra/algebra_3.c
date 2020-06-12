@@ -26,7 +26,7 @@ int             ft_minus_vector(t_vector *v)
     return (1);
 }
 
-t_vector          ft_set_axis(char axis)
+t_vector        ft_set_axis(char axis)
 {
     t_vector v;
 
@@ -42,7 +42,7 @@ t_vector          ft_set_axis(char axis)
     return (v);
 }
 
-t_vector          ft_set_hor_axis(t_vector n)
+t_vector        ft_set_hor_axis(t_vector n)
 {
     t_vector x;
 
@@ -63,4 +63,11 @@ t_vector          ft_set_hor_axis(t_vector n)
         x.y = -1.0 * n.x;
     }
     return (x);
+}
+
+int             ft_isvoid(t_vector vector)
+{
+    if (!vector.x && !vector.y && !vector.z)
+        return (0);
+    return (1);
 }

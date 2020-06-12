@@ -55,6 +55,16 @@ typedef struct	        s_axis {
 	t_vector 	z;
 }		        t_axis;
 
+typedef struct	        s_axis_ref {
+        int             x;
+        int             y;
+        int             l_x;
+        int             l_y;
+        int             px;
+        int             py;
+        int             color;
+}		        t_axis_ref;
+
 /*
 ** SCENE INDEX:
 ** 0 - scene

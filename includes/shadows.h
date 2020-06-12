@@ -11,7 +11,6 @@ int             ft_between_light_source(t_vector light,
 /*
 ** Geometry shadow functions
 */
-int             ft_intersect_caps(t_scene s, t_ray *r, int i);
 int             ft_shadow_cylinder(t_scene s, t_ray *r, int i);
 int             ft_shadow_plane(t_scene s, t_ray *r, int i);
 int		ft_intersect_shadow_plane(t_auxplane *plane, t_ray *r);

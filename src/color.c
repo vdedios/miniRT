@@ -20,7 +20,7 @@ int             ft_mix_color(t_rgb shade, t_rgb geometry)
     return((color.r << 16) + (color.g << 8) + color.b);
 }
 
-t_rgb		ft_shading(t_scene s, t_vector p, t_vector v, t_vector u)
+t_rgb		ft_shading(t_scene s, t_vector p, t_vector normal, t_vector light)
 {
     double	shade;
     t_ray       shadow;
@@ -28,11 +28,11 @@ t_rgb		ft_shading(t_scene s, t_vector p, t_vector v, t_vector u)
     double      a0;
     double      a1;
 
-    ft_normalize_vector(&u);
-    ft_normalize_vector(&v);
-    shadow.global = u;
+    ft_normalize_vector(&light);
+    ft_normalize_vector(&normal);
+    shadow.global = light;
     shadow.origin = p;
-    shade = ft_dot_product(u, v);
+    shade = ft_dot_product(light, normal);
     if(ft_shadows(s, &shadow) || shade < 0)
         shade = 0;
     a0 = s.ambient.intensity;

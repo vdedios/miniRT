@@ -2,20 +2,22 @@
 
 void            ft_calc_surface_cylinder(t_scene *s, t_ray *r, int i)
 {
-    if (ft_mod_vector(r->origin))
+    double aux;
+
+    if (ft_isvoid(r->origin))
         s->cylinder[i]->oc = ft_sub_vector(r->origin,
                 s->cylinder[i]->point);
     else
         s->cylinder[i]->oc = ft_sub_vector(s->camera[s->i_cam]->pos,
                 s->cylinder[i]->point);
-    s->cylinder[i]->a = 1 - pow(ft_dot_product(r->global,
-                s->cylinder[i]->n), 2.0);
+    aux = ft_dot_product(r->global, s->cylinder[i]->n);
+    s->cylinder[i]->a = 1 - aux * aux;
+    aux = ft_dot_product(s->cylinder[i]->oc, s->cylinder[i]->n);
     s->cylinder[i]->b = 2 * (ft_dot_product(r->global, s->cylinder[i]->oc)
             - ft_dot_product(r->global, s->cylinder[i]->n)
             * ft_dot_product(s->cylinder[i]->oc, s->cylinder[i]->n));
     s->cylinder[i]->c = ft_dot_product(s->cylinder[i]->oc, s->cylinder[i]->oc)
-        - pow(ft_dot_product(s->cylinder[i]->oc, s->cylinder[i]->n), 2.0)
-        - pow((s->cylinder[i]->diameter / 2), 2.0);
+        - aux * aux - s->cylinder[i]->radius * s->cylinder[i]->radius;
     s->cylinder[i]->discr = s->cylinder[i]->b * s->cylinder[i]->b - 4
         * s->cylinder[i]->a * s->cylinder[i]->c;
 }
@@ -37,48 +39,63 @@ int		ft_intersect_cylinder(t_scene *s, t_ray *r, int i)
     /*
        if (t < 0)
        t = s->cylinder[i]->x1;
-       */
+    */
     if (t < 0)
         return (0);
-    if (t > r->t && !ft_mod_vector(r->origin))
+    if (t > r->t && !ft_isvoid(r->origin))
         return (0);
     r->t = t;
     return (1);
 }
 
-int             ft_draw_caps(t_scene s, t_ray *r, int i)
+int             ft_intersect_caps(t_scene *s, t_ray *r, int i)
 {
     t_auxplane auxplane;
 
-    if (s.cylinder[i]->m && s.cylinder[i]->m > s.cylinder[i]->height)
-        auxplane.point = ft_add_vector(s.cylinder[i]->point,
-                ft_k_vct_prod(s.cylinder[i]->height, s.cylinder[i]->n));
-    //ojo con esto siempre asigna desde abajo y hace la sombra desde abajo
+    if (s->cylinder[i]->m && s->cylinder[i]->m > s->cylinder[i]->height)
+        auxplane.point = ft_add_vector(s->cylinder[i]->point,
+                ft_k_vct_prod(s->cylinder[i]->height, s->cylinder[i]->n));
     else
-        auxplane.point = s.cylinder[i]->point;
-    auxplane.n = s.cylinder[i]->n;
-    if (ft_intersect_plane(&s, &auxplane, r))
-        if (ft_get_point_plane(&s, &auxplane, r))
+        auxplane.point = s->cylinder[i]->point;
+    auxplane.n = s->cylinder[i]->n;
+    if (ft_intersect_plane(s, &auxplane, r))
+        if (ft_get_point_plane(s, &auxplane, r))
             if (ft_mod_vector(ft_sub_vector(auxplane.p, auxplane.point))
-                    < (s.cylinder[i]->diameter / 2))
+                    < s->cylinder[i]->radius)
             {
-                if (!ft_mod_vector(r->origin))
-                {
-                    auxplane.l= ft_sub_vector(s.light[0]->pos, auxplane.p);
-                    r->color = ft_mix_color(
-                            ft_shading(s, auxplane.p, auxplane.n_aux, auxplane.l)
-                            , s.cylinder[i]->rgb);
-                }
+                if (auxplane.den > 0)
+                    s->cylinder[i]->ncaps = ft_k_vct_prod(-1, auxplane.n);
+                else
+                    s->cylinder[i]->ncaps = auxplane.n;
+                s->cylinder[i]->p = auxplane.p;
+                s->cylinder[i]->l = auxplane.l;
                 return (1);
             }
     return (0);
 }
 
+int             ft_draw_caps(t_scene s, t_ray *r, int i)
+{
+    double last_t;
+
+    last_t = r->t;
+    if (ft_intersect_caps(&s, r, i))
+    {
+        s.cylinder[i]->l= ft_sub_vector(s.light[0]->pos, s.cylinder[i]->p);
+        r->color = ft_mix_color(
+                ft_shading(s, s.cylinder[i]->p, s.cylinder[i]->ncaps, s.cylinder[i]->l)
+                , s.cylinder[i]->rgb);
+        return (1);
+    }
+    r->t = last_t;
+    return (0);
+}
+
 int		ft_draw_cylinder(t_scene s, t_ray *r, int i)
 {
-    double t;
+    double last_t;
 
-    t = r->t;
+    last_t = r->t;
     if (ft_intersect_cylinder(&s, r, i))
     {
         s.cylinder[i]->p = ft_add_vector(s.camera[s.i_cam]->pos,
@@ -96,7 +113,7 @@ int		ft_draw_cylinder(t_scene s, t_ray *r, int i)
                     , s.cylinder[i]->rgb);
             return (1);
         }
-        r->t = t;
+        r->t = last_t;
     }
     return (ft_draw_caps(s, r, i));
 }

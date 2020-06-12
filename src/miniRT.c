@@ -18,12 +18,16 @@ void            ft_scene_to_screen(t_scene *scene)
 {
     //Cuando vara a guardar en bmp hay que modificar esta función ya que de momento
     //sólo muestra por pantalla después de renderizar
-    ft_render_scene(scene, &scene->window, scene->i_cam);
+    ft_render_scene(scene, scene->i_cam);
     mlx_clear_window(scene->window.mlx_ptr, scene->window.win_ptr);
-    mlx_put_image_to_window(scene->window.mlx_ptr, scene->window.win_ptr, scene->img.id, 0, 0);
-    //mlx_string_put(scene->window.mlx_ptr, scene->window.win_ptr, scene->axis.x[0], scene->axis.x[1], 0x00FF0000, "x");
-    //mlx_string_put(scene->window.mlx_ptr, scene->window.win_ptr, scene->axis.y[0], scene->axis.y[1], 0x0000FF00, "y");
-    //mlx_string_put(scene->window.mlx_ptr, scene->window.win_ptr, scene->axis.z[0], scene->axis.z[1], 0x000000FF, "z");
+    mlx_put_image_to_window(scene->window.mlx_ptr, scene->window.win_ptr,
+            scene->img.id, 0, 0);
+    mlx_string_put(scene->window.mlx_ptr, scene->window.win_ptr,
+            scene->axis.x.x, scene->axis.x.y, 0x00FF0000, "x");
+    mlx_string_put(scene->window.mlx_ptr, scene->window.win_ptr,
+            scene->axis.y.x, scene->axis.y.y, 0x0000FF00, "y");
+    mlx_string_put(scene->window.mlx_ptr, scene->window.win_ptr,
+            scene->axis.z.x, scene->axis.z.y, 0x000000FF, "z");
 }
 
 void            ft_fill_img_buf(t_image *img, int x, int y, int color)
@@ -69,7 +73,8 @@ void            ft_miniRT(t_scene scene)
     scene.i_cam = 0;
     //scene.i_cam = scene.n_cams - 1;
     scene.window.mlx_ptr = mlx_init();
-    scene.window.win_ptr = mlx_new_window(scene.window.mlx_ptr, scene.x, scene.y, "miniRT");
+    scene.window.win_ptr = mlx_new_window(scene.window.mlx_ptr,
+            scene.x, scene.y, "miniRT");
     scene.img.id = mlx_new_image(scene.window.mlx_ptr, scene.x, scene.y);
     scene.img.addr = mlx_get_data_addr(scene.img.id, &scene.img.bitpixl,
                 &scene.img.len,&scene.img.end);

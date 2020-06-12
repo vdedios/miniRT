@@ -12,7 +12,7 @@ void            ft_normalize_vector(t_vector *v)
 
 double          ft_mod_vector(t_vector v)
 {
-    return (sqrt(pow(v.x, 2.0) + pow(v.y, 2.0) + pow(v.z, 2.0)));
+    return (sqrt(v.x * v.x + v.y * v.y + v.z * v.z));
 }
 
 t_vector        ft_mtx_vct_prod(t_matrix m, t_vector v)

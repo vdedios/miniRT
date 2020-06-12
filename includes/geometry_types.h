@@ -25,13 +25,18 @@ typedef struct  s_rgb {
     int         b;
 }		t_rgb;
 
+typedef struct  s_slope{
+    int         x;
+    int         y;
+}		t_slope;
+
 /*
  ** Geometries found in a scene
  */
 
 typedef struct  s_sphere {
     t_vector	center;
-    double	diameter;
+    double	radius;
     t_rgb       rgb;
     double	p_oc;
     double	d;
@@ -61,34 +66,23 @@ typedef struct	s_triangle {
     t_vector	b;
     t_vector	c;
     t_rgb       rgb;
-
-    //i inutil?
-    int		i;
-    int		n;
-    double	t;
-    double	den;
-    double	num;
+    double      det;
+    char        equation;
     t_vector	l;
     t_vector	p;
     t_vector	n_aux;
-    t_vector	qo;
-    t_vector	pl;
-    t_vector	po;
     t_vector	e0;
     t_vector	e1;
     t_vector	e2;
     t_vector	p0;
-    t_vector	p1;
-    t_vector	p2;
 }		t_triangle;
 
 typedef struct	s_cylinder {
     t_vector	point;
     t_vector	n;
     t_rgb       rgb;
-    double	diameter;
+    double	radius;
     double	height;
-
     double      a;
     double      b;
     double      c;
@@ -100,6 +94,7 @@ typedef struct	s_cylinder {
     t_vector	p;
     t_vector	center;
     t_vector	nsurface;
+    t_vector	ncaps;
     t_vector	l;
 }		t_cylinder;
 
@@ -110,9 +105,6 @@ typedef struct	s_auxplane {
     double	num;
     t_vector	l;
     t_vector	p;
-    t_vector	n_aux;
-    t_vector	qo;
-    t_vector	p_l;
     t_vector	po;
 }		t_auxplane;
 

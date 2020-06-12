@@ -21,13 +21,15 @@ void		ft_draw_element(t_scene scene, t_ray *ray)
         ft_draw_cylinder(scene, ray, i);
 }
 
-int		ft_render_scene(t_scene *s, t_window *w, int i_cam)
+int		ft_render_scene(t_scene *s, int i_cam)
 {
     int         px;
     int 	py;
     t_ray       ray;
-    (void)w;
 
+    //---------------->Medición de rendimiento
+    clock_t t; 
+    t = clock(); 
     px = 0;
     ft_global_camera_base(s, i_cam);
     while (px < s->x)
@@ -47,6 +49,10 @@ int		ft_render_scene(t_scene *s, t_window *w, int i_cam)
         }
         px++;
     }
-    //ft_draw_reference(s->camera[i_cam]->base, s, w);
+    t = clock() - t; 
+    double time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds 
+    printf("Rendering took %f seconds to execute \n", time_taken); 
+    //---------------------------------------<
+    ft_draw_reference(s->camera[i_cam]->base, s);
     return (0);
 }
