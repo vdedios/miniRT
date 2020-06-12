@@ -23,8 +23,9 @@ int		ft_intersect_inside_square(t_scene s,  t_auxplane *auxplane, int i)
 
 int		ft_draw_square(t_scene s, t_ray *r, int i)
 {
-    double last_t;
-    t_auxplane auxplane;
+    double      last_t;
+    t_auxplane  auxplane;
+    t_obj_color obj;
 
     last_t = r->t;
     auxplane.point = s.square[i]->center;
@@ -35,10 +36,11 @@ int		ft_draw_square(t_scene s, t_ray *r, int i)
             {
                 if (auxplane.den > 0)
                     auxplane.n = ft_k_vct_prod(-1, auxplane.n);
-                auxplane.l= ft_sub_vector(s.light[0]->pos, auxplane.p);
-                r->color = ft_mix_color(
-                        ft_shading(s, auxplane.p, auxplane.n, auxplane.l)
-                        , s.square[i]->rgb);
+                obj.light = ft_sub_vector(s.light[0]->pos, auxplane.p);
+                obj.p = auxplane.p;
+                obj.normal = auxplane.n;
+                obj.rgb = s.square[i]->rgb;
+                r->color = ft_get_color(s, obj);
                 return (1);
             }
     r->t = last_t;

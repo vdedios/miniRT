@@ -34,6 +34,7 @@ SRC_FILES			=	algebra/algebra_1.c \
 					camera.c \
 					error.c \
 					geometry/cylinder.c \
+					geometry/cylinder_caps.c \
 					geometry/plane.c \
 					geometry/sphere.c \
 					geometry/square.c \

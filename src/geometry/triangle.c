@@ -32,7 +32,7 @@ double          ft_get_q_param(t_scene s,  t_vector p0,  int i)
     return (q);
 }
 
-int		ft_is_inside_triangle(t_scene s,  t_auxplane *auxplane, int i)
+int		ft_is_inside_triangle(t_scene s, t_auxplane *auxplane, int i)
 {
     double p;
     double q;
@@ -47,23 +47,18 @@ int		ft_is_inside_triangle(t_scene s,  t_auxplane *auxplane, int i)
     return (0);
 }
 
-int             ft_intersect_triangle(t_scene *s, t_ray *r, int i)
+int             ft_intersect_triangle(t_scene *s, t_ray *r, int i,
+        t_auxplane *auxplane)
 {
-    double last_t;
-    t_auxplane auxplane;
+    double      last_t;
 
-    auxplane.point = s->triangle[i]->a;
-    auxplane.n = ft_cross_product(s->triangle[i]->e1, s->triangle[i]->e0);
     last_t = r->t;
-    if (ft_intersect_plane(s, &auxplane, r))
-        if (ft_get_point_plane(s, &auxplane, r))
-            if (ft_is_inside_triangle(*s, &auxplane, i))
+    if (ft_intersect_plane(s, auxplane, r))
+        if (ft_get_point_plane(s, auxplane, r))
+            if (ft_is_inside_triangle(*s, auxplane, i))
             {
-                s->triangle[i]->p = auxplane.p;
-                if (auxplane.den > 0)
-                    s->triangle[i]->n_aux = ft_k_vct_prod(-1, auxplane.n);
-                else
-                    s->triangle[i]->n_aux = auxplane.n;
+                if (auxplane->den > 0)
+                    auxplane->n = ft_k_vct_prod(-1, auxplane->n);
                 return (1);
             }
     r->t = last_t;
@@ -72,12 +67,18 @@ int             ft_intersect_triangle(t_scene *s, t_ray *r, int i)
 
 int		ft_draw_triangle(t_scene s, t_ray *r, int i)
 {
-    if (ft_intersect_triangle(&s, r, i))
+    t_auxplane  auxplane;
+    t_obj_color obj;
+
+    auxplane.point = s.triangle[i]->a;
+    auxplane.n = ft_cross_product(s.triangle[i]->e1, s.triangle[i]->e0);
+    if (ft_intersect_triangle(&s, r, i, &auxplane))
     {
-        s.triangle[i]->l = ft_sub_vector(s.light[0]->pos, s.triangle[i]->p);
-        r->color = ft_mix_color(
-                ft_shading(s, s.triangle[i]->p, s.triangle[i]->n_aux, s.triangle[i]->l)
-                , s.triangle[i]->rgb);
+        obj.light = ft_sub_vector(s.light[0]->pos, auxplane.p);
+        obj.p = auxplane.p;
+        obj.normal = auxplane.n;
+        obj.rgb = s.triangle[i]->rgb;
+        r->color = ft_get_color(s, obj);
         return (1);
     }
     return (0);

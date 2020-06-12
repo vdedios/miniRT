@@ -36,6 +36,7 @@ int             ft_get_point_plane(t_scene *s, t_auxplane *plane, t_ray *r)
 int		ft_draw_plane(t_scene s, t_ray *r, int i)
 {
     t_auxplane  auxplane;
+    t_obj_color obj;
 
     auxplane.point = s.plane[i]->point;
     auxplane.n = s.plane[i]->n;
@@ -44,10 +45,11 @@ int		ft_draw_plane(t_scene s, t_ray *r, int i)
         {
             if (auxplane.den > 0)
                 auxplane.n = ft_k_vct_prod(-1, auxplane.n);
-            auxplane.l = ft_sub_vector(s.light[0]->pos, auxplane.p);
-            r->color = ft_mix_color(
-                    ft_shading(s, auxplane.p, auxplane.n, auxplane.l)
-                    , s.plane[i]->rgb);
+            obj.p = auxplane.p;
+            obj.normal = auxplane.n;
+            obj.light = ft_sub_vector(s.light[0]->pos, auxplane.p);
+            obj.rgb = s.plane[i]->rgb;
+            r->color = ft_get_color(s, obj);
             return (1);
         }
     return (0);

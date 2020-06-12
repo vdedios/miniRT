@@ -2,7 +2,9 @@
 # define COLOR_H
 
 void            ft_check_rgb_range(t_rgb *color);
-int             ft_mix_color(t_rgb shade, t_rgb geometry);
-t_rgb		ft_shading(t_scene s, t_vector p, t_vector v, t_vector u);
+t_rgb           ft_mix_color(t_rgb amb, t_rgb spot);
+t_rgb           ft_ambient(t_scene s, t_obj_color obj);
+t_rgb		ft_spot_light(t_scene s, t_obj_color obj);
+int             ft_get_color(t_scene s, t_obj_color obj);
 
 #endif

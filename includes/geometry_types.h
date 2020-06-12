@@ -20,15 +20,23 @@ typedef struct  s_matrix {
 }		t_matrix;
 
 typedef struct  s_rgb {
-    int         r;
-    int         g;
-    int         b;
+    double         r;
+    double         g;
+    double         b;
 }		t_rgb;
 
 typedef struct  s_slope{
     int         x;
     int         y;
 }		t_slope;
+
+typedef struct  s_obj_color{
+    t_vector    p;
+    t_vector    normal;
+    t_vector    light;
+    t_vector    ray;
+    t_rgb       rgb;
+}		t_obj_color;
 
 /*
 ** Geometries found in a scene
@@ -68,9 +76,6 @@ typedef struct	s_triangle {
     t_rgb       rgb;
     double      det;
     char        equation;
-    t_vector	l;
-    t_vector	p;
-    t_vector	n_aux;
     t_vector	e0;
     t_vector	e1;
     t_vector	e2;
@@ -94,7 +99,6 @@ typedef struct	s_cylinder {
     t_vector	p;
     t_vector	center;
     t_vector	nsurface;
-    t_vector	ncaps;
     t_vector	l;
 }		t_cylinder;
 

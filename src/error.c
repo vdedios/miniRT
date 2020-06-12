@@ -7,7 +7,7 @@
 ** If any error is encountered the function will exit with EXIT_FAILURE macro.
 */
 
-void	ft_error_handler(int error_id)
+void	        ft_error_handler(int error_id)
 {
 	errno = error_id;
 	if (error_id == 1)
@@ -19,7 +19,7 @@ void	ft_error_handler(int error_id)
 	exit(EXIT_FAILURE);
 }
 
-void	ft_check_digit(char *info, char id)
+void	        ft_check_digit(char *info, char id)
 {
 	int i;
 
@@ -40,19 +40,19 @@ void	ft_check_digit(char *info, char id)
 	}
 }
 
-int     ft_load_uint(char *buffer)
+int             ft_load_uint(char *buffer)
 {
 	ft_check_digit(buffer, 'd');
 	return (ft_atoi(buffer));
 }
 
-double	ft_load_udouble(char *buffer)
+double	        ft_load_udouble(char *buffer)
 {
 	ft_check_digit(buffer, 'f');
 	return (ft_ftoi(buffer));
 }
 
-t_vector	ft_load_coords(char *buffer)
+t_vector        ft_load_coords(char *buffer)
 {
         //VOY A TENER PROBLEMAS CON LAS COMAS DOBLES, dos comas seguidas?
 	int		i;
@@ -72,7 +72,7 @@ t_vector	ft_load_coords(char *buffer)
         return (vector);
 }
 
-t_rgb   ft_load_rgb(char *buffer)
+t_rgb           ft_load_rgb(char *buffer)
 {
 	int	i;
 	char	**buff_aux;
@@ -84,9 +84,9 @@ t_rgb   ft_load_rgb(char *buffer)
 	    ft_check_digit(buff_aux[i++], 'd');
 	if (i != 3)
 	    ft_error_handler(4);
-        color.r = ft_load_uint(buff_aux[0]);
-        color.g = ft_load_uint(buff_aux[1]);
-        color.b = ft_load_uint(buff_aux[2]);
+        color.r = (double)(ft_load_uint(buff_aux[0]));
+        color.g = (double)(ft_load_uint(buff_aux[1]));
+        color.b = (double)(ft_load_uint(buff_aux[2]));
 	ft_del_matrix(buff_aux);
         return (color);
 }

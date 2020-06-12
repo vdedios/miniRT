@@ -53,6 +53,7 @@ int		ft_render_scene(t_scene *s, int i_cam)
     double time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds 
     printf("Rendering took %f seconds to execute \n", time_taken); 
     //---------------------------------------<
+    //
     ft_draw_reference(s->camera[i_cam]->base, s);
     return (0);
 }

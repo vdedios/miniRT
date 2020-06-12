@@ -116,3 +116,4 @@ void	ft_load_triangle(char *line, t_scene *scene)
         ft_get_triangle_boundaries(triangle);
 	ft_del_matrix(buffer);
 }
+

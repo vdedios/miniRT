@@ -39,7 +39,7 @@ int		ft_intersect_cylinder(t_scene *s, t_ray *r, int i)
     /*
        if (t < 0)
        t = s->cylinder[i]->x1;
-    */
+       */
     if (t < 0)
         return (0);
     if (t > r->t && !ft_isvoid(r->origin))
@@ -48,52 +48,20 @@ int		ft_intersect_cylinder(t_scene *s, t_ray *r, int i)
     return (1);
 }
 
-int             ft_intersect_caps(t_scene *s, t_ray *r, int i)
+void		ft_color_cylinder(t_scene s, t_ray *r, int i)
 {
-    t_auxplane auxplane;
+    t_obj_color obj;
 
-    if (s->cylinder[i]->m && s->cylinder[i]->m > s->cylinder[i]->height)
-        auxplane.point = ft_add_vector(s->cylinder[i]->point,
-                ft_k_vct_prod(s->cylinder[i]->height, s->cylinder[i]->n));
-    else
-        auxplane.point = s->cylinder[i]->point;
-    auxplane.n = s->cylinder[i]->n;
-    if (ft_intersect_plane(s, &auxplane, r))
-        if (ft_get_point_plane(s, &auxplane, r))
-            if (ft_mod_vector(ft_sub_vector(auxplane.p, auxplane.point))
-                    < s->cylinder[i]->radius)
-            {
-                if (auxplane.den > 0)
-                    s->cylinder[i]->ncaps = ft_k_vct_prod(-1, auxplane.n);
-                else
-                    s->cylinder[i]->ncaps = auxplane.n;
-                s->cylinder[i]->p = auxplane.p;
-                s->cylinder[i]->l = auxplane.l;
-                return (1);
-            }
-    return (0);
-}
-
-int             ft_draw_caps(t_scene s, t_ray *r, int i)
-{
-    double last_t;
-
-    last_t = r->t;
-    if (ft_intersect_caps(&s, r, i))
-    {
-        s.cylinder[i]->l= ft_sub_vector(s.light[0]->pos, s.cylinder[i]->p);
-        r->color = ft_mix_color(
-                ft_shading(s, s.cylinder[i]->p, s.cylinder[i]->ncaps, s.cylinder[i]->l)
-                , s.cylinder[i]->rgb);
-        return (1);
-    }
-    r->t = last_t;
-    return (0);
+    obj.light = s.cylinder[i]->l;
+    obj.p = s.cylinder[i]->p;
+    obj.normal = s.cylinder[i]->nsurface;
+    obj.rgb = s.cylinder[i]->rgb;
+    r->color = ft_get_color(s, obj);
 }
 
 int		ft_draw_cylinder(t_scene s, t_ray *r, int i)
 {
-    double last_t;
+    double      last_t;
 
     last_t = r->t;
     if (ft_intersect_cylinder(&s, r, i))
@@ -108,9 +76,7 @@ int		ft_draw_cylinder(t_scene s, t_ray *r, int i)
         s.cylinder[i]->l = ft_sub_vector(s.light[0]->pos, s.cylinder[i]->p);
         if (s.cylinder[i]->m < s.cylinder[i]->height && s.cylinder[i]->m > 0)
         {
-            r->color = ft_mix_color(
-                    ft_shading(s, s.cylinder[i]->p, s.cylinder[i]->nsurface, s.cylinder[i]->l)
-                    , s.cylinder[i]->rgb);
+            ft_color_cylinder(s, r, i);
             return (1);
         }
         r->t = last_t;
