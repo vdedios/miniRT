@@ -107,7 +107,7 @@ set verbosefile=~/.vim/vimdebug.txt
 set viminfo='1000
 set visualbell
 set wildmenu
-set window=42
+set window=39
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
@@ -125,7 +125,7 @@ tabnew
 tabnew
 tabnew
 tabrewind
-edit src/pipeline.c
+edit src/miniRT.c
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -138,6 +138,295 @@ set winminwidth=0
 set winwidth=1
 exe 'vert 1resize ' . ((&columns * 136 + 136) / 272)
 exe 'vert 2resize ' . ((&columns * 135 + 136) / 272)
+argglobal
+setlocal keymap=
+setlocal noarabic
+setlocal autoindent
+setlocal backupcopy=
+setlocal balloonexpr=
+setlocal nobinary
+setlocal nobreakindent
+setlocal breakindentopt=
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal cindent
+setlocal cinkeys=0{,0},0),0],:,0#,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinwords=if,else,while,do,for,switch
+setlocal colorcolumn=
+setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
+setlocal commentstring=/*%s*/
+setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal nocursorcolumn
+set cursorline
+setlocal cursorline
+setlocal cursorlineopt=both
+setlocal define=
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal expandtab
+if &filetype != 'c'
+setlocal filetype=c
+endif
+setlocal fixendofline
+setlocal foldcolumn=0
+setlocal foldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+set foldmethod=syntax
+setlocal foldmethod=syntax
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=croql
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal formatprg=
+setlocal grepprg=
+setlocal iminsert=0
+setlocal imsearch=-1
+setlocal include=
+setlocal includeexpr=
+setlocal indentexpr=
+setlocal indentkeys=0{,0},0),0],:,0#,!^F,o,O,e
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255
+setlocal keywordprg=
+setlocal nolinebreak
+setlocal nolisp
+setlocal lispwords=
+setlocal nolist
+setlocal makeencoding=
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:]
+setlocal modeline
+setlocal modifiable
+setlocal nrformats=bin,octal,hex
+set number
+setlocal number
+setlocal numberwidth=4
+setlocal omnifunc=ccomplete#Complete
+setlocal path=
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal scrolloff=-1
+setlocal shiftwidth=4
+setlocal noshortname
+setlocal showbreak=
+setlocal sidescrolloff=-1
+setlocal signcolumn=auto
+setlocal smartindent
+setlocal softtabstop=0
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=%{lightline#link()}%#LightlineLeft_inactive_0#%(\ %t\ %)%{(&modified||!&modifiable)||1||Devicons_Filetype()!=#\"\"?\"\":\"\"}%(\ %M\ %)%{(&modified||!&modifiable)&&(1||Devicons_Filetype()!=#\"\")?\"\":\"\"}%(\ %{&fenc!=#\"\"?&fenc:&enc}[%{&ff}]\ %)%{Devicons_Filetype()!=#\"\"?\"\":\"\"}%(\ %{Devicons_Filetype()}\ %)%#LightlineLeft_inactive_0_1#%#LightlineMiddle_inactive#%=%#LightlineRight_inactive_0_1#%#LightlineRight_inactive_0#%(\ %2p%%\ %3l:%-2v\ %)
+setlocal suffixesadd=
+setlocal swapfile
+setlocal synmaxcol=3000
+if &syntax != 'c'
+setlocal syntax=c
+endif
+setlocal tabstop=8
+setlocal tagcase=
+setlocal tagfunc=
+setlocal tags=
+setlocal termwinkey=
+setlocal termwinscroll=10000
+setlocal termwinsize=
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal undofile
+setlocal undolevels=-123456
+setlocal varsofttabstop=
+setlocal vartabstop=
+setlocal wincolor=
+setlocal nowinfixheight
+setlocal nowinfixwidth
+setlocal wrap
+setlocal wrapmargin=0
+let s:l = 62 - ((57 * winheight(0) + 18) / 37)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+62
+normal! 0
+lcd ~/Desktop/miniRT
+wincmd w
+argglobal
+if bufexists("~/Desktop/miniRT/src/main.c") | buffer ~/Desktop/miniRT/src/main.c | else | edit ~/Desktop/miniRT/src/main.c | endif
+setlocal keymap=
+setlocal noarabic
+setlocal autoindent
+setlocal backupcopy=
+setlocal balloonexpr=
+setlocal nobinary
+setlocal nobreakindent
+setlocal breakindentopt=
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal cindent
+setlocal cinkeys=0{,0},0),0],:,0#,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinwords=if,else,while,do,for,switch
+setlocal colorcolumn=
+setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
+setlocal commentstring=/*%s*/
+setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal nocursorcolumn
+set cursorline
+setlocal cursorline
+setlocal cursorlineopt=both
+setlocal define=
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal expandtab
+if &filetype != 'c'
+setlocal filetype=c
+endif
+setlocal fixendofline
+setlocal foldcolumn=0
+setlocal foldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+set foldmethod=syntax
+setlocal foldmethod=syntax
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=croql
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal formatprg=
+setlocal grepprg=
+setlocal iminsert=0
+setlocal imsearch=-1
+setlocal include=
+setlocal includeexpr=
+setlocal indentexpr=
+setlocal indentkeys=0{,0},0),0],:,0#,!^F,o,O,e
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255
+setlocal keywordprg=
+setlocal nolinebreak
+setlocal nolisp
+setlocal lispwords=
+setlocal nolist
+setlocal makeencoding=
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:]
+setlocal modeline
+setlocal modifiable
+setlocal nrformats=bin,octal,hex
+set number
+setlocal number
+setlocal numberwidth=4
+setlocal omnifunc=ccomplete#Complete
+setlocal path=
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal scrolloff=-1
+setlocal shiftwidth=4
+setlocal noshortname
+setlocal showbreak=
+setlocal sidescrolloff=-1
+setlocal signcolumn=auto
+setlocal smartindent
+setlocal softtabstop=0
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=%{lightline#link()}%#LightlineLeft_active_0#%(\ %{lightline#mode()}\ %)%{(&paste)?\"\":\"\"}%(\ %{&paste?\"PASTE\":\"\"}\ %)%#LightlineLeft_active_0_1#%#LightlineLeft_active_1#%(\ %R\ %)%{(&readonly)&&(1||(&modified||!&modifiable)||1||Devicons_Filetype()!=#\"\")?\"\":\"\"}%(\ %t\ %)%{(&modified||!&modifiable)||1||Devicons_Filetype()!=#\"\"?\"\":\"\"}%(\ %M\ %)%{(&modified||!&modifiable)&&(1||Devicons_Filetype()!=#\"\")?\"\":\"\"}%(\ %{&fenc!=#\"\"?&fenc:&enc}[%{&ff}]\ %)%{Devicons_Filetype()!=#\"\"?\"\":\"\"}%(\ %{Devicons_Filetype()}\ %)%#LightlineLeft_active_1_2#%#LightlineMiddle_active#%=%#LightlineRight_active_2_3#%#LightlineRight_active_2#%(\ %{coc#status()}\ %)%#LightlineRight_active_1_2#%#LightlineRight_active_1#%(\ %{PomodoroStatus()}\ %)%#LightlineRight_active_0_1#%#LightlineRight_active_0#%(\ %2p%%\ %3l:%-2v\ %)
+setlocal suffixesadd=
+setlocal swapfile
+setlocal synmaxcol=3000
+if &syntax != 'c'
+setlocal syntax=c
+endif
+setlocal tabstop=8
+setlocal tagcase=
+setlocal tagfunc=
+setlocal tags=
+setlocal termwinkey=
+setlocal termwinscroll=10000
+setlocal termwinsize=
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal undofile
+setlocal undolevels=-123456
+setlocal varsofttabstop=
+setlocal vartabstop=
+setlocal wincolor=
+setlocal nowinfixheight
+setlocal nowinfixwidth
+setlocal wrap
+setlocal wrapmargin=0
+31
+normal! zo
+36
+normal! zo
+41
+normal! zo
+let s:l = 50 - ((42 * winheight(0) + 18) / 37)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+50
+normal! 0
+lcd ~/Desktop/miniRT
+wincmd w
+exe 'vert 1resize ' . ((&columns * 136 + 136) / 272)
+exe 'vert 2resize ' . ((&columns * 135 + 136) / 272)
+tabnext
+edit ~/Desktop/miniRT/src/load/load_utils2.c
+set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+exe 'vert 1resize ' . ((&columns * 127 + 136) / 272)
+exe 'vert 2resize ' . ((&columns * 144 + 136) / 272)
 argglobal
 setlocal keymap=
 setlocal noarabic
@@ -265,153 +554,7 @@ setlocal wrap
 setlocal wrapmargin=0
 4
 normal! zo
-4
-normal! zc
-25
-normal! zo
-36
-normal! zo
-39
-normal! zo
-let s:l = 37 - ((36 * winheight(0) + 20) / 40)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-37
-normal! 015|
-lcd ~/Desktop/miniRT
-wincmd w
-argglobal
-if bufexists("~/Desktop/miniRT/src/camera.c") | buffer ~/Desktop/miniRT/src/camera.c | else | edit ~/Desktop/miniRT/src/camera.c | endif
-setlocal keymap=
-setlocal noarabic
-setlocal autoindent
-setlocal backupcopy=
-setlocal balloonexpr=
-setlocal nobinary
-setlocal nobreakindent
-setlocal breakindentopt=
-setlocal bufhidden=
-setlocal buflisted
-setlocal buftype=
-setlocal cindent
-setlocal cinkeys=0{,0},0),0],:,0#,!^F,o,O,e
-setlocal cinoptions=
-setlocal cinwords=if,else,while,do,for,switch
-setlocal colorcolumn=
-setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
-setlocal commentstring=/*%s*/
-setlocal complete=.,w,b,u,t,i
-setlocal concealcursor=
-setlocal conceallevel=0
-setlocal completefunc=
-setlocal nocopyindent
-setlocal cryptmethod=
-setlocal nocursorbind
-setlocal nocursorcolumn
-set cursorline
-setlocal cursorline
-setlocal cursorlineopt=both
-setlocal define=
-setlocal dictionary=
-setlocal nodiff
-setlocal equalprg=
-setlocal errorformat=
-setlocal expandtab
-if &filetype != 'c'
-setlocal filetype=c
-endif
-setlocal fixendofline
-setlocal foldcolumn=0
-setlocal foldenable
-setlocal foldexpr=0
-setlocal foldignore=#
-setlocal foldlevel=0
-setlocal foldmarker={{{,}}}
-set foldmethod=syntax
-setlocal foldmethod=syntax
-setlocal foldminlines=1
-setlocal foldnestmax=20
-setlocal foldtext=foldtext()
-setlocal formatexpr=
-setlocal formatoptions=croql
-setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
-setlocal formatprg=
-setlocal grepprg=
-setlocal iminsert=0
-setlocal imsearch=-1
-setlocal include=
-setlocal includeexpr=
-setlocal indentexpr=
-setlocal indentkeys=0{,0},0),0],:,0#,!^F,o,O,e
-setlocal noinfercase
-setlocal iskeyword=@,48-57,_,192-255
-setlocal keywordprg=
-setlocal nolinebreak
-setlocal nolisp
-setlocal lispwords=
-setlocal nolist
-setlocal makeencoding=
-setlocal makeprg=
-setlocal matchpairs=(:),{:},[:]
-setlocal modeline
-setlocal modifiable
-setlocal nrformats=bin,octal,hex
-set number
-setlocal number
-setlocal numberwidth=4
-setlocal omnifunc=ccomplete#Complete
-setlocal path=
-setlocal nopreserveindent
-setlocal nopreviewwindow
-setlocal quoteescape=\\
-setlocal noreadonly
-setlocal norelativenumber
-setlocal norightleft
-setlocal rightleftcmd=search
-setlocal noscrollbind
-setlocal scrolloff=-1
-setlocal shiftwidth=4
-setlocal noshortname
-setlocal showbreak=
-setlocal sidescrolloff=-1
-setlocal signcolumn=auto
-setlocal smartindent
-setlocal softtabstop=0
-setlocal nospell
-setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
-setlocal spellfile=
-setlocal spelllang=en
-setlocal statusline=%{lightline#link()}%#LightlineLeft_inactive_0#%(\ %t\ %)%{(&modified||!&modifiable)||1||Devicons_Filetype()!=#\"\"?\"\":\"\"}%(\ %M\ %)%{(&modified||!&modifiable)&&(1||Devicons_Filetype()!=#\"\")?\"\":\"\"}%(\ %{&fenc!=#\"\"?&fenc:&enc}[%{&ff}]\ %)%{Devicons_Filetype()!=#\"\"?\"\":\"\"}%(\ %{Devicons_Filetype()}\ %)%#LightlineLeft_inactive_0_1#%#LightlineMiddle_inactive#%=%#LightlineRight_inactive_0_1#%#LightlineRight_inactive_0#%(\ %2p%%\ %3l:%-2v\ %)
-setlocal suffixesadd=
-setlocal swapfile
-setlocal synmaxcol=3000
-if &syntax != 'c'
-setlocal syntax=c
-endif
-setlocal tabstop=8
-setlocal tagcase=
-setlocal tagfunc=
-setlocal tags=
-setlocal termwinkey=
-setlocal termwinscroll=10000
-setlocal termwinsize=
-setlocal textwidth=0
-setlocal thesaurus=
-setlocal undofile
-setlocal undolevels=-123456
-setlocal varsofttabstop=
-setlocal vartabstop=
-setlocal wincolor=
-setlocal nowinfixheight
-setlocal nowinfixwidth
-setlocal wrap
-setlocal wrapmargin=0
-4
-normal! zo
-20
-normal! zo
-let s:l = 14 - ((13 * winheight(0) + 20) / 40)
+let s:l = 14 - ((13 * winheight(0) + 18) / 37)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
@@ -419,23 +562,8 @@ normal! zt
 normal! 016|
 lcd ~/Desktop/miniRT
 wincmd w
-exe 'vert 1resize ' . ((&columns * 136 + 136) / 272)
-exe 'vert 2resize ' . ((&columns * 135 + 136) / 272)
-tabnext
-edit ~/Desktop/miniRT/src/color.c
-set splitbelow splitright
-wincmd _ | wincmd |
-vsplit
-1wincmd h
-wincmd w
-wincmd t
-set winminheight=0
-set winheight=1
-set winminwidth=0
-set winwidth=1
-exe 'vert 1resize ' . ((&columns * 133 + 136) / 272)
-exe 'vert 2resize ' . ((&columns * 138 + 136) / 272)
 argglobal
+if bufexists("~/Desktop/miniRT/src/load/load_1.c") | buffer ~/Desktop/miniRT/src/load/load_1.c | else | edit ~/Desktop/miniRT/src/load/load_1.c | endif
 setlocal keymap=
 setlocal noarabic
 setlocal autoindent
@@ -562,467 +690,16 @@ setlocal wrap
 setlocal wrapmargin=0
 4
 normal! zo
-61
-normal! zo
-72
-normal! zo
-89
-normal! zo
-let s:l = 2 - ((1 * winheight(0) + 20) / 40)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-2
-normal! 0
-lcd ~/Desktop/miniRT
-wincmd w
-argglobal
-if bufexists("~/Desktop/miniRT/src/geometry/sphere.c") | buffer ~/Desktop/miniRT/src/geometry/sphere.c | else | edit ~/Desktop/miniRT/src/geometry/sphere.c | endif
-setlocal keymap=
-setlocal noarabic
-setlocal autoindent
-setlocal backupcopy=
-setlocal balloonexpr=
-setlocal nobinary
-setlocal nobreakindent
-setlocal breakindentopt=
-setlocal bufhidden=
-setlocal buflisted
-setlocal buftype=
-setlocal cindent
-setlocal cinkeys=0{,0},0),0],:,0#,!^F,o,O,e
-setlocal cinoptions=
-setlocal cinwords=if,else,while,do,for,switch
-setlocal colorcolumn=
-setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
-setlocal commentstring=/*%s*/
-setlocal complete=.,w,b,u,t,i
-setlocal concealcursor=
-setlocal conceallevel=0
-setlocal completefunc=
-setlocal nocopyindent
-setlocal cryptmethod=
-setlocal nocursorbind
-setlocal nocursorcolumn
-set cursorline
-setlocal cursorline
-setlocal cursorlineopt=both
-setlocal define=
-setlocal dictionary=
-setlocal nodiff
-setlocal equalprg=
-setlocal errorformat=
-setlocal expandtab
-if &filetype != 'c'
-setlocal filetype=c
-endif
-setlocal fixendofline
-setlocal foldcolumn=0
-setlocal foldenable
-setlocal foldexpr=0
-setlocal foldignore=#
-setlocal foldlevel=0
-setlocal foldmarker={{{,}}}
-set foldmethod=syntax
-setlocal foldmethod=syntax
-setlocal foldminlines=1
-setlocal foldnestmax=20
-setlocal foldtext=foldtext()
-setlocal formatexpr=
-setlocal formatoptions=croql
-setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
-setlocal formatprg=
-setlocal grepprg=
-setlocal iminsert=0
-setlocal imsearch=-1
-setlocal include=
-setlocal includeexpr=
-setlocal indentexpr=
-setlocal indentkeys=0{,0},0),0],:,0#,!^F,o,O,e
-setlocal noinfercase
-setlocal iskeyword=@,48-57,_,192-255
-setlocal keywordprg=
-setlocal nolinebreak
-setlocal nolisp
-setlocal lispwords=
-setlocal nolist
-setlocal makeencoding=
-setlocal makeprg=
-setlocal matchpairs=(:),{:},[:]
-setlocal modeline
-setlocal modifiable
-setlocal nrformats=bin,octal,hex
-set number
-setlocal number
-setlocal numberwidth=4
-setlocal omnifunc=ccomplete#Complete
-setlocal path=
-setlocal nopreserveindent
-setlocal nopreviewwindow
-setlocal quoteescape=\\
-setlocal noreadonly
-setlocal norelativenumber
-setlocal norightleft
-setlocal rightleftcmd=search
-setlocal noscrollbind
-setlocal scrolloff=-1
-setlocal shiftwidth=4
-setlocal noshortname
-setlocal showbreak=
-setlocal sidescrolloff=-1
-setlocal signcolumn=auto
-setlocal smartindent
-setlocal softtabstop=0
-setlocal nospell
-setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
-setlocal spellfile=
-setlocal spelllang=en
-setlocal statusline=%{lightline#link()}%#LightlineLeft_active_0#%(\ %{lightline#mode()}\ %)%{(&paste)?\"\":\"\"}%(\ %{&paste?\"PASTE\":\"\"}\ %)%#LightlineLeft_active_0_1#%#LightlineLeft_active_1#%(\ %R\ %)%{(&readonly)&&(1||(&modified||!&modifiable)||1||Devicons_Filetype()!=#\"\")?\"\":\"\"}%(\ %t\ %)%{(&modified||!&modifiable)||1||Devicons_Filetype()!=#\"\"?\"\":\"\"}%(\ %M\ %)%{(&modified||!&modifiable)&&(1||Devicons_Filetype()!=#\"\")?\"\":\"\"}%(\ %{&fenc!=#\"\"?&fenc:&enc}[%{&ff}]\ %)%{Devicons_Filetype()!=#\"\"?\"\":\"\"}%(\ %{Devicons_Filetype()}\ %)%#LightlineLeft_active_1_2#%#LightlineMiddle_active#%=%#LightlineRight_active_2_3#%#LightlineRight_active_2#%(\ %{coc#status()}\ %)%#LightlineRight_active_1_2#%#LightlineRight_active_1#%(\ %{PomodoroStatus()}\ %)%#LightlineRight_active_0_1#%#LightlineRight_active_0#%(\ %2p%%\ %3l:%-2v\ %)
-setlocal suffixesadd=
-setlocal swapfile
-setlocal synmaxcol=3000
-if &syntax != 'c'
-setlocal syntax=c
-endif
-setlocal tabstop=8
-setlocal tagcase=
-setlocal tagfunc=
-setlocal tags=
-setlocal termwinkey=
-setlocal termwinscroll=10000
-setlocal termwinsize=
-setlocal textwidth=0
-setlocal thesaurus=
-setlocal undofile
-setlocal undolevels=-123456
-setlocal varsofttabstop=
-setlocal vartabstop=
-setlocal wincolor=
-setlocal nowinfixheight
-setlocal nowinfixwidth
-setlocal wrap
-setlocal wrapmargin=0
-4
-normal! zo
-22
-normal! zo
-let s:l = 1 - ((0 * winheight(0) + 20) / 40)
+let s:l = 1 - ((0 * winheight(0) + 18) / 37)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 1
-normal! 0
+normal! 019|
 lcd ~/Desktop/miniRT
 wincmd w
-exe 'vert 1resize ' . ((&columns * 133 + 136) / 272)
-exe 'vert 2resize ' . ((&columns * 138 + 136) / 272)
-tabnext
-edit ~/Desktop/miniRT/src/error.c
-set splitbelow splitright
-wincmd _ | wincmd |
-vsplit
-1wincmd h
-wincmd w
-wincmd t
-set winminheight=0
-set winheight=1
-set winminwidth=0
-set winwidth=1
-exe 'vert 1resize ' . ((&columns * 135 + 136) / 272)
-exe 'vert 2resize ' . ((&columns * 136 + 136) / 272)
-argglobal
-setlocal keymap=
-setlocal noarabic
-setlocal autoindent
-setlocal backupcopy=
-setlocal balloonexpr=
-setlocal nobinary
-setlocal nobreakindent
-setlocal breakindentopt=
-setlocal bufhidden=
-setlocal buflisted
-setlocal buftype=
-setlocal cindent
-setlocal cinkeys=0{,0},0),0],:,0#,!^F,o,O,e
-setlocal cinoptions=
-setlocal cinwords=if,else,while,do,for,switch
-setlocal colorcolumn=
-setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
-setlocal commentstring=/*%s*/
-setlocal complete=.,w,b,u,t,i
-setlocal concealcursor=
-setlocal conceallevel=0
-setlocal completefunc=
-setlocal nocopyindent
-setlocal cryptmethod=
-setlocal nocursorbind
-setlocal nocursorcolumn
-set cursorline
-setlocal cursorline
-setlocal cursorlineopt=both
-setlocal define=
-setlocal dictionary=
-setlocal nodiff
-setlocal equalprg=
-setlocal errorformat=
-setlocal expandtab
-if &filetype != 'c'
-setlocal filetype=c
-endif
-setlocal fixendofline
-setlocal foldcolumn=0
-setlocal foldenable
-setlocal foldexpr=0
-setlocal foldignore=#
-setlocal foldlevel=0
-setlocal foldmarker={{{,}}}
-set foldmethod=syntax
-setlocal foldmethod=syntax
-setlocal foldminlines=1
-setlocal foldnestmax=20
-setlocal foldtext=foldtext()
-setlocal formatexpr=
-setlocal formatoptions=croql
-setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
-setlocal formatprg=
-setlocal grepprg=
-setlocal iminsert=0
-setlocal imsearch=-1
-setlocal include=
-setlocal includeexpr=
-setlocal indentexpr=
-setlocal indentkeys=0{,0},0),0],:,0#,!^F,o,O,e
-setlocal noinfercase
-setlocal iskeyword=@,48-57,_,192-255
-setlocal keywordprg=
-setlocal nolinebreak
-setlocal nolisp
-setlocal lispwords=
-setlocal nolist
-setlocal makeencoding=
-setlocal makeprg=
-setlocal matchpairs=(:),{:},[:]
-setlocal modeline
-setlocal modifiable
-setlocal nrformats=bin,octal,hex
-set number
-setlocal number
-setlocal numberwidth=4
-setlocal omnifunc=ccomplete#Complete
-setlocal path=
-setlocal nopreserveindent
-setlocal nopreviewwindow
-setlocal quoteescape=\\
-setlocal noreadonly
-setlocal norelativenumber
-setlocal norightleft
-setlocal rightleftcmd=search
-setlocal noscrollbind
-setlocal scrolloff=-1
-setlocal shiftwidth=4
-setlocal noshortname
-setlocal showbreak=
-setlocal sidescrolloff=-1
-setlocal signcolumn=auto
-setlocal smartindent
-setlocal softtabstop=0
-setlocal nospell
-setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
-setlocal spellfile=
-setlocal spelllang=en
-setlocal statusline=%{lightline#link()}%#LightlineLeft_active_0#%(\ %{lightline#mode()}\ %)%{(&paste)?\"\":\"\"}%(\ %{&paste?\"PASTE\":\"\"}\ %)%#LightlineLeft_active_0_1#%#LightlineLeft_active_1#%(\ %R\ %)%{(&readonly)&&(1||(&modified||!&modifiable)||1||Devicons_Filetype()!=#\"\")?\"\":\"\"}%(\ %t\ %)%{(&modified||!&modifiable)||1||Devicons_Filetype()!=#\"\"?\"\":\"\"}%(\ %M\ %)%{(&modified||!&modifiable)&&(1||Devicons_Filetype()!=#\"\")?\"\":\"\"}%(\ %{&fenc!=#\"\"?&fenc:&enc}[%{&ff}]\ %)%{Devicons_Filetype()!=#\"\"?\"\":\"\"}%(\ %{Devicons_Filetype()}\ %)%#LightlineLeft_active_1_2#%#LightlineMiddle_active#%=%#LightlineRight_active_2_3#%#LightlineRight_active_2#%(\ %{coc#status()}\ %)%#LightlineRight_active_1_2#%#LightlineRight_active_1#%(\ %{PomodoroStatus()}\ %)%#LightlineRight_active_0_1#%#LightlineRight_active_0#%(\ %2p%%\ %3l:%-2v\ %)
-setlocal suffixesadd=
-setlocal swapfile
-setlocal synmaxcol=3000
-if &syntax != 'c'
-setlocal syntax=c
-endif
-setlocal tabstop=8
-setlocal tagcase=
-setlocal tagfunc=
-setlocal tags=
-setlocal termwinkey=
-setlocal termwinscroll=10000
-setlocal termwinsize=
-setlocal textwidth=0
-setlocal thesaurus=
-setlocal undofile
-setlocal undolevels=-123456
-setlocal varsofttabstop=
-setlocal vartabstop=
-setlocal wincolor=
-setlocal nowinfixheight
-setlocal nowinfixwidth
-setlocal wrap
-setlocal wrapmargin=0
-23
-normal! zo
-30
-normal! zo
-23
-normal! zc
-56
-normal! zo
-76
-normal! zo
-56
-normal! zc
-76
-normal! zo
-let s:l = 88 - ((87 * winheight(0) + 20) / 40)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-88
-normal! 053|
-lcd ~/Desktop/miniRT
-wincmd w
-argglobal
-if bufexists("~/Desktop/miniRT/src/load/load_2.c") | buffer ~/Desktop/miniRT/src/load/load_2.c | else | edit ~/Desktop/miniRT/src/load/load_2.c | endif
-setlocal keymap=
-setlocal noarabic
-setlocal autoindent
-setlocal backupcopy=
-setlocal balloonexpr=
-setlocal nobinary
-setlocal nobreakindent
-setlocal breakindentopt=
-setlocal bufhidden=
-setlocal buflisted
-setlocal buftype=
-setlocal cindent
-setlocal cinkeys=0{,0},0),0],:,0#,!^F,o,O,e
-setlocal cinoptions=
-setlocal cinwords=if,else,while,do,for,switch
-setlocal colorcolumn=
-setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
-setlocal commentstring=/*%s*/
-setlocal complete=.,w,b,u,t,i
-setlocal concealcursor=
-setlocal conceallevel=0
-setlocal completefunc=
-setlocal nocopyindent
-setlocal cryptmethod=
-setlocal nocursorbind
-setlocal nocursorcolumn
-set cursorline
-setlocal cursorline
-setlocal cursorlineopt=both
-setlocal define=
-setlocal dictionary=
-setlocal nodiff
-setlocal equalprg=
-setlocal errorformat=
-setlocal expandtab
-if &filetype != 'c'
-setlocal filetype=c
-endif
-setlocal fixendofline
-setlocal foldcolumn=0
-setlocal foldenable
-setlocal foldexpr=0
-setlocal foldignore=#
-setlocal foldlevel=0
-setlocal foldmarker={{{,}}}
-set foldmethod=syntax
-setlocal foldmethod=syntax
-setlocal foldminlines=1
-setlocal foldnestmax=20
-setlocal foldtext=foldtext()
-setlocal formatexpr=
-setlocal formatoptions=croql
-setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
-setlocal formatprg=
-setlocal grepprg=
-setlocal iminsert=0
-setlocal imsearch=-1
-setlocal include=
-setlocal includeexpr=
-setlocal indentexpr=
-setlocal indentkeys=0{,0},0),0],:,0#,!^F,o,O,e
-setlocal noinfercase
-setlocal iskeyword=@,48-57,_,192-255
-setlocal keywordprg=
-setlocal nolinebreak
-setlocal nolisp
-setlocal lispwords=
-setlocal nolist
-setlocal makeencoding=
-setlocal makeprg=
-setlocal matchpairs=(:),{:},[:]
-setlocal modeline
-setlocal modifiable
-setlocal nrformats=bin,octal,hex
-set number
-setlocal number
-setlocal numberwidth=4
-setlocal omnifunc=ccomplete#Complete
-setlocal path=
-setlocal nopreserveindent
-setlocal nopreviewwindow
-setlocal quoteescape=\\
-setlocal noreadonly
-setlocal norelativenumber
-setlocal norightleft
-setlocal rightleftcmd=search
-setlocal noscrollbind
-setlocal scrolloff=-1
-setlocal shiftwidth=4
-setlocal noshortname
-setlocal showbreak=
-setlocal sidescrolloff=-1
-setlocal signcolumn=auto
-setlocal smartindent
-setlocal softtabstop=0
-setlocal nospell
-setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
-setlocal spellfile=
-setlocal spelllang=en
-setlocal statusline=%{lightline#link()}%#LightlineLeft_inactive_0#%(\ %t\ %)%{(&modified||!&modifiable)||1||Devicons_Filetype()!=#\"\"?\"\":\"\"}%(\ %M\ %)%{(&modified||!&modifiable)&&(1||Devicons_Filetype()!=#\"\")?\"\":\"\"}%(\ %{&fenc!=#\"\"?&fenc:&enc}[%{&ff}]\ %)%{Devicons_Filetype()!=#\"\"?\"\":\"\"}%(\ %{Devicons_Filetype()}\ %)%#LightlineLeft_inactive_0_1#%#LightlineMiddle_inactive#%=%#LightlineRight_inactive_0_1#%#LightlineRight_inactive_0#%(\ %2p%%\ %3l:%-2v\ %)
-setlocal suffixesadd=
-setlocal swapfile
-setlocal synmaxcol=3000
-if &syntax != 'c'
-setlocal syntax=c
-endif
-setlocal tabstop=8
-setlocal tagcase=
-setlocal tagfunc=
-setlocal tags=
-setlocal termwinkey=
-setlocal termwinscroll=10000
-setlocal termwinsize=
-setlocal textwidth=0
-setlocal thesaurus=
-setlocal undofile
-setlocal undolevels=-123456
-setlocal varsofttabstop=
-setlocal vartabstop=
-setlocal wincolor=
-setlocal nowinfixheight
-setlocal nowinfixwidth
-setlocal wrap
-setlocal wrapmargin=0
-4
-normal! zo
-48
-normal! zo
-73
-normal! zo
-97
-normal! zo
-48
-normal! zc
-let s:l = 15 - ((14 * winheight(0) + 20) / 40)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-15
-normal! 0
-lcd ~/Desktop/miniRT
-wincmd w
-exe 'vert 1resize ' . ((&columns * 135 + 136) / 272)
-exe 'vert 2resize ' . ((&columns * 136 + 136) / 272)
+exe 'vert 1resize ' . ((&columns * 127 + 136) / 272)
+exe 'vert 2resize ' . ((&columns * 144 + 136) / 272)
 tabnext
 edit ~/Desktop/miniRT/includes/scene_types.h
 set splitbelow splitright
@@ -1038,9 +715,9 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 81 + 136) / 272)
-exe 'vert 2resize ' . ((&columns * 91 + 136) / 272)
-exe 'vert 3resize ' . ((&columns * 98 + 136) / 272)
+exe 'vert 1resize ' . ((&columns * 83 + 136) / 272)
+exe 'vert 2resize ' . ((&columns * 76 + 136) / 272)
+exe 'vert 3resize ' . ((&columns * 111 + 136) / 272)
 argglobal
 setlocal keymap=
 setlocal noarabic
@@ -1168,52 +845,16 @@ setlocal wrap
 setlocal wrapmargin=0
 6
 normal! zo
-10
-normal! zo
-29
-normal! zo
-36
-normal! zo
-42
-normal! zo
-52
-normal! zo
-58
-normal! zo
-71
-normal! zo
-29
-normal! zc
-36
-normal! zo
-42
-normal! zo
-52
-normal! zo
-58
-normal! zo
-71
-normal! zo
-36
-normal! zc
-52
-normal! zo
-58
-normal! zo
-71
-normal! zo
-52
-normal! zc
-let s:l = 42 - ((32 * winheight(0) + 20) / 40)
+let s:l = 41 - ((36 * winheight(0) + 18) / 37)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-42
+41
 normal! 0
 lcd ~/Desktop/miniRT
 wincmd w
 argglobal
-if bufexists("~/Desktop/miniRT/includes/geometry_types.h") | buffer ~/Desktop/miniRT/includes/geometry_types.h | else | edit ~/Desktop/miniRT/includes/geometry_types.h | endif
+if bufexists("~/Desktop/miniRT/includes/bmp_types.h") | buffer ~/Desktop/miniRT/includes/bmp_types.h | else | edit ~/Desktop/miniRT/includes/bmp_types.h | endif
 setlocal keymap=
 setlocal noarabic
 setlocal autoindent
@@ -1338,20 +979,20 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-22
+4
 normal! zo
-41
-normal! zo
-let s:l = 25 - ((21 * winheight(0) + 20) / 40)
+4
+normal! zc
+let s:l = 26 - ((25 * winheight(0) + 18) / 37)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-25
-normal! 08|
+26
+normal! 0
 lcd ~/Desktop/miniRT
 wincmd w
 argglobal
-if bufexists("~/Desktop/miniRT/includes/color.h") | buffer ~/Desktop/miniRT/includes/color.h | else | edit ~/Desktop/miniRT/includes/color.h | endif
+if bufexists("~/Desktop/miniRT/includes/miniRT.h") | buffer ~/Desktop/miniRT/includes/miniRT.h | else | edit ~/Desktop/miniRT/includes/miniRT.h | endif
 setlocal keymap=
 setlocal noarabic
 setlocal autoindent
@@ -1476,19 +1117,19 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 5 - ((4 * winheight(0) + 20) / 40)
+let s:l = 23 - ((22 * winheight(0) + 18) / 37)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-5
-normal! 057|
+23
+normal! 0
 lcd ~/Desktop/miniRT
 wincmd w
-exe 'vert 1resize ' . ((&columns * 81 + 136) / 272)
-exe 'vert 2resize ' . ((&columns * 91 + 136) / 272)
-exe 'vert 3resize ' . ((&columns * 98 + 136) / 272)
+exe 'vert 1resize ' . ((&columns * 83 + 136) / 272)
+exe 'vert 2resize ' . ((&columns * 76 + 136) / 272)
+exe 'vert 3resize ' . ((&columns * 111 + 136) / 272)
 tabnext
-edit ~/Desktop/miniRT/scenes/sceneSphere2.rt
+edit ~/Desktop/miniRT/scenes/sceneVoid.rt
 set splitbelow splitright
 wincmd t
 set winminheight=0
@@ -1620,78 +1261,234 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 7 - ((6 * winheight(0) + 20) / 40)
+let s:l = 5 - ((4 * winheight(0) + 18) / 37)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-7
-normal! 05|
+5
+normal! 0
 lcd ~/Desktop/miniRT
-tabnext 1
-badd +52 ~/Desktop/miniRT/src/geometry/plane.c
-badd +29 ~/Desktop/miniRT/src/miniRT.c
-badd +49 ~/Desktop/miniRT/src/pipeline.c
+tabnext
+edit ~/Desktop/miniRT/makefile
+set splitbelow splitright
+wincmd t
+set winminheight=0
+set winheight=1
+set winminwidth=0
+set winwidth=1
+argglobal
+setlocal keymap=
+setlocal noarabic
+setlocal autoindent
+setlocal backupcopy=
+setlocal balloonexpr=
+setlocal nobinary
+setlocal nobreakindent
+setlocal breakindentopt=
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal nocindent
+setlocal cinkeys=0{,0},0),0],:,0#,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinwords=if,else,while,do,for,switch
+setlocal colorcolumn=
+setlocal comments=sO:#\ -,mO:#\ \ ,b:#
+setlocal commentstring=#\ %s
+setlocal complete=.,w,b,u,t,i
+setlocal concealcursor=
+setlocal conceallevel=0
+setlocal completefunc=
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal nocursorcolumn
+set cursorline
+setlocal cursorline
+setlocal cursorlineopt=both
+setlocal define=
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal noexpandtab
+if &filetype != 'make'
+setlocal filetype=make
+endif
+setlocal fixendofline
+setlocal foldcolumn=0
+setlocal foldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldmarker={{{,}}}
+set foldmethod=syntax
+setlocal foldmethod=syntax
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=croql
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal formatprg=
+setlocal grepprg=
+setlocal iminsert=0
+setlocal imsearch=-1
+setlocal include=^\\s*include
+setlocal includeexpr=
+setlocal indentexpr=GetMakeIndent()
+setlocal indentkeys=!^F,o,O,<:>,=else,=endif
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255
+setlocal keywordprg=
+setlocal nolinebreak
+setlocal nolisp
+setlocal lispwords=
+setlocal nolist
+setlocal makeencoding=
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:]
+setlocal modeline
+setlocal modifiable
+setlocal nrformats=bin,octal,hex
+set number
+setlocal number
+setlocal numberwidth=4
+setlocal omnifunc=
+setlocal path=
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norelativenumber
+setlocal norightleft
+setlocal rightleftcmd=search
+setlocal noscrollbind
+setlocal scrolloff=-1
+setlocal shiftwidth=4
+setlocal noshortname
+setlocal showbreak=
+setlocal sidescrolloff=-1
+setlocal signcolumn=auto
+setlocal nosmartindent
+setlocal softtabstop=0
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=%{lightline#link()}%#LightlineLeft_active_0#%(\ %{lightline#mode()}\ %)%{(&paste)?\"\":\"\"}%(\ %{&paste?\"PASTE\":\"\"}\ %)%#LightlineLeft_active_0_1#%#LightlineLeft_active_1#%(\ %R\ %)%{(&readonly)&&(1||(&modified||!&modifiable)||1||Devicons_Filetype()!=#\"\")?\"\":\"\"}%(\ %t\ %)%{(&modified||!&modifiable)||1||Devicons_Filetype()!=#\"\"?\"\":\"\"}%(\ %M\ %)%{(&modified||!&modifiable)&&(1||Devicons_Filetype()!=#\"\")?\"\":\"\"}%(\ %{&fenc!=#\"\"?&fenc:&enc}[%{&ff}]\ %)%{Devicons_Filetype()!=#\"\"?\"\":\"\"}%(\ %{Devicons_Filetype()}\ %)%#LightlineLeft_active_1_2#%#LightlineMiddle_active#%=%#LightlineRight_active_2_3#%#LightlineRight_active_2#%(\ %{coc#status()}\ %)%#LightlineRight_active_1_2#%#LightlineRight_active_1#%(\ %{PomodoroStatus()}\ %)%#LightlineRight_active_0_1#%#LightlineRight_active_0#%(\ %2p%%\ %3l:%-2v\ %)
+setlocal suffixesadd=
+setlocal swapfile
+setlocal synmaxcol=3000
+if &syntax != 'make'
+setlocal syntax=make
+endif
+setlocal tabstop=8
+setlocal tagcase=
+setlocal tagfunc=
+setlocal tags=
+setlocal termwinkey=
+setlocal termwinscroll=10000
+setlocal termwinsize=
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal undofile
+setlocal undolevels=-123456
+setlocal varsofttabstop=
+setlocal vartabstop=
+setlocal wincolor=
+setlocal nowinfixheight
+setlocal nowinfixwidth
+setlocal wrap
+setlocal wrapmargin=0
+let s:l = 47 - ((31 * winheight(0) + 18) / 37)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+47
+normal! 056|
+lcd ~/Desktop/miniRT
+tabnext 2
+badd +33 ~/Desktop/miniRT/src/pipeline.c
+badd +17 ~/Desktop/miniRT/src/miniRT.c
+badd +54 ~/Desktop/miniRT/src/color.c
+badd +80 ~/Desktop/miniRT/src/error.c
 badd +59 ~/Desktop/miniRT/includes/scene_types.h
+badd +7 ~/Desktop/miniRT/scenes/sceneSphere2.rt
+badd +20 ~/Desktop/miniRT/src/camera.c
+badd +33 ~/Desktop/miniRT/src/geometry/sphere.c
+badd +97 ~/Desktop/miniRT/src/load/load_2.c
+badd +62 ~/Desktop/miniRT/includes/geometry_types.h
+badd +9 ~/Desktop/miniRT/includes/color.h
+badd +50 ~/Desktop/miniRT/src/geometry/plane.c
 badd +8 ~/Desktop/miniRT/scenes/sceneOverlap.rt
-badd +87 ~/Desktop/miniRT/src/geometry/cylinder.c
-badd +40 ~/Desktop/miniRT/src/shadows/shadows.c
-badd +1 ~/Desktop/miniRT/includes/geometry_types.h
+badd +1 ~/Desktop/miniRT/src/geometry/cylinder.c
+badd +46 ~/Desktop/miniRT/src/shadows/shadows.c
 badd +16 ~/Desktop/miniRT/includes/shadows.h
-badd +14 ~/Desktop/miniRT/src/error.c
 badd +8 ~/Desktop/miniRT/scenes/sceneSpheres.rt
-badd +79 ~/Desktop/miniRT/src/geometry/triangle.c
-badd +10 ~/Desktop/miniRT/scenes/scene3.rt
-badd +8 ~/Desktop/miniRT/src/shadows/cylinder_shadows.c
-badd +2 ~/Desktop/miniRT/src/shadows/plane_shadows.c
+badd +1 ~/Desktop/miniRT/src/geometry/triangle.c
+badd +8 ~/Desktop/miniRT/scenes/scene3.rt
+badd +1 ~/Desktop/miniRT/src/shadows/cylinder_shadows.c
+badd +1 ~/Desktop/miniRT/src/shadows/plane_shadows.c
 badd +7 ~/Desktop/miniRT/scenes/scenePlanesSpheres.rt
-badd +9 ~/Desktop/miniRT/includes/pipeline.h
+badd +1 ~/Desktop/miniRT/includes/pipeline.h
 badd +25 ~/Desktop/miniRT/makefile
-badd +41 ~/Desktop/miniRT/src/geometry/square.c
-badd +39 ~/Desktop/miniRT/includes/geometry.h
+badd +1 ~/Desktop/miniRT/src/geometry/square.c
+badd +50 ~/Desktop/miniRT/includes/geometry.h
 badd +1 ~/Desktop/miniRT/scenes/sceneInterferences.rt
-badd +12 ~/Desktop/miniRT/scenes/scene1.rt
+badd +4 ~/Desktop/miniRT/scenes/scene1.rt
 badd +1 ~/Desktop/miniRT/src/geometry.c
-badd +24 ~/Desktop/miniRT/includes/miniRT.h
-badd +9 ~/Desktop/miniRT/src/camera.c
-badd +21 ~/Desktop/miniRT/includes/load_utils.h
-badd +37 ~/Desktop/miniRT/src/geometry/sphere.c
+badd +48 ~/Desktop/miniRT/includes/miniRT.h
+badd +25 ~/Desktop/miniRT/includes/load_utils.h
 badd +8 ~/Desktop/miniRT/scenes/scene2.rt
 badd +2 ~/Desktop/miniRT/scenes/scene_resolution.rt
 badd +12 ~/Desktop/miniRT/includes/camera.h
 badd +13 ~/Desktop/miniRT/includes/load.h
 badd +1 ~/Desktop/miniRT/src
-badd +4 ~/Desktop/miniRT/src/load/load_2.c
 badd +7 ~/Desktop/miniRT/scenes/scenePlanes.rt
 badd +4 ~/Desktop/miniRT/scenes/sceneFails.rt
 badd +57 ~/Desktop/miniRT/src/load/load_1.c
-badd +41 ~/Desktop/miniRT/src/main.c
-badd +55 ~/Desktop/miniRT/src/load/load.c
+badd +43 ~/Desktop/miniRT/src/main.c
+badd +1 ~/Desktop/miniRT/src/load/load.c
 badd +39 ~/Desktop/miniRT/src/algebra/algebra_1.c
 badd +37 ~/Desktop/miniRT/src/algebra/algebra_2.c
 badd +4 ~/Desktop/miniRT/src/shadows.c
-badd +6 ~/Desktop/miniRT/src/shadows/square_shadows.c
-badd +4 ~/Desktop/miniRT/src/shadows/sphere_shadows.c
-badd +3 ~/Desktop/miniRT/src/shadows/triangle_shadows.c
+badd +7 ~/Desktop/miniRT/src/shadows/square_shadows.c
+badd +8 ~/Desktop/miniRT/src/shadows/sphere_shadows.c
+badd +9 ~/Desktop/miniRT/src/shadows/triangle_shadows.c
 badd +24 ~/Desktop/miniRT/includes/algebra.h
 badd +7 ~/Desktop/miniRT/scenes/sceneTriangle.rt
 badd +4 ~/Desktop/miniRT/scenes/sceneCylinder.rt
-badd +42 ~/Desktop/miniRT/src/load/load_utils.c
+badd +56 ~/Desktop/miniRT/src/load/load_utils.c
 badd +1 ~/Desktop/miniRT/src/algebra
 badd +86 ~/Desktop/miniRT/src/axis.c
 badd +30 ~/Desktop/miniRT/src/algebra/algebra_3.c
 badd +11 ~/Desktop/miniRT/includes/error.h
 badd +8 ~/Desktop/miniRT/includes/axis.h
-badd +18 ~/Desktop/miniRT/src/color.c
-badd +8 ~/Desktop/miniRT/includes/color.h
 badd +1 ~/Desktop/miniRT
-badd +8 ~/Desktop/miniRT/scenes/scene42.rt
+badd +5 ~/Desktop/miniRT/scenes/scene42.rt
 badd +3 ~/Desktop/miniRT/scenes/sceneProblems2.rt
-badd +7 ~/Desktop/miniRT/scenes/sceneSphere2.rt
 badd +1 ~/Desktop/miniRT/art
 badd +37 ~/Desktop/pruebas/minirt/src/intersect_obj.c
 badd +1 ~/Desktop/miniRT/src/shadows
 badd +5 ~/Desktop/miniRT/scenes/room.rt
 badd +1 ~/Desktop/miniRT/src/load
+badd +33 ~/Desktop/miniRT/src/geometry/cylinder_caps.c
+badd +10 ~/Desktop/miniRT/scenes/scene2Planes.rt
+badd +9 ~/Desktop/miniRT/scenes/alilisotiocianato.rt
+badd +18 ~/Desktop/miniRT/src/bmp.c
+badd +7 ~/Desktop/miniRT/includes/bmp.h
+badd +30 ~/Desktop/miniRT/dependencies/libft/ft_strncmp.c
+badd +0 ~/Desktop/miniRT/scenes/sceneVoid.rt
+badd +18 ~/Desktop/miniRT/includes/bmp_types.h
+badd +1 ~/Desktop/miniRT/output_scenes/output.bmp
+badd +1 ~/Desktop/miniRT/dependencies/minilibx_opengl
+badd +1 ~/Desktop/miniRT/dependencies/minilibx_opengl/mlx_int_str_to_wordtab.o
+badd +135 ~/Desktop/miniRT/dependencies/minilibx_opengl/mlx.h
+badd +56 ~/Desktop/miniRT/dependencies/minilibx_opengl/mlx_new_window.h
+badd +81 ~/Desktop/miniRT/dependencies/minilibx_opengl/mlx_int.h
+badd +1 ~/Desktop/miniRT/dependencies/minilibx_opengl/Makefile
+badd +0 ~/Desktop/miniRT/src/load/load_utils2.c
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif

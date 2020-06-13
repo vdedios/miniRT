@@ -43,6 +43,7 @@ SRC_FILES			=	algebra/algebra_1.c \
 					load/load_1.c \
 					load/load_2.c \
 					load/load_utils.c \
+					load/load_utils_2.c \
 					shadows/cylinder_shadows.c \
 					shadows/plane_shadows.c \
 					shadows/shadows.c \
@@ -52,6 +53,7 @@ SRC_FILES			=	algebra/algebra_1.c \
 					pipeline.c \
 					color.c \
 					axis.c \
+					bmp.c \
 					main.c \
 					miniRT.c 
 

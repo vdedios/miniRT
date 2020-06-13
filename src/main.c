@@ -32,21 +32,17 @@ int	main(int argc, char **argv)
     t_scene	scene;
 
     ft_welcome();
-    if (argc != 2)
-        ft_error_handler(1);
-    else if (ft_strnstr(argv[1], ".rt", ft_strlen(argv[1])))
+    if (argc == 2 && ft_strnstr(argv[1], ".rt", ft_strlen(argv[1])))
     {
         ft_load_scene(argv[1], &scene);
-        //ft_load_render y luego ya muestro por pantalla o guardo en bmp
         ft_miniRT(scene);
-        //perror("<<ERROR>> wrong scene, please check format or path\n");
     }
-    else if (!ft_strncmp(argv[1], "--save", ft_strlen(argv[1]) + 1))
+    else if (argc == 3 && !ft_strncmp(argv[2], "--save", ft_strlen(argv[2]) + 1))
     {
+        ft_load_scene(argv[1], &scene);
         ft_printf("converting scene to bmp...\n");
-        //ft_scene_to_bmp();
+        ft_scene_to_bmp(scene);
         ft_printf("Saved!\n");
-
     }
     else
         ft_error_handler(1);

@@ -20,12 +20,11 @@
 #include <math.h>
 #include <float.h>
 #include <time.h>
-
+#include <CoreGraphics/CGDisplayConfiguration.h>
 #include "mlx.h"
 #include "libft.h"
 #include "printf.h"
 #include "get_next_line.h"
-
 #include "algebra.h"
 #include "axis.h"
 #include "camera.h"
@@ -38,15 +37,19 @@
 #include "scene_types.h"
 #include "shadows.h"
 #include "color.h"
+#include "bmp.h"
+#include "bmp_types.h"
 
 /*
 ** General functions
 */
+
 void            ft_fill_img_buf(t_image *img, int x, int y, int color);
 
 /*
 ** Window handling functions
 */
+
 void            ft_miniRT(t_scene s);
 
 

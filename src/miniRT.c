@@ -11,8 +11,6 @@
 /* ************************************************************************** */
 
 #include "miniRT.h"
-//Quizás hacer un fichero sólo para los eventos.
-//Estas dos funciones son de tipo utils
 
 void            ft_scene_to_screen(t_scene *scene)
 {
@@ -28,14 +26,6 @@ void            ft_scene_to_screen(t_scene *scene)
             scene->axis.y.x, scene->axis.y.y, 0x0000FF00, "y");
     mlx_string_put(scene->window.mlx_ptr, scene->window.win_ptr,
             scene->axis.z.x, scene->axis.z.y, 0x000000FF, "z");
-}
-
-void            ft_fill_img_buf(t_image *img, int x, int y, int color)
-{
-    char    *dst;
-
-    dst = img->addr + (y * img->len + x * (img->bitpixl / 8));
-    *(unsigned int *)dst = color;
 }
 
 int 		ft_exit(t_window *window)
@@ -71,7 +61,6 @@ int             ft_handle_keyboard(int key, t_scene *scene)
 void            ft_miniRT(t_scene scene)
 {
     scene.i_cam = 0;
-    //scene.i_cam = scene.n_cams - 1;
     scene.window.mlx_ptr = mlx_init();
     scene.window.win_ptr = mlx_new_window(scene.window.mlx_ptr,
             scene.x, scene.y, "miniRT");

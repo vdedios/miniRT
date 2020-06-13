@@ -13,6 +13,7 @@ void	ft_load_resolution(char *line, t_scene *scene)
 		ft_error_handler(4);
 	scene->x = ft_load_uint(buffer[1]);
 	scene->y = ft_load_uint(buffer[2]);
+        ft_check_system_resolution(scene);
 	ft_del_matrix(buffer);
 }
 

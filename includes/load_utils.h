@@ -19,6 +19,7 @@ int                     ft_load_uint(char *buffer);
 double                  ft_load_udouble(char *buffer);
 t_vector                ft_load_coords(char *buffer);
 t_rgb                   ft_load_rgb(char *buffer);
-void    ft_get_triangle_boundaries(t_triangle *triangle);
+void                    ft_get_triangle_boundaries(t_triangle *triangle);
+void                    ft_check_system_resolution(t_scene *scene);
 
 #endif
