@@ -32,6 +32,7 @@ typedef struct  s_slope{
 
 typedef struct  s_obj_color{
     t_vector    p;
+    t_vector    center;
     t_vector    normal;
     t_vector    light;
     t_vector    ray;

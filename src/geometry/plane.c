@@ -46,6 +46,7 @@ int		ft_draw_plane(t_scene s, t_ray *r, int i)
             if (auxplane.den > 0)
                 auxplane.n = ft_k_vct_prod(-1, auxplane.n);
             obj.p = auxplane.p;
+            obj.center = auxplane.point;
             obj.normal = auxplane.n;
             obj.rgb = s.plane[i]->rgb;
             r->color = ft_get_color(s, obj);

@@ -52,6 +52,7 @@ SRC_FILES			=	algebra/algebra_1.c \
 					shadows/triangle_shadows.c \
 					pipeline.c \
 					color.c \
+					color_waves.c \
 					axis.c \
 					bmp.c \
 					main.c \
