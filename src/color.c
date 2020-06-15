@@ -39,9 +39,9 @@ t_rgb		ft_spot_light(t_scene s, t_obj_color obj)
     double      kd;
     t_vector    wave_n;
 
-    //diffuse = ft_dot_product(obj.light, obj.normal);
     wave_n = ft_wave_normal(obj);
-    diffuse = ft_dot_product(obj.light, wave_n);
+    diffuse = s.option[1] ? ft_dot_product(obj.light, wave_n)
+        : ft_dot_product(obj.light, obj.normal);
     if (diffuse < 0)
         kd = 0;
     else

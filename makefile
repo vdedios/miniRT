@@ -24,8 +24,8 @@ MINILIBX_A_DIR 		=	dependencies/minilibx_opengl/libmlx.a
 LIBFT_A_DIR			=	dependencies/libft/libft.a
 PRINTF_A_DIR		=	dependencies/printf/libftprintf.a
 
-CC					=	gcc
-CFLAGS				= 	-Werror -Wall -Wextra -g
+CC				=	gcc
+CFLAGS				= 	-Werror -Wall -Wextra -g -D BONUS
 OPENGL				= 	-framework OpenGL -framework AppKit
 
 SRC_FILES			=	algebra/algebra_1.c \
@@ -52,10 +52,11 @@ SRC_FILES			=	algebra/algebra_1.c \
 					shadows/triangle_shadows.c \
 					pipeline.c \
 					color.c \
-					color_waves.c \
 					axis.c \
 					bmp.c \
 					main.c \
+					main_options.c \
+					bonus/color_bonus.c \
 					miniRT.c 
 
 GNL_FILES			=	get_next_line.c \
@@ -68,7 +69,7 @@ all		:	dependencies $(NAME)
 
 $(NAME)	:	$(SRC) 
 	@echo Building miniRT...
-	@$(CC) $(CFLAGS) $(SRC) $(GNL) -Iincludes/ -I$(PRINTF_INCL) \
+	@$(CC) $(CFLAGS) $(SRC) $(GNL) -Iincludes/ -Iincludes/bonus -I$(PRINTF_INCL) \
 	-I$(GNL_DIR) -I$(LIBFT_DIR) -I$(MINILIBX_DIR) \
 	$(PRINTF_A_DIR) $(LIBFT_A_DIR) $(MINILIBX_A_DIR) $(OPENGL) \
 	-o $(NAME)

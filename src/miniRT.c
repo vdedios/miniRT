@@ -50,7 +50,6 @@ int             ft_handle_keyboard(int key, t_scene *scene)
             scene->i_cam = scene->i_cam + 1;
         else
             scene->i_cam = 0;
-        printf("i_cam vale: %d\n", scene->i_cam);
         ft_scene_to_screen(scene);
     } 
     else if (key == 53)

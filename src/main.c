@@ -30,19 +30,21 @@ void	ft_welcome(void)
 int	main(int argc, char **argv)
 {
     t_scene	scene;
+    char        *aux;
+    int         option;
 
     ft_welcome();
-    if (argc == 2 && ft_strnstr(argv[1], ".rt", ft_strlen(argv[1])))
+    ft_initialize_options(&scene);
+    if (argc > 1 && (aux = ft_strnstr(argv[1], ".rt", ft_strlen(argv[1])))
+            && !(*(aux + 3)))
     {
         ft_load_scene(argv[1], &scene);
-        ft_miniRT(scene);
-    }
-    else if (argc == 3 && !ft_strncmp(argv[2], "--save", ft_strlen(argv[2]) + 1))
-    {
-        ft_load_scene(argv[1], &scene);
-        ft_printf("converting scene to bmp...\n");
-        ft_scene_to_bmp(scene);
-        ft_printf("Saved!\n");
+        if (!(option = ft_check_options(argc, argv, &scene)))
+            ft_error_handler(1);
+        else if (option == 2)
+            ft_scene_to_bmp(scene);
+        else 
+            ft_miniRT(scene);
     }
     else
         ft_error_handler(1);

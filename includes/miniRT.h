@@ -39,6 +39,7 @@
 #include "color.h"
 #include "bmp.h"
 #include "bmp_types.h"
+#include "minirt_bonus.h"
 
 /*
 ** General functions
@@ -51,6 +52,5 @@ void            ft_fill_img_buf(t_image *img, int x, int y, int color);
 */
 
 void            ft_miniRT(t_scene s);
-
 
 #endif

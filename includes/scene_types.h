@@ -78,7 +78,21 @@ typedef struct	        s_axis_ref {
 ** 8 - triangle
 */
 
+/*
+** OPTION INDEX:
+** 0 - save
+** 1 - normal disruption
+** 2 - camera
+** 3 - ligth
+** 4 - sphere
+** 5 - plane
+** 6 - square
+** 7 - cylinder
+** 8 - triangle
+*/
+
 typedef struct	s_scene {
+        int             option[14];
 	int		x;
 	int		y;
 	int		index[9];
