@@ -82,8 +82,8 @@ typedef struct	        s_axis_ref {
 ** OPTION INDEX:
 ** 0 - save
 ** 1 - normal disruption
-** 2 - camera
-** 3 - ligth
+** 2 - checkered pattern
+** 3 - rainbow
 ** 4 - sphere
 ** 5 - plane
 ** 6 - square

@@ -26,6 +26,20 @@ int     ft_save_option(char *argv, t_scene *scene)
         scene->option[1] = 1;
         return (1);
     }
+    if (!ft_strncmp(argv, "--checkered-pattern", ft_strlen(argv) + 1))
+    {
+        if (scene->option[2])
+            return (0);
+        scene->option[2] = 1;
+        return (1);
+    }
+    if (!ft_strncmp(argv, "--rainbow", ft_strlen(argv) + 1))
+    {
+        if (scene->option[3])
+            return (0);
+        scene->option[3] = 1;
+        return (1);
+    }
 #endif
     return (0);
 }

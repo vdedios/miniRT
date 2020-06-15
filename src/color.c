@@ -37,11 +37,8 @@ t_rgb		ft_spot_light(t_scene s, t_obj_color obj)
     double      specular;
     double	diffuse;
     double      kd;
-    t_vector    wave_n;
 
-    wave_n = ft_wave_normal(obj);
-    diffuse = s.option[1] ? ft_dot_product(obj.light, wave_n)
-        : ft_dot_product(obj.light, obj.normal);
+    diffuse = ft_dot_product(obj.light, obj.normal);
     if (diffuse < 0)
         kd = 0;
     else
@@ -69,6 +66,7 @@ int             ft_get_color(t_scene s, t_obj_color obj)
         ft_normalize_vector(&obj.normal);
         shadow.global = obj.light;
         shadow.origin = obj.p;
+        obj = ft_disruption(s, obj);
         aux_color = ft_ambient(s, obj);
         if (!ft_shadows(s, &shadow))
             aux_color = ft_mix_color(aux_color, ft_spot_light(s, obj));
