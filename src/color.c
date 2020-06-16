@@ -43,7 +43,7 @@ t_rgb		ft_spot_light(t_scene s, t_obj_color obj)
         kd = 0;
     else
         kd = s.light[0]->intensity;
-    specular = pow(fmax(diffuse, 0.0), 30);
+    specular = pow(fmax(diffuse, 0.0), 50);
     color.r = kd * s.light[0]->rgb.r * (obj.rgb.r * diffuse / 255 + specular);
     color.g = kd * s.light[0]->rgb.g * (obj.rgb.g * diffuse / 255 + specular);
     color.b = kd * s.light[0]->rgb.b * (obj.rgb.b * diffuse / 255 + specular);

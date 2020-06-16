@@ -26,7 +26,8 @@ PRINTF_A_DIR		=	dependencies/printf/libftprintf.a
 
 CC				=	gcc
 CFLAGS				= 	-Werror -Wall -Wextra -g -D BONUS
-OPENGL				= 	-framework OpenGL -framework AppKit
+OPENGL				= 	-lz -framework OpenGL -framework AppKit
+
 
 SRC_FILES			=	algebra/algebra_1.c \
 					algebra/algebra_2.c \
@@ -82,7 +83,6 @@ dependencies	:
 	@make -C $(LIBFT_DIR)	
 	@echo Building printf
 	@make -C $(PRINTF_DIR)
-	@echo Building minilibX
 	@make -C $(MINILIBX_DIR)
 
 bonus	:	all

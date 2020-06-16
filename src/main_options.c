@@ -40,6 +40,20 @@ int     ft_save_option(char *argv, t_scene *scene)
         scene->option[3] = 1;
         return (1);
     }
+    if (!ft_strncmp(argv, "--bumpmap-texture", ft_strlen(argv) + 1))
+    {
+        if (scene->option[4])
+            return (0);
+        scene->option[4] = 1;
+        return (1);
+    }
+    if (!ft_strncmp(argv, "--skybox", ft_strlen(argv) + 1))
+    {
+        if (scene->option[5])
+            return (0);
+        scene->option[5] = 1;
+        return (1);
+    }
 #endif
     return (0);
 }

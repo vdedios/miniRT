@@ -32,6 +32,53 @@ t_rgb           ft_rainbow_pattern(t_vector n, t_rgb color)
     return (color);
 }
 
+t_vector        ft_bumpmap(t_scene s, t_obj_color obj)
+{
+    //Revisar código para que se adapte mejor a las texturas
+    double      coef[2];
+    int         x;
+    int         y;
+    t_vector    u;
+    t_vector    v;
+
+    x = ft_abs((int)obj.p.x % s.texture.width);
+    y = (s.texture.height - 1) - ft_abs((int)obj.p.y % s.texture.height);
+    if ((x - 1) >= 0 && (x + 1) < s.texture.width)
+        coef[0] = (s.texture.val[y * s.texture.width + (x + 1)]
+                - s.texture.val[y * s.texture.width + (x - 1)]) / 2;
+    if ((y - 1) >= 0 && (y + 1) < s.texture.height)
+        coef[1] = (s.texture.val[(y + 1) * s.texture.width + x]
+                - s.texture.val[(y - 1) * s.texture.width + x]) / 2;
+    coef[0] /= 0xFFFFFF;
+    coef[1] /= 0xFFFFFF;
+    u = ft_sub_vector(obj.p, obj.center);
+    ft_normalize_vector(&u);
+    v = ft_cross_product(u, obj.normal);
+    ft_normalize_vector(&v);
+    u = ft_k_vct_prod(coef[0], u);
+    v = ft_k_vct_prod(coef[1], v);
+    obj.normal = ft_add_vector(obj.normal, ft_add_vector(u,v));
+    ft_normalize_vector(&obj.normal);
+    return (obj.normal);
+}
+
+t_rgb           ft_plane_texture(t_scene s, t_obj_color obj)
+{
+    //Hacer que funcione para planos en cualquier dirección
+    int                 color;
+    int                 x;
+    int                 y;
+    t_rgb               rgb;
+
+    x = ft_abs((int)obj.p.x % s.texture.width);
+    y = (s.texture.height - 1) - ft_abs((int)obj.p.y % s.texture.height);
+    color = s.texture.val[y * s.texture.width + x];
+    rgb.r = (color & 0xFF000000) >> 24;
+    rgb.g = (color & 0x00FF0000) >> 16;
+    rgb.b = (color & 0x0000FF00) >> 8;
+    return (rgb);
+}
+
 t_obj_color     ft_disruption(t_scene s, t_obj_color obj)
 {
     if (s.option[1])
@@ -40,5 +87,9 @@ t_obj_color     ft_disruption(t_scene s, t_obj_color obj)
         obj.rgb = ft_checkered_pattern(obj.p, obj.rgb);
     if (s.option[3])
         obj.rgb = ft_rainbow_pattern(obj.normal, obj.rgb);
+    if (s.option[4])
+        obj.normal = ft_bumpmap(s, obj);
+    if (s.option[5])
+        obj.rgb = ft_plane_texture(s, obj);
     return (obj);
 }

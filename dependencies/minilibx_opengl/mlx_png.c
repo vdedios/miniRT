@@ -8,8 +8,7 @@
 #include <err.h>
 #include <string.h>
 #include <arpa/inet.h>
-
-#include "zlib.h"
+#include <zlib.h>
 
 #include <OpenGL/gl3.h>
 #include	"mlx_int.h"

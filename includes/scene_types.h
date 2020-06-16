@@ -65,6 +65,16 @@ typedef struct	        s_axis_ref {
         int             color;
 }		        t_axis_ref;
 
+typedef struct	        s_texture {
+    void                *img;
+    int                 *val;
+    int                 width;
+    int                 height;
+    int                 len;
+    int                 bitpixl;
+    int                 end;
+}		        t_texture;
+
 /*
 ** SCENE INDEX:
 ** 0 - scene
@@ -83,8 +93,8 @@ typedef struct	        s_axis_ref {
 ** 0 - save
 ** 1 - normal disruption
 ** 2 - checkered pattern
-** 3 - rainbow
-** 4 - sphere
+** 3 - bumpmap texture
+** 4 - surface texture
 ** 5 - plane
 ** 6 - square
 ** 7 - cylinder
@@ -109,6 +119,7 @@ typedef struct	s_scene {
 	t_square	**square;
 	t_cylinder	**cylinder;
 	t_triangle	**triangle;
+        t_texture       texture;
 }				t_scene;
 
 #endif
