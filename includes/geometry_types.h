@@ -35,6 +35,7 @@ typedef struct  s_obj_color{
     t_vector    center;
     t_vector    normal;
     t_vector    light;
+    t_vector    light_pos;
     t_vector    ray;
     t_rgb       rgb;
 }		t_obj_color;

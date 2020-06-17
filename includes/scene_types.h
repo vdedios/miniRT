@@ -95,9 +95,9 @@ typedef struct	        s_texture {
 ** 2 - checkered pattern
 ** 3 - bumpmap texture
 ** 4 - surface texture
-** 5 - plane
-** 6 - square
-** 7 - cylinder
+** 5 - uv mapping
+** 6 - parallel light
+** 7 - sepia filter
 ** 8 - triangle
 */
 

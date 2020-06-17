@@ -54,6 +54,27 @@ int     ft_save_option(char *argv, t_scene *scene)
         scene->option[5] = 1;
         return (1);
     }
+    if (!ft_strncmp(argv, "--uv-mapping", ft_strlen(argv) + 1))
+    {
+        if (scene->option[6])
+            return (0);
+        scene->option[6] = 1;
+        return (1);
+    }
+    if (!ft_strncmp(argv, "--parallel-light", ft_strlen(argv) + 1))
+    {
+        if (scene->option[7])
+            return (0);
+        scene->option[7] = 1;
+        return (1);
+    }
+    if (!ft_strncmp(argv, "--sepia-filter", ft_strlen(argv) + 1))
+    {
+        if (scene->option[8])
+            return (0);
+        scene->option[8] = 1;
+        return (1);
+    }
 #endif
     return (0);
 }

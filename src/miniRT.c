@@ -68,8 +68,8 @@ void            ft_miniRT(t_scene scene)
                 &scene.img.len,&scene.img.end);
     mlx_hook(scene.window.win_ptr, 17, 0, ft_exit, &scene.window);
     mlx_key_hook(scene.window.win_ptr, ft_handle_keyboard, &scene);
-    //carga de textura
-    scene.texture.img = (int *)mlx_png_file_to_image(scene.window.mlx_ptr, "textures/carpet.png"
+    //hacer gestión de error para carga textura!!
+    scene.texture.img = (int *)mlx_png_file_to_image(scene.window.mlx_ptr, "textures/earth.png"
             , &scene.texture.width, &scene.texture.height);
     scene.texture.val = (int *)mlx_get_data_addr(scene.texture.img, &scene.texture.bitpixl,
                 &scene.texture.len, &scene.texture.end);
