@@ -16,7 +16,7 @@ t_vector        ft_local_camera_ray(t_scene s, double p_x, double p_y)
 	return (c_local);
 }
 
-void	ft_global_camera_base(t_scene *s, int i_cam)
+void	        ft_global_camera_base(t_scene *s, int i_cam)
 {
         t_matrix        conversion;
 
