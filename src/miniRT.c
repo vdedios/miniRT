@@ -34,26 +34,93 @@ int 		ft_exit(t_window *window)
     exit(EXIT_SUCCESS);
 }
 
-int             ft_handle_keyboard(int key, t_scene *scene)
+int             ft_handle_keyboard(int key, t_scene *s)
 {
-    if (key == 123)
+    printf("%d\n", key);
+    t_vector    aux;
+    /*
+     * A - 0
+     * D - 2
+     *
+     * W - 13
+     * S - 1
+     *
+     * E - 14
+     * Q - 12
+     */
+    if (key == 2)
     {
-        if (scene->i_cam > 0)
-            scene->i_cam = scene->i_cam - 1;
+        aux = (t_vector){1, 0, 0};
+        aux = ft_mtx_vct_prod(s->camera[s->i_cam]->base, aux);
+        s->camera[s->i_cam]->pos = ft_add_vector(aux, s->camera[s->i_cam]->pos);
+        ft_scene_to_screen(s);
+    }
+    else if (key == 0)
+    {
+        aux = (t_vector){-1, 0, 0};
+        aux = ft_mtx_vct_prod(s->camera[s->i_cam]->base, aux);
+        s->camera[s->i_cam]->pos = ft_add_vector(aux, s->camera[s->i_cam]->pos);
+        ft_scene_to_screen(s);
+    }
+    else if (key == 13)
+    {
+        aux = (t_vector){0, 1, 0};
+        aux = ft_mtx_vct_prod(s->camera[s->i_cam]->base, aux);
+        s->camera[s->i_cam]->pos = ft_add_vector(aux, s->camera[s->i_cam]->pos);
+        ft_scene_to_screen(s);
+    }
+    else if (key == 1)
+    {
+        aux = (t_vector){0, -1, 0};
+        aux = ft_mtx_vct_prod(s->camera[s->i_cam]->base, aux);
+        s->camera[s->i_cam]->pos = ft_add_vector(aux, s->camera[s->i_cam]->pos);
+        ft_scene_to_screen(s);
+    }
+    else if (key == 14)
+    {
+        aux = (t_vector){0, 0, -1};
+        aux = ft_mtx_vct_prod(s->camera[s->i_cam]->base, aux);
+        s->camera[s->i_cam]->pos = ft_add_vector(aux, s->camera[s->i_cam]->pos);
+        ft_scene_to_screen(s);
+    }
+    else if (key == 12)
+    {
+        aux = (t_vector){0, 0, 1};
+        aux = ft_mtx_vct_prod(s->camera[s->i_cam]->base, aux);
+        s->camera[s->i_cam]->pos = ft_add_vector(aux, s->camera[s->i_cam]->pos);
+        ft_scene_to_screen(s);
+    }
+    else if (key == 123)
+    {
+        if (s->i_cam > 0)
+            s->i_cam = s->i_cam - 1;
         else
-            scene->i_cam = scene->n_cams - 1;
-        ft_scene_to_screen(scene);
+            s->i_cam = s->n_cams - 1;
+        ft_scene_to_screen(s);
     }
     else if (key == 124)
     {
-        if (scene->i_cam < scene->n_cams - 1)
-            scene->i_cam = scene->i_cam + 1;
+        if (s->i_cam < s->n_cams - 1)
+            s->i_cam = s->i_cam + 1;
         else
-            scene->i_cam = 0;
-        ft_scene_to_screen(scene);
+            s->i_cam = 0;
+        ft_scene_to_screen(s);
     } 
     else if (key == 53)
-        ft_exit(&scene->window);
+        ft_exit(&s->window);
+    return (0);
+}
+
+int             ft_handle_mouse(int press, int u, int v, t_scene *s)
+{
+    (void)press;
+    t_vector new_normal;
+
+    new_normal = ft_local_camera_ray(*s, (double)u, (double)v);
+    new_normal = ft_mtx_vct_prod(s->camera[s->i_cam]->base, new_normal);
+    ft_normalize_vector(&new_normal);
+    s->camera[s->i_cam]->n = new_normal;
+    ft_scene_to_screen(s);
     return (0);
 }
 
@@ -65,14 +132,15 @@ void            ft_miniRT(t_scene scene)
             scene.x, scene.y, "miniRT");
     scene.img.id = mlx_new_image(scene.window.mlx_ptr, scene.x, scene.y);
     scene.img.addr = mlx_get_data_addr(scene.img.id, &scene.img.bitpixl,
-                &scene.img.len,&scene.img.end);
+            &scene.img.len,&scene.img.end);
     mlx_hook(scene.window.win_ptr, 17, 0, ft_exit, &scene.window);
     mlx_key_hook(scene.window.win_ptr, ft_handle_keyboard, &scene);
+    mlx_mouse_hook(scene.window.win_ptr, ft_handle_mouse, &scene);
     //hacer gestión de error para carga textura!!
-    scene.texture.img = (int *)mlx_png_file_to_image(scene.window.mlx_ptr, "textures/earth.png"
+    scene.texture.img = (int *)mlx_png_file_to_image(scene.window.mlx_ptr, "textures/milkyway.png"
             , &scene.texture.width, &scene.texture.height);
     scene.texture.val = (int *)mlx_get_data_addr(scene.texture.img, &scene.texture.bitpixl,
-                &scene.texture.len, &scene.texture.end);
+            &scene.texture.len, &scene.texture.end);
     ft_scene_to_screen(&scene);
     mlx_loop(scene.window.mlx_ptr);
 } 
