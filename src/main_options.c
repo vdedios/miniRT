@@ -75,6 +75,13 @@ int     ft_save_option(char *argv, t_scene *scene)
         scene->option[8] = 1;
         return (1);
     }
+    if (!ft_strncmp(argv, "--antialiasing", ft_strlen(argv) + 1))
+    {
+        if (scene->option[9])
+            return (0);
+        scene->option[9] = 1;
+        return (1);
+    }
 #endif
     return (0);
 }

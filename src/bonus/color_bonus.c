@@ -151,3 +151,31 @@ t_obj_color     ft_disruption(t_scene s, t_obj_color obj)
         obj.light = ft_parallel_light(s, obj);
     return (obj);
 }
+
+//---------------------
+void            ft_render_pxl(double px, double py, t_ray *ray, t_scene *s);
+//---------------------
+
+void            ft_render_pxl_antialiasing(double px, double py, t_ray *ray, t_scene *s)
+{
+    int         i;
+    int         j;
+    t_rgb       color;
+
+    color = (t_rgb){0, 0, 0};
+    i = 0;
+    while(i < 2)
+    {
+        j = 0;
+        while(j < 2)
+        {
+            ft_render_pxl(px + (i + 0.5) / 2, py + (j + 0.5) / 2, ray, s);
+            color.r += (ray->color & 0x00ff0000 ) >> 16;
+            color.g += (ray->color & 0x0000ff00 ) >> 8;
+            color.b += (ray->color & 0x000000ff );
+            j++;
+        }
+        i++;
+    }
+    ray->color = ((int)(color.r / 4) << 16) + ((int)(color.g / 4) << 8) + (int)(color.b / 4);
+}

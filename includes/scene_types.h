@@ -98,7 +98,7 @@ typedef struct	        s_texture {
 ** 5 - uv mapping
 ** 6 - parallel light
 ** 7 - sepia filter
-** 8 - triangle
+** 8 - antialiasing
 */
 
 typedef struct	s_scene {

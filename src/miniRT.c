@@ -16,7 +16,7 @@ void            ft_scene_to_screen(t_scene *scene)
 {
     //Cuando vara a guardar en bmp hay que modificar esta función ya que de momento
     //sólo muestra por pantalla después de renderizar
-    ft_render_scene(scene, scene->i_cam);
+    ft_render_scene(scene);
     mlx_clear_window(scene->window.mlx_ptr, scene->window.win_ptr);
     mlx_put_image_to_window(scene->window.mlx_ptr, scene->window.win_ptr,
             scene->img.id, 0, 0);

@@ -36,47 +36,41 @@ void            ft_initialize_ray(t_ray *ray)
     ray->origin = (t_vector){0, 0, 0};
 }
 
-int		ft_render_scene(t_scene *s, int i_cam)
+void            ft_render_pxl(double px, double py, t_ray *ray, t_scene *s)
+{
+    ray->local = ft_local_camera_ray(*s, px, py);
+    ray->global = ft_mtx_vct_prod(s->camera[s->i_cam]->base, ray->local);
+    ft_initialize_ray(ray);
+    ft_normalize_vector(&ray->global);
+    ft_draw_element(*s, ray);
+}
+
+//-----------------
+void            ft_render_pxl_antialiasing(double px, double py, t_ray *ray, t_scene *s);
+//-----------------
+
+int		ft_render_scene(t_scene *s)
 {
     int         px;
     int 	py;
-    int         i;
-    int         j;
     t_ray       ray;
-    t_rgb       color;
 
     px = 0;
-    ft_global_camera_base(s, i_cam);
+    ft_global_camera_base(s, s->i_cam);
     while (px < s->x)
     {
         py = 0;
         while (py < s->y)
         {
-            color = (t_rgb){0, 0, 0};
-            i = 0;
-            while(i < 2)
-            {
-                j = 0;
-                while(j < 2)
-                {
-                    ray.local = ft_local_camera_ray(*s, (double)(px + (i + 0.5) / 2), (double)(py + (j + 0.5) / 2));
-                    ray.global = ft_mtx_vct_prod(s->camera[i_cam]->base, ray.local);
-                    ft_initialize_ray(&ray);
-                    ft_normalize_vector(&ray.global);
-                    ft_draw_element(*s, &ray);
-                    color.r += (ray.color & 0x00FF0000 ) >> 16;
-                    color.g += (ray.color & 0x0000FF00 ) >> 8;
-                    color.b += (ray.color & 0x000000FF );
-                    j++;
-                }
-                i++;
-            }
-            ray.color = ((int)(color.r / 4) << 16) + ((int)(color.g / 4) << 8) + (int)(color.b / 4);
+            if (s->option[9])
+                ft_render_pxl_antialiasing((double)px, (double)py, &ray, s);
+            else
+                ft_render_pxl((double)px, (double)py, &ray, s);
             ft_fill_img_buf(&s->img, px, py, ray.color);
             py++;
         }
         px++;
     }
-    ft_draw_reference(s->camera[i_cam]->base, s);
+    ft_draw_reference(s->camera[s->i_cam]->base, s);
     return (0);
 }

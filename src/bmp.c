@@ -61,7 +61,7 @@ void    ft_scene_to_bmp(t_scene scene)
     scene.img.addr = mlx_get_data_addr(scene.img.id, &scene.img.bitpixl,
             &scene.img.len, &scene.img.end);
     ft_printf("converting scene to bmp...\n");
-    ft_render_scene(&scene, scene.i_cam);
+    ft_render_scene(&scene);
     if ((fd = open("output_scenes/output.bmp", O_WRONLY | O_TRUNC | O_CREAT, 0744)) == -1)
         ft_error_handler(4);
     ft_convert_buffer_to_bmp(fd, scene);
