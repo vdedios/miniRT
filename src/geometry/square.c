@@ -2,14 +2,15 @@
 
 int		ft_intersect_inside_square(t_scene s,  t_auxplane *auxplane, int i)
 {
-    s.square[i]->dx = ft_cross_product(auxplane->n,
-            s.camera[s.i_cam]->n);
-    if (!ft_isvoid(s.square[i]->dx) && !auxplane->n.x)
-        s.square[i]->dx = ft_set_axis('x');
-    else
-        s.square[i]->dx = ft_set_axis('y');
+    s.square[i]->dx = ft_set_axis('x');
     s.square[i]->dy = ft_cross_product(auxplane->n,
             s.square[i]->dx);
+    if (!ft_isvoid(s.square[i]->dy))
+    {
+        s.square[i]->dx = ft_set_axis('y');
+        s.square[i]->dy = ft_cross_product(auxplane->n,
+            s.square[i]->dx);
+    }
     ft_normalize_vector(&s.square[i]->dx);
     ft_normalize_vector(&s.square[i]->dy);
     if (ft_abs(ft_dot_product(s.square[i]->dx,
