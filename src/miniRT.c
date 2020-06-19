@@ -34,80 +34,50 @@ int 		ft_exit(t_window *window)
     exit(EXIT_SUCCESS);
 }
 
-int             ft_handle_keyboard(int key, t_scene *s)
+void            ft_handle_axis_translation(int key, t_scene *s)
 {
-    printf("%d\n", key);
     t_vector    aux;
-    /*
-     * A - 0
-     * D - 2
-     *
-     * W - 13
-     * S - 1
-     *
-     * E - 14
-     * Q - 12
-     */
-    if (key == 2)
-    {
-        aux = (t_vector){1, 0, 0};
-        aux = ft_mtx_vct_prod(s->camera[s->i_cam]->base, aux);
-        s->camera[s->i_cam]->pos = ft_add_vector(aux, s->camera[s->i_cam]->pos);
-        ft_scene_to_screen(s);
-    }
-    else if (key == 0)
-    {
+
+    if (!key)
         aux = (t_vector){-1, 0, 0};
-        aux = ft_mtx_vct_prod(s->camera[s->i_cam]->base, aux);
-        s->camera[s->i_cam]->pos = ft_add_vector(aux, s->camera[s->i_cam]->pos);
-        ft_scene_to_screen(s);
-    }
+    else if (key == 2)
+        aux = (t_vector){1, 0, 0};
     else if (key == 13)
-    {
         aux = (t_vector){0, 1, 0};
-        aux = ft_mtx_vct_prod(s->camera[s->i_cam]->base, aux);
-        s->camera[s->i_cam]->pos = ft_add_vector(aux, s->camera[s->i_cam]->pos);
-        ft_scene_to_screen(s);
-    }
     else if (key == 1)
-    {
         aux = (t_vector){0, -1, 0};
-        aux = ft_mtx_vct_prod(s->camera[s->i_cam]->base, aux);
-        s->camera[s->i_cam]->pos = ft_add_vector(aux, s->camera[s->i_cam]->pos);
-        ft_scene_to_screen(s);
-    }
     else if (key == 14)
-    {
         aux = (t_vector){0, 0, -1};
-        aux = ft_mtx_vct_prod(s->camera[s->i_cam]->base, aux);
-        s->camera[s->i_cam]->pos = ft_add_vector(aux, s->camera[s->i_cam]->pos);
-        ft_scene_to_screen(s);
-    }
-    else if (key == 12)
-    {
+    else
         aux = (t_vector){0, 0, 1};
-        aux = ft_mtx_vct_prod(s->camera[s->i_cam]->base, aux);
-        s->camera[s->i_cam]->pos = ft_add_vector(aux, s->camera[s->i_cam]->pos);
-        ft_scene_to_screen(s);
-    }
-    else if (key == 123)
-    {
+    aux = ft_mtx_vct_prod(s->camera[s->i_cam]->base, aux);
+    s->camera[s->i_cam]->pos = ft_add_vector(aux, s->camera[s->i_cam]->pos);
+    ft_scene_to_screen(s);
+}
+
+void            ft_change_camera(int key, t_scene *s)
+{
+    if (key == 123)
         if (s->i_cam > 0)
             s->i_cam = s->i_cam - 1;
         else
             s->i_cam = s->n_cams - 1;
-        ft_scene_to_screen(s);
-    }
-    else if (key == 124)
-    {
+    else
         if (s->i_cam < s->n_cams - 1)
             s->i_cam = s->i_cam + 1;
         else
             s->i_cam = 0;
-        ft_scene_to_screen(s);
-    } 
-    else if (key == 53)
+    ft_scene_to_screen(s);
+}
+
+int             ft_handle_keyboard(int key, t_scene *s)
+{
+    if (key == 53)
         ft_exit(&s->window);
+    else if (!key || key == 13 || key == 1 || key == 2 || key == 14 || key == 12)
+        ft_handle_axis_translation(key, s);
+    else if (key == 123 || key == 124)
+        ft_change_camera(key, s);
     return (0);
 }
 
