@@ -90,16 +90,23 @@ typedef struct	        s_texture {
 */
 
 /*
-** OPTION INDEX:
+** MAIN OPTION INDEX:
 ** 0 - save
-** 1 - normal disruption
-** 2 - checkered pattern
-** 3 - bumpmap texture
-** 4 - surface texture
-** 5 - uv mapping
-** 6 - parallel light
-** 7 - sepia filter
-** 8 - antialiasing
+** 1 - help
+** 2 - sepia filter
+** 3 - antialiasing
+** 4 - activate axis
+*/
+
+/*
+** SCENE OPTION INDEX:
+** normal disruption - normal-disruption
+** checkered pattern -checkered
+** color disruption -rainbow
+** bumpmap texture -bumpmap
+** plane texture - skybox:textures/skybox.png
+** sphere tecture - uv-map:texture/earth.png
+** parallel light -parallel
 */
 
 typedef struct	s_scene {

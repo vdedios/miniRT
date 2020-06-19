@@ -60,14 +60,14 @@ void	ft_load_camera(char *line, t_scene *scene)
 void	ft_load_light(char *line, t_scene *scene)
 {
 	char	**buffer;
-	int		i;
+	int	i;
 	t_light	*light;
 
 	i = 0;
 	buffer = ft_split(line, ' ');
 	while (buffer[i])
 		i++;
-	if (i != 4)
+	if (i != 3 + ft_bonus_option())
 		ft_error_handler(4);
 	if (!(light = malloc(sizeof(t_light))))
 		ft_error_handler(1);
@@ -76,5 +76,6 @@ void	ft_load_light(char *line, t_scene *scene)
 	light->pos = ft_load_coords(buffer[1]);
 	light->intensity = ft_load_udouble(buffer[2]);
 	light->rgb = ft_load_rgb(buffer[3]);
+        light->parallel = ft_parallel_light(buffer[4]);
 	ft_del_matrix(buffer);
 }

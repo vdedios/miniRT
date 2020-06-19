@@ -18,3 +18,14 @@ void    ft_check_system_resolution(t_scene *scene)
     if (scene->y > h)
         scene->y = h;
 }
+
+int     ft_bonus_option(void)
+{
+    int bonus
+
+#ifdef BONUS
+        bonus = 1;
+#endif
+    bonus = 0;
+    retun (bonus);
+}
