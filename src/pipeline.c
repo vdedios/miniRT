@@ -68,6 +68,6 @@ void		ft_render_scene(t_scene *s)
             }
             px++;
         }
-        ft_draw_reference(s->camera[s->i_cam]->base, s);
+        s->option[5] ? ft_draw_reference(s->camera[s->i_cam]->base, s) : 0;
     }
 }

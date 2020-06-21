@@ -81,6 +81,36 @@ typedef struct	        s_axis_ref {
 ** 8 - triangle
 */
 
+/*
+** MAIN OPTION INDEX:
+** 0 - save
+** 1 - help
+** 2 - sepia filter
+** 3 - antialiasing
+** 4 - no-specular
+** 5 - reference-axis
+*/
+
+/*
+** SCENE OPTION INDEX: **
+
+LIGHT
+** parallel light -parallel ok!
+
+PLANE/TRIANGLE/SQUARE
+** bonus:1 | normal disruption - normal-disruption
+** bonus:2 | checkered pattern -checkered
+** bonus:3 | bumpmap texture -bumpmap
+** bonus:4 | plane texture - skybox:textures/skybox.png
+
+SPHERE
+**  bonus:5 | color disruption -rainbow
+**  bonus:6 | sphere texture - uv-map:texture/earth.png
+
+CYLINDER
+**  bonus:5 | color disruption -rainbow
+*/
+
 typedef struct	s_scene {
         int             option[14];
 	int		x;

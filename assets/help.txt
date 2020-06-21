@@ -17,6 +17,8 @@ GENERAL BONUS OPTIONS
     --help : invoke this help menu
     --sepia-filter : add a sepia filter to rendered image 
     --antialiasing : apply aliased effect to rendered image
+    --no-specular : removes specular light effect which comes from default
+    --reference-axis : draws a set of global reference axis
 
 
 GENERAL SCENE OPTIONS
