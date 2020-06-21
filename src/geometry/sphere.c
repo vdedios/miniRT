@@ -34,6 +34,8 @@ int		ft_draw_sphere(t_scene s, t_ray *r, int i)
             , ft_k_vct_prod(r->t, r->global));
     obj.normal = ft_sub_vector(obj.p, s.sphere[i]->center);
     obj.rgb = s.sphere[i]->rgb;
+    obj.center = s.sphere[i]->center;
+    obj.bonus = s.sphere[i]->bonus; 
     r->color = ft_get_color(s, obj);
     return (1);
 }

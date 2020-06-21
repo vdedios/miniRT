@@ -57,8 +57,14 @@ SRC_FILES			=	algebra/algebra_1.c \
 					bmp.c \
 					main.c \
 					main_options.c \
-					bonus/color_bonus.c \
-					miniRT.c 
+					miniRT.c \
+ 					bonus/color_bonus.c \
+ 					bonus/color_plane_bonus.c \
+ 					bonus/color_sphere_bonus.c \
+ 					bonus/filter_bonus.c \
+ 					bonus/light_bonus.c \
+ 					bonus/load_bonus.c \
+ 					bonus/load_bonus2.c 
 
 GNL_FILES			=	get_next_line.c \
 					get_next_line_utils.c	

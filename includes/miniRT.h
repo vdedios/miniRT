@@ -53,4 +53,12 @@ void            ft_fill_img_buf(t_image *img, int x, int y, int color);
 
 void            ft_miniRT(t_scene s);
 
+/*
+** Main options
+*/
+
+void            ft_initialize_options(t_scene *scene);
+int             ft_save_option(char *argv, t_scene *scene);
+int             ft_check_options(int argc, char **argv, t_scene *scene);
+
 #endif

@@ -21,11 +21,11 @@ void    ft_check_system_resolution(t_scene *scene)
 
 int     ft_bonus_option(void)
 {
-    int bonus
+    int bonus;
 
+    bonus = 0;
 #ifdef BONUS
         bonus = 1;
 #endif
-    bonus = 0;
-    retun (bonus);
+    return (bonus);
 }

@@ -51,6 +51,7 @@ void		ft_color_cylinder(t_scene s, t_ray *r, int i)
     obj.p = s.cylinder[i]->p;
     obj.normal = s.cylinder[i]->nsurface;
     obj.rgb = s.cylinder[i]->rgb;
+    obj.bonus = s.cylinder[i]->bonus; 
     r->color = ft_get_color(s, obj);
 }
 

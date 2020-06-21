@@ -97,7 +97,6 @@ int             ft_handle_mouse(int press, int u, int v, t_scene *s)
 void            ft_miniRT(t_scene scene)
 {
     scene.i_cam = 0;
-    scene.window.mlx_ptr = mlx_init();
     scene.window.win_ptr = mlx_new_window(scene.window.mlx_ptr,
             scene.x, scene.y, "miniRT");
     scene.img.id = mlx_new_image(scene.window.mlx_ptr, scene.x, scene.y);
@@ -106,11 +105,6 @@ void            ft_miniRT(t_scene scene)
     mlx_hook(scene.window.win_ptr, 17, 0, ft_exit, &scene.window);
     mlx_key_hook(scene.window.win_ptr, ft_handle_keyboard, &scene);
     mlx_mouse_hook(scene.window.win_ptr, ft_handle_mouse, &scene);
-    //hacer gestión de error para carga textura!!
-    scene.texture.img = (int *)mlx_png_file_to_image(scene.window.mlx_ptr, "textures/milkyway.png"
-            , &scene.texture.width, &scene.texture.height);
-    scene.texture.val = (int *)mlx_get_data_addr(scene.texture.img, &scene.texture.bitpixl,
-            &scene.texture.len, &scene.texture.end);
     ft_scene_to_screen(&scene);
     mlx_loop(scene.window.mlx_ptr);
 } 

@@ -38,6 +38,7 @@ int	main(int argc, char **argv)
     if (argc > 1 && (aux = ft_strnstr(argv[1], ".rt", ft_strlen(argv[1])))
             && !(*(aux + 3)))
     {
+        scene.window.mlx_ptr = mlx_init();
         ft_load_scene(argv[1], &scene);
         if (!(option = ft_check_options(argc, argv, &scene)))
             ft_error_handler(1);

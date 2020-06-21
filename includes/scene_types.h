@@ -36,8 +36,10 @@ typedef struct	        s_camera {
 
 typedef struct	        s_light {
 	t_vector	pos;
+	t_vector	pos_shadow;
 	double		intensity;
 	t_rgb		rgb;
+        t_vector        parallel;
 }			t_light;
 
 typedef struct	        s_ray {
@@ -66,16 +68,6 @@ typedef struct	        s_axis_ref {
         int             color;
 }		        t_axis_ref;
 
-typedef struct	        s_texture {
-    void                *img;
-    int                 *val;
-    int                 width;
-    int                 height;
-    int                 len;
-    int                 bitpixl;
-    int                 end;
-}		        t_texture;
-
 /*
 ** SCENE INDEX:
 ** 0 - scene
@@ -99,14 +91,23 @@ typedef struct	        s_texture {
 */
 
 /*
-** SCENE OPTION INDEX:
-** normal disruption - normal-disruption
-** checkered pattern -checkered
-** color disruption -rainbow
-** bumpmap texture -bumpmap
-** plane texture - skybox:textures/skybox.png
-** sphere tecture - uv-map:texture/earth.png
-** parallel light -parallel
+** SCENE OPTION INDEX: **
+
+LIGHT
+** parallel light -parallel ok!
+
+PLANE/TRIANGLE/SQUARE
+** bonus:1 | normal disruption - normal-disruption
+** bonus:2 | checkered pattern -checkered
+** bonus:3 | bumpmap texture -bumpmap
+** bonus:4 | plane texture - skybox:textures/skybox.png
+
+SPHERE
+**  bonus:5 | color disruption -rainbow
+**  bonus:6 | sphere texture - uv-map:texture/earth.png
+
+CYLINDER
+**  bonus:5 | color disruption -rainbow
 */
 
 typedef struct	s_scene {
@@ -116,6 +117,7 @@ typedef struct	s_scene {
 	int		index[9];
         int             n_cams;
         int             i_cam;
+        int             i_light;
         t_axis          axis;
         t_window        window;
         t_image         img;
@@ -127,7 +129,6 @@ typedef struct	s_scene {
 	t_square	**square;
 	t_cylinder	**cylinder;
 	t_triangle	**triangle;
-        t_texture       texture;
 }				t_scene;
 
 #endif

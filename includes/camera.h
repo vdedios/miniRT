@@ -8,6 +8,6 @@
 */
 
 t_vector        ft_local_camera_ray(t_scene s, double p_x, double p_y);
-void	        ft_global_camera_base(t_scene *scene, int i_cam);
+int	        ft_global_camera_base(t_scene *scene, int i_cam);
 
 #endif

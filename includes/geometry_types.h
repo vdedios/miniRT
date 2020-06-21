@@ -1,7 +1,7 @@
 #ifndef GEOMETRY_TYPES_H
 # define GEOMETRY_TYPES_H
 
-#include "scene_types.h"
+#include "miniRT.h"
 
 /*
 ** Utils functions in a scene
@@ -30,14 +30,29 @@ typedef struct  s_slope{
     int         y;
 }		t_slope;
 
+typedef struct	        s_texture {
+    void                *img;
+    int                 *val;
+    int                 width;
+    int                 height;
+    int                 len;
+    int                 bitpixl;
+    int                 end;
+}		        t_texture;
+
+typedef struct  s_bonus{
+    int         id;
+    t_texture   texture;
+}		t_bonus;
+
 typedef struct  s_obj_color{
     t_vector    p;
     t_vector    center;
     t_vector    normal;
     t_vector    light;
-    t_vector    light_pos;
     t_vector    ray;
     t_rgb       rgb;
+    t_bonus     bonus;
 }		t_obj_color;
 
 /*
@@ -53,12 +68,14 @@ typedef struct  s_sphere {
     t_vector	p;
     t_vector	oc;
     t_vector	n;
+    t_bonus     bonus;
 }		t_sphere;
 
 typedef struct	s_plane {
     t_vector	point;
     t_vector	n;
     t_rgb       rgb;
+    t_bonus     bonus;
 }		t_plane;
 
 typedef struct  s_square {
@@ -68,6 +85,7 @@ typedef struct  s_square {
     t_vector	dx;
     t_vector	dy;
     double	side;
+    t_bonus     bonus;
 }		t_square;
 
 typedef struct	s_triangle {
@@ -81,6 +99,7 @@ typedef struct	s_triangle {
     t_vector	e1;
     t_vector	e2;
     t_vector	p0;
+    t_bonus     bonus;
 }		t_triangle;
 
 typedef struct	s_cylinder {
@@ -100,6 +119,7 @@ typedef struct	s_cylinder {
     t_vector	p;
     t_vector	center;
     t_vector	nsurface;
+    t_bonus     bonus;
 }		t_cylinder;
 
 typedef struct	s_auxplane {

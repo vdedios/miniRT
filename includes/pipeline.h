@@ -5,7 +5,8 @@
 ** Ray tracing pipeline functions
 */
 
-int		ft_render_scene(t_scene *scene);
+void		ft_render_scene(t_scene *scene);
 void		ft_draw_element(t_scene scene, t_ray *ray);
+void            ft_render_pxl(double px, double py, t_ray *ray, t_scene *s);
 
 #endif

@@ -21,5 +21,6 @@ void			ft_load_plane(char *line, t_scene *scene);
 void			ft_load_square(char *line, t_scene *scene);
 void			ft_load_cylinder(char *line, t_scene *scene);
 void			ft_load_triangle(char *line, t_scene *scene);
+int                     ft_bonus_option(void);
 
 #endif

@@ -14,6 +14,23 @@ int             ft_intersect_caps(t_scene *s, t_ray *r, int i, t_auxplane *auxpl
     return (0);
 }
 
+t_vector        ft_nearest_cap(t_scene s, int i)
+{
+    t_vector    vect[2];
+    t_vector    top_side;
+    double      dist[2];
+
+    top_side = ft_add_vector(s.cylinder[i]->point,
+            ft_k_vct_prod(s.cylinder[i]->height, s.cylinder[i]->n));
+    vect[0] = ft_sub_vector(s.camera[s.i_cam]->pos, s.cylinder[i]->point);
+    vect[1] = ft_sub_vector(s.camera[s.i_cam]->pos, top_side);
+    dist[0] = ft_mod_vector(vect[0]);
+    dist[1] = ft_mod_vector(vect[1]);
+    if (dist[0] > dist[1])
+        return (top_side);
+    return (s.cylinder[i]->point);
+}
+
 int             ft_draw_caps(t_scene s, t_ray *r, int i)
 {
     double      last_t;
@@ -25,7 +42,7 @@ int             ft_draw_caps(t_scene s, t_ray *r, int i)
         auxplane.point = ft_add_vector(s.cylinder[i]->point,
                 ft_k_vct_prod(s.cylinder[i]->height, s.cylinder[i]->n));
     else
-        auxplane.point = s.cylinder[i]->point;
+        auxplane.point = ft_nearest_cap(s, i);
     auxplane.n = s.cylinder[i]->n;
     if (ft_intersect_caps(&s, r, i, &auxplane))
     {

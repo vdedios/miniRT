@@ -16,10 +16,12 @@ t_vector        ft_local_camera_ray(t_scene s, double p_x, double p_y)
 	return (c_local);
 }
 
-void	        ft_global_camera_base(t_scene *s, int i_cam)
+int	        ft_global_camera_base(t_scene *s, int i_cam)
 {
         t_matrix        conversion;
 
+        if (!s->camera[i_cam])
+            return (0);
 	conversion.vx = ft_set_hor_axis(s->camera[i_cam]->n);
 	conversion.vy = ft_cross_product(conversion.vx, s->camera[i_cam]->n);
         conversion.vz = ft_k_vct_prod(-1, s->camera[i_cam]->n);
@@ -27,4 +29,5 @@ void	        ft_global_camera_base(t_scene *s, int i_cam)
 	ft_normalize_vector(&conversion.vy);
 	ft_normalize_vector(&conversion.vz);
         s->camera[i_cam]->base = conversion;
+        return (1);
 }

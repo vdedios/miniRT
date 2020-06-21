@@ -1,0 +1,9 @@
+R 640 360
+A 0.2 255,255,255
+
+c -40,1000,20000 1,0,0 60
+l 0,50,20000 0.6 255,255,255 parallel:1,1,0
+
+pl 700,0,0 1,0,0 255,255,255 skybox:textures/milkyway.png
+sp 0,1000,20000 20 255,255,255 uv-map:textures/earth.png
+sp -15,990,20005 4 255,255,255 uv-map:textures/moon.png

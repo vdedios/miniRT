@@ -45,32 +45,29 @@ void            ft_render_pxl(double px, double py, t_ray *ray, t_scene *s)
     ft_draw_element(*s, ray);
 }
 
-//-----------------
-void            ft_render_pxl_antialiasing(double px, double py, t_ray *ray, t_scene *s);
-//-----------------
-
-int		ft_render_scene(t_scene *s)
+void		ft_render_scene(t_scene *s)
 {
     int         px;
     int 	py;
     t_ray       ray;
 
     px = 0;
-    ft_global_camera_base(s, s->i_cam);
-    while (px < s->x)
+    if (ft_global_camera_base(s, s->i_cam))
     {
-        py = 0;
-        while (py < s->y)
+        while (px < s->x)
         {
-            if (s->option[9])
-                ft_render_pxl_antialiasing((double)px, (double)py, &ray, s);
-            else
-                ft_render_pxl((double)px, (double)py, &ray, s);
-            ft_fill_img_buf(&s->img, px, py, ray.color);
-            py++;
+            py = 0;
+            while (py < s->y)
+            {
+                if (s->option[3])
+                    ft_render_pxl_antialiasing((double)px, (double)py, &ray, s);
+                else
+                    ft_render_pxl((double)px, (double)py, &ray, s);
+                ft_fill_img_buf(&s->img, px, py, ray.color);
+                py++;
+            }
+            px++;
         }
-        px++;
+        ft_draw_reference(s->camera[s->i_cam]->base, s);
     }
-    ft_draw_reference(s->camera[s->i_cam]->base, s);
-    return (0);
 }

@@ -77,6 +77,7 @@ int		ft_draw_triangle(t_scene s, t_ray *r, int i)
         obj.p = auxplane.p;
         obj.normal = auxplane.n;
         obj.rgb = s.triangle[i]->rgb;
+        obj.bonus = s.triangle[i]->bonus; 
         r->color = ft_get_color(s, obj);
         return (1);
     }

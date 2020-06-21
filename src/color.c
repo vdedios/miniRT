@@ -1,9 +1,5 @@
 #include "miniRT.h"
 
-//---------------------------------------------------
-t_rgb           ft_sepia_filter(t_scene s, t_rgb in_color);
-//---------------------------------------------------
-
 void            ft_check_rgb_range(t_rgb *color)
 {
     if (color->r > 255)
@@ -47,7 +43,7 @@ t_rgb		ft_spot_light(t_scene s, t_obj_color obj)
         kd = 0;
     else
         kd = s.light[0]->intensity;
-    specular = pow(fmax(0, 0.0), 50);
+    specular = pow(fmax(diffuse, 0.0), 50);
     color.r = kd * s.light[0]->rgb.r * (obj.rgb.r * diffuse / 255 + specular);
     color.g = kd * s.light[0]->rgb.g * (obj.rgb.g * diffuse / 255 + specular);
     color.b = kd * s.light[0]->rgb.b * (obj.rgb.b * diffuse / 255 + specular);
@@ -57,26 +53,19 @@ t_rgb		ft_spot_light(t_scene s, t_obj_color obj)
 int             ft_get_color(t_scene s, t_obj_color obj)
 {
     t_rgb       color;
-    t_rgb       aux_color;
     t_ray       shadow;
-    int         i;
 
-    i = 0;
-    color = (t_rgb){0, 0, 0};
-    while (s.light[i])
+    s.i_light = 0;
+    color = ft_ambient(s, obj);
+    while (s.light[s.i_light])
     {
-        obj.light = ft_sub_vector(s.light[i]->pos, obj.p);
-        obj.light_pos = s.light[i]->pos;
-        ft_normalize_vector(&obj.light);
         ft_normalize_vector(&obj.normal);
+        obj = ft_disruption(s.light[s.i_light], obj);
         shadow.global = obj.light;
         shadow.origin = obj.p;
-        obj = ft_disruption(s, obj);
-        aux_color = ft_ambient(s, obj);
         if (!ft_shadows(s, &shadow))
-            aux_color = ft_mix_color(aux_color, ft_spot_light(s, obj));
-        color = ft_mix_color(color, aux_color);
-        i++;
+            color = ft_mix_color(color, ft_spot_light(s, obj));
+        s.i_light++;
     }
     color = ft_sepia_filter(s, color);
     return (((int)color.r << 16) + ((int)color.g << 8) + (int)color.b);
