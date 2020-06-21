@@ -41,20 +41,26 @@
 #include "bmp_types.h"
 #include "minirt_bonus.h"
 
-/*
-** General functions
-*/
-
-void            ft_fill_img_buf(t_image *img, int x, int y, int color);
 
 /*
-** Window handling functions
+** Main  functions
 */
 
 void            ft_miniRT(t_scene s);
+void            ft_scene_to_screen(t_scene *scene);
+int 		ft_exit(t_window *window);
 
 /*
-** Main options
+** Utils functions
+*/
+
+void            ft_handle_axis_translation(int key, t_scene *s);
+void            ft_change_camera(int key, t_scene *s);
+int             ft_handle_keyboard(int key, t_scene *s);
+int             ft_handle_mouse(int press, int u, int v, t_scene *s);
+
+/*
+** Options
 */
 
 void            ft_initialize_options(t_scene *scene);

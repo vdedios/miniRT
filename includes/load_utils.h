@@ -21,5 +21,6 @@ t_vector                ft_load_coords(char *buffer);
 t_rgb                   ft_load_rgb(char *buffer);
 void                    ft_get_triangle_boundaries(t_triangle *triangle);
 void                    ft_check_system_resolution(t_scene *scene);
+void			ft_check_digit(char *info, char id);
 
 #endif
