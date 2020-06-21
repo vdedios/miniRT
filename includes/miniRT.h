@@ -64,7 +64,7 @@ int             ft_handle_mouse(int press, int u, int v, t_scene *s);
 */
 
 void            ft_initialize_options(t_scene *scene);
-int             ft_save_option(char *argv, t_scene *scene);
-int             ft_check_options(int argc, char **argv, t_scene *scene);
+void            ft_save_option(char *argv, t_scene *scene);
+void            ft_check_options(int argc, char **argv, t_scene *scene);
 
 #endif

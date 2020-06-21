@@ -10,4 +10,6 @@
     \  \:\         \__\/      \  \:\         \__\/      \  \:\           \__\/
      \__\/                     \__\/                     \__\/               
 
- (BY VDEDIOS)	
+  BY VDEDIOS
+
+(for help run: "./miniRT --help". It only works when compiled as bonus: "make bonus")

@@ -1,6 +1,6 @@
 #include "miniRT.h"
 
-void    ft_initialize_options(t_scene *scene)
+void            ft_initialize_options(t_scene *scene)
 {
     int i;
 
@@ -9,47 +9,47 @@ void    ft_initialize_options(t_scene *scene)
         scene->option[i] = 0; 
 }
 
-int     ft_save_option(char *argv, t_scene *scene)
+static void     ft_bonus_options(char *argv, t_scene *scene)
+{
+    if (!ft_strncmp(argv, "--sepia-filter", ft_strlen(argv) + 1))
+    {
+        if (scene->option[2])
+            ft_error_handler(4);
+        scene->option[2] = 1;
+    }
+    else if (!ft_strncmp(argv, "--antialiasing", ft_strlen(argv) + 1))
+    {
+        if (scene->option[3])
+            ft_error_handler(4);
+        scene->option[3] = 1;
+    }
+    else
+        ft_error_handler(4);
+}
+
+void            ft_save_option(char *argv, t_scene *scene)
 {
     if (!ft_strncmp(argv, "--save", ft_strlen(argv) + 1))
     {
         if (scene->option[0])
-            return (0);
+            ft_error_handler(4);
         scene->option[0] = 1;
-        return (1);
     }
+    else
+    {
 #ifdef BONUS
-    if (!ft_strncmp(argv, "--sepia-filter", ft_strlen(argv) + 1))
-    {
-        if (scene->option[2])
-            return (0);
-        scene->option[2] = 1;
-        return (1);
-    }
-    if (!ft_strncmp(argv, "--antialiasing", ft_strlen(argv) + 1))
-    {
-        if (scene->option[3])
-            return (0);
-        scene->option[3] = 1;
-        return (1);
-    }
+        ft_bonus_options(argv, scene);
+#else
+        ft_error_handler(4);
 #endif
-    return (0);
+    }
 }
 
-int    ft_check_options(int argc, char **argv, t_scene *scene)
+void             ft_check_options(int argc, char **argv, t_scene *scene)
 {
     int i;
-    int option;
 
     i = 1;
     while (++i < argc)
-    {
-        option = ft_save_option(argv[i], scene);
-        if (!option)
-            return (0);
-    }
-    if (scene->option[0])
-        return (2);
-    return (1);
+        ft_save_option(argv[i], scene);
 }

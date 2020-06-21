@@ -1,0 +1,44 @@
+<<<<-------HELP MENU------->>>>
+
+Welcome to miniRT, a small and simple 3D graphics engine!
+For basic operation you must execute the program as follows after compiling:
+    ./miniRT "path_scene" --[options]
+
+There are two compiling rules:
+    -"make" : basic functioning
+    -"make bonus" : advance features such as texture handling and more!
+
+-----------------------------------------------------
+
+GENERAL STANDARD OPTIONS
+    --save : save rendered scene in a .bmp file. Scene will be output in ./output_bmp folder
+
+GENERAL BONUS OPTIONS
+    --help : invoke this help menu
+    --sepia-filter : add a sepia filter to rendered image 
+    --antialiasing : apply aliased effect to rendered image
+
+
+GENERAL SCENE OPTIONS
+    --LIGHT FLAGS--
+    parallel:1,0,0 : add parallel light following a precise direction. Example: l -20,0,5 0.7 255,255,255 parallel:1,0,0
+
+
+    --PLANE/TRIANGLE/SQUARE FLAGS--
+    normal-disruption : add a normal disruption damped wave effect. Example: pl 0,0,-30 0,0,1 255,255,255 normal-disruption
+
+    checkered : add a checkered pattern. Example: pl 0,0,-30 0,0,1 255,255,255 checkered
+
+    bumpmap:texture/example.png : handle bumpmap textures. Example: pl 0,0,-30 0,0,1 255,255,255 bumpmap:texture/example.png
+
+    skybox:textures/skybox.png : handle planar textures. Example: pl 0,0,-30 0,0,1 255,255,255 skybox:textures/skybox.png
+
+
+    --SPHERE/CYLINDER--
+    rainbow : add a color disruption rainbow effect depending on surface normal. Example: sp 0,0,0 20 255,255,255 rainbow
+
+    uv-map:texture/earth.png : sphere texture. Example: sp 0,0,0 20 255,255,255 uv-map:texture/earth.png
+
+I) To include these options/effects, you should add one or more of the following flags to the scene config file.
+II) Each vector is presented as an example, you can substitute with your own.
+III) Each texture/image file is presented as an example, you can substitute with your own. Path must be taken from the root of this proyect.
