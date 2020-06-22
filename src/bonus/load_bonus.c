@@ -11,9 +11,10 @@ t_texture       ft_load_texture(t_scene *s, char *option)
     while (buffer[i])
         i++;
     if (i != 2)
-        ft_error_handler(4);
-    texture.img = (int *)mlx_png_file_to_image(s->window.mlx_ptr, buffer[1]
-            , &texture.width, &texture.height);
+        ft_error_handler(BAD_BONUS);
+    if (!(texture.img = (int *)mlx_png_file_to_image(s->window.mlx_ptr, buffer[1]
+            , &texture.width, &texture.height)))
+        ft_error_handler(BAD_TEXTURE);
     texture.val = (int *)mlx_get_data_addr(texture.img, &texture.bitpixl,
             &texture.len, &texture.end);
     ft_del_matrix(buffer);
@@ -42,7 +43,7 @@ t_bonus         ft_plane_bonus(t_scene *s, char *option)
             bonus.id = 4;
         }
         else
-            ft_error_handler(4);
+            ft_error_handler(BAD_BONUS);
     }
     return (bonus);
 }
@@ -62,7 +63,7 @@ t_bonus         ft_sphere_bonus(t_scene *s, char *option)
             bonus.id = 6;
         }
         else
-            ft_error_handler(4);
+            ft_error_handler(BAD_BONUS);
     }
     return (bonus);
 }
@@ -77,7 +78,7 @@ t_bonus         ft_cylinder_bonus(char *option)
         if (!ft_strncmp(option, "rainbow", ft_strlen(option) + 1))
             bonus.id = 5;
         else
-            ft_error_handler(4);
+            ft_error_handler(BAD_BONUS);
     }
     return (bonus);
 }

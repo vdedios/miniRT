@@ -21,33 +21,33 @@ void	ft_number_elements(char *line, t_scene *scene)
 	else if (line[0] == 't' && line[1] == 'r' && line[2] == ' ')
 		scene->index[8]++;
 	else if (line[0] != '\0')
-		ft_error_handler(4);	
+		ft_error_handler(BAD_SCENE);	
 }
 
 void	ft_set_elements(t_scene *scene)
 {
 	if (scene->index[0] != 1 || scene->index[1] != 1)
-		ft_error_handler(4);	
+		ft_error_handler(BAD_SCENE);	
 	if (!(scene->camera = malloc((scene->index[2] + 1) * sizeof(t_camera *))))
-		ft_error_handler(1);	
+		ft_error_handler(MEM_ALLOC);	
 	scene->camera[scene->index[2]] = NULL;
 	if (!(scene->light = malloc((scene->index[3] + 1) * sizeof(t_light *))))
-		ft_error_handler(1);	
+		ft_error_handler(MEM_ALLOC);	
 	scene->light[scene->index[3]] = NULL;
 	if (!(scene->sphere = malloc((scene->index[4] + 1) * sizeof(t_sphere *))))
-		ft_error_handler(1);	
+		ft_error_handler(MEM_ALLOC);	
 	scene->sphere[scene->index[4]] = NULL;
 	if (!(scene->plane = malloc((scene->index[5] + 1) * sizeof(t_plane *))))
-		ft_error_handler(1);	
+		ft_error_handler(MEM_ALLOC);	
 	scene->plane[scene->index[5]]  = NULL;
 	if (!(scene->square = malloc((scene->index[6] + 1) * sizeof(t_square *))))
-		ft_error_handler(1);	
+		ft_error_handler(MEM_ALLOC);	
 	scene->square[scene->index[6]]  = NULL;
 	if (!(scene->cylinder = malloc((scene->index[7] + 1) * sizeof(t_cylinder *))))
-		ft_error_handler(1);	
+		ft_error_handler(MEM_ALLOC);	
 	scene->cylinder[scene->index[7]] = NULL;
 	if (!(scene->triangle = malloc((scene->index[8] + 1) * sizeof(t_triangle *))))
-		ft_error_handler(1);	
+		ft_error_handler(MEM_ALLOC);	
 	scene->triangle[scene->index[8]] = NULL;
 }
 
@@ -62,7 +62,7 @@ void	ft_count_elements(char	*path, t_scene *scene)
 		scene->index[i++] = 0;
 	fd = open(path, O_RDONLY);
 	if (get_next_line(fd, &line) == -1)
-		ft_error_handler(4);	
+		ft_error_handler(BAD_PATH);	
 	ft_number_elements(line, scene);
 	free (line);
 	while (get_next_line(fd, &line) > 0)
@@ -96,7 +96,7 @@ void	ft_load_element(char *line, t_scene *scene)
 	else if (line[0] == 't' && line[1] == 'r' && line[2] == ' ')
 		ft_load_triangle(line, scene);
 	else if (line[0] != '\0')
-		ft_error_handler(4);	
+		ft_error_handler(BAD_SCENE);	
 }
 
 void	ft_load_scene(char *path, t_scene *scene)
@@ -107,7 +107,7 @@ void	ft_load_scene(char *path, t_scene *scene)
 	ft_count_elements(path, scene);
 	fd = open(path, O_RDONLY);
 	if (get_next_line(fd, &line) == -1)
-		ft_error_handler(4);	
+		ft_error_handler(BAD_PATH);	
 	ft_load_element(line, scene);
 	free (line);
 	while (get_next_line(fd, &line) > 0)

@@ -11,7 +11,7 @@ t_vector        ft_get_parallel_dir(char *option)
     while (buffer[i])
         i++;
     if (i != 2)
-        ft_error_handler(4);
+        ft_error_handler(BAD_BONUS);
     dir = ft_load_coords(buffer[1]);
     ft_normalize_vector(&dir);
     return (dir);
@@ -27,7 +27,7 @@ t_vector        ft_is_parallel_light(char *option)
         if (!ft_strncmp(option, "parallel:", 9))
             dir = ft_get_parallel_dir(option);
         else
-            ft_error_handler(4);
+            ft_error_handler(BAD_BONUS);
     }
     return (dir);
 }

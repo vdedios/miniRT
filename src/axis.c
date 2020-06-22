@@ -62,6 +62,7 @@ void	ft_draw_axis(t_vector p, char dir, t_scene *scene)
 {
     t_axis_ref      axis;
 
+    ft_normalize_vector(&p);
     if (ft_abs(p.x) > 1e-4 && ft_abs(p.y) > 1e-4)
     {
         axis.px = (ft_abs(p.x) < ft_abs(p.y) ? 1 : ft_abs(p.x)

@@ -55,7 +55,7 @@ t_vector        ft_set_hor_axis(t_vector n)
         else if (n.z < 0)
             x.x = 1.0;
         else if (!n.z)
-            ft_error_handler(4);
+            ft_error_handler(BAD_SCENE);
     }
     else
     {

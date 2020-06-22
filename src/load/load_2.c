@@ -11,9 +11,9 @@ void	ft_load_sphere(char *line, t_scene *scene)
 	while (buffer[i])
 		i++;
 	if (i < 4 || i > (4 + ft_bonus_option()))
-		ft_error_handler(4);
+		ft_error_handler(BAD_SCENE);
 	if (!(sphere = malloc(sizeof(t_sphere))))
-		ft_error_handler(4);
+		ft_error_handler(MEM_ALLOC);
 	scene->sphere[scene->index[4] - 1] = sphere;
 	scene->index[4]--;
 	sphere->center = ft_load_coords(buffer[1]);
@@ -34,9 +34,9 @@ void	ft_load_plane(char *line, t_scene *scene)
 	while (buffer[i])
 		i++;
 	if (i < 4 || i > (4 + ft_bonus_option()))
-		ft_error_handler(4);
+		ft_error_handler(BAD_SCENE);
 	if (!(plane = malloc(sizeof(t_plane))))
-		ft_error_handler(4);
+		ft_error_handler(MEM_ALLOC);
 	scene->plane[scene->index[5] - 1] = plane;
 	scene->index[5]--;
 	plane->point = ft_load_coords(buffer[1]);
@@ -57,9 +57,9 @@ void	ft_load_square(char *line, t_scene *scene)
 	while (buffer[i])
 		i++;
 	if (i < 5 || i > (5 + ft_bonus_option()))
-		ft_error_handler(4);
+		ft_error_handler(BAD_SCENE);
 	if (!(square = malloc(sizeof(t_square))))
-		ft_error_handler(4);
+		ft_error_handler(MEM_ALLOC);
 	scene->square[scene->index[6] - 1] = square;
 	scene->index[6]--;
 	square->center = ft_load_coords(buffer[1]);
@@ -83,9 +83,9 @@ void	ft_load_cylinder(char *line, t_scene *scene)
 	while (buffer[i])
 		i++;
 	if (i < 6 || i > (6 + ft_bonus_option()))
-		ft_error_handler(4);
+		ft_error_handler(BAD_SCENE);
 	if (!(cylinder = malloc(sizeof(t_cylinder))))
-		ft_error_handler(4);
+		ft_error_handler(MEM_ALLOC);
 	scene->cylinder[scene->index[7] - 1] = cylinder;
 	scene->index[7]--;
 	cylinder->point = ft_load_coords(buffer[1]);
@@ -108,9 +108,9 @@ void	ft_load_triangle(char *line, t_scene *scene)
 	while (buffer[i])
 		i++;
 	if (i < 5 || i > (5 + ft_bonus_option()))
-		ft_error_handler(4);
+		ft_error_handler(BAD_SCENE);
 	if (!(triangle = malloc(sizeof(t_triangle))))
-		ft_error_handler(4);
+		ft_error_handler(MEM_ALLOC);
 	scene->triangle[scene->index[8] - 1] = triangle;
 	scene->index[8]--;
 	triangle->a = ft_load_coords(buffer[1]);
