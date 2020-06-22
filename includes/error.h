@@ -20,6 +20,6 @@
 ** Error functions
 */
 
-void			ft_error_handler(int error_id);
+void    ft_error_handler(int error_id);
 
 #endif

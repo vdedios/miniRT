@@ -52,22 +52,26 @@ void	        ft_image_header(t_scene s, int fd)
     write(fd, infoheader, 40);
 }
 
-void           ft_convert_buffer_to_bmp(int fd, t_scene scene)
+void            ft_save_buffer(t_scene scene, int fd)
 {
     int                         i;
+    int                         j;
     int                         padding;
     static unsigned char        zero[3] = { 0, 0, 0};
 
-    ft_file_header(scene, fd);
-    ft_image_header(scene, fd);
     padding = (4 - (scene.x * 3) % 4) % 4;
-    i = scene.x * scene.y;
+    i = scene.y;
     while (i > 0)
     {
-        write(fd, scene.img.addr + i, 3);
-        if (!(i % scene.x) && padding > 0)
-            write(fd, &zero, padding);
         i--;
+        j = 0;
+        while (j < scene.x)
+        {
+            write(fd, &scene.img.addr[i * scene.x + j], 3);
+            j++;
+        }
+        if (padding > 0)
+            write(fd, &zero, padding);
     }
 }
 
@@ -83,7 +87,9 @@ void            ft_scene_to_bmp(t_scene scene)
     ft_render_scene(&scene);
     if ((fd = open("output_bmp/output.bmp", O_WRONLY | O_TRUNC | O_CREAT, 0744)) == -1)
         ft_error_handler(4);
-    ft_convert_buffer_to_bmp(fd, scene);
+    ft_file_header(scene, fd);
+    ft_image_header(scene, fd);
+    ft_save_buffer(scene, fd);
     close (fd);
     ft_printf("saved!\n");
 }
