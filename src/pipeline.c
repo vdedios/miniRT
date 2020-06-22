@@ -23,10 +23,8 @@ void		ft_draw_element(t_scene scene, t_ray *ray)
 
 void            ft_fill_img_buf(t_image *img, int x, int y, int color)
 {
-    char    *dst;
 
-    dst = img->addr + (y * img->len + x * (img->bitpixl / 8));
-    *(unsigned int *)dst = color;
+    img->addr[y * img->len / 4 + x] = color;
 }
 
 void            ft_initialize_ray(t_ray *ray)

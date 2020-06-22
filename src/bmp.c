@@ -1,64 +1,83 @@
 #include "miniRT.h"
 
-void	ft_image_header(t_image_header *bih, t_scene scene)
+void            ft_file_header(t_scene scene, int fd)
 {
-    bih->size_header = sizeof(t_image_header);
-    bih->width = scene.x;
-    bih->height = scene.y;
-    bih->planes = 1;
-    bih->bit_count = 32;
-    bih->compression = 0;
-    bih->image_size = 0;
-    bih->ppm_x = 0;
-    bih->ppm_y = 0;
-    bih->clr_used = 0;
-    bih->clr_important = 0;
+    int				filesize;
+    int                         padding;
+    static unsigned char	fileheader[] = {
+        0, 0,
+        0, 0, 0, 0,
+        0, 0, 0, 0,
+        0, 0, 0, 0,
+    };
+
+    padding = (4 - (scene.x * 3) % 4) % 4;
+    filesize = 54 + (3 * scene.x + padding) * scene.y;
+    fileheader[0] = (unsigned char)('B');
+    fileheader[1] = (unsigned char)('M');
+    fileheader[2] = (unsigned char)(filesize);
+    fileheader[3] = (unsigned char)(filesize >> 8);
+    fileheader[4] = (unsigned char)(filesize >> 16);
+    fileheader[5] = (unsigned char)(filesize >> 24);
+    fileheader[10] = (unsigned char)(54);
+    write(fd, fileheader, 14);
 }
 
-void    ft_file_header(t_file_header *bfh, int file_size)
-{
-    ft_memcpy(&bfh->bitmap_type, "BM", 2);
-    bfh->file_size[0] = (unsigned char)(file_size >> 24);
-    bfh->file_size[3] = (unsigned char)(file_size >> 16);
-    bfh->file_size[2] = (unsigned char)(file_size >> 8);
-    bfh->file_size[1] = (unsigned char)file_size;
-    bfh->reserved1 = 0;
-    bfh->reserved2 = 0;
-    bfh->offset_bits = 54;
-    bfh->reserved3 = 0;
+void	        ft_image_header(t_scene s, int fd)
+{	
+    static unsigned char	infoheader[] = {
+        0, 0, 0, 0,
+        0, 0, 0, 0,
+        0, 0, 0, 0,
+        0, 0, 0, 0,
+        0, 0, 0, 0,
+        0, 0, 0, 0,
+        0, 0, 0, 0,
+        0, 0, 0, 0,
+        0, 0, 0, 0,
+        0, 0, 0, 0,
+    };
 
+    infoheader[0] = (unsigned char)(40);
+    infoheader[4] = (unsigned char)(s.x);
+    infoheader[5] = (unsigned char)(s.x >> 8);
+    infoheader[6] = (unsigned char)(s.x >> 16);
+    infoheader[7] = (unsigned char)(s.x >> 24);
+    infoheader[8] = (unsigned char)(s.y);
+    infoheader[9] = (unsigned char)(s.y >> 8);
+    infoheader[10] = (unsigned char)(s.y >> 16);
+    infoheader[11] = (unsigned char)(s.y >> 24);
+    infoheader[12] = (unsigned char)(1);
+    infoheader[14] = (unsigned char)(24);
+    write(fd, infoheader, 40);
 }
 
-void    ft_convert_buffer_to_bmp(int fd, t_scene scene)
+void           ft_convert_buffer_to_bmp(int fd, t_scene scene)
 {
-    t_file_header       bfh;
-    t_image_header      bih;
-    int                 image_size;
-    int                 file_size;
-    int                 i;
+    int                         i;
+    int                         padding;
+    static unsigned char        zero[3] = { 0, 0, 0};
 
-    image_size = scene.x * scene.y;
-    i = image_size * 4;
-    file_size = 54 + (4 * image_size);
-    ft_file_header(&bfh, file_size);
-    ft_image_header(&bih, scene);
-    write(fd, &bfh, sizeof(bfh));
-    write(fd, &bih, sizeof(bih));
+    ft_file_header(scene, fd);
+    ft_image_header(scene, fd);
+    padding = (4 - (scene.x * 3) % 4) % 4;
+    i = scene.x * scene.y;
     while (i > 0)
     {
-        write(fd, scene.img.addr + i, scene.img.len);
-        i -= scene.img.len;
+        write(fd, scene.img.addr + i, 3);
+        if (!(i % scene.x) && padding > 0)
+            write(fd, &zero, padding);
+        i--;
     }
 }
 
-void    ft_scene_to_bmp(t_scene scene)
+void            ft_scene_to_bmp(t_scene scene)
 {
     int fd;
 
     scene.i_cam = 0;
-    scene.window.mlx_ptr = mlx_init();
     scene.img.id = mlx_new_image(scene.window.mlx_ptr, scene.x, scene.y);
-    scene.img.addr = mlx_get_data_addr(scene.img.id, &scene.img.bitpixl,
+    scene.img.addr = (int *)mlx_get_data_addr(scene.img.id, &scene.img.bitpixl,
             &scene.img.len, &scene.img.end);
     ft_printf("converting scene to bmp...\n");
     ft_render_scene(&scene);

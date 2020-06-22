@@ -15,7 +15,7 @@ typedef struct	s_window {
 
 typedef struct	s_image{
     void        *id;
-    char        *addr;
+    int         *addr;
     char        *aliased;
     int         len;
     int         bitpixl;
