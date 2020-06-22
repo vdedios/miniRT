@@ -53,20 +53,25 @@ t_rgb		ft_spot_light(t_scene s, t_obj_color obj)
 int             ft_get_color(t_scene s, t_obj_color obj)
 {
     t_rgb       color;
+    t_rgb       aux_color;
     t_ray       shadow;
 
     s.i_light = 0;
-    color = ft_ambient(s, obj);
+    color = (t_rgb){0, 0, 0};
     while (s.light[s.i_light])
     {
         ft_normalize_vector(&obj.normal);
         obj = ft_disruption(s.light[s.i_light], obj);
         shadow.global = obj.light;
         shadow.origin = obj.p;
+        aux_color = ft_ambient(s, obj);
         if (!ft_shadows(s, &shadow))
-            color = ft_mix_color(color, ft_spot_light(s, obj));
+            aux_color = ft_mix_color(aux_color, ft_spot_light(s, obj));
+        color = ft_mix_color(color, aux_color);
         s.i_light++;
     }
+    if (!s.light[0])
+        color = ft_ambient(s, obj);
     color = ft_sepia_filter(s, color);
     return (((int)color.r << 16) + ((int)color.g << 8) + (int)color.b);
 }
