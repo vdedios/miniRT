@@ -72,6 +72,9 @@ int             ft_get_color(t_scene s, t_obj_color obj)
     }
     if (!s.light[0])
         color = ft_ambient(s, obj);
+#ifdef BONUS
     color = ft_sepia_filter(s, color);
+#endif
+
     return (((int)color.r << 16) + ((int)color.g << 8) + (int)color.b);
 }

@@ -25,7 +25,7 @@ int     ft_bonus_option(void)
 
     bonus = 0;
 #ifdef BONUS
-        bonus = 1;
+        bonus = 2;
 #endif
     return (bonus);
 }

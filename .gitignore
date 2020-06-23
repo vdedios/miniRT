@@ -1,5 +1,8 @@
 #ex files
-miniRT*
+miniRT
+miniRT.dSYM
+miniRT_bonus
+miniRT_bonus.dSYM
 
 #Test folders and files
 pft

@@ -21,46 +21,28 @@ t_texture       ft_load_texture(t_scene *s, char *option)
     return (texture);
 }
 
-t_bonus         ft_plane_bonus(t_scene *s, char *option)
+t_bonus         ft_plane_bonus(t_scene *s, char **option)
 {
     t_bonus     bonus;
+    int         i;
 
-    bonus.id = 0;
-    if (option)
+    bonus.id[0] = 0;
+    i = -1;
+    while (option[++i])
     {
-        if (!ft_strncmp(option, "normal-disruption", ft_strlen(option) + 1))
-            bonus.id = 1;
-        else if (!ft_strncmp(option, "checkered", ft_strlen(option) + 1))
-            bonus.id = 2;
-        else if (!ft_strncmp(option, "bumpmap:", 8))
+        if (!ft_strncmp(option[i], "normal-disruption", ft_strlen(option[i]) + 1))
+            bonus.id[i] = 1;
+        else if (!ft_strncmp(option[i], "checkered", ft_strlen(option[i]) + 1))
+            bonus.id[i] = 2;
+        else if (!ft_strncmp(option[i], "bumpmap:", 8))
         {
-            bonus.texture = ft_load_texture(s, option);
-            bonus.id = 3;
+            bonus.bumpmap = ft_load_texture(s, option[i]);
+            bonus.id[i] = 3;
         }
-        else if (!ft_strncmp(option, "skybox:", 7))
+        else if (!ft_strncmp(option[i], "skybox:", 7))
         {
-            bonus.texture = ft_load_texture(s, option);
-            bonus.id = 4;
-        }
-        else
-            ft_error_handler(BAD_BONUS);
-    }
-    return (bonus);
-}
-
-t_bonus         ft_sphere_bonus(t_scene *s, char *option)
-{
-    t_bonus     bonus;
-
-    bonus.id = 0;
-    if (option)
-    {
-        if (!ft_strncmp(option, "rainbow", ft_strlen(option) + 1))
-            bonus.id = 5;
-        else if (!ft_strncmp(option, "uv-map:", 7))
-        {
-            bonus.texture = ft_load_texture(s, option);
-            bonus.id = 6;
+            bonus.texture = ft_load_texture(s, option[i]);
+            bonus.id[i] = 4;
         }
         else
             ft_error_handler(BAD_BONUS);
@@ -68,15 +50,48 @@ t_bonus         ft_sphere_bonus(t_scene *s, char *option)
     return (bonus);
 }
 
-t_bonus         ft_cylinder_bonus(char *option)
+t_bonus         ft_sphere_bonus(t_scene *s, char **option)
 {
     t_bonus     bonus;
+    int         i;
 
-    bonus.id = 0;
-    if (option)
+    bonus.id[0] = 0;
+    i = -1;
+    bonus.type = 's';
+    while (option[++i])
     {
-        if (!ft_strncmp(option, "rainbow", ft_strlen(option) + 1))
-            bonus.id = 5;
+        if (!ft_strncmp(option[i], "rainbow", ft_strlen(option[i]) + 1))
+            bonus.id[i] = 5;
+        else if (!ft_strncmp(option[i], "uv-map:", 7))
+        {
+            bonus.texture = ft_load_texture(s, option[i]);
+            bonus.id[i] = 6;
+        }
+        else if (!ft_strncmp(option[i], "bumpmap:", 8))
+        {
+            bonus.bumpmap = ft_load_texture(s, option[i]);
+            bonus.id[i] = 3;
+        }
+        else if (!ft_strncmp(option[i], "normal-disruption"
+                    , ft_strlen(option[i]) + 1))
+            bonus.id[i] = 1;
+        else
+            ft_error_handler(BAD_BONUS);
+    }
+    return (bonus);
+}
+
+t_bonus         ft_cylinder_bonus(char **option)
+{
+    t_bonus     bonus;
+    int         i;
+
+    i = 0;
+    bonus.id[0] = 0;
+    while (option[++i])
+    {
+        if (!ft_strncmp(option[i], "rainbow", ft_strlen(option[i]) + 1))
+            bonus.id[i] = 5;
         else
             ft_error_handler(BAD_BONUS);
     }

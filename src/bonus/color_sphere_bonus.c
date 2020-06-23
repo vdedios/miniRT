@@ -1,8 +1,7 @@
 #include "miniRT.h"
 
-t_rgb           ft_sphere_texture(t_obj_color obj)
+void            ft_sphere_coords(t_obj_color obj, double *x, double *y)
 {
-    double              u[2];
     double              angle[2];
     double              alpha;
     t_vector            cp;
@@ -13,16 +12,24 @@ t_rgb           ft_sphere_texture(t_obj_color obj)
     cp = ft_sub_vector(obj.p, obj.center);
     ft_normalize_vector(&cp);
     angle[0] = acos( -1 * ft_dot_product((t_vector){0, 0, -1}, cp));
-    u[1] = angle[0] / M_PI;
+    *y = angle[0] / M_PI;
     alpha = -1 * ft_dot_product(cp, equator) / sin(angle[0]);
     alpha += alpha > 0 ? -1 * FLT_EPSILON : FLT_EPSILON;
     angle[1] = acos(alpha) / (2 * M_PI);
     if (ft_dot_product( ft_cross_product((t_vector){0, 0, -1},equator), cp) > 0)
-        u[0] = angle[1];
+        *x = angle[1];
     else
-        u[0] = 1 - angle[1];
-    return (ft_color_texture(obj, (int)(u[0] * obj.bonus.texture.width),
-                (int)(u[1] * obj.bonus.texture.height)));
+        *x = 1 - angle[1];
+}
+
+t_rgb           ft_sphere_texture(t_obj_color obj)
+{
+    double      x;
+    double      y;
+
+    ft_sphere_coords(obj, &x, &y);
+    return (ft_color_texture(obj, (int)(x * obj.bonus.texture.width),
+                (int)(y * obj.bonus.texture.height)));
 }
 
 t_rgb           ft_rainbow_pattern(t_vector n, t_rgb color)

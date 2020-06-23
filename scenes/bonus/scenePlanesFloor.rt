@@ -1,0 +1,7 @@
+R 500 500
+A 0.5 255,255,255
+
+c -600,0,350 3,0,-2 45
+l 500,1000,500 0.3 252,255,138
+
+pl 0,0,0 0,0,1 0,128,255 skybox:textures/azulejos.png bumpmap:textures/carpet.png

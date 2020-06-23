@@ -41,8 +41,10 @@ typedef struct	        s_texture {
 }		        t_texture;
 
 typedef struct  s_bonus{
-    int         id;
+    char        type;
+    int         id[2];
     t_texture   texture;
+    t_texture   bumpmap;
 }		t_bonus;
 
 typedef struct  s_obj_color{

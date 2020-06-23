@@ -6,8 +6,17 @@ t_vector	ft_wave_normal(t_obj_color obj)
     double      alpha;
     double      d;
 
-    d = ft_mod_vector(ft_sub_vector(obj.center, obj.p));
-    alpha = 100 * exp(-d * 0.75) * cos(1.5 * M_PI * d);
+    wave_n = ft_sub_vector(obj.center, obj.p);
+    if (obj.bonus.type == 's')
+    {
+        d = ft_mod_vector(wave_n) * ft_dot_product(wave_n, (t_vector){0,0,1});
+        alpha = 100 * exp(-d * 0.5) * cos(0.25 * M_PI * d);
+    }
+    else
+    {
+        d = ft_mod_vector(wave_n);
+        alpha = 100 * exp(-d * 0.025) * cos(0.025 * M_PI * d);
+    }
     wave_n = ft_sub_vector(obj.p, obj.center);
     wave_n.x *= alpha;
     wave_n.y *= alpha;
@@ -28,31 +37,6 @@ t_rgb           ft_checkered_pattern(t_obj_color obj)
         if ((int)(floor(obj.p.x) + floor(obj.p.z)) % 2)
             return ((t_rgb){255, 255, 255});
     return (obj.rgb);
-}
-
-t_vector        ft_bumpmap(t_obj_color obj)
-{
-    double      coef[2];
-    int         x;
-    int         y;
-    t_vector    u;
-    t_vector    v;
-
-    x = ft_abs((int)obj.p.x % obj.bonus.texture.width);
-    y = (obj.bonus.texture.height - 1) - ft_abs((int)obj.p.y % obj.bonus.texture.height);
-    if ((x - 1) >= 0 && (x + 1) < obj.bonus.texture.width)
-        coef[0] = (obj.bonus.texture.val[y * obj.bonus.texture.width + (x + 1)]
-                - obj.bonus.texture.val[y * obj.bonus.texture.width + (x - 1)]) / 2;
-    if ((y - 1) >= 0 && (y + 1) < obj.bonus.texture.height)
-        coef[1] = (obj.bonus.texture.val[(y + 1) * obj.bonus.texture.width + x]
-                - obj.bonus.texture.val[(y - 1) * obj.bonus.texture.width + x]) / 2;
-    coef[0] /= 0xFFFFFF;
-    coef[1] /= 0xFFFFFF;
-    u = (t_vector){coef[1], 0, 0};
-    v = (t_vector){0, coef[0], 0};
-    obj.normal = ft_add_vector(obj.normal, ft_add_vector(u,v));
-    ft_normalize_vector(&obj.normal);
-    return (obj.normal);
 }
 
 t_rgb           ft_color_texture(t_obj_color obj, int x, int y)

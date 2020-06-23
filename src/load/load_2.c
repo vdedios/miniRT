@@ -19,7 +19,9 @@ void	ft_load_sphere(char *line, t_scene *scene)
 	sphere->center = ft_load_coords(buffer[1]);
 	sphere->radius = ft_load_udouble(buffer[2]) / 2;
 	sphere->rgb = ft_load_rgb(buffer[3]);
-        sphere->bonus = ft_sphere_bonus(scene, buffer[4]);
+#ifdef BONUS
+        sphere->bonus = ft_sphere_bonus(scene, &buffer[4]);
+#endif
 	ft_del_matrix(buffer);
 }
 
@@ -42,17 +44,18 @@ void	ft_load_plane(char *line, t_scene *scene)
 	plane->point = ft_load_coords(buffer[1]);
 	plane->n = ft_load_coords(buffer[2]);
 	plane->rgb = ft_load_rgb(buffer[3]);
-        plane->bonus = ft_plane_bonus(scene, buffer[4]);
+#ifdef BONUS
+        plane->bonus = ft_plane_bonus(scene, &buffer[4]);
+#endif
 	ft_del_matrix(buffer);
 }
 
 void	ft_load_square(char *line, t_scene *scene)
 {
 	char		**buffer;
-	int		i;
+	static int      i = 0;
 	t_square	*square;
 
-	i = 0;
 	buffer = ft_split(line, ' ');
 	while (buffer[i])
 		i++;
@@ -68,7 +71,9 @@ void	ft_load_square(char *line, t_scene *scene)
 	square->rgb = ft_load_rgb(buffer[4]);
 	square->dx = (t_vector){0, 1, 0};
 	square->dy = (t_vector){0, 0, 0};
-        square->bonus = ft_plane_bonus(scene, buffer[5]);
+#ifdef BONUS
+        square->bonus = ft_plane_bonus(scene, &buffer[5]);
+#endif
 	ft_del_matrix(buffer);
 }
 
@@ -93,7 +98,9 @@ void	ft_load_cylinder(char *line, t_scene *scene)
 	cylinder->radius = ft_load_udouble(buffer[3]) / 2;
 	cylinder->height = ft_load_udouble(buffer[4]);
 	cylinder->rgb = ft_load_rgb(buffer[5]);
-        cylinder->bonus = ft_cylinder_bonus(buffer[6]);
+#ifdef BONUS
+        cylinder->bonus = ft_cylinder_bonus(&buffer[6]);
+#endif
 	ft_del_matrix(buffer);
 }
 
@@ -117,7 +124,9 @@ void	ft_load_triangle(char *line, t_scene *scene)
 	triangle->b = ft_load_coords(buffer[2]);
 	triangle->c = ft_load_coords(buffer[3]);
 	triangle->rgb = ft_load_rgb(buffer[4]);
-        triangle->bonus = ft_plane_bonus(scene, buffer[5]);
+#ifdef BONUS
+        triangle->bonus = ft_plane_bonus(scene, &buffer[5]);
+#endif
         ft_get_triangle_boundaries(triangle);
 	ft_del_matrix(buffer);
 }

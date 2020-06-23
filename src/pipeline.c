@@ -57,9 +57,11 @@ void		ft_render_scene(t_scene *s)
             py = 0;
             while (py < s->y)
             {
+#ifdef BONUS
                 if (s->option[3])
                     ft_render_pxl_antialiasing((double)px, (double)py, &ray, s);
                 else
+#endif
                     ft_render_pxl((double)px, (double)py, &ray, s);
                 ft_fill_img_buf(&s->img, px, py, ray.color);
                 py++;

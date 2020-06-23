@@ -80,6 +80,10 @@ void	ft_load_light(char *line, t_scene *scene)
         if (light->intensity < 0 || light->intensity > 1)
             ft_error_handler(BAD_INTENSITY);
 	light->rgb = ft_load_rgb(buffer[3]);
+#ifdef BONUS
         light->parallel = ft_is_parallel_light(buffer[4]);
+#else
+        light->parallel = (t_vector){0, 0, 0};
+#endif
 	ft_del_matrix(buffer);
 }
