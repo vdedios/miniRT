@@ -18,9 +18,9 @@ t_obj_color     ft_disruption(t_light *light, t_obj_color obj)
         else if (obj.bonus.id[0] == 4 || obj.bonus.id[1] == 4)
             obj.rgb = ft_plane_texture(obj);
     }
-    obj.light = ft_parallel_light(light, obj);
 #else
     (void)light;
 #endif
+    obj.light = ft_parallel_light(light, obj);
     return (obj);
 }

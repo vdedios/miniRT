@@ -31,6 +31,8 @@ void            ft_scene_to_screen(t_scene *scene)
 int 		ft_exit(t_window *window)
 {
     mlx_destroy_window(window->mlx_ptr, window->win_ptr);
+    //ft_clean_buffer(scene);
+    system("leaks miniRT");
     exit(EXIT_SUCCESS);
 }
 

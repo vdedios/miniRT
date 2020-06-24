@@ -34,8 +34,7 @@ LIBFT_A_DIR			=	dependencies/libft/libft.a
 PRINTF_A_DIR			=	dependencies/printf/libftprintf.a
 
 CC				=	gcc
-AR				=	ar -rcs
-CFLAGS				= 	-Werror -Wall -Wextra -g
+CFLAGS				= 	-Werror -Wall -Wextra -g 
 OPENGL				= 	-lz -framework OpenGL -framework AppKit
 INCLUDES			=	-Iincludes/ -Iincludes/bonus -I$(PRINTF_INCL) \
 					-I$(GNL_DIR) -I$(LIBFT_DIR) -I$(MINILIBX_DIR) 
@@ -46,7 +45,6 @@ BONUS_FILES			=	color_plane_bonus.c \
  					color_sphere_bonus.c \
  					color_utils_bonus.c \
  					filter_bonus.c \
- 					light_bonus.c \
  					load_bonus.c \
  					load_bonus2.c \
 					main_bonus.c
@@ -75,6 +73,7 @@ SRC_FILES			=	algebra/algebra_1.c \
 					shadows/square_shadows.c \
 					shadows/triangle_shadows.c \
 					camera.c \
+ 					light.c \
 					error.c \
 					pipeline.c \
 					color.c \

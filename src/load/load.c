@@ -70,6 +70,7 @@ void	ft_count_elements(char	*path, t_scene *scene)
 		ft_number_elements(line, scene);
 		free (line);
 	}
+	free (line);
 	close (fd);
 	ft_set_elements(scene);
         scene->n_cams = scene->index[2];
@@ -115,4 +116,5 @@ void	ft_load_scene(char *path, t_scene *scene)
 		ft_load_element(line, scene);
 		free (line);
 	}
+	free (line);
 }

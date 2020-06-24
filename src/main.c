@@ -14,7 +14,7 @@
 
 void	ft_assets(int option)
 {
-    int	fd;
+    int	        fd;
     char	*line;
 
     if (option == 1)
@@ -56,5 +56,6 @@ int	main(int argc, char **argv)
     }
     else
         ft_error_handler(1);
+    system("leaks miniRT");
     return (0);
 }

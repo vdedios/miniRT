@@ -4,6 +4,7 @@ t_vector        ft_parallel_light(t_light *light, t_obj_color obj)
 {
     t_vector    light_dir;
     t_vector    lp;
+    //t_vector    aux;
 
     lp = ft_sub_vector(light->pos, obj.p);
     if (ft_isvoid(light->parallel))
