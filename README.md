@@ -1,4 +1,4 @@
-# miniRT
+# :flashlight: miniRT
 
 > 👉 A small ray tracing engine written in C from scratch!
 
@@ -6,7 +6,7 @@
 
 --- 
 
-## BASIC INSTRUCTIONS
+## :wrench: BASIC INSTRUCTIONS
 
 First of all you must compile the project:
 ``` bash
@@ -48,7 +48,7 @@ When compiling with the `bonus`rule you will get a lot more options
 --reference-axis : draws a set of global reference axis
 ``` 
 
-## SCENES
+## :city_sunset: SCENES
 A scene is the file where all information of the scene is readen from. Ambience, light sources, geometries, textures etc. will be defined here and readen by the program. The extension of this file is custom: `.rt`. Here you have an example of a scene showing some elements. As you can see you will define parameters such as screen resolution, RGB colors, postiions and normal vectors:
 
 ```
