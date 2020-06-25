@@ -65,66 +65,70 @@ pl 0,0,-20 0,0,1 255,255,255
 tr 0,20,-10 -20,0,-10 10,0,-10 100,255,255
 ```
 
-> Aside from the standard configuration you can add some extra features which are listed, depending on the element.
+Aside from the standard configuration you can add some extra features which are listed, depending on the element.
 
 #### :flashlight: LIGHT FLAGS
+Add parallel light following a precise direction:
 ```bash
-parallel:1,0,0
-#add parallel light following a precise direction. Example:
+#Example:
 l -20,0,5 0.7 255,255,255 parallel:1,0,0
 ```
 #### :triangular_ruler: PLANE/TRIANGLE/SQUARE FLAGS
 
 ___Color disruptions:___
+Handle planar textures:
 ```bash    
-skybox:textures/skybox.png 
-#handle planar textures. Example:
+#Example:
 pl 0,0,-30 0,0,1 255,255,255 skybox:textures/skybox.png
-
-checkered
-#add a checkered pattern. Example:
+```
+Add a checkered pattern:
+```bash
+#Example:
 pl 0,0,-30 0,0,1 255,255,255 checkered
 ```
 ___Normal disruptions___
+Add a normal disruption damped wave effect. 
 ```bash
-normal-disruption  
-#add a normal disruption damped wave effect. Example:
+#Example:
 pl 0,0,-30 0,0,1 255,255,255 normal-disruption
-
-bumpmap:texture/example.png 
-#handle bumpmap textures. Example:
+```
+Handle bumpmap textures
+```bash
+#Example:
 pl 0,0,-30 0,0,1 255,255,255 bumpmap:texture/example.png
 ```
 
 #### :basketball: SPHERE
 
 ___Color disruptions:___
+Add a color disruption rainbow effect depending on surface normal:
 ```bash
-rainbow
-#add a color disruption rainbow effect depending on surface normal. Example:
+#Example:
 sp 0,0,0 20 255,255,255 rainbow
-
-uv-map:texture/earth.png
-#sphere texture. Example:
+```
+Handle sphere textures:
+```bash
+#Example:
 sp 0,0,0 20 255,255,255 uv-map:texture/earth.png
 ```
 
 ___Normal disruptions:___
+Add a normal disruption damped wave effect:
 ```bash    
-normal-disruption
-#add a normal disruption damped wave effect. Example:
+#Example:
 sp 0,0,-30 0,0,1 255,255,255 normal-disruption
-
-bumpmap:texture/example.png
+```
+Handle bumpmap textures: 
+```bash
 #handle bumpmap textures. Example:
 sp 0,0,-30 0,0,1 255,255,255 bumpmap:texture/example.png
 ```
 #### :straight_ruler: CYLINDER
 
 ___Color disruptions:___
+Add a color disruption rainbow effect depending on surface normal:
 ```bash
-rainbow
-#add a color disruption rainbow effect depending on surface normal. Example:
+#Example:
 cy 0,0,0 20 255,255,255 rainbow
 ```
 
