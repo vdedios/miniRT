@@ -27,24 +27,29 @@ First of all you must compile the project:
 make -> basic functionalities
 make bonus -> advance features such as texture handling and more!
 ``` 
-For basic operation you must execute: `./miniRT "path_scene" --[options]` for when compiling with `make` or execute something such as `./miniRT_bonus "path_scene" --[options]` when executing `make bonus`.
+For basic operation you must execute: `./miniRT "path_scene" --[options]` when compiling with `make`.
+When compiling with `make bonus` you must execute `./miniRT_bonus "path_scene" --[options]`.
 
-You can *move* inside a scene with the following controls:
+You can **move inside a scene** with the following controls:
+	
+### Zoom
+```
+Q : Zoom in
+E : Zoom out
+```
+### Translation
+```
+W : Move up
+S : Move down
+A : Move left
+D : Move right
+```
+### Rotation
+```
+Mouse : you can rotate camera around local x/y axis. Just click on the desire location you want the camera to look at.
+```
 
-	->Zoom
-	Q : Zoom in
-	E : Zoom out
-
-	->Translation
-	W : Move up
-	S : Move down
-	A : Move left
-	D : Move right
-
-	->Rotation
-	Mouse : you can rotate camera around local x/y axis. Just click on the desire location you want the camera to look at.
-
------------------------------------------------------
+---
 
 GENERAL STANDARD OPTIONS
 
