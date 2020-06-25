@@ -1,4 +1,4 @@
-<pre>
+<pre style="font-weight:bolder">
       ___                       ___                       ___                 
      /__/\        ___          /__/\        ___          /  /\          ___   
     |  |::\      /  /\         \  \:\      /  /\        /  /::\        /  /\  
@@ -12,7 +12,15 @@
      \__\/                     \__\/                     \__\/               
 </pre>
 
-Welcome to miniRT, a small ray tracing engine!
+## Welcome to miniRT, a small ray tracing engine!
+
+### Some rendered images
+
+<p align="center">
+	<img src="https://raw.githubusercontent.com/vdedios/miniRT/master/rendered_images/spalding.png">
+</p>
+
+--- 
 
 BASIC INSTRUCTIONS
 
