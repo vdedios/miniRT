@@ -46,11 +46,11 @@ Zoom | Translation | Rotation
 
 ## GENERAL SCENE OPTIONS
 
-#### LIGHT FLAGS
+#### :flashlight:LIGHT FLAGS
 ```bash
 parallel:1,0,0 #add parallel light following a precise direction. Example: l -20,0,5 0.7 255,255,255 parallel:1,0,0
 ```
-#### PLANE/TRIANGLE/SQUARE FLAGS
+#### :triangular_ruler:PLANE/TRIANGLE/SQUARE FLAGS
 
 ___Color disruptions:___
 ```bash    
@@ -63,7 +63,7 @@ normal-disruption  #add a normal disruption damped wave effect. Example: pl 0,0,
 bumpmap:texture/example.png  #handle bumpmap textures. Example: pl 0,0,-30 0,0,1 255,255,255 bumpmap:texture/example.png
 ```
 
-#### SPHERE
+#### :basketball:SPHERE
 
 ___Color disruptions:___
 ```bash
@@ -76,7 +76,7 @@ ___Normal disruptions:___
 normal-disruption #add a normal disruption damped wave effect. Example: sp 0,0,-30 0,0,1 255,255,255 normal-disruption
 bumpmap:texture/example.png #handle bumpmap textures. Example: sp 0,0,-30 0,0,1 255,255,255 bumpmap:texture/example.png
 ```
-#### CYLINDER
+#### :straight_ruler:CYLINDER
 
 ___Color disruptions:___
 ```bash
