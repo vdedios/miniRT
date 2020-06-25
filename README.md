@@ -9,11 +9,12 @@
 ## BASIC INSTRUCTIONS
 
 First of all you must compile the project:
-```
-make -> basic functionalities
-make bonus -> advance features such as texture handling and more!
+``` bash
+make #basic functionalities
+make bonus #advance features such as texture handling and more!
 ``` 
 For basic operation you must execute: `./miniRT "path_scene" --[options]` when compiling with `make`.
+
 When compiling with `make bonus` you must execute `./miniRT_bonus "path_scene" --[options]`.
 
 You can **move inside a scene** with the following controls:
@@ -25,65 +26,62 @@ Zoom | Translation | Rotation
  | **A** : Move left
  | **D** : Move right
 
+> :warning: _**Warning:** Since no bounding box or other performance algorithms are implemented movement isn't smooth in most cases since the program ray trace over and over again each frame. The purpose of this implementation was to allow the user to get the desired view quickly_ 
 ---
 
-GENERAL STANDARD OPTIONS
-
-    --save : save rendered scene in a .bmp file. Scene will be output in ./output_bmp folder
-
-
-
-GENERAL BONUS OPTIONS
-
-    --help : invoke this help menu
-    --sepia-filter : add a sepia filter to rendered image 
-    --antialiasing : apply aliased effect to rendered image
-    --no-specular : removes specular light effect which comes from default
-    --reference-axis : draws a set of global reference axis
+## GENERAL STANDARD OPTIONS
+``` bash
+--save #save rendered scene in a .bmp file. Scene will be output in ./output_bmp folder
+```
 
 
-GENERAL SCENE OPTIONS
+## GENERAL BONUS OPTIONS
+```bash
+ --help : invoke this help menu
+--sepia-filter : add a sepia filter to rendered image 
+--antialiasing : apply aliased effect to rendered image
+--no-specular : removes specular light effect which comes from default
+--reference-axis : draws a set of global reference axis
+``` 
 
+## GENERAL SCENE OPTIONS
 
-    --LIGHT FLAGS--
-    parallel:1,0,0 : add parallel light following a precise direction. Example: l -20,0,5 0.7 255,255,255 parallel:1,0,0
+#### LIGHT FLAGS
+```bash
+parallel:1,0,0 #add parallel light following a precise direction. Example: l -20,0,5 0.7 255,255,255 parallel:1,0,0
+```
+#### PLANE/TRIANGLE/SQUARE FLAGS
 
+___Color disruptions:___
+```bash    
+skybox:textures/skybox.png  #handle planar textures. Example: pl 0,0,-30 0,0,1 255,255,255 skybox:textures/skybox.png
+checkered #add a checkered pattern. Example: pl 0,0,-30 0,0,1 255,255,255 checkered
+```
+___Normal disruptions___
+```bash
+normal-disruption  #add a normal disruption damped wave effect. Example: pl 0,0,-30 0,0,1 255,255,255 normal-disruption
+bumpmap:texture/example.png  #handle bumpmap textures. Example: pl 0,0,-30 0,0,1 255,255,255 bumpmap:texture/example.png
+```
 
+#### SPHERE
 
-    --PLANE/TRIANGLE/SQUARE FLAGS--
+___Color disruptions:___
+```bash
+rainbow #add a color disruption rainbow effect depending on surface normal. Example: sp 0,0,0 20 255,255,255 rainbow
+uv-map:texture/earth.png #sphere texture. Example: sp 0,0,0 20 255,255,255 uv-map:texture/earth.png
+```
 
-    Color disruptions:
-    -----------------
-    skybox:textures/skybox.png : handle planar textures. Example: pl 0,0,-30 0,0,1 255,255,255 skybox:textures/skybox.png
-    checkered : add a checkered pattern. Example: pl 0,0,-30 0,0,1 255,255,255 checkered
+___Normal disruptions:___
+```bash    
+normal-disruption #add a normal disruption damped wave effect. Example: sp 0,0,-30 0,0,1 255,255,255 normal-disruption
+bumpmap:texture/example.png #handle bumpmap textures. Example: sp 0,0,-30 0,0,1 255,255,255 bumpmap:texture/example.png
+```
+#### CYLINDER
 
-    Normal disruptions:
-    ------------------
-    normal-disruption : add a normal disruption damped wave effect. Example: pl 0,0,-30 0,0,1 255,255,255 normal-disruption
-    bumpmap:texture/example.png : handle bumpmap textures. Example: pl 0,0,-30 0,0,1 255,255,255 bumpmap:texture/example.png
-
-
-
-    --SPHERE--
-
-    Color disruptions:
-    -----------------
-    rainbow : add a color disruption rainbow effect depending on surface normal. Example: sp 0,0,0 20 255,255,255 rainbow
-    uv-map:texture/earth.png : sphere texture. Example: sp 0,0,0 20 255,255,255 uv-map:texture/earth.png
-
-    Normal disruptions:
-    ------------------
-    normal-disruption : add a normal disruption damped wave effect. Example: sp 0,0,-30 0,0,1 255,255,255 normal-disruption
-    bumpmap:texture/example.png : handle bumpmap textures. Example: sp 0,0,-30 0,0,1 255,255,255 bumpmap:texture/example.png
-
-
-
-    --CYLINDER--
-
-    Color disruptions:
-    -----------------
-    rainbow : add a color disruption rainbow effect depending on surface normal. Example: sp 0,0,0 20 255,255,255 rainbow
-
+___Color disruptions:___
+```bash
+rainbow #add a color disruption rainbow effect depending on surface normal. Example: sp 0,0,0 20 255,255,255 rainbow
+```
 
 I) To include these options/effects, you should add one or more of the following flags to the scene config file.
 II) Each vector is presented as an example, you can substitute with your own.
