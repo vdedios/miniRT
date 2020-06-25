@@ -12,7 +12,7 @@
      \__\/                     \__\/                     \__\/               
 </pre>
 
-#### A small ray tracing engine written in C from scratch!
+<h3 align="center"><code>A small ray tracing engine written in C from scratch!</code></h3>
 
 <p align="center">
 	<img src="https://raw.githubusercontent.com/vdedios/miniRT/master/rendered_images/spalding.png">
