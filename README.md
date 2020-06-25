@@ -76,6 +76,7 @@ l -20,0,5 0.7 255,255,255 parallel:1,0,0
 #### :triangular_ruler: PLANE/TRIANGLE/SQUARE FLAGS
 
 ___Color disruptions:___
+
 Handle planar textures:
 ```bash    
 #Example:
@@ -87,6 +88,7 @@ Add a checkered pattern:
 pl 0,0,-30 0,0,1 255,255,255 checkered
 ```
 ___Normal disruptions___
+
 Add a normal disruption damped wave effect. 
 ```bash
 #Example:
@@ -101,6 +103,7 @@ pl 0,0,-30 0,0,1 255,255,255 bumpmap:texture/example.png
 #### :basketball: SPHERE
 
 ___Color disruptions:___
+
 Add a color disruption rainbow effect depending on surface normal:
 ```bash
 #Example:
@@ -113,6 +116,7 @@ sp 0,0,0 20 255,255,255 uv-map:texture/earth.png
 ```
 
 ___Normal disruptions:___
+
 Add a normal disruption damped wave effect:
 ```bash    
 #Example:
@@ -126,11 +130,13 @@ sp 0,0,-30 0,0,1 255,255,255 bumpmap:texture/example.png
 #### :straight_ruler: CYLINDER
 
 ___Color disruptions:___
+
 Add a color disruption rainbow effect depending on surface normal:
 ```bash
 #Example:
 cy 0,0,0 20 255,255,255 rainbow
 ```
+
 
 ### Some considerations
 
