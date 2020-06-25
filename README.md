@@ -12,7 +12,7 @@
      \__\/                     \__\/                     \__\/               
 </pre>
 
-<h3 align="center"><code>A small ray tracing engine written in C from scratch!</code></h3>
+<h3 align="center">A small ray tracing engine written in C from scratch!</h3>
 
 <p align="center">
 	<img src="https://raw.githubusercontent.com/vdedios/miniRT/master/rendered_images/spalding.png">
@@ -20,16 +20,16 @@
 
 --- 
 
-BASIC INSTRUCTIONS
+## BASIC INSTRUCTIONS
 
 First of all you must compile the project:
-	-"make" : basic functioning
-    -"make bonus" : advance features such as texture handling and more!
+```
+make -> basic functionalities
+make bonus -> advance features such as texture handling and more!
+``` 
+For basic operation you must execute: `./miniRT "path_scene" --[options]` for when compiling with `make` or execute something such as `./miniRT_bonus "path_scene" --[options]` when executing `make bonus`.
 
-For basic operation you must execute the program as follows after compiling:
-    ./miniRT "path_scene" --[options]
-
-You can move inside a scene with the following controls:
+You can *move* inside a scene with the following controls:
 
 	->Zoom
 	Q : Zoom in
