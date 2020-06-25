@@ -57,6 +57,7 @@ nnoremap <Plug>(coc-codelens-action) :call       CocActionAsync('codeLensActio
 nnoremap <Plug>(coc-range-select) :call       CocAction('rangeSelect',     '', v:true)
 vnoremap <Plug>(coc-range-select-backward) :call       CocAction('rangeSelect',     visualmode(), v:false)
 vnoremap <Plug>(coc-range-select) :call       CocAction('rangeSelect',     visualmode(), v:true)
+map <F1> :Stdheader
 map <C-H> gT
 map <C-L> gt
 vmap <BS> "-d
@@ -101,6 +102,7 @@ set smarttab
 set splitbelow
 set splitright
 set tabline=%!lightline#tabline()
+set tabstop=4
 set termguicolors
 set timeoutlen=500
 set undodir=~/.cache/vim/undo
@@ -109,7 +111,6 @@ set verbosefile=~/.vim/vimdebug.txt
 set viminfo='1000
 set visualbell
 set wildmenu
-set window=50
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
@@ -123,9 +124,8 @@ argglobal
 %argdel
 $argadd src/miniRT.c
 tabnew
-tabnew
 tabrewind
-edit src/error.c
+edit src/algebra/algebra_1.c
 set splitbelow splitright
 wincmd t
 set winminheight=0
@@ -176,7 +176,7 @@ setlocal foldcolumn=0
 setlocal foldenable
 setlocal foldexpr=0
 setlocal foldignore=#
-setlocal foldlevel=0
+setlocal foldlevel=1
 setlocal foldmarker={{{,}}}
 set foldmethod=syntax
 setlocal foldmethod=syntax
@@ -257,17 +257,15 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-8
-normal! zo
-let s:l = 16 - ((15 * winheight(0) + 24) / 48)
+let s:l = 16 - ((15 * winheight(0) + 17) / 35)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 16
-normal! 027|
+normal! 0
 lcd ~/Desktop/miniRT
 tabnext
-edit ~/Desktop/miniRT/scenes/single_geometry/sceneSphere.rt
+edit ~/.myvimrc
 set splitbelow splitright
 wincmd t
 set winminheight=0
@@ -275,6 +273,18 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 argglobal
+vnoremap <buffer> <silent> [" :exe "normal! gv"|call search('\%(^\s*".*\n\)\%(^\s*"\)\@!', "bW")
+nnoremap <buffer> <silent> [" :call search('\%(^\s*".*\n\)\%(^\s*"\)\@!', "bW")
+vnoremap <buffer> <silent> [] m':exe "normal! gv"|call search('^\s*endf\%[unction]\>', "bW")
+nnoremap <buffer> <silent> [] m':call search('^\s*endf\%[unction]\>', "bW")
+vnoremap <buffer> <silent> [[ m':exe "normal! gv"|call search('^\s*fu\%[nction]\>', "bW")
+nnoremap <buffer> <silent> [[ m':call search('^\s*fu\%[nction]\>', "bW")
+vnoremap <buffer> <silent> ]" :exe "normal! gv"|call search('^\(\s*".*\n\)\@<!\(\s*"\)', "W")
+nnoremap <buffer> <silent> ]" :call search('^\(\s*".*\n\)\@<!\(\s*"\)', "W")
+vnoremap <buffer> <silent> ][ m':exe "normal! gv"|call search('^\s*endf\%[unction]\>', "W")
+nnoremap <buffer> <silent> ][ m':call search('^\s*endf\%[unction]\>', "W")
+vnoremap <buffer> <silent> ]] m':exe "normal! gv"|call search('^\s*fu\%[nction]\>', "W")
+nnoremap <buffer> <silent> ]] m':call search('^\s*fu\%[nction]\>', "W")
 setlocal keymap=
 setlocal noarabic
 setlocal autoindent
@@ -291,8 +301,8 @@ setlocal cinkeys=0{,0},0),0],:,0#,!^F,o,O,e
 setlocal cinoptions=
 setlocal cinwords=if,else,while,do,for,switch
 setlocal colorcolumn=
-setlocal comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
-setlocal commentstring=/*%s*/
+setlocal comments=sO:\"\ -,mO:\"\ \ ,eO:\"\",:\"
+setlocal commentstring=\"%s
 setlocal complete=.,w,b,u,t,i
 setlocal concealcursor=
 setlocal conceallevel=0
@@ -310,8 +320,8 @@ setlocal nodiff
 setlocal equalprg=
 setlocal errorformat=
 setlocal expandtab
-if &filetype != ''
-setlocal filetype=
+if &filetype != 'vim'
+setlocal filetype=vim
 endif
 setlocal fixendofline
 setlocal foldcolumn=0
@@ -326,7 +336,7 @@ setlocal foldminlines=1
 setlocal foldnestmax=20
 setlocal foldtext=foldtext()
 setlocal formatexpr=
-setlocal formatoptions=tcq
+setlocal formatoptions=croql
 setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
 setlocal formatprg=
 setlocal grepprg=
@@ -334,11 +344,11 @@ setlocal iminsert=0
 setlocal imsearch=-1
 setlocal include=
 setlocal includeexpr=
-setlocal indentexpr=
-setlocal indentkeys=0{,0},0),0],:,0#,!^F,o,O,e
+setlocal indentexpr=GetVimIndent()
+setlocal indentkeys=0{,0},0),0],:,0#,!^F,o,O,e,=end,=else,=cat,=fina,=END,0\\,0=\"\\\ 
 setlocal noinfercase
-setlocal iskeyword=@,48-57,_,192-255
-setlocal keywordprg=
+setlocal iskeyword=@,48-57,_,192-255,#
+setlocal keywordprg=:help
 setlocal nolinebreak
 setlocal nolisp
 setlocal lispwords=
@@ -378,17 +388,17 @@ setlocal statusline=%{lightline#link()}%#LightlineLeft_active_0#%(\ %{lightline#
 setlocal suffixesadd=
 setlocal swapfile
 setlocal synmaxcol=3000
-if &syntax != ''
-setlocal syntax=
+if &syntax != 'vim'
+setlocal syntax=vim
 endif
-setlocal tabstop=8
+setlocal tabstop=4
 setlocal tagcase=
 setlocal tagfunc=
 setlocal tags=
 setlocal termwinkey=
 setlocal termwinscroll=10000
 setlocal termwinsize=
-setlocal textwidth=0
+setlocal textwidth=78
 setlocal thesaurus=
 setlocal undofile
 setlocal undolevels=-123456
@@ -399,190 +409,54 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 3 - ((2 * winheight(0) + 24) / 48)
+let s:l = 15 - ((14 * winheight(0) + 17) / 35)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-3
+15
 normal! 0
 lcd ~/Desktop/miniRT
-tabnext
-edit ~/Desktop/miniRT/includes/bmp.h
-set splitbelow splitright
-wincmd t
-set winminheight=0
-set winheight=1
-set winminwidth=0
-set winwidth=1
-argglobal
-setlocal keymap=
-setlocal noarabic
-setlocal autoindent
-setlocal backupcopy=
-setlocal balloonexpr=
-setlocal nobinary
-setlocal nobreakindent
-setlocal breakindentopt=
-setlocal bufhidden=
-setlocal buflisted
-setlocal buftype=
-setlocal cindent
-setlocal cinkeys=0{,0},0),0],:,0#,!^F,o,O,e
-setlocal cinoptions=
-setlocal cinwords=if,else,while,do,for,switch
-setlocal colorcolumn=
-setlocal comments=sO:*\ -,mO:*\ \ ,exO:*/,s1:/*,mb:*,ex:*/,://
-setlocal commentstring=/*%s*/
-setlocal complete=.,w,b,u,t,i
-setlocal concealcursor=
-setlocal conceallevel=0
-setlocal completefunc=
-setlocal nocopyindent
-setlocal cryptmethod=
-setlocal nocursorbind
-setlocal nocursorcolumn
-set cursorline
-setlocal cursorline
-setlocal cursorlineopt=both
-setlocal define=
-setlocal dictionary=
-setlocal nodiff
-setlocal equalprg=
-setlocal errorformat=
-setlocal expandtab
-if &filetype != 'cpp'
-setlocal filetype=cpp
-endif
-setlocal fixendofline
-setlocal foldcolumn=0
-setlocal foldenable
-setlocal foldexpr=0
-setlocal foldignore=#
-setlocal foldlevel=0
-setlocal foldmarker={{{,}}}
-set foldmethod=syntax
-setlocal foldmethod=syntax
-setlocal foldminlines=1
-setlocal foldnestmax=20
-setlocal foldtext=foldtext()
-setlocal formatexpr=
-setlocal formatoptions=croql
-setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
-setlocal formatprg=
-setlocal grepprg=
-setlocal iminsert=0
-setlocal imsearch=-1
-setlocal include=
-setlocal includeexpr=
-setlocal indentexpr=
-setlocal indentkeys=0{,0},0),0],:,0#,!^F,o,O,e
-setlocal noinfercase
-setlocal iskeyword=@,48-57,_,192-255
-setlocal keywordprg=
-setlocal nolinebreak
-setlocal nolisp
-setlocal lispwords=
-setlocal nolist
-setlocal makeencoding=
-setlocal makeprg=
-setlocal matchpairs=(:),{:},[:]
-setlocal modeline
-setlocal modifiable
-setlocal nrformats=bin,octal,hex
-set number
-setlocal number
-setlocal numberwidth=4
-setlocal omnifunc=ccomplete#Complete
-setlocal path=
-setlocal nopreserveindent
-setlocal nopreviewwindow
-setlocal quoteescape=\\
-setlocal noreadonly
-setlocal norelativenumber
-setlocal norightleft
-setlocal rightleftcmd=search
-setlocal noscrollbind
-setlocal scrolloff=-1
-setlocal shiftwidth=4
-setlocal noshortname
-setlocal showbreak=
-setlocal sidescrolloff=-1
-setlocal signcolumn=auto
-setlocal smartindent
-setlocal softtabstop=0
-setlocal nospell
-setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
-setlocal spellfile=
-setlocal spelllang=en
-setlocal statusline=%{lightline#link()}%#LightlineLeft_active_0#%(\ %{lightline#mode()}\ %)%{(&paste)?\"\":\"\"}%(\ %{&paste?\"PASTE\":\"\"}\ %)%#LightlineLeft_active_0_1#%#LightlineLeft_active_1#%(\ %R\ %)%{(&readonly)&&(1||(&modified||!&modifiable)||1||Devicons_Filetype()!=#\"\")?\"\":\"\"}%(\ %t\ %)%{(&modified||!&modifiable)||1||Devicons_Filetype()!=#\"\"?\"\":\"\"}%(\ %M\ %)%{(&modified||!&modifiable)&&(1||Devicons_Filetype()!=#\"\")?\"\":\"\"}%(\ %{&fenc!=#\"\"?&fenc:&enc}[%{&ff}]\ %)%{Devicons_Filetype()!=#\"\"?\"\":\"\"}%(\ %{Devicons_Filetype()}\ %)%#LightlineLeft_active_1_2#%#LightlineMiddle_active#%=%#LightlineRight_active_2_3#%#LightlineRight_active_2#%(\ %{coc#status()}\ %)%#LightlineRight_active_1_2#%#LightlineRight_active_1#%(\ %{PomodoroStatus()}\ %)%#LightlineRight_active_0_1#%#LightlineRight_active_0#%(\ %2p%%\ %3l:%-2v\ %)
-setlocal suffixesadd=
-setlocal swapfile
-setlocal synmaxcol=3000
-if &syntax != 'cpp'
-setlocal syntax=cpp
-endif
-setlocal tabstop=8
-setlocal tagcase=
-setlocal tagfunc=
-setlocal tags=
-setlocal termwinkey=
-setlocal termwinscroll=10000
-setlocal termwinsize=
-setlocal textwidth=0
-setlocal thesaurus=
-setlocal undofile
-setlocal undolevels=-123456
-setlocal varsofttabstop=
-setlocal vartabstop=
-setlocal wincolor=
-setlocal nowinfixheight
-setlocal nowinfixwidth
-setlocal wrap
-setlocal wrapmargin=0
-let s:l = 7 - ((6 * winheight(0) + 24) / 48)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-7
-normal! 039|
-lcd ~/Desktop/miniRT
-tabnext 1
-badd +26 ~/Desktop/miniRT/src/bmp.c
+tabnext 2
+badd +0 ~/Desktop/miniRT/src/algebra/algebra_1.c
 badd +30 ~/Desktop/miniRT/src/miniRT.c
+badd +37 ~/Desktop/miniRT/makefile
+badd +4 ~/Desktop/miniRT/src/load/load.c
+badd +3 ~/Desktop/miniRT/scenes/single_geometry/sceneSphere.rt
+badd +4 ~/Desktop/miniRT/src/main.c
+badd +8 ~/Desktop/miniRT/src/error.c
+badd +6 ~/Desktop/miniRT/includes/bmp.h
+badd +79 ~/Desktop/miniRT/src/bmp.c
 badd +47 ~/Desktop/miniRT/src/pipeline.c
 badd +15 ~/Desktop/miniRT/includes/scene_types.h
 badd +9 ~/Desktop/miniRT/scenes/bonus/sceneRainbow.rt
-badd +58 ~/Desktop/miniRT/makefile
-badd +18 ~/Desktop/miniRT/assets/help.txt
+badd +59 ~/Desktop/miniRT/assets/help.txt
 badd +62 ~/Desktop/miniRT/includes/miniRT.h
 badd +15 ~/Desktop/miniRT/assets/welcome.txt
-badd +1 ~/Desktop/miniRT/src/shadows.c
-badd +10 ~/Desktop/miniRT/includes/error.h
+badd +10 ~/Desktop/miniRT/src/shadows.c
+badd +23 ~/Desktop/miniRT/includes/error.h
 badd +8 ~/Desktop/miniRT/scenes/single_geometry/sceneCylinder.rt
 badd +3 ~/Desktop/miniRT/src/minirt/miniRT_utils.c
-badd +35 ~/Desktop/miniRT/src/color.c
+badd +34 ~/Desktop/miniRT/src/color.c
 badd +9 ~/Desktop/miniRT/scenes/scenePlanesBump.rt
-badd +20 ~/Desktop/miniRT/src/main_options.c
-badd +1 ~/Desktop/miniRT/src/bonus/color_bonus.c
-badd +53 ~/Desktop/miniRT/includes/geometry_types.h
+badd +37 ~/Desktop/miniRT/src/main_options.c
+badd +24 ~/Desktop/miniRT/src/bonus/color_bonus.c
+badd +22 ~/Desktop/miniRT/includes/geometry_types.h
 badd +7 ~/Desktop/miniRT/scenes/scenePlanesWaves.rt
 badd +11 ~/Desktop/miniRT/src/algebra/algebra_2.c
 badd +19 ~/Desktop/miniRT/src/geometry/plane.c
 badd +13 ~/Desktop/miniRT/includes/algebra.h
-badd +48 ~/Desktop/miniRT/src/main.c
-badd +1 ~/Desktop/miniRT/src/load/load_1.c
+badd +63 ~/Desktop/miniRT/src/load/load_1.c
 badd +13 ~/Desktop/miniRT/includes/bmp_types.h
 badd +1 ~/Desktop/miniRT/src/load/load_utils2.c
 badd +1 ~/Desktop/miniRT/scenes/sceneVoid.rt
-badd +1 ~/Desktop/miniRT/src/error.c
 badd +7 ~/Desktop/miniRT/scenes/sceneSphere2.rt
 badd +18 ~/Desktop/miniRT/src/camera.c
-badd +1 ~/Desktop/miniRT/src/geometry/sphere.c
-badd +26 ~/Desktop/miniRT/src/load/load_2.c
+badd +22 ~/Desktop/miniRT/src/geometry/sphere.c
+badd +28 ~/Desktop/miniRT/src/load/load_2.c
 badd +1 ~/Desktop/miniRT/includes/color.h
 badd +8 ~/Desktop/miniRT/scenes/sceneOverlap.rt
-badd +47 ~/Desktop/miniRT/src/geometry/cylinder.c
-badd +1 ~/Desktop/miniRT/src/shadows/shadows.c
+badd +1 ~/Desktop/miniRT/src/geometry/cylinder.c
+badd +31 ~/Desktop/miniRT/src/shadows/shadows.c
 badd +16 ~/Desktop/miniRT/includes/shadows.h
 badd +8 ~/Desktop/miniRT/scenes/sceneSpheres.rt
 badd +72 ~/Desktop/miniRT/src/geometry/triangle.c
@@ -604,8 +478,6 @@ badd +24 ~/Desktop/miniRT/includes/load.h
 badd +1 ~/Desktop/miniRT/src
 badd +1 ~/Desktop/miniRT/scenes/scenePlanes.rt
 badd +4 ~/Desktop/miniRT/scenes/sceneFails.rt
-badd +2 ~/Desktop/miniRT/src/load/load.c
-badd +1 ~/Desktop/miniRT/src/algebra/algebra_1.c
 badd +12 ~/Desktop/miniRT/src/shadows/square_shadows.c
 badd +10 ~/Desktop/miniRT/src/shadows/sphere_shadows.c
 badd +4 ~/Desktop/miniRT/src/shadows/triangle_shadows.c
@@ -614,7 +486,7 @@ badd +4 ~/Desktop/miniRT/scenes/sceneCylinder.rt
 badd +1 ~/Desktop/miniRT/src/load/load_utils.c
 badd +1 ~/Desktop/miniRT/src/algebra
 badd +3 ~/Desktop/miniRT/src/axis.c
-badd +21 ~/Desktop/miniRT/src/algebra/algebra_3.c
+badd +29 ~/Desktop/miniRT/src/algebra/algebra_3.c
 badd +1 ~/Desktop/miniRT/includes/axis.h
 badd +32 ~/Desktop/miniRT/scenes/scene42.rt
 badd +3 ~/Desktop/miniRT/scenes/sceneProblems2.rt
@@ -626,7 +498,6 @@ badd +1 ~/Desktop/miniRT/src/load
 badd +18 ~/Desktop/miniRT/src/geometry/cylinder_caps.c
 badd +9 ~/Desktop/miniRT/scenes/scene2Planes.rt
 badd +9 ~/Desktop/miniRT/scenes/alilisotiocianato.rt
-badd +11 ~/Desktop/miniRT/includes/bmp.h
 badd +30 ~/Desktop/miniRT/dependencies/libft/ft_strncmp.c
 badd +1 ~/Desktop/miniRT/output_scenes/output.bmp
 badd +1 ~/Desktop/miniRT/dependencies/minilibx_opengl
@@ -635,14 +506,13 @@ badd +126 ~/Desktop/miniRT/dependencies/minilibx_opengl/mlx.h
 badd +56 ~/Desktop/miniRT/dependencies/minilibx_opengl/mlx_new_window.h
 badd +81 ~/Desktop/miniRT/dependencies/minilibx_opengl/mlx_int.h
 badd +4 ~/Desktop/miniRT/dependencies/minilibx_opengl/Makefile
-badd +23 ~/Desktop/miniRT/src/load/load_utils_2.c
+badd +22 ~/Desktop/miniRT/src/load/load_utils_2.c
 badd +8 ~/Desktop/miniRT/scenes/plan.rt
-badd +1 ~/Desktop/miniRT/scenes
 badd +4 ~/Desktop/miniRT/src/color_waves.c
-badd +7 ~/Desktop/miniRT/README.md
+badd +4 ~/Desktop/miniRT/README.md
 badd +1 ~/Desktop/miniRT/src/main_bonus.c
-badd +22 ~/Desktop/miniRT/includes/bonus/minirt_bonus.h
-badd +34 ~/Desktop/miniRT/src/bonus/main_bonus.c
+badd +45 ~/Desktop/miniRT/includes/bonus/minirt_bonus.h
+badd +22 ~/Desktop/miniRT/src/bonus/main_bonus.c
 badd +21 ~/Desktop/miniRT/dependencies/libft/ft_strnstr.c
 badd +8 ~/Desktop/miniRT/scenes/scenePlanesCheckered.rt
 badd +10 ~/Desktop/miniRT/scenes/sceneRainbow.rt
@@ -659,7 +529,7 @@ badd +8 ~/Desktop/miniRT/output.txt
 badd +8 ~/Desktop/miniRT/scenes/sceneCube.rt
 badd +1 ~/Desktop/miniRT/scenes/scenePyramid.rt
 badd +8 ~/Desktop/miniRT/scenes/sceneProblemsTriangle.rt
-badd +22 ~/Desktop/miniRT/src/bonus/load_bonus.c
+badd +85 ~/Desktop/miniRT/src/bonus/load_bonus.c
 badd +1 ~/Desktop/miniRT/includes
 badd +8 ~/Desktop/miniRT/scenes_bonus/scenePlanesBump.rt
 badd +1 ~/Desktop/miniRT/scenes_bonus/sceneCylinder.rt
@@ -677,23 +547,44 @@ badd +5 ~/Desktop/miniRT/scenes/sceneSphere.rt
 badd +2 ~/Desktop/miniRT/scenes/check/scene42.rt
 badd +8 ~/Desktop/miniRT/scenes/check/sceneRoom.rt
 badd +1 ~/Desktop/miniRT/src/bonus
-badd +3 ~/Desktop/miniRT/src/bonus/color_sphere_bonus.c
-badd +3 ~/Desktop/miniRT/src/bonus/light_bonus.c
-badd +3 ~/Desktop/miniRT/src/bonus/color_plane_bonus.c
+badd +32 ~/Desktop/miniRT/src/bonus/color_sphere_bonus.c
+badd +19 ~/Desktop/miniRT/src/bonus/light_bonus.c
+badd +42 ~/Desktop/miniRT/src/bonus/color_plane_bonus.c
 badd +3 ~/Desktop/miniRT/src/bonus/filter_bonus.c
-badd +21 ~/Desktop/miniRT/src/bonus/load_bonus2.c
-badd +4 ~/Desktop/miniRT/scenes/bonus/sceneSphereSpace.rt
+badd +4 ~/Desktop/miniRT/src/bonus/load_bonus2.c
+badd +2 ~/Desktop/miniRT/scenes/bonus/sceneSphereSpace.rt
 badd +2 ~/Desktop/miniRT/scenes/bonus/sceneSphereEarth.rt
 badd +2 ~/Desktop/miniRT/scenes/bonus/sceneCylinderRainbow.rt
-badd +5 ~/Desktop/miniRT/scenes/bonus/scenePlanesSkybox.rt
+badd +2 ~/Desktop/miniRT/scenes/bonus/scenePlanesSkybox.rt
 badd +3 ~/Desktop/miniRT/scenes/bonus/scenePlanesBump.rt
 badd +6 ~/Desktop/miniRT/scenes/bonus/sceneSphereParallel.rt
 badd +9 ~/Desktop/miniRT/scenes/single_geometry/sceneSquare.rt
 badd +8 ~/Desktop/miniRT/scenes/single_geometry/sceneTriangle.rt
-badd +57 ~/Desktop/miniRT/src/load/load_utils_3.c
+badd +75 ~/Desktop/miniRT/src/load/load_utils_3.c
 badd +38 ~/Desktop/miniRT/src/minirt/miniRT.c
-badd +7 ~/Desktop/miniRT/scenes/single_geometry/sceneSphere.rt
 badd +97 ~/Desktop/miniRT/tmp.c
+badd +1 ~/Desktop/miniRT/src/bonus/.load_bonus.c.swp
+badd +2 ~/Desktop/miniRT/scenes/single_geometry/sceneVoid.rt
+badd +7 ~/Desktop/miniRT/scenes/single_geometry/scenePlane.rt
+badd +8 ~/Desktop/miniRT/scenes/bonus/scene42.rt
+badd +8 ~/Desktop/miniRT/scenes/multiple_objects/scene42.rt
+badd +4 ~/Desktop/miniRT/scenes/bonus/scene42Space.rt
+badd +2 ~/Desktop/miniRT/scenes/multiple_objects/sceneRoom.rt
+badd +1 ~/Desktop/miniRT/includes/bonus
+badd +4 ~/Desktop/miniRT/src/color_utils.c
+badd +7 ~/Desktop/miniRT/.gitignore
+badd +7 ~/Desktop/miniRT/scenes/bonus/sceneSphereMultiple.rt
+badd +7 ~/Desktop/miniRT/scenes/bonus/scenePlanesFloor.rt
+badd +1 ~/Desktop/miniRT/assets
+badd +1 ~/Desktop/miniRT/src/hooks/miniRT_utils.c
+badd +25 ~/Desktop/miniRT/src/bonus/color_utils_bonus.c
+badd +9 ~/Desktop/miniRT/scenes/bonus/sceneSphereTexture.rt
+badd +8 ~/Desktop/miniRT/scenes/multiple_objects/sceneMix.rt
+badd +1 ~/Desktop/miniRT/scenes/bonus/sceneCube.rt
+badd +31 ~/Desktop/miniRT/src/hooks/miniRT.c
+badd +1 ~/Desktop/miniRT/dependencies/get_next_line
+badd +52 ~/Desktop/miniRT/dependencies/get_next_line/get_next_line.c
+badd +0 ~/.myvimrc
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0
   silent exe 'bwipe ' . s:wipebuf
 endif

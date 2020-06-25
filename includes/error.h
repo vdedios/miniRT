@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/06/24 21:31:48 by vde-dios          #+#    #+#             */
+/*   Updated: 2020/06/24 21:31:59 by vde-dios         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef ERROR_H
 # define ERROR_H
-
 
 /*
 ** Error macros
@@ -20,6 +31,6 @@
 ** Error functions
 */
 
-void    ft_error_handler(int error_id);
+void	ft_error_handler(int error_id);
 
 #endif

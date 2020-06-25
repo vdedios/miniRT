@@ -1,31 +1,34 @@
-#include "miniRT.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   load_utils_2.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/06/24 20:57:33 by vde-dios          #+#    #+#             */
+/*   Updated: 2020/06/24 23:26:53 by vde-dios         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void    ft_check_system_resolution(t_scene *scene)
+#include "minirt.h"
+
+void	ft_check_system_resolution(t_scene *scene)
 {
-    int w;
-    int h;
+	int	w;
+	int	h;
 
-#if __APPLE__
-    CGDirectDisplayID mainDisplayId = CGMainDisplayID();
-    w = CGDisplayPixelsWide(mainDisplayId) - 100;
-    h = CGDisplayPixelsHigh(mainDisplayId) - 100;
-#else
-    w = 1000;
-    h = 1000;
-#endif
-    if (scene->x > w)
-        scene->x = w;
-    if (scene->y > h)
-        scene->y = h;
+	w = 1000;
+	h = 1000;
+	if (scene->x > w)
+		scene->x = w;
+	if (scene->y > h)
+		scene->y = h;
 }
 
-int     ft_bonus_option(void)
+int		ft_bonus_option(void)
 {
-    int bonus;
+	int	bonus;
 
-    bonus = 0;
-#ifdef BONUS
-        bonus = 2;
-#endif
-    return (bonus);
+	bonus = 0;
+	return (bonus);
 }
