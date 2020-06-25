@@ -97,7 +97,7 @@ rainbow
 #add a color disruption rainbow effect depending on surface normal. Example: sp 0,0,0 20 255,255,255 rainbow
 ```
 
-I) To include these options/effects, you should add one or more of the following flags to the scene config file.
-II) Each vector is presented as an example, you can substitute with your own.
-III) Each texture/image file is presented as an example, you can substitute with your own. Path must be taken from the root of this proyect.
-IV) Each geometry can combine one option from each category: color or normal disruption. These options should be written one after oother with one space between each.
+1. To include these options/effects, you should add one or more of the following flags to the scene config file.
+2. Each vector is presented as an example, you can substitute with your own.
+3. Each texture/image file is presented as an example, you can substitute with your own. Path must be taken from the root of this proyect.
+4. Each geometry can combine one option from each category: color or normal disruption. These options should be written one after oother with one space between each.
