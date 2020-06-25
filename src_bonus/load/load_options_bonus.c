@@ -6,7 +6,7 @@
 /*   By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:55:24 by vde-dios          #+#    #+#             */
-/*   Updated: 2020/06/25 13:24:01 by vde-dios         ###   ########.fr       */
+/*   Updated: 2020/06/25 17:21:04 by vde-dios         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,47 +34,12 @@ t_texture		ft_load_texture(t_scene *s, char *option)
 	return (texture);
 }
 
-t_bonus			ft_plane_bonus(t_scene *s, char **option)
+static	int		ft_common_options(t_scene *s, char **option
+		, t_bonus *bonus, int i)
 {
-	t_bonus		bonus;
-	int			i;
-
-	i = -1;
-	bonus.id[0] = 0;
-	while (option[++i])
+	if (!ft_strncmp(option[i], "normal-disruption", 18))
 	{
-		if (!ft_strncmp(option[i], "normal-disruption", 18))
-			bonus.id[i] = 1;
-		else if (!ft_strncmp(option[i], "checkered", 10))
-			bonus.id[i] = 2;
-		else if (!ft_strncmp(option[i], "bumpmap:", 8))
-		{
-			bonus.bumpmap = ft_load_texture(s, option[i]);
-			bonus.id[i] = 3;
-		}
-		else if (!ft_strncmp(option[i], "skybox:", 7))
-		{
-			bonus.texture = ft_load_texture(s, option[i]);
-			bonus.id[i] = 4;
-		}
-		else
-			ft_error_handler(BAD_BONUS);
-	}
-	return (bonus);
-}
-
-static	int		ft_sphere_bonus_plus(t_scene *s, char **option
-					, t_bonus *bonus, int i)
-{
-	if (!ft_strncmp(option[i], "rainbow", ft_strlen(option[i]) + 1))
-	{
-		bonus->id[i] = 5;
-		return (1);
-	}
-	else if (!ft_strncmp(option[i], "uv-map:", 7))
-	{
-		bonus->texture = ft_load_texture(s, option[i]);
-		bonus->id[i] = 6;
+		bonus->id[i] = 1;
 		return (1);
 	}
 	else if (!ft_strncmp(option[i], "bumpmap:", 8))
@@ -86,19 +51,52 @@ static	int		ft_sphere_bonus_plus(t_scene *s, char **option
 	return (0);
 }
 
+t_bonus			ft_plane_bonus(t_scene *s, char **option)
+{
+	t_bonus		bonus;
+	int			i;
+
+	i = -1;
+	bonus.texture.img = NULL;
+	bonus.bumpmap.img = NULL;
+	bonus.id[0] = 0;
+	while (option[++i])
+	{
+		if (!ft_strncmp(option[i], "checkered", 10))
+			bonus.id[i] = 2;
+		else if (!ft_strncmp(option[i], "skybox:", 7))
+		{
+			bonus.texture = ft_load_texture(s, option[i]);
+			bonus.id[i] = 4;
+		}
+		else if (!ft_common_options(s, option, &bonus, i))
+			ft_error_handler(BAD_BONUS);
+	}
+	return (bonus);
+}
+
 t_bonus			ft_sphere_bonus(t_scene *s, char **option)
 {
 	t_bonus	bonus;
 	int		i;
 
+	bonus.texture.img = NULL;
+	bonus.bumpmap.img = NULL;
 	bonus.id[0] = 0;
 	i = -1;
 	bonus.type = 's';
 	while (option[++i])
 	{
-		if (!ft_strncmp(option[i], "normal-disruption", 18))
-			bonus.id[i] = 1;
-		else if (!ft_sphere_bonus_plus(s, option, &bonus, i))
+		if (!ft_strncmp(option[i], "rainbow", ft_strlen(option[i]) + 1))
+		{
+			bonus.id[i] = 5;
+		}
+		else if (!ft_strncmp(option[i], "uv-map:", 7))
+		{
+			bonus.texture = ft_load_texture(s, option[i]);
+			bonus.id[i] = 6;
+		}
+		else if (!ft_common_options(s, option, &bonus, i))
 			ft_error_handler(BAD_BONUS);
 	}
 	return (bonus);
@@ -109,7 +107,7 @@ t_bonus			ft_cylinder_bonus(char **option)
 	t_bonus		bonus;
 	int			i;
 
-	i = 0;
+	i = -1;
 	bonus.id[0] = 0;
 	while (option[++i])
 	{

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   load_bonus2.c                                      :+:      :+:    :+:   */
+/*   load_light_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 17:21:48 by vde-dios          #+#    #+#             */
-/*   Updated: 2020/06/24 22:04:11 by vde-dios         ###   ########.fr       */
+/*   Updated: 2020/06/25 16:52:47 by vde-dios         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_vector		ft_get_parallel_dir(char *option)
 		ft_error_handler(BAD_BONUS);
 	dir = ft_load_coords(buffer[1]);
 	ft_normalize_vector(&dir);
+	ft_del_matrix(buffer);
 	return (dir);
 }
 

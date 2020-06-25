@@ -6,7 +6,7 @@
 #    By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/03 14:19:32 by vde-dios          #+#    #+#              #
-#    Updated: 2020/06/25 13:28:37 by vde-dios         ###   ########.fr        #
+#    Updated: 2020/06/25 17:23:31 by vde-dios         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,6 +72,8 @@ BONUS_FILES			=	algebra/algebra_1.c\
 					axis.c\
 					bmp.c\
 					camera.c\
+					clean_memory.c\
+					clean_memory_2.c\
 					error.c\
 					pipeline_bonus.c
 
@@ -104,6 +106,8 @@ SRC_FILES			=	algebra/algebra_1.c \
 					load/load_2.c \
 					load/load_utils_2.c \
 					camera.c \
+					clean_memory.c\
+					clean_memory_2.c\
  					light.c \
 					error.c \
 					axis.c \

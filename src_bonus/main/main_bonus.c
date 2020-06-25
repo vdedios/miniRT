@@ -6,7 +6,7 @@
 /*   By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 21:03:09 by vde-dios          #+#    #+#             */
-/*   Updated: 2020/06/25 13:44:03 by vde-dios         ###   ########.fr       */
+/*   Updated: 2020/06/25 17:28:50 by vde-dios         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ int		main(int argc, char **argv)
 	}
 	else
 		ft_error_handler(1);
+	ft_clean_memory(scene);
 	return (0);
 }

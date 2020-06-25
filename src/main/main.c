@@ -6,7 +6,7 @@
 /*   By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 21:03:09 by vde-dios          #+#    #+#             */
-/*   Updated: 2020/06/24 23:27:12 by vde-dios         ###   ########.fr       */
+/*   Updated: 2020/06/25 17:29:05 by vde-dios         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ int		main(int argc, char **argv)
 	}
 	else
 		ft_error_handler(1);
-	system("leaks miniRT");
+	ft_clean_memory(scene);
 	return (0);
 }
