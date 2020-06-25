@@ -28,46 +28,72 @@ Zoom | Translation | Rotation
 
 > :warning: _**Warning:** Since no bounding box or other performance algorithms are implemented movement isn't smooth in most cases since the program ray trace over and over again each frame. The purpose of this implementation was to allow the user to get the desired view quickly_ 
 ---
+## OPTIONS
+When executing the program you can add some extra flags which will add more value to your scenes such as color filtering, lighting effects or drawing a reference set of axis.
 
-## GENERAL STANDARD OPTIONS
+### Standard options:
+For the standard compilation you can output rendered scenes in a .bmp file.
 ``` bash
 --save #save rendered scene in a .bmp file. Scene will be output in ./output_bmp folder
 ```
 
 
-## GENERAL BONUS OPTIONS
+### Bonus options:
+When compiling with the `bonus`rule you will get a lot more options
 ```bash
- --help : invoke this help menu
+ --help : invoke help menu inside terminal
 --sepia-filter : add a sepia filter to rendered image 
 --antialiasing : apply aliased effect to rendered image
 --no-specular : removes specular light effect which comes from default
 --reference-axis : draws a set of global reference axis
 ``` 
 
-## GENERAL SCENE OPTIONS
+## SCENES
+A scene is the file where all information of the scene is readen from. Ambience, light sources, geometries, textures etc. will be defined here and readen by the program. The extension of this file is custom: `.rt`. Here you have an example of a scene showing some elements. As you can see you will define parameters such as screen resolution, RGB colors, postiions and normal vectors:
+
+```
+R 500 500
+A 0.3 255,255,255
+
+c -80,0,5 1,0,0 45
+c  80,0,5 -1.0,0,0 45
+l -40,0,30 0.3 255,0,255
+
+sp 0,0,10 30 255,255,0
+cy 0,0,-15 0,0,1 20 17 255,255,255
+pl 0,0,-20 0,0,1 255,255,255
+tr 0,20,-10 -20,0,-10 10,0,-10 100,255,255
+```
+
+> Aside from the standard configuration you can add some extra features which are listed, depending on the element.
 
 #### :flashlight: LIGHT FLAGS
 ```bash
 parallel:1,0,0
-#add parallel light following a precise direction. Example: l -20,0,5 0.7 255,255,255 parallel:1,0,0
+#add parallel light following a precise direction. Example:
+l -20,0,5 0.7 255,255,255 parallel:1,0,0
 ```
 #### :triangular_ruler: PLANE/TRIANGLE/SQUARE FLAGS
 
 ___Color disruptions:___
 ```bash    
 skybox:textures/skybox.png 
-#handle planar textures. Example: pl 0,0,-30 0,0,1 255,255,255 skybox:textures/skybox.png
+#handle planar textures. Example:
+pl 0,0,-30 0,0,1 255,255,255 skybox:textures/skybox.png
 
 checkered
-#add a checkered pattern. Example: pl 0,0,-30 0,0,1 255,255,255 checkered
+#add a checkered pattern. Example:
+pl 0,0,-30 0,0,1 255,255,255 checkered
 ```
 ___Normal disruptions___
 ```bash
 normal-disruption  
-#add a normal disruption damped wave effect. Example: pl 0,0,-30 0,0,1 255,255,255 normal-disruption
+#add a normal disruption damped wave effect. Example:
+pl 0,0,-30 0,0,1 255,255,255 normal-disruption
 
 bumpmap:texture/example.png 
-#handle bumpmap textures. Example: pl 0,0,-30 0,0,1 255,255,255 bumpmap:texture/example.png
+#handle bumpmap textures. Example:
+pl 0,0,-30 0,0,1 255,255,255 bumpmap:texture/example.png
 ```
 
 #### :basketball: SPHERE
@@ -75,27 +101,34 @@ bumpmap:texture/example.png
 ___Color disruptions:___
 ```bash
 rainbow
-#add a color disruption rainbow effect depending on surface normal. Example: sp 0,0,0 20 255,255,255 rainbow
+#add a color disruption rainbow effect depending on surface normal. Example:
+sp 0,0,0 20 255,255,255 rainbow
 
 uv-map:texture/earth.png
-#sphere texture. Example: sp 0,0,0 20 255,255,255 uv-map:texture/earth.png
+#sphere texture. Example:
+sp 0,0,0 20 255,255,255 uv-map:texture/earth.png
 ```
 
 ___Normal disruptions:___
 ```bash    
 normal-disruption
-#add a normal disruption damped wave effect. Example: sp 0,0,-30 0,0,1 255,255,255 normal-disruption
+#add a normal disruption damped wave effect. Example:
+sp 0,0,-30 0,0,1 255,255,255 normal-disruption
 
 bumpmap:texture/example.png
-#handle bumpmap textures. Example: sp 0,0,-30 0,0,1 255,255,255 bumpmap:texture/example.png
+#handle bumpmap textures. Example:
+sp 0,0,-30 0,0,1 255,255,255 bumpmap:texture/example.png
 ```
 #### :straight_ruler: CYLINDER
 
 ___Color disruptions:___
 ```bash
 rainbow
-#add a color disruption rainbow effect depending on surface normal. Example: sp 0,0,0 20 255,255,255 rainbow
+#add a color disruption rainbow effect depending on surface normal. Example:
+cy 0,0,0 20 255,255,255 rainbow
 ```
+
+### Some considerations
 
 1. To include these options/effects, you should add one or more of the following flags to the scene config file.
 2. Each vector is presented as an example, you can substitute with your own.
