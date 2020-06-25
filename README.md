@@ -1,4 +1,4 @@
-<h1><code>miniRT</code></h1>
+# miniRT
 
 > 👉 A small ray tracing engine written in C from scratch!
 
@@ -17,23 +17,13 @@ For basic operation you must execute: `./miniRT "path_scene" --[options]` when c
 When compiling with `make bonus` you must execute `./miniRT_bonus "path_scene" --[options]`.
 
 You can **move inside a scene** with the following controls:
-	
-### Zoom
-```
-Q : Zoom in
-E : Zoom out
-```
-### Translation
-```
-W : Move up
-S : Move down
-A : Move left
-D : Move right
-```
-### Rotation
-```
-Mouse : you can rotate camera around local x/y axis. Just click on the desire location you want the camera to look at.
-```
+
+Zoom | Translation | Rotation
+--- | --- | ---
+**Q** : Zoom in | **W** : Move up | **Mouse** : Click on the desire direction you want the camera to look at.
+**E** : Zoom out | **S** : Move down
+ | **A** : Move left
+ | **D** : Move right
 
 ---
 
