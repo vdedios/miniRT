@@ -1,12 +1,27 @@
 <<<<-------HELP MENU------->>>>
 
-Welcome to miniRT, a small and simple 3D graphics engine!
+Welcome to miniRT, a small ray tracing engine!
 For basic operation you must execute the program as follows after compiling:
     ./miniRT "path_scene" --[options]
 
 There are two compiling rules:
     -"make" : basic functioning
     -"make bonus" : advance features such as texture handling and more!
+
+BASIC CONTROLS
+
+	->Zoom
+	Q : Zoom in
+	E : Zoom out
+
+	->Translation
+	W : Move up
+	S : Move down
+	A : Move left
+	D : Move right
+
+	->Rotation
+	Mouse : you can rotate camera around local x/y axis. Just click on the desire location you want the camera to look at.
 
 -----------------------------------------------------
 

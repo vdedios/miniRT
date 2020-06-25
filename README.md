@@ -1,7 +1,103 @@
-# miniRT
-Mini ray tracing engine written in C from scratch!
+      ___                       ___                       ___                 
+     /__/\        ___          /__/\        ___          /  /\          ___   
+    |  |::\      /  /\         \  \:\      /  /\        /  /::\        /  /\  
+    |  |:|:\    /  /:/          \  \:\    /  /:/       /  /:/\:\      /  /:/  
+  __|__|:|\:\  /__/::\      _____\__\:\  /__/::\      /  /:/~/:/     /  /:/   
+ /__/::::| \:\ \__\/\:\__  /__/::::::::\ \__\/\:\__  /__/:/ /:/___  /  /::\   
+ \  \:\~~\__\/    \  \:\/\ \  \:\~~\~~\/    \  \:\/\ \  \:\/:::::/ /__/:/\:\  
+  \  \:\           \__\::/  \  \:\  ~~~      \__\::/  \  \::/~~~~  \__\/  \:\ 
+   \  \:\          /__/:/    \  \:\          /__/:/    \  \:\           \  \:\
+    \  \:\         \__\/      \  \:\         \__\/      \  \:\           \__\/
+     \__\/                     \__\/                     \__\/               
 
-### Some rendered images
 
-![picture alt](rendered_images/galaxia42.png "hello world!")
-![picture alt](rendered_images/spalding.png "hello world!")
+Welcome to miniRT, a small ray tracing engine!
+
+BASIC INSTRUCTIONS
+
+First of all you must compile the project:
+	-"make" : basic functioning
+    -"make bonus" : advance features such as texture handling and more!
+
+For basic operation you must execute the program as follows after compiling:
+    ./miniRT "path_scene" --[options]
+
+You can move inside a scene with the following controls:
+
+	->Zoom
+	Q : Zoom in
+	E : Zoom out
+
+	->Translation
+	W : Move up
+	S : Move down
+	A : Move left
+	D : Move right
+
+	->Rotation
+	Mouse : you can rotate camera around local x/y axis. Just click on the desire location you want the camera to look at.
+
+-----------------------------------------------------
+
+GENERAL STANDARD OPTIONS
+
+    --save : save rendered scene in a .bmp file. Scene will be output in ./output_bmp folder
+
+
+
+GENERAL BONUS OPTIONS
+
+    --help : invoke this help menu
+    --sepia-filter : add a sepia filter to rendered image 
+    --antialiasing : apply aliased effect to rendered image
+    --no-specular : removes specular light effect which comes from default
+    --reference-axis : draws a set of global reference axis
+
+
+GENERAL SCENE OPTIONS
+
+
+    --LIGHT FLAGS--
+    parallel:1,0,0 : add parallel light following a precise direction. Example: l -20,0,5 0.7 255,255,255 parallel:1,0,0
+
+
+
+    --PLANE/TRIANGLE/SQUARE FLAGS--
+
+    Color disruptions:
+    -----------------
+    skybox:textures/skybox.png : handle planar textures. Example: pl 0,0,-30 0,0,1 255,255,255 skybox:textures/skybox.png
+    checkered : add a checkered pattern. Example: pl 0,0,-30 0,0,1 255,255,255 checkered
+
+    Normal disruptions:
+    ------------------
+    normal-disruption : add a normal disruption damped wave effect. Example: pl 0,0,-30 0,0,1 255,255,255 normal-disruption
+    bumpmap:texture/example.png : handle bumpmap textures. Example: pl 0,0,-30 0,0,1 255,255,255 bumpmap:texture/example.png
+
+
+
+    --SPHERE--
+
+    Color disruptions:
+    -----------------
+    rainbow : add a color disruption rainbow effect depending on surface normal. Example: sp 0,0,0 20 255,255,255 rainbow
+    uv-map:texture/earth.png : sphere texture. Example: sp 0,0,0 20 255,255,255 uv-map:texture/earth.png
+
+    Normal disruptions:
+    ------------------
+    normal-disruption : add a normal disruption damped wave effect. Example: sp 0,0,-30 0,0,1 255,255,255 normal-disruption
+    bumpmap:texture/example.png : handle bumpmap textures. Example: sp 0,0,-30 0,0,1 255,255,255 bumpmap:texture/example.png
+
+
+
+    --CYLINDER--
+
+    Color disruptions:
+    -----------------
+    rainbow : add a color disruption rainbow effect depending on surface normal. Example: sp 0,0,0 20 255,255,255 rainbow
+
+
+I) To include these options/effects, you should add one or more of the following flags to the scene config file.
+II) Each vector is presented as an example, you can substitute with your own.
+III) Each texture/image file is presented as an example, you can substitute with your own. Path must be taken from the root of this proyect.
+IV) Each geometry can combine one option from each category: color or normal disruption. These options should be written one after oother with one space between each.
