@@ -28,7 +28,7 @@ Zoom | Translation | Rotation
 
 > :warning: _**Warning:** Since no bounding box or other performance algorithms are implemented movement isn't smooth in most cases since the program ray trace over and over again each frame. The purpose of this implementation was to allow the user to get the desired view quickly_ 
 ---
-## OPTIONS
+## :helicopter: OPTIONS
 When executing the program you can add some extra flags which will add more value to your scenes such as color filtering, lighting effects or drawing a reference set of axis.
 
 ### Standard options:
