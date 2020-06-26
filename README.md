@@ -77,10 +77,12 @@ l -20,0,5 0.7 255,255,255 parallel:1,0,0
 
 ___Color disruptions:___
 
+> All texture/bump images must have `.xpm`extension to work.
+
 Handle planar textures:
 ```bash    
 #Example:
-pl 0,0,-30 0,0,1 255,255,255 skybox:textures/skybox.png
+pl 0,0,-30 0,0,1 255,255,255 skybox:textures/skybox.xpm
 ```
 Add a checkered pattern:
 ```bash
@@ -97,7 +99,7 @@ pl 0,0,-30 0,0,1 255,255,255 normal-disruption
 Handle bumpmap textures:
 ```bash
 #Example:
-pl 0,0,-30 0,0,1 255,255,255 bumpmap:texture/example.png
+pl 0,0,-30 0,0,1 255,255,255 bumpmap:texture/example.xpm
 ```
 
 #### :basketball: SPHERE
@@ -112,7 +114,7 @@ sp 0,0,0 20 255,255,255 rainbow
 Handle sphere textures:
 ```bash
 #Example:
-sp 0,0,0 20 255,255,255 uv-map:texture/earth.png
+sp 0,0,0 20 255,255,255 uv-map:texture/earth.xpm
 ```
 
 ___Normal disruptions:___
@@ -125,7 +127,7 @@ sp 0,0,-30 0,0,1 255,255,255 normal-disruption
 Handle bumpmap textures: 
 ```bash
 #handle bumpmap textures. Example:
-sp 0,0,-30 0,0,1 255,255,255 bumpmap:texture/example.png
+sp 0,0,-30 0,0,1 255,255,255 bumpmap:texture/example.xpm
 ```
 #### :straight_ruler: CYLINDER
 
