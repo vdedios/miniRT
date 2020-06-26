@@ -22,7 +22,7 @@ You can **move inside a scene** with the following controls:
 Zoom | Translation | Change camera | Rotation
 --- | --- | --- | ---
 **Q** : Zoom in | **W** : Move up | **Arrow left** : Previous camera | **Mouse** : Click on the desire direction you want the camera to look at. 
-**E** : Zoom out | **S** : Move down | **Arrow right** : next camera
+**E** : Zoom out | **S** : Move down | **Arrow right** : Next camera
  | **A** : Move left
  | **D** : Move right
 
