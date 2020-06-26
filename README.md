@@ -19,10 +19,10 @@ When compiling with `make bonus` you must execute `./miniRT_bonus "path_scene" -
 
 You can **move inside a scene** with the following controls:
 
-Zoom | Translation | Rotation | Change camera
+Zoom | Translation | Change camera | Rotation
 --- | --- | ---
-**Q** : Zoom in | **W** : Move up | **Mouse** : Click on the desire direction you want the camera to look at. | **Arrow left** : Previous camera
-**E** : Zoom out | **S** : Move down |  | **Arrow right** : next camera
+**Q** : Zoom in | **W** : Move up | **Arrow left** : Previous camera | **Mouse** : Click on the desire direction you want the camera to look at. 
+**E** : Zoom out | **S** : Move down | **Arrow right** : next camera
  | **A** : Move left
  | **D** : Move right
 
