@@ -6,7 +6,7 @@
 #    By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/03 14:19:32 by vde-dios          #+#    #+#              #
-#    Updated: 2020/06/26 12:25:56 by vde-dios         ###   ########.fr        #
+#    Updated: 2020/06/26 12:51:05 by vde-dios         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,6 @@ OBJ_DIR_BONUS		=	obj_bonus/
 
 PRINTF_INCL			=	dependencies/printf/includes
 
-MINILIBX_A_DIR 		=	dependencies/minilibx_opengl/libmlx.a
 LIBFT_A_DIR			=	dependencies/libft/libft.a
 PRINTF_A_DIR		=	dependencies/printf/libftprintf.a
 
@@ -41,6 +40,8 @@ ifeq ($(OS), Darwin)
 	MINILIBX_DIR = dependencies/minilibx_opengl
 	OPENGL = -lz -framework OpenGL -framework AppKit
 endif
+
+MINILIBX_A_DIR 		=	$(MINILIBX_DIR)/libmlx.a
 
 BONUS_FILES			=	algebra/algebra_1.c\
 					algebra/algebra_2.c\

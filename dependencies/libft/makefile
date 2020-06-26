@@ -6,7 +6,7 @@
 #    By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/03 14:19:32 by vde-dios          #+#    #+#              #
-#    Updated: 2020/02/02 20:07:30 by vde-dios         ###   ########.fr        #
+#    Updated: 2020/06/26 12:46:19 by vde-dios         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	=	 libft.a
 
 CC		=	 gcc
 
-CFLAGS	=	 -Werror -Wall -Wextra -g
+CFLAGS	=	  -g
 
 AR		=	 ar -rcs
 

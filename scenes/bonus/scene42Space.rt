@@ -4,7 +4,7 @@ A 0.15 255,255,255
 c -1100,0,50 1,0,0 30
 l -1000,-1000,100 0.6 255,255,255 parallel:1,1,0
 
-pl 100000000,0,0 1,0,0 20,20,100 skybox:textures/milkyway.png
+pl 100000000,0,0 1,0,0 20,20,100 skybox:textures/milkyway.xpm
 sq 0,42.5,-42.5 1,0,0 42.5 255,255,255
 
 tr 0,0,0 0,255,0 0,0,68 255,255,255
@@ -25,11 +25,11 @@ tr 0,-122,68 0,-122,153 0,-207,153 255,255,255
 tr 0,-122,238 0,-37,238 0,-37,153 255,255,255
 
 sq 0,-164.5,195.5 1,0,0 42.5 255,255,255
-sp 0,0,-580 1000 255,255,255 uv-map:textures/moon.png
+sp 0,0,-580 1000 255,255,255 uv-map:textures/moon.xpm
 
-sp -100,-30,0 75 255,255,255 uv-map:textures/earth.png
-sp  0,230,150 60 255,255,255 uv-map:textures/mars.png
-sp -30,290,-10 45 255,255,255 uv-map:textures/neptune.png
-sp 200,200,-49 75 255,255,255 uv-map:textures/uranus.png
-sp 260,0,200 100 255,255,255 uv-map:textures/mercury.png
-sp 150,-300,200 100 255,255,255 uv-map:textures/juipter.png
+sp -100,-30,0 75 255,255,255 uv-map:textures/earth.xpm
+sp  0,230,150 60 255,255,255 uv-map:textures/mars.xpm
+sp -30,290,-10 45 255,255,255 uv-map:textures/neptune.xpm
+sp 200,200,-49 75 255,255,255 uv-map:textures/uranus.xpm
+sp 260,0,200 100 255,255,255 uv-map:textures/mercury.xpm
+sp 150,-300,200 100 255,255,255 uv-map:textures/juipter.xpm

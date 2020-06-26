@@ -6,7 +6,7 @@
 /*   By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 16:55:24 by vde-dios          #+#    #+#             */
-/*   Updated: 2020/06/25 17:21:04 by vde-dios         ###   ########.fr       */
+/*   Updated: 2020/06/26 13:57:27 by vde-dios         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_texture		ft_load_texture(t_scene *s, char *option)
 	if (i != 2)
 		ft_error_handler(BAD_BONUS);
 	if (!(texture.img =
-				(int *)mlx_png_file_to_image(s->window.mlx_ptr, buffer[1]
+				(int *)mlx_xpm_file_to_image(s->window.mlx_ptr, buffer[1]
 					, &texture.width, &texture.height)))
 		ft_error_handler(BAD_TEXTURE);
 	texture.val = (int *)mlx_get_data_addr(texture.img, &texture.bitpixl,

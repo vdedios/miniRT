@@ -6,7 +6,7 @@
 /*   By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 21:43:51 by vde-dios          #+#    #+#             */
-/*   Updated: 2020/06/25 16:19:18 by vde-dios         ###   ########.fr       */
+/*   Updated: 2020/06/26 12:47:08 by vde-dios         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <math.h>
 # include <float.h>
 # include <time.h>
-# include <CoreGraphics/CGDisplayConfiguration.h>
 # include "mlx.h"
 # include "libft.h"
 # include "printf.h"

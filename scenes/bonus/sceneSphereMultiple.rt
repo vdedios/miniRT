@@ -4,4 +4,4 @@ A 0.3 255,255,255
 c -30,0,0 1.0,0,0 60
 l -20,0,20 0.5 255,255,255
 
-sp 0,0,0 20 255,0,0 uv-map:textures/earth.png normal-disruption
+sp 0,0,0 20 255,0,0 uv-map:textures/earth.xpm normal-disruption

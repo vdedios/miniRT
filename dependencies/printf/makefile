@@ -6,7 +6,7 @@
 #    By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/03 14:19:32 by vde-dios          #+#    #+#              #
-#    Updated: 2020/01/23 16:59:54 by vde-dios         ###   ########.fr        #
+#    Updated: 2020/06/26 12:46:34 by vde-dios         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRC_DIR 	= 	src/
 HEAD_DIR	=	includes/
 
 CC			=	gcc
-FLAGS		=	-Werror -Wall -Wextra -g
+FLAGS		=	-g
 LFLAGS		=	-I includes/
 AR			=	ar -rcs
 
