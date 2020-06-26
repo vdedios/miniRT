@@ -6,7 +6,7 @@
 /*   By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 20:33:12 by vde-dios          #+#    #+#             */
-/*   Updated: 2020/06/24 22:04:09 by vde-dios         ###   ########.fr       */
+/*   Updated: 2020/06/26 18:30:26 by vde-dios         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_minirt(t_scene scene)
 	scene.img.id = mlx_new_image(scene.window.mlx_ptr, scene.x, scene.y);
 	scene.img.addr = (int *)mlx_get_data_addr(scene.img.id, &scene.img.bitpixl,
 			&scene.img.len, &scene.img.end);
-	mlx_hook(scene.window.win_ptr, 17, 0, ft_exit, &scene.window);
+	mlx_hook(scene.window.win_ptr, CLOSE, 0L, ft_exit, &scene.window);
 	mlx_key_hook(scene.window.win_ptr, ft_handle_keyboard, &scene);
 	mlx_mouse_hook(scene.window.win_ptr, ft_handle_mouse, &scene);
 	ft_scene_to_screen(&scene);

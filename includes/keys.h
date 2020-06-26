@@ -6,7 +6,7 @@
 /*   By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/26 14:40:01 by vde-dios          #+#    #+#             */
-/*   Updated: 2020/06/26 15:36:32 by vde-dios         ###   ########.fr       */
+/*   Updated: 2020/06/26 18:29:18 by vde-dios         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 #  define KEY_Q 12
 #  define KEY_W 13
 #  define KEY_E 14
+#  define CLOSE 17
 
 # elif defined __unix__
 #  define ESC 65307
@@ -34,6 +35,7 @@
 #  define KEY_Q 113
 #  define KEY_W 119
 #  define KEY_E 101
+#  define CLOSE 33
 # endif
 
 #endif
