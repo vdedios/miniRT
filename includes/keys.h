@@ -6,12 +6,12 @@
 /*   By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/26 14:40:01 by vde-dios          #+#    #+#             */
-/*   Updated: 2020/06/26 14:47:04 by vde-dios         ###   ########.fr       */
+/*   Updated: 2020/06/26 15:23:40 by vde-dios         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINIRT_H
-# define MINIRT_H
+#ifndef KEYS_H
+# define KEYS_H
 
 # define ESC 53
 # define ARROW_RIGHT 124
