@@ -6,16 +6,16 @@
 #    By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/03 14:19:32 by vde-dios          #+#    #+#              #
-#    Updated: 2020/06/25 17:23:31 by vde-dios         ###   ########.fr        #
+#    Updated: 2020/06/26 12:25:56 by vde-dios         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME				=	miniRT
 NAME_BONUS			=	miniRT_bonus
+OS 					:=	$(shell uname)
 
 SRC_DIR 			= 	src/
 BONUS_DIR 			= 	src_bonus/
-MINILIBX_DIR 		=	dependencies/minilibx_opengl
 LIBFT_DIR			=	dependencies/libft/
 PRINTF_DIR			=	dependencies/printf/
 GNL_DIR				=	dependencies/get_next_line/
@@ -33,6 +33,14 @@ CFLAGS				= 	-Werror -Wall -Wextra -g
 OPENGL				= 	-lz -framework OpenGL -framework AppKit
 INCLUDES			=	-Iincludes/ -Iincludes/bonus -I$(PRINTF_INCL) \
 						-I$(GNL_DIR) -I$(LIBFT_DIR) -I$(MINILIBX_DIR) 
+ifeq ($(OS), Linux)
+	MINILIBX_DIR = dependencies/minilibx-linux
+	OPENGL = -lm -lbsd -lX11 -lXext
+endif
+ifeq ($(OS), Darwin)
+	MINILIBX_DIR = dependencies/minilibx_opengl
+	OPENGL = -lz -framework OpenGL -framework AppKit
+endif
 
 BONUS_FILES			=	algebra/algebra_1.c\
 					algebra/algebra_2.c\
