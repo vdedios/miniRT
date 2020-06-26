@@ -6,7 +6,7 @@
 /*   By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 21:43:51 by vde-dios          #+#    #+#             */
-/*   Updated: 2020/06/26 12:47:08 by vde-dios         ###   ########.fr       */
+/*   Updated: 2020/06/26 14:39:38 by vde-dios         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 # include "bmp_types.h"
 # include "minirt_bonus.h"
 # include "clean.h"
+# include "keys.h"
 
 /*
 ** Main  functions

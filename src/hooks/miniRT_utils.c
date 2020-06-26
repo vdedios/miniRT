@@ -6,7 +6,7 @@
 /*   By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 20:39:15 by vde-dios          #+#    #+#             */
-/*   Updated: 2020/06/24 22:04:09 by vde-dios         ###   ########.fr       */
+/*   Updated: 2020/06/26 14:51:13 by vde-dios         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@ void			ft_handle_axis_translation(int key, t_scene *s)
 {
 	t_vector	aux;
 
-	if (!key)
+	if (key == KEY_A)
 		aux = (t_vector){-1, 0, 0};
-	else if (key == 2)
+	else if (key == KEY_D)
 		aux = (t_vector){1, 0, 0};
-	else if (key == 13)
+	else if (key == KEY_W)
 		aux = (t_vector){0, 1, 0};
-	else if (key == 1)
+	else if (key == KEY_S)
 		aux = (t_vector){0, -1, 0};
-	else if (key == 14)
+	else if (key == KEY_E)
 		aux = (t_vector){0, 0, -1};
 	else
 		aux = (t_vector){0, 0, 1};
@@ -35,7 +35,7 @@ void			ft_handle_axis_translation(int key, t_scene *s)
 
 void			ft_change_camera(int key, t_scene *s)
 {
-	if (key == 123)
+	if (key == ARROW_LEFT)
 	{
 		if (s->i_cam > 0)
 			s->i_cam = s->i_cam - 1;
@@ -54,12 +54,12 @@ void			ft_change_camera(int key, t_scene *s)
 
 int				ft_handle_keyboard(int key, t_scene *s)
 {
-	if (key == 53)
+	if (key == ESC)
 		ft_exit(&s->window);
-	else if (!key || key == 13 || key == 1
-			|| key == 2 || key == 14 || key == 12)
+	else if (!key || key == KEY_W || key == KEY_S
+			|| key == KEY_D || key == KEY_E || key == KEY_Q)
 		ft_handle_axis_translation(key, s);
-	else if (key == 123 || key == 124)
+	else if (key == ARROW_LEFT || key == ARROW_RIGHT)
 		ft_change_camera(key, s);
 	return (0);
 }
