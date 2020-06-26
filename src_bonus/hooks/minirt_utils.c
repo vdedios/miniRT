@@ -6,7 +6,7 @@
 /*   By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 20:39:15 by vde-dios          #+#    #+#             */
-/*   Updated: 2020/06/26 14:51:03 by vde-dios         ###   ########.fr       */
+/*   Updated: 2020/06/26 15:45:38 by vde-dios         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int				ft_handle_keyboard(int key, t_scene *s)
 {
 	if (key == ESC)
 		ft_exit(&s->window);
-	else if (!key || key == KEY_W || key == KEY_S
+	else if (key == KEY_A || key == KEY_W || key == KEY_S
 			|| key == KEY_D || key == KEY_E || key == KEY_Q)
 		ft_handle_axis_translation(key, s);
 	else if (key == ARROW_LEFT || key == ARROW_RIGHT)
