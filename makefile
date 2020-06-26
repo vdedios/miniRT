@@ -6,7 +6,7 @@
 #    By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/03 14:19:32 by vde-dios          #+#    #+#              #
-#    Updated: 2020/06/26 12:51:05 by vde-dios         ###   ########.fr        #
+#    Updated: 2020/06/26 14:28:13 by vde-dios         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ OPENGL				= 	-lz -framework OpenGL -framework AppKit
 INCLUDES			=	-Iincludes/ -Iincludes/bonus -I$(PRINTF_INCL) \
 						-I$(GNL_DIR) -I$(LIBFT_DIR) -I$(MINILIBX_DIR) 
 ifeq ($(OS), Linux)
-	MINILIBX_DIR = dependencies/minilibx-linux
+	MINILIBX_DIR = dependencies/minilibx_linux
 	OPENGL = -lm -lbsd -lX11 -lXext
 endif
 ifeq ($(OS), Darwin)
