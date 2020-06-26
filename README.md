@@ -32,7 +32,7 @@ Zoom | Translation | Rotation
 When executing the program you can add some extra flags which will add more value to your scenes such as color filtering, lighting effects or drawing a reference set of axis.
 
 ### Standard options:
-For the standard compilation you can output rendered scenes in a .bmp file.
+For the standard compilation you can output rendered scenes in a .bmp file. (You can also do this with bonus option)
 ``` bash
 --save #save rendered scene in a .bmp file. Scene will be output in ./output_bmp folder
 ```
@@ -41,15 +41,15 @@ For the standard compilation you can output rendered scenes in a .bmp file.
 ### Bonus options:
 When compiling with the `bonus`rule you will get a lot more options
 ```bash
- --help : invoke help menu inside terminal
---sepia-filter : add a sepia filter to rendered image 
---antialiasing : apply aliased effect to rendered image
---no-specular : removes specular light effect which comes from default
---reference-axis : draws a set of global reference axis
+ --help #invoke help menu inside terminal
+--sepia-filter #add a sepia filter to rendered image 
+--antialiasing #apply aliased effect to rendered image
+--no-specular #removes specular light effect which comes from default
+--reference-axis #draws a set of global reference axis
 ``` 
 
 ## :city_sunset: SCENES
-A scene is the file where all information of the scene is readen from. Ambience, light sources, geometries, textures etc. will be defined here and readen by the program. The extension of this file is custom: `.rt`. Here you have an example of a scene showing some elements. As you can see you will define parameters such as screen resolution, RGB colors, postiions and normal vectors:
+A scene is the file where all information is readen from. Ambience, light sources, geometries, textures etc. will be defined here and readen by the program. The extension of this file is custom: `.rt`. This is an example of a scene with a few geomtries. As you can see you will define parameters such as screen resolution, RGB colors, positions and normal vectors:
 
 ```
 R 500 500
@@ -89,12 +89,12 @@ pl 0,0,-30 0,0,1 255,255,255 checkered
 ```
 ___Normal disruptions___
 
-Add a normal disruption damped wave effect. 
+Add a normal disruption damped wave effect: 
 ```bash
 #Example:
 pl 0,0,-30 0,0,1 255,255,255 normal-disruption
 ```
-Handle bumpmap textures
+Handle bumpmap textures:
 ```bash
 #Example:
 pl 0,0,-30 0,0,1 255,255,255 bumpmap:texture/example.png
@@ -140,7 +140,10 @@ cy 0,0,0 20 255,255,255 rainbow
 
 ### Some considerations
 
-1. To include these options/effects, you should add one or more of the following flags to the scene config file.
-2. Each vector is presented as an example, you can substitute with your own.
-3. Each texture/image file is presented as an example, you can substitute with your own. Path must be taken from the root of this proyect.
-4. Each geometry can combine one option from each category: color or normal disruption. These options should be written one after oother with one space between each.
+- In order to include these options/effects, you should add one or more of the following flags to the scene config file.
+
+- Each vector is presented as an example, you can substitute with your own.
+
+- Each texture/image file is presented as an example, you can substitute with your own. Path must be taken from the root of this proyect.
+
+- Each geometry can combine one option from each category: color or normal disruption. These options should be written one after oother with one space between each.
