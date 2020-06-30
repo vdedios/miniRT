@@ -6,7 +6,7 @@
 /*   By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/24 20:57:33 by vde-dios          #+#    #+#             */
-/*   Updated: 2020/06/30 11:30:37 by vde-dios         ###   ########.fr       */
+/*   Updated: 2020/06/30 12:11:33 by vde-dios         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_check_system_resolution(t_scene *scene)
 #else
 
 void	ft_check_system_resolution(t_scene *scene)
-
+{
 	int	w;
 	int	h;
 
