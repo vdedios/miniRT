@@ -6,7 +6,7 @@
 /*   By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 18:21:25 by vde-dios          #+#    #+#             */
-/*   Updated: 2019/11/29 23:18:24 by vde-dios         ###   ########.fr       */
+/*   Updated: 2020/06/30 11:38:07 by vde-dios         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ static int	ft_remain(char **remain_str, char **line)
 	}
 	else
 		*line = ft_realloc_content("", "");
-	ft_free_memory(remain_str);	
+	ft_free_memory(remain_str);
 	return (0);
 }
 
-static	int	ft_keep_reading(ssize_t rd_status, char *buffer, 
+static	int	ft_keep_reading(ssize_t rd_status, char *buffer,
 		char **remain_str, char **line)
 {
 	char *aux_free;
@@ -48,17 +48,17 @@ static	int	ft_keep_reading(ssize_t rd_status, char *buffer,
 	return (0);
 }
 
-int	get_next_line(int fd, char **line)
+int			get_next_line(int fd, char **line)
 {
-	ssize_t		rd_status;
-	char		*buffer;
-	static char 	*remain_str[4096];
+	ssize_t			rd_status;
+	char			*buffer;
+	static char		*remain_str[4096];
 
 	if (!line)
 		return (-1);
 	*line = ft_realloc_content(remain_str[fd], "");
 	rd_status = 0;
-	if(!(buffer = malloc((BUFFER_SIZE + 1) * sizeof(char))))
+	if (!(buffer = malloc((BUFFER_SIZE + 1) * sizeof(char))))
 		return (-1);
 	while ((rd_status = read(fd, buffer, BUFFER_SIZE)) > 0)
 		if (ft_keep_reading(rd_status, buffer, &remain_str[fd], line))

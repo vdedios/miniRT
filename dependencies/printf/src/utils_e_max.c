@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_e_max.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/06/30 11:45:06 by vde-dios          #+#    #+#             */
+/*   Updated: 2020/06/30 11:45:37 by vde-dios         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "printf.h"
 
 int							ft_count_figures(long long int num)
@@ -41,4 +53,3 @@ unsigned long long			ft_get_integer(double num, char type, int *exp)
 	else
 		return (i);
 }
-

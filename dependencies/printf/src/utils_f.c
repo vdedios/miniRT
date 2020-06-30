@@ -6,7 +6,7 @@
 /*   By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 15:15:51 by vde-dios          #+#    #+#             */
-/*   Updated: 2020/01/23 15:20:57 by vde-dios         ###   ########.fr       */
+/*   Updated: 2020/06/30 11:42:55 by vde-dios         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ unsigned long long		ft_rounding(unsigned long long *i_num,
 			*i_num = *i_num + 1;
 		else if (*i_num + 0.5 == num)
 		{
-
 			if ((*i_num % 10) % 2)
 				*i_num = *i_num + 1;
 		}
 		return (*i_num);
 	}
-	if ((f_num + 0.5) * ft_ten_power(18) < (num - *i_num) * ft_ten_power(precision + 18))
+	if ((f_num + 0.5) * ft_ten_power(18) < (num - *i_num)
+			* ft_ten_power(precision + 18))
 		f_num = (f_num + 1) % (long long int)ft_ten_power(precision);
 	else if (f_num + 0.5 == (num - *i_num) * ft_ten_power(precision))
 	{

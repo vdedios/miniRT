@@ -6,7 +6,7 @@
 /*   By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/14 15:17:00 by vde-dios          #+#    #+#             */
-/*   Updated: 2020/02/11 14:55:33 by vde-dios         ###   ########.fr       */
+/*   Updated: 2020/06/30 11:45:20 by vde-dios         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static int					ft_round_exp_max(t_format format,
 		*f_num / ft_ten_power(15 - format.precision);
 	f_aux = *f_num - (long long)(*f_num / ft_ten_power(15 - format.precision))
 		* ft_ten_power(15 - format.precision);
-
 	if (5 * ft_ten_power(15 - format.precision - 1) < f_aux)
 	{
 		return (1);

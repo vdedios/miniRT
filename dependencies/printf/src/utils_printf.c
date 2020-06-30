@@ -6,13 +6,13 @@
 /*   By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 17:17:04 by vde-dios          #+#    #+#             */
-/*   Updated: 2020/02/01 18:24:29 by vde-dios         ###   ########.fr       */
+/*   Updated: 2020/06/30 11:53:28 by vde-dios         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-char	*ft_string_to_char(char *s)
+char		*ft_string_to_char(char *s)
 {
 	char *aux;
 
@@ -23,7 +23,7 @@ char	*ft_string_to_char(char *s)
 	return (aux);
 }
 
-void	ft_initialize_format(t_format *format, int **c_nulls)
+void		ft_initialize_format(t_format *format, int **c_nulls)
 {
 	int	i;
 
@@ -44,18 +44,23 @@ void	ft_initialize_format(t_format *format, int **c_nulls)
 	format->last_pos = -1;
 }
 
-char	*ft_post_format(char *format_aux, t_format *format)
+static void	ft_check_flagsss(char **format_aux, t_format *format)
+{
+	if (format->flags->plus && (!format->flags->zero ||
+	(format->precision >= 0 && (format->type != 'f' && format->type != 'g'))))
+		*format_aux = ft_plus(*format_aux, format);
+	if (format->flags->apostrophe)
+		*format_aux = ft_apostrophe(*format_aux, *format);
+	if (format->flags->hash && (!format->flags->zero || format->precision >= 0))
+		*format_aux = ft_hash(*format_aux, format);
+}
+
+char		*ft_post_format(char *format_aux, t_format *format)
 {
 	int i;
 
 	i = 0;
-	if (format->flags->plus && (!format->flags->zero || (format->precision >= 0 && 
-					(format->type != 'f' && format->type != 'g'))))
-		format_aux = ft_plus(format_aux, format);
-	if (format->flags->apostrophe)
-		format_aux = ft_apostrophe(format_aux, *format);
-	if (format->flags->hash && (!format->flags->zero || format->precision >= 0))
-		format_aux = ft_hash(format_aux, format);
+	ft_check_flagsss(&format_aux, format);
 	if (format->width)
 		format_aux = ft_width(format, format_aux);
 	if (format->flags->space)

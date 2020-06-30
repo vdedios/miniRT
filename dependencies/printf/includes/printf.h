@@ -6,7 +6,7 @@
 /*   By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 20:15:51 by vde-dios          #+#    #+#             */
-/*   Updated: 2020/02/01 17:14:05 by vde-dios         ###   ########.fr       */
+/*   Updated: 2020/06/30 11:46:20 by vde-dios         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,8 @@ char					*ft_exp_str(double num, int *exp, t_format format);
 */
 double					ft_ten_power(int p);
 unsigned long long		ft_rounding(unsigned long long *i_num,
-							unsigned long long f_num, double num, int precision);
+							unsigned long long f_num,
+							double num, int precision);
 char					*ft_add_zeroes(char *f_str, int precision);
 char					*ft_float_str(double num, t_format format);
 

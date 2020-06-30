@@ -6,7 +6,7 @@
 /*   By: vde-dios <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/08 11:28:46 by vde-dios          #+#    #+#             */
-/*   Updated: 2020/02/02 20:08:46 by vde-dios         ###   ########.fr       */
+/*   Updated: 2020/06/30 11:41:35 by vde-dios         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-
 /*
 ** MANDATORY
 */
+
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_bzero(void *s, size_t n);
 void				*ft_memcpy(void *dst, const void *src, size_t n);
