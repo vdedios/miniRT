@@ -1,6 +1,6 @@
 # :flashlight: miniRT
 
-> 👉 A small ray tracing engine written in C from scratch!
+> 👉 A small ray tracing engine written in C from scratch... even I can't believe it!!
 
 ![picture alt](rendered_images/spalding.png "hello world!")
 
